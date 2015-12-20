@@ -18,10 +18,7 @@ compiler:
   - clang
   - gcc
 
-before_script:
+script:
   - cmake .
   - make
-
-  
-  
   
