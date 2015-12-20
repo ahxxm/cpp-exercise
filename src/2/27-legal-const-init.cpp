@@ -1,6 +1,6 @@
 #include <iostream>
 
-int const_init(){
+void const_init(){
   // of course fine
   int i1 = -1;
 
@@ -26,5 +26,4 @@ int const_init(){
   // of course fine
   const int i2 = i1;
   std::cout <<& i2 << std::endl;
-  return 0;
 }

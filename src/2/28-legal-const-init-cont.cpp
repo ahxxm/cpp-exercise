@@ -1,6 +1,6 @@
 #include <iostream>
 
-int const_init_cont(){
+void const_init_cont(){
   // int i, *const cp = 1.233;
   // FIXME: no, cp is not initialized. why it's treated as int??
 
@@ -16,6 +16,4 @@ int const_init_cont(){
   const int *p;
   p = &i;
   p = &j;
-
-  return 0;
 }
