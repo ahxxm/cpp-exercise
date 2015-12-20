@@ -23,8 +23,7 @@ int const_init(){
   // points to a converted tmporary const int object
   const int *p5 = &i1;
 
-  //
+  // of course fine
   const int i2 = i1;
   std::cout <<& i2 << std::endl;
-
 }
