@@ -22,3 +22,5 @@ script:
   - cmake .
   - make
   
+after_success:
+  - make clean
