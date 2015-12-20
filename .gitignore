@@ -29,6 +29,7 @@
 
 
 # Cmake ignores
+build/
 CMakeCache.txt
 CMakeFiles
 CMakeScripts
