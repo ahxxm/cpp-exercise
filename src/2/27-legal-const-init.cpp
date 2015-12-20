@@ -17,7 +17,8 @@ void const_init(){
   // operator
   // & r = 0;
 
-  // only differen with p2 is that, p4 is read-only
+  // only differen with p2 is that, &i1 is read-only,
+  // p4 can not change it as well.
   const int *const p4 = &i1;
 
   // points to a converted tmporary const int object
