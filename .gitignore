@@ -36,3 +36,6 @@ CMakeScripts
 Makefile
 cmake_install.cmake
 install_manifest.txt
+
+# Clion folder
+.idea/
