@@ -1,7 +1,6 @@
 #include <iostream>
 
-// void decltype_wat() {
-int main() {
+void decltype_wat() {
   // two int
   int a = 3,  b = 4;
 
