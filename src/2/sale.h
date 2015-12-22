@@ -1,3 +1,4 @@
+// preprocessor(`include`) manage these variable, replace them by values before compile
 #ifndef SALES_DATA_H
 #define SALES_DATA_H
 #include <string>
