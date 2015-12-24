@@ -16,11 +16,11 @@ void basic_vector_ops(int argc, char *argv[]){
   }
 
   // 20: vector<int> print
-  // FIXME: wat{1,2,3,4} does not work?
-  std::vector<int> wat;
-  wat.push_back(1);
-  wat.push_back(2);
-  wat.push_back(4);
+  // wat{1,2,3,4} or wat={1,2,3,4} does not work for OSX's default clang++
+  std::vector<int> wat {1, 2, 3, 4};
+  // wat.push_back(1);
+  // wat.push_back(2);
+  // wat.push_back(4);
 
   // sum of adjacent ones: loop till last one
   int j = wat.size() - 1;
