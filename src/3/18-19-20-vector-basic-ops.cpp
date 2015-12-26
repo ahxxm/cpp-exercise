@@ -3,6 +3,7 @@
 #include <iostream>
 
 void basic_vector_ops(int argc, char *argv[]){
+
   // 18: index/subscription does not change a vector, use push_back
   // instead
   std::vector<std::string> miu;
@@ -30,6 +31,10 @@ void basic_vector_ops(int argc, char *argv[]){
 
   // first and last element
   std::cout << wat[0] << "wat" << wat[j] << std::endl;
+
+  // count the size, iterator minus yields long type object
+  auto length = wat.end() - wat.begin();
+  std::cout << length << std::endl;
 
   // or just use iterator: .end() points to off-the-end, * to dereference out a reference
   // to actual element
