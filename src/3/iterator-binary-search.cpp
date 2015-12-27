@@ -26,7 +26,7 @@ int binary(std::vector<int> wut, int target){
 }
 
 
-int main(int argc, char *argv[]){
+void bug_search(int argc, char *argv[]){
 
   std::vector<int> wut;
   for (int i = 50; i != 10000; i++) {
@@ -37,5 +37,4 @@ int main(int argc, char *argv[]){
   int index = binary(wut, target);
   std::cout << "index of " << target << " in the list is:" << index << std::endl;
 
-  return 0;
 }
