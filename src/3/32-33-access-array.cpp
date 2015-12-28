@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 
-int main(int argc, char *argv[])
+void access_array(int argc, char *argv[])
 {
   // this prints abcdeft, bcdefg, ..., g
   // FIXME: correct?
@@ -30,7 +30,4 @@ int main(int argc, char *argv[])
     pv2[i] = pv[i];
     pv3.push_back(pv[i]);
   }
-
-
-  return 0;
 }
