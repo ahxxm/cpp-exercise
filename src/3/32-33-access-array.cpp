@@ -4,9 +4,13 @@
 
 int main(int argc, char *argv[])
 {
-  // FIXME: this prints abcdeft, bcdefg, ..., g
+  // this prints abcdeft, bcdefg, ..., g
+  // FIXME: correct?
+  // because "compiler ordinarily converts the array to a pointer..",
+  // the for-loop actually loops this iterator. Address-of operator
+  // & restore it to [current location -- and -- later --char]..
   std::string chart = "abcdefg";
-  for (auto &c: chart) {
+  for (char &c: chart) {
     std::cout << &c << std::endl;
   }
 
