@@ -39,3 +39,6 @@ install_manifest.txt
 
 # Clion folder
 .idea/
+
+# Ebook
+*.pdf
