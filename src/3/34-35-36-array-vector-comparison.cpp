@@ -23,7 +23,7 @@ bool vector_compare(std::vector<int> a, std::vector<int> &b) {
   return true;
 }
 
-int main(int argc, char *argv[]){
+int exercise_34(int argc, char *argv[]){
 
   // 34: even p1 points to a[10], it still works
   int a[] = {1, 2, 3, 4, 5};
