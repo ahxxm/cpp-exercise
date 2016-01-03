@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <vector>
 
 void c_style_string(int argc, char *argv[]){
 
@@ -16,4 +17,12 @@ void c_style_string(int argc, char *argv[]){
 
 
   // strcpy(destination, source); copies string to another one;
+
+
+  // init vector using array is also not recommended
+  int ia[] = {1, 2, 3, 4};
+  std::vector<int> iv1(std::begin(ia), std::end(ia));
+  std::vector<int> iv2(ia + 1, ia + 2);
+  std::cout << iv1.size() << std::endl;
+  std::cout << iv2.size() << std::endl;
 }
