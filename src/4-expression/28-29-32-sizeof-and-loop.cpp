@@ -2,7 +2,8 @@
 #include <string>
 #include <iostream>
 
-void sizeoff(int argc, char *argv[]) {
+// void sizeoff(int argc, char *argv[]) {
+int main() {
 
   // 28: print built in type's size
   std::cout << "size of string type: " << sizeof(std::string)<< std::endl;
@@ -17,4 +18,14 @@ void sizeoff(int argc, char *argv[]) {
   // FIXME: why 8?
   std::cout << sizeof(*p) << std::endl;
   std::cout << sizeof(p) / sizeof(*p)<< std::endl;
+
+  // 32: explain loop
+  // ptr is a pointer to first eleent in array ia, ix is count of element used in
+  // the loop. ix starts in 0 and compares with size, so ptr reaches end first.
+  const int size = 5;
+  int ia[size] = {1, 2, 3, 4, 5};
+  for (int *ptr = ia, ix = 0; ix != size && ptr != ia + size; ++ix, ++ptr) {
+    std::cout << ix << std::endl;
+    std::cout << *ptr << std::endl;
+  }
 }
