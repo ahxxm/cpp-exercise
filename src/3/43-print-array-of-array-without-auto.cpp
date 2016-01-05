@@ -12,6 +12,7 @@ void print_array_of_array(int argc, char *argv[]) {
   for (int (&row)[col]: ia) {
     for (int &col: row) {
       // `col` without `&`, array element's value won't change
+      // because that way a new col is created by copy previous value..
       col = 5;
       // dangerous: col++;
       std::cout << col << std::endl;
