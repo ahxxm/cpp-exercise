@@ -2,8 +2,7 @@
 #include <string>
 #include <iostream>
 
-// void sizeoff(int argc, char *argv[]) {
-int main() {
+void sizeoff(int argc, char *argv[]) {
 
   // 28: print built in type's size
   std::cout << "size of string type: " << sizeof(std::string)<< std::endl;
