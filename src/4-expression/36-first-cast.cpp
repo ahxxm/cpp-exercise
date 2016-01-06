@@ -11,7 +11,7 @@ void first_cast(int argc, char *argv[]) {
   std::cout << *dp << std::endl;
 
   // const_cast
-  // ok, but writing *pc is undefined.
+  // ok, but writing *pcc is undefined.
   // FIXME: "can be useful in ocntext of overloaded functions, other uses often indicate design flaw."
   char u = 'u';
   const char *pc = &u;
