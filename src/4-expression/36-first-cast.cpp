@@ -17,4 +17,11 @@ void first_cast(int argc, char *argv[]) {
   const char *pc = &u;
   char *pcc = const_cast<char*>(pc);
   std::cout << *pcc << std::endl;
+
+  // 36: make i*=j integral
+  int i = 1;
+  double j = 2.2;
+
+  i *= static_cast<int>(j);
+  std::cout << i << std::endl;
 }
