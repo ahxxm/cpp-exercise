@@ -2,11 +2,14 @@
 #include <iostream>
 
 void first_exception() {
+// int main() {
+  // Once caught, other catch won't be executed.
   try {
     // int a = 1;
     throw std::runtime_error("Java");
-  } catch (std::runtime_error) {
-    std::cout << "java caught..."  << std::endl;
+  } catch (std::runtime_error err) {
+    const char *error_message = err.what();
+    std::cout << error_message << std::endl;
   } catch (std::logic_error) {
     std::cout << "should not be this error.. " << std::endl;
   }
