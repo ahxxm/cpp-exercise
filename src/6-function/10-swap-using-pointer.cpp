@@ -1,5 +1,7 @@
 #include <iostream>
 
+
+// Reference param is preferred because it does not copy object and initialize.
 void swap_value(int *a, int *b) {
   int tmp = *a;
   *a = *b;
