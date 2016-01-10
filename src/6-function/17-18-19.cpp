@@ -59,7 +59,7 @@ std::vector<int> compare_value_in_vector(const int &num, const std::vector<int> 
 void exercise_19(void) {
   double calc(double);
   int count(const std::string &, char);
-  int sum(std::vector<int>::iterator, std::vector<int>::vector, int);
+  int sum(std::vector<int>::iterator, std::vector<int>::iterator, int);
   std::vector<int> vec(10);
 
   // calc(23.4, 55.1); // no calc with 2 double as param
