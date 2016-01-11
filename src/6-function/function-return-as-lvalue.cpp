@@ -11,5 +11,5 @@ int lower_a_string(int argc, char *argv[]) {
   get_val_in_string(s, 0) = 'h';
   std::cout << s << std::endl;
 
-  return 0;
+  return EXIT_SUCCESS;
 }
