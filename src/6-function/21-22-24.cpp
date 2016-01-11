@@ -11,6 +11,10 @@ int return_larger_int(const int &i, const int *j) {
 
 // 22: swap 2 integers
 void swap_two_int(int &i, int &j) {
+  if (i == j) {
+    return;
+  }
+
   int tmp = i;
   i = j;
   j = tmp;
