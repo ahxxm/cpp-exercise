@@ -4,7 +4,7 @@
 
 std::string screen(int sz, int sz2, char wut = '*') {
   // here char is converted into unsigned int then to_string,
-  // space == 32
+  // space == 32, * == 42
   std::string result = "jar" + std::to_string(sz2) + std::to_string(wut);
 
   // this way char is appended to string
