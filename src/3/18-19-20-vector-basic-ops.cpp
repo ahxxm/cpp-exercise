@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-void basic_vector_ops(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
 
   // 18: index/subscription does not change a vector, use push_back
   // instead

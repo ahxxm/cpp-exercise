@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-void exercise_37(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
 
   // 37: this snippet prints y a y line by line
   // const char ca[] = {'y', 'a', 'y'};

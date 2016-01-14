@@ -5,7 +5,8 @@ int txt_size(){
   return 10;
 }
 
-int array_initialize(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
+
   // 27 array initialization
   unsigned buf_size = 1024;
   int ia[buf_size];

@@ -1,6 +1,6 @@
 #include <iostream>
 
-void first_cast(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   double d = 3.14;
 
   // couvert back to double pointer will preserve its values

@@ -1,6 +1,6 @@
 #include <iostream>
 
-void bitwise_operator(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 
   int a = 5;
   int b = a >> 1;

@@ -2,7 +2,7 @@
 #include <string>
 #include "sale.h"
 
-void sale_item_usage() {
+int main(int argc, char *argv[]) {
 
   Sales_data data1, data2;
 

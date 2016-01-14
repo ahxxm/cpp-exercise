@@ -15,3 +15,7 @@ salias &alias(void);
 // trailing return
 // FIXME: how??
 // auto return_array_of_10_string_trailing(void) -> decltype(&sa);
+int main(int argc, char *argv[]) {
+
+  return 0;
+}

@@ -16,7 +16,7 @@ std::string screen(int sz, int sz2, char wut = '*') {
 // this adds default param..
 std::string screen(int sz = 10, int sz2 = 22, char);
 
-int default_args_main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 
   // will print jar2232**
   std::string wat = screen();

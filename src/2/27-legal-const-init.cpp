@@ -1,6 +1,7 @@
 #include <iostream>
 
-void const_init(){
+int main(int argc, char *argv[]) {
+
   // of course fine
   int i1 = -1;
 

@@ -68,7 +68,8 @@ void exercise_19(void) {
   // int sum_vec = sum(vec.begin(), vec.end(), 3.8); // 3.8 is a double
 }
 
-void call_exercises(void) {
+int main(int argc, char *argv[]) {
+  exercise_19();
   bool result = capital_letter_in_string("tesT");
   std::cout << result << std::endl;
 

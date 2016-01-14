@@ -20,7 +20,7 @@ int main_printer(int argc, char *argv[]) {
 
 
 // 26: print values passed to main
-int main_print_values(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   if (argc == 1) {
     std::cout << "No option found." << std::endl;
   } else {

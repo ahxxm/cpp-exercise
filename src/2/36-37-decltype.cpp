@@ -1,6 +1,6 @@
 #include <iostream>
 
-void decltype_wat() {
+int main(int argc, char *argv[]) {
   // two int
   int a = 3,  b = 4;
 

@@ -1,7 +1,7 @@
 #include <cstring>
 #include <iostream>
 
-void print_array_of_array(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 
   // new for format to assign value to array
   const std::size_t row = 3, col = 4;

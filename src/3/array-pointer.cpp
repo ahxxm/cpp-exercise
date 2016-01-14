@@ -1,7 +1,8 @@
 #include <string>
 #include <iostream>
 
-int array_pointer(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
+
   int ia[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   auto ia2(ia); // equals to auto ia2(&ia[0]);
   ia2[4] = 4; // this actually changes ia[4]

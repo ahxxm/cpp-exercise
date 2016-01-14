@@ -2,7 +2,8 @@
 #include <string>
 #include <iostream>
 
-int upper_string_in_vector(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
+
   std::vector<std::string> strong;
   strong.push_back("wat");
   strong.push_back("wat2");

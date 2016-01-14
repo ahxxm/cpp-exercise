@@ -8,8 +8,7 @@ void error_msg(std::initializer_list<std::string> il) {
     std::cout << e << std::endl;
   }
 }
-
-int error_msg_test(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   std::initializer_list<std::string> ii {"123", "456"};
   error_msg(ii);
   return 0;

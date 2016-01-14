@@ -10,7 +10,9 @@ bool is_odd(int &j) {
 
   return false;
 }
-void conditional_operator() {
+
+int main(int argc, char *argv[]) {
+
   // FIXME: how to assign j to i and *p inline
   int i, *p = 0;
   int j = 2;

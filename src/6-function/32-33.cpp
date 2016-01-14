@@ -39,7 +39,7 @@ void recursively_print_vector(std::vector<int> &vec) {
   loop_pointer_and_print(begin);
 }
 
-int print_vector_main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
   std::vector<int> va;
   for (int i = 1; i != 10; ++i) {
     va.push_back(i);

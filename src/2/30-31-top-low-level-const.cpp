@@ -1,6 +1,6 @@
 #include <iostream>
 
-void top_low_level_const(){
+int main(int argc, char *argv[]) {
   // Definitions given by the book
   int i = 0;
   const int v2 = 1;

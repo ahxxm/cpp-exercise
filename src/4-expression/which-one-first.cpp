@@ -16,7 +16,7 @@ std::string c() {
   return "c";
 }
 
-int order(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 
   // there is no guarantee which one execute first
   std::string result = b() + (a() + c()) + b();

@@ -29,8 +29,7 @@ void print(const int ia[10]) {
   }
 }
 
-// int main(int argc, char *argv[]) {
-void exercise_21_to_23(void) {
+int main(int argc, char *argv[]) {
   int i = 10;
   int j = 42;
   int *k = &j;

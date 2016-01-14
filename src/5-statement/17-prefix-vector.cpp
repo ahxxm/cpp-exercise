@@ -17,7 +17,7 @@ bool is_prefix_of(std::vector<int> sub, std::vector<int> main) {
   return true;
 }
 
-void statements(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 // int main() {
   // null statement...............
   ;

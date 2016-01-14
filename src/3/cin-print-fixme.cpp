@@ -2,7 +2,8 @@
 #include <string>
 #include <cctype>
 
-void wut(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
+
   const std::string hexdigits("0123456789ABCDEF");
   std::string result;
   std::string::size_type n;

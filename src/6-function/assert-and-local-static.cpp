@@ -1,7 +1,8 @@
 #include <cassert>
 #include <iostream>
 
-int debug_features(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
+
   // `assert` is preprocessor marco, so no std::, and its name should be
   // unique.
   // behavior of `assert` depends on NDEBUG, if NDEBUG is defined, assert

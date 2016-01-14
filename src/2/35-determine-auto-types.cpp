@@ -1,5 +1,5 @@
 
-void determine_type(){
+int main(int argc, char *argv[]) {
 
   // const int
   const int i = 42;

@@ -1,8 +1,7 @@
 #include <stdexcept>
 #include <iostream>
 
-void first_exception() {
-// int main() {
+int main(int argc, char *argv[]) {
   // Once caught, other catch won't be executed.
   try {
     // int a = 1;

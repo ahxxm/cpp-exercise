@@ -26,7 +26,7 @@ int binary(std::vector<int> wut, int target){
 }
 
 
-void bug_search(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
 
   std::vector<int> wut;
   for (int i = 50; i != 10000; i++) {

@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 
-int loopstring(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
 
   // 6: change all char in a string into `x`
   // notice that single quote means char, double

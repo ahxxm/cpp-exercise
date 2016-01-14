@@ -1,7 +1,7 @@
 #include <iostream>
 
 
-void operand_order(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
 
   // 9: explain this if
   // if: FIRST, `cp` in if means `cp != false`, where false will be 0.

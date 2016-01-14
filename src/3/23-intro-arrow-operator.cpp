@@ -1,7 +1,7 @@
 #include <vector>
 #include <iostream>
 
-void double_a_vector(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
 
   // create a vector of length 10
   // FIXME: any elegant solution?

@@ -2,8 +2,7 @@
 #include <vector>
 #include <iostream>
 
-void access_array(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   // this prints abcdeft, bcdefg, ..., g
   // FIXME: correct?
   // because "compiler ordinarily converts the array to a pointer..",

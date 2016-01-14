@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-void c_style_string(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
 
   // string functions C-style: must pass null-ended arrays
   // not counting the tail null

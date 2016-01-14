@@ -1,8 +1,7 @@
 #include <vector>
 #include <string>
 
-int vector_initialization(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   // c++11 support this type of initialization
   std::vector<std::string> strong{"w",  "a",  "tu"};
 
