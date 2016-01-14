@@ -17,4 +17,10 @@ foreach (_headerFile ${X_HEADERS})
 endforeach()
 
 include_directories(${INC})
-add_executable (bin ${X_SOURCES})
+
+# Make every single .cpp file compile as executable
+foreach(sourcefile ${X_SOURCES})
+    string( REPLACE ".cpp" "" testname ${sourcefile} )
+    string( REPLACE "/" "" targetname ${testname} )
+    add_executable(${targetname} ${sourcefile})
+endforeach(sourcefile ${X_SOURCES})
