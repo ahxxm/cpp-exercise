@@ -21,6 +21,7 @@ install:
 script:
 - cmake .
 - make
+- make test
 after_success:
 - make clean
 - coveralls --exclude lib --exclude tests --gcov-options '\-lp'

@@ -40,7 +40,7 @@ foreach(sourcefile ${X_SOURCES})
     string( REPLACE ".cpp" "" testname ${sourcefile} )
     string( REPLACE "/" "" targetname ${testname} )
     add_executable(${targetname} ${sourcefile})
-    
-    # FIXME: test are failing now
-    add_test(${targetname} Test)
+
+    # add_test(test_name filename)
+    add_test(${sourcefile} ${targetname})
 endforeach(sourcefile ${X_SOURCES})
