@@ -1,10 +1,13 @@
 #include "gtest/gtest.h"
 
-// FIXME: include error
+TEST(JavaTest, TwoPlusTwoEqualsFour) {
+  EXPECT_EQ(2 + 2, 4);
+}
+
 
 int main(int argc, char **argv)
 {
-    ::testing::InitGoogleTest(&argc, argv);
-    int ret = RUN_ALL_TESTS();
-    return ret;
+  ::testing::InitGoogleTest(&argc, argv);
+  int ret = RUN_ALL_TESTS();
+  return ret;
 }
