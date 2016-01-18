@@ -19,7 +19,7 @@ install:
 - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi 
 script:
-- mkdir build && cmake .. && make -j8 && make test
+- mkdir build && cd build && cmake .. && make -j8 && make test
 after_success:
 - cd build && make clean
 - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
