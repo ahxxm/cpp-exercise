@@ -1,9 +1,11 @@
 cmake_minimum_required (VERSION 2.8)
 
 project (CppPrimeFifth)
+find_packages(Threads REQUIRED)
 
 # http://www.kaizou.org/2014/11/gtest-cmake/
 # Enable ExternalProject CMake module
+
 enable_testing()
 include(ExternalProject)
 
