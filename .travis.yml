@@ -18,11 +18,12 @@ before_install:
 install:
 - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
 - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi 
+- sudo apt-get install -y cmake
 script:
 - cmake .
 - make
+- make test
 after_success:
-- make clean
 - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
 notifications:
   slack:

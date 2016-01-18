@@ -9,11 +9,11 @@ int main(int argc, char *argv[]) {
   std::string::size_type n;
 
   // FIXME: why "12 0 15 8 15" + enter , it does not print anything?
-  while (std::cin >> n) {
-    if (n < hexdigits.size()) {
-      result += hexdigits[n];
-    }
-  }
+  // while (std::cin >> n) {
+  // if (n < hexdigits.size()) {
+  // result += hexdigits[n];
+  // }
+  // }
 
   std::cout << result << std::endl;
 
