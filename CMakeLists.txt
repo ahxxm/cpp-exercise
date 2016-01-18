@@ -50,4 +50,7 @@ foreach(sourcefile ${X_SOURCES})
     include_directories(${source_dir}/include)
     target_link_libraries(${targetname} ${binary_dir}/libgtest.a)
     target_link_libraries(${targetname} ${binary_dir}/libgtest_main.a)
+    #target_link_libraries(${targetname} Threads::Threads)
+    target_link_libraries(${targetname} ${CMAKE_THREAD_LIBS_INIT})
+    
 endforeach(sourcefile ${X_SOURCES})
