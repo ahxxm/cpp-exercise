@@ -42,7 +42,6 @@ void recursively_print_vector(std::vector<int> &vec) {
 
 TEST(VectorBasicTest, VB) {
   EXPECT_EQ(get_main(), EXIT_SUCCESS);
-
 }
 
 int main(int argc, char *argv[]) {
@@ -52,6 +51,8 @@ int main(int argc, char *argv[]) {
   }
 
   recursively_print_vector(va);
+  ::testing::InitGoogleTest(&argc, argv);
+  int ret = RUN_ALL_TESTS();
+  return ret;
 
-  return 0;
 }
