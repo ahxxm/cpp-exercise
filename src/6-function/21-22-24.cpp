@@ -35,11 +35,16 @@ int main(int argc, char *argv[]) {
   int *k = &j;
 
   int result = return_larger_int(i, k);
+  int result_2 = return_larger_int(*k, &i);
   std::cout << result << std::endl;
+  std::cout << result_2 << std::endl;
+
 
   std::cout << "Now swap i 10 and j 42." << std::endl;
   swap_two_int(i, j);
   std::cout << "New i: " << i << std::endl;
+
+  swap_two_int(i, i);
 
   int ia[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   print(ia);
