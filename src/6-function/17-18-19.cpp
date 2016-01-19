@@ -26,13 +26,13 @@ std::string string_to_lowercase(std::string s) {
 // exercise 18
 // (a)
 class matrix {};
-bool compare_matrix(matrix &a, matrix & b) {
-  // FIXME: to diminish warning..
-  if (&a == &b) {
-    return true;
-  }
-  return false;
-}
+// bool compare_matrix(matrix &a, matrix & b) {
+// FIXME: to diminish warning..
+// if (&a == &b) {
+// return true;
+// }
+// return false;
+// }
 
 // (b)
 std::vector<int> compare_value_in_vector(const int &num, const std::vector<int> &vec) {
@@ -71,7 +71,10 @@ void exercise_19(void) {
 int main(int argc, char *argv[]) {
   exercise_19();
   bool result = capital_letter_in_string("tesT");
+  bool result_2 = capital_letter_in_string("test");
   std::cout << result << std::endl;
+  std::cout << result_2 << std::endl;
+
 
   std::string test = "teSt";
   std::string lower_test = string_to_lowercase(test);
@@ -84,6 +87,9 @@ int main(int argc, char *argv[]) {
   int j[] = {1, 2, 3, 4, 5};
   std::vector<int> k(j, j + sizeof(j) / sizeof(j[0]));
   std::vector<int> comparison = compare_value_in_vector(i, k);
+
+  std::vector<int> empty_k;
+  std::vector<int> comparison_2 = compare_value_in_vector(i, empty_k);
 
   // print comparison result
   for (decltype(comparison.begin()) j = comparison.begin(); j != comparison.end(); ++j) {

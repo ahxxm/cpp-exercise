@@ -1,5 +1,24 @@
+#include "gtest/gtest.h"
 #include <iostream>
 #include <string>
+
+
+bool aIsLongerThanb(const std::string &a, const std::string &b) {
+  if (a > b) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+TEST (CompareStringTest, Something) {
+  const std::string a = "wutt";
+  const std::string b = "wut";
+  const std::string c = "wu";
+  EXPECT_EQ(aIsLongerThanb(b, a), false);
+  EXPECT_EQ(aIsLongerThanb(a, c), true);
+}
 
 int main(int argc, char *argv[]) {
 
@@ -19,17 +38,7 @@ int main(int argc, char *argv[]) {
 
   // 39: compare 2 string
   // FIXME: any special comparison technique?
-  std::string a = "wuto";
-  std::string b = "wut";
-
-  std::string result = "equal";
-  if (a < b) {
-    result = "less";
-  } else {
-    if (a > b) {
-      result = "greater";
-    }
-  }
-
-  std::cout << result << std::endl;
+  ::testing::InitGoogleTest(&argc, argv);
+  int ret = RUN_ALL_TESTS();
+  return ret;
 }

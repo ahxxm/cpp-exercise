@@ -1,5 +1,7 @@
+#include "gtest/gtest.h"
 #include <iostream>
 #include <vector>
+
 
 // 32: explain these program
 // get() returns a int &, main changes value in ia
@@ -8,7 +10,7 @@ int &get(int *arry, int index) {
   return arry[index];
 }
 
-int get_main(int argc, char *argv[]) {
+int get_main() {
   int ia[10];
   for (int i = 0;i != 10; ++i) {
     get(ia, i) = i;
@@ -20,7 +22,6 @@ int get_main(int argc, char *argv[]) {
 
   return EXIT_SUCCESS;
 }
-
 
 // 33: recursively print vector content
 void loop_pointer_and_print(std::vector<int>::iterator &vec_ptr) {
@@ -39,6 +40,10 @@ void recursively_print_vector(std::vector<int> &vec) {
   loop_pointer_and_print(begin);
 }
 
+TEST(VectorBasicTest, VB) {
+  EXPECT_EQ(get_main(), EXIT_SUCCESS);
+}
+
 int main(int argc, char *argv[]) {
   std::vector<int> va;
   for (int i = 1; i != 10; ++i) {
@@ -46,6 +51,8 @@ int main(int argc, char *argv[]) {
   }
 
   recursively_print_vector(va);
+  ::testing::InitGoogleTest(&argc, argv);
+  int ret = RUN_ALL_TESTS();
+  return ret;
 
-  return 0;
 }
