@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 
+// FIXME: test these 2...
 // 25: main that takes 2 argument, concatenate the supplied arguments and print result string
-// int main(int argc, char *argv[]) {
 int main_printer(int argc, char *argv[]) {
   // argv[0] could be "./a.out"
   if (argc != 3) {
