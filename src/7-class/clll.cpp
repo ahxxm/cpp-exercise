@@ -1,9 +1,10 @@
 #include "gtest/gtest.h"
 #include <string>
 
-// Only different between struct and class: default access level
+// 17: Only different between struct and class: default access level
 // only when all members are public we use struct, otherwise
 // use class and specifier
+// 18: public/private makes a class encapsulated.
 class Sales_data {
 public:
   // bookNo implicitly refer to member of itself
@@ -57,25 +58,32 @@ Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
 
 
 // 4: a Person class for later usage
-struct Person {
-  std::string name;
-  std::string address;
-
+// 19: seperate private/public,
+// FIXME: 19 seems redundant..
+class Person {
+public:
   // 5: return name and address
   // why not const: could change over time
-  std::string Name() {return name;};
+  std::string name() {return Name;};
   std::string Address() {return address;};
 
   // 15: constructor
-  //
   Person() = default;
-  Person(const std::string &n): name(n) {};
+  Person(const std::string &n): Name(n) {};
 
+private:
+  std::string Name;
+  std::string address;
 };
 
 TEST(ClassIntroTest, SomeTest) {
   Person empty_person = Person();
-  EXPECT_EQ(empty_person.name, "");
+  EXPECT_EQ(empty_person.name(), "");
+
+  Sales_data empty_sd = Sales_data();
+  EXPECT_EQ(empty_sd.isbn(), "");
+  // FIXME: expect raise?
+  // FIXME: more test: avg_price, combine, add
 }
 
 int main(int argc, char *argv[]) {
