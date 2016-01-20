@@ -21,7 +21,7 @@ install:
   - sudo apt-get install -y cmake
 script:
   - cmake .
-  - make
+  - make -j8
   - make test
 after_success:
   - coveralls --exclude lib --exclude gtest --exclude tests --gcov-options '\-lp'
