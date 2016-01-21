@@ -1,10 +1,14 @@
 language: cpp
 dist: precise
+os:
+  - linux
+  - osx
 compiler:
   - clang
   - gcc
 before_install:
   - pip install --user cpp-coveralls
+  - if [ $TRAVIS_OS_NAME == osx ]; then brew update && brew install llvm35 && brew link --force llvm35; fi
 script:
   - cmake .
   - make -j8
