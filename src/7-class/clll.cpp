@@ -14,6 +14,8 @@ public:
   // rewrite: return this->bookNo;
   std::string isbn() const {return bookNo;};
 
+  double avg_price() const;
+
   Sales_data &combine(const Sales_data&);
   Sales_data add(const Sales_data&, const Sales_data&);
   std::ostream &print(std::ostream&, const Sales_data&);
@@ -29,7 +31,6 @@ private:
   // compiler process member declarations first,
   // then member functions if any.
   std::string bookNo;
-  double avg_price() const;
 
   unsigned units_sold = 0;
   double revenue = 0.0;
@@ -82,8 +83,15 @@ TEST(ClassIntroTest, SomeTest) {
 
   Sales_data empty_sd = Sales_data();
   EXPECT_EQ(empty_sd.isbn(), "");
+
+  std::string bookName = "test";
+  Sales_data sd1 = Sales_data(bookName, 5, 10.0);
+  Sales_data sd2 = Sales_data(bookName, 5, 20.0);
+  Sales_data sd_combined = add(sd1, sd2);
+  EXPECT_EQ(sd_combined.avg_price(), 15.0);
+
   // FIXME: expect raise?
-  // FIXME: more test: avg_price, combine, add
+
 }
 
 int main(int argc, char *argv[]) {
