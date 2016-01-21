@@ -84,11 +84,18 @@ TEST(ClassIntroTest, SomeTest) {
   Sales_data empty_sd = Sales_data();
   EXPECT_EQ(empty_sd.isbn(), "");
 
+  // book sold
   std::string bookName = "test";
   Sales_data sd1 = Sales_data(bookName, 5, 10.0);
   Sales_data sd2 = Sales_data(bookName, 5, 20.0);
   Sales_data sd_combined = add(sd1, sd2);
   EXPECT_EQ(sd_combined.avg_price(), 15.0);
+
+  // no book sold
+  Sales_data sd3 = Sales_data(bookName, 0, 10.0);
+  Sales_data sd4 = Sales_data(bookName, 0, 20.0);
+  Sales_data sd_combined_2 = add(sd3, sd4);
+  EXPECT_EQ(sd_combined_2.avg_price(), 0);
 
   // FIXME: expect raise?
 
