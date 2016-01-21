@@ -8,8 +8,7 @@ addons:
     - gcc-5
     - g++-5
     - clang-3.7
-os:
-  - linux
+dist: precise
 compiler:
   - clang
   - gcc
