@@ -21,10 +21,10 @@ ExternalProject_Add(
 # Create a libgtest target to be used as a dependency by test programs
 ExternalProject_Get_Property(gtest source_dir binary_dir)
 
-# Use C++11 standard
-set(CMAKE_CXX_STANDARD 11)
+# Use C++14 standard
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
 
 file(GLOB_RECURSE X_SOURCES "src/*.cpp")
