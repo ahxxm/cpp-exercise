@@ -66,7 +66,7 @@ public:
   // 5: return name and address
   // why not const: could change over time
   std::string name() {return Name;};
-  std::string Address() {return address;};
+  std::string address() {return Address;};
 
   // 15: constructor
   Person() = default;
@@ -74,7 +74,7 @@ public:
 
 private:
   std::string Name;
-  std::string address;
+  std::string Address;
 };
 
 TEST(ClassIntroTest, SomeTest) {
