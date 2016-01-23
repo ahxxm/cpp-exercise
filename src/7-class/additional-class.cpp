@@ -2,7 +2,10 @@
 #include <string>
 #include <vector>
 
+
 class Screen {
+
+
   // Represent a window in display
 public:
   // type member using local: must appear before used
@@ -20,6 +23,16 @@ public:
   };
   inline char get(pos r, pos c) const;
 
+  inline Screen &set(char c) {
+    contents[cursorPosition] = c;
+    return *this;
+  };
+  inline Screen &set(pos r, pos col, char c) {
+    contents[r * width + col] = c;
+    return *this;
+  }
+
+
   Screen &move(pos r, pos c) ;
 
   pos *some_member() const {
@@ -27,12 +40,29 @@ public:
     return &access_count;
   };
 
+  // even do_display is const, this public function
+  // returns non-const reference.
+  // This way result can use fluent style calling.
+  Screen &display(std::ostream &os) {
+    do_display(os);
+    return *this;
+  }
+
+  const Screen &display(std::ostream &os) const {
+    do_display(os);
+    return *this;
+  }
+
 private:
   mutable pos cursorPosition;
   mutable pos access_count;
   pos height;
   pos width;
   std::string contents;
+
+  void do_display(std::ostream &os) const {
+    os << contents;
+  }
 
 
 };
@@ -51,6 +81,11 @@ TEST(AdditionalClassTest, SomeTest) {
   std::string::size_type *count = new_empty_screen.some_member();
   EXPECT_EQ(*count, 1);
   // EXPECT_EQ((std::string)new_empty_screen.get(),  "");
+
+  // set first element to 1 and display whole screen
+  Screen not_empty_screen = new_empty_screen.set('1').display(std::cout);
+  EXPECT_EQ(not_empty_screen.get(), '1');
+  EXPECT_EQ(new_empty_screen.get(), '1');
 }
 
 int main(int argc, char *argv[]) {
