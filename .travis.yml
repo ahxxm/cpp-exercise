@@ -28,3 +28,41 @@ after_success:
 notifications:
   slack:
     secure: jJM62Z4tppIg7qSdnXO1X0fWfWmZBRfKififFUew+CXyy/LI/cPOhC+zxCbH5kF9jXJhCc6SltYIO29rTnciBOF6nIMjL4ZY/n9xJsR/RQylOq9nxDrqPgKoN4lExuDqAvFq8ZM/+4GKKOlbSXm5IBDlT2HvNae6+Nv8lx22Vzm1SPNmy40PGsfEpd41/sFJQRMPGCjT6y2iXYya2uPYB8xW73uHn36X4SO0tIswn1R/H36qU1znRpAQCzAbeFaaaBf4o8WsbY7fKs4lPSUZZT5Z9O0TY0M7qpSwLDWsCOcwuheGaYnzdTLti2cb0aLuF7LEEt37m0k+QjVz+UjKeEkTKKcvF/GOen5RjG/Ti4OlAfD/mHUHXtBW4x5cHo74upFuBKz229jqZ+QYGFiyeajikdQ4xRsviRpUXENmAEDRdmmcOcFuXKQcUgiL7F6mExfIQMkrPjnVPtN1ZlOb+I4ikZoK6IitWRq5HvR2e8gUMs1uKHq1ZBf+0RIb72ZKnI74DKiA7bKARMrlciZz3Yjxd55oNP5di1cSPFd5YrJSLGW2ckxJVy1A4wF1RmtmwWjLTUtPEFZHGIZ+mOhNk0nj8V9s24hsGYCe1cu0y/NdT6gZSwYX7bd6KLO/7qM9S8QGGmxcwpW2+i3QAnOHXsGiiMYV0CZ9FTwfQxIcfYU=
+
+# build matrix
+matrix:
+  include:
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+      env: COMPILER=g++-4.9
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env: COMPILER=g++-5
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.6
+          packages:
+            - clang-3.6
+      env: COMPILER=clang++-3.6
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.7
+          packages:
+            - clang-3.7
+      env: COMPILER=clang++-3.7
