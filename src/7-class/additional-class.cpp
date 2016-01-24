@@ -8,6 +8,14 @@ class Screen {
   // Window_mgr can access private parts
   friend class WindowMgr;
 
+  // or make single function friend..
+  // requires careful structuring of program to accomodate
+  // interdependencies among declarations and definitions.
+  // 1. define Window_mgr class, which declars clear().
+  // 2. define Screen, include friend clear().
+  // 3. define clear().
+  // friend void  WindowMgr::clear(Sc);
+
   // Represent a window in display
 public:
   // type member using local: must appear before used
