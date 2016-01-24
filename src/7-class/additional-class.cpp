@@ -5,6 +5,8 @@
 
 class Screen {
 
+  // Window_mgr can access private parts
+  friend class WindowMgr;
 
   // Represent a window in display
 public:
@@ -70,9 +72,25 @@ private:
 class WindowMgr {
 public:
   Screen::pos wut;
+  typedef std::vector<Screen>::size_type ScreenIndex;
+  void clear() {
+    // clear single screen
+    single_screen.contents = std::string(single_screen.height * single_screen.width, ' ');
+  };
+  void clear(ScreenIndex);
+
+  WindowMgr() = default;
+  WindowMgr(Screen &s): single_screen(s) {};
 private:
+  Screen &single_screen;
   std::vector<Screen> screens {Screen(24, 80, ' ')};
 };
+
+// visit private contents
+void WindowMgr::clear(ScreenIndex i) {
+  Screen &s = screens[i];
+  s.contents = std::string(s.height * s.width, ' ');
+}
 
 
 
@@ -86,6 +104,11 @@ TEST(AdditionalClassTest, SomeTest) {
   Screen not_empty_screen = new_empty_screen.set('1').display(std::cout);
   EXPECT_EQ(not_empty_screen.get(), '1');
   EXPECT_EQ(new_empty_screen.get(), '1');
+
+  // clear this screen's content
+  WindowMgr wm = WindowMgr(not_empty_screen);
+  wm.clear();
+  EXPECT_EQ(not_empty_screen.get() == '1', 0);
 }
 
 int main(int argc, char *argv[]) {
