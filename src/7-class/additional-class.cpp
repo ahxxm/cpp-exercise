@@ -14,7 +14,7 @@ class Screen {
   // 1. define Window_mgr class, which declars clear().
   // 2. define Screen, include friend clear().
   // 3. define clear().
-  // friend void  WindowMgr::clear(Sc);
+  // friend void WindowMgr::clear(Sc); // exercise 32
 
   // Represent a window in display
 public:
