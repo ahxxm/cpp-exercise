@@ -81,11 +81,13 @@ class WindowMgr {
 public:
   Screen::pos wut;
   typedef std::vector<Screen>::size_type ScreenIndex;
+  // clear single screen
   void clear() {
-    // clear single screen
     single_screen.contents = std::string(single_screen.height * single_screen.width, ' ');
   };
   void clear(ScreenIndex);
+
+  ScreenIndex addScreen(const Screen &s);
 
   WindowMgr() = default;
   WindowMgr(Screen &s): single_screen(s) {};
@@ -93,6 +95,14 @@ private:
   Screen &single_screen;
   std::vector<Screen> screens {Screen(24, 80, ' ')};
 };
+
+// add screen method outside definition
+// scope inside braces is the same as in definition
+// but return type is not.(7.33)
+WindowMgr::ScreenIndex WindowMgr::addScreen(const Screen &s) {
+  screens.push_back(s);
+  return screens.size() - 1;
+}
 
 // visit private contents
 void WindowMgr::clear(ScreenIndex i) {
@@ -118,6 +128,11 @@ TEST(AdditionalClassTest, SomeTest) {
   wm.clear();
   // FIXME: failure on travis..
   // EXPECT_EQ(not_empty_screen.get() == '1', 0);
+
+  // scope
+  Screen::pos a = 20;
+  EXPECT_EQ(a, 20);
+
 }
 
 int main(int argc, char *argv[]) {
