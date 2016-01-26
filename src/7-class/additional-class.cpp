@@ -80,7 +80,11 @@ private:
 class WindowMgr {
 public:
   Screen::pos wut;
+
+  // 7.34: this line shouldn't be put in the last line of class
+  // or unknown type will be raised during compilation
   typedef std::vector<Screen>::size_type ScreenIndex;
+
   // clear single screen
   void clear() {
     single_screen.contents = std::string(single_screen.height * single_screen.width, ' ');
@@ -91,6 +95,7 @@ public:
 
   WindowMgr() = default;
   WindowMgr(Screen &s): single_screen(s) {};
+
 private:
   Screen &single_screen;
   std::vector<Screen> screens {Screen(24, 80, ' ')};
