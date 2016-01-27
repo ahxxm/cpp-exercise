@@ -37,6 +37,14 @@ public:
     std::cout << "Single bookNo constructor used." << std::endl;
 
   };
+
+  // only applies to constructors that can be called with
+  // a single argument.
+  // because other constructors can't perform implicit conversion.
+  explicit Sales_data(std::istream &is) {
+    read(is,* this);
+  };
+
   Sales_data(const std::string &s, unsigned n, double p): bookNo(s), units_sold(n), revenue(p * n) {
     std::cout << "Complex (bookNo, unit sold, revenue) constructor used." << std::endl;
 
