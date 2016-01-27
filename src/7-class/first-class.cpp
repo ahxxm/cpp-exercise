@@ -27,7 +27,7 @@ public:
 
   // delegating constructor:
   // use constructor from its own class body
-  Sales_data(): Sales_data(" ", 0, 0) {
+  Sales_data(): Sales_data("", 0, 0) {
     // 41: print message when constructor used.
     std::cout << "Delegated default constructor used." << std::endl;
   };
