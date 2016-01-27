@@ -23,7 +23,7 @@ public:
   };
 
   int getJ() {
-    return this->obj->j;
+    return obj->j;
   };
 private:
   NoDefault *obj;
@@ -44,6 +44,9 @@ TEST(ConstructorTest, SomeTest) {
   std::vector<C> var(10, C());
   // FIXME: why not 0??
   // EXPECT_EQ(var[0].getJ(), 0);
+
+  std::vector<C> vahr(10);
+  EXPECT_EQ(vahr[0].getJ(), 0);
 
 }
 
