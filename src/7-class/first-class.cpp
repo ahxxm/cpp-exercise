@@ -115,6 +115,13 @@ TEST(ClassIntroTest, SomeTest) {
 
   // FIXME: expect raise?
 
+  // will initialize a temporary Sales_data from this
+  // null_book string, then pass to combine.
+  double avg_price;
+  avg_price = sd3.avg_price();
+  std::string null_book = "111-1-1-1-111";
+  sd3.combine(null_book);
+  EXPECT_EQ(sd3.avg_price(), avg_price);
 }
 
 int main(int argc, char *argv[]) {
