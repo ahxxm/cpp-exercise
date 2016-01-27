@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include <string>
+#include <iostream>
 
 // 17: Only different between struct and class: default access level
 // only when all members are public we use struct, otherwise
@@ -22,9 +23,24 @@ public:
   std::istream &read(std::istream&, Sales_data&);
 
   // constructor
-  Sales_data() = default; // only because we want to provide other constructors
-  Sales_data(const std::string &s): bookNo(s) {};
-  Sales_data(const std::string &s, unsigned n, double p): bookNo(s), units_sold(n), revenue(p * n) {};
+  // Sales_data() = default; // only because we want to provide other constructors
+
+  // delegating constructor:
+  // use constructor from its own class body
+  Sales_data(): Sales_data(" ", 0, 0) {
+    // 41: print message when constructor used.
+    std::cout << "Delegated default constructor used." << std::endl;
+  };
+
+  // normal constructor..
+  Sales_data(const std::string &s): bookNo(s) {
+    std::cout << "Single bookNo constructor used." << std::endl;
+
+  };
+  Sales_data(const std::string &s, unsigned n, double p): bookNo(s), units_sold(n), revenue(p * n) {
+    std::cout << "Complex (bookNo, unit sold, revenue) constructor used." << std::endl;
+
+  };
 
 private:
   // even defined after isbn(), it can be used, because:
