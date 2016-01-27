@@ -9,7 +9,7 @@ before_install:
 script:
   - cmake .
   - make -j8
-  - make test
+  - make test ARGS="-V"
 after_success:
   - coveralls --exclude lib --exclude gtest --exclude tests --gcov-options '\-lp'
 notifications:
