@@ -30,6 +30,16 @@ void open(const std::string &filename) {
 };
 
 
+// 8.5 rewrite 8.4 to store each word separately
+std::string read_file(std::string filename) {
+  std::stringstream buffer;
+  std::ifstream input(filename);
+
+  buffer << input.rdbuf();
+  std::string content = buffer.str();
+  return content;
+}
+
 // 8.4: read list of files' contents
 // into vector
 // http://stackoverflow.com/questions/195323/what-is-the-most-elegant-way-to-read-a-text-file-with-c
@@ -38,12 +48,8 @@ std::vector<std::string> read_files(std::vector<std::string> filenames) {
 
   for (unsigned long i = 0; i != filenames.size(); ++i) {
     std::string filename = filenames[i];
-    std::stringstream buffer;
-    std::ifstream input(filename);
-
-    std::cout << filename << std::endl;
-    buffer << input.rdbuf();
-    contents.push_back(buffer.str());
+    std::string content = read_file(filename);
+    contents.push_back(content);
   }
 
   return contents;
