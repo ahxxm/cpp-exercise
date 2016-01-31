@@ -29,6 +29,19 @@ void open(const std::string &filename) {
   out.close();
 };
 
+// 8: append content to file
+void append_to_file(std::string filename, std::string content) {
+  // explicit out+appending mode
+  // by default ofstream truncates exising content.
+  // std::ofstream app(filename, std::ofstream::out | std::ofstream::app);
+
+  // or when open
+  std::ofstream out;
+  out.open(filename, std::ofstream::app);
+  out << content;
+  out.close();
+}
+
 
 // 8.5 rewrite 8.4 to store each word separately
 std::string read_file(std::string filename) {
@@ -58,6 +71,7 @@ std::vector<std::string> read_files(std::vector<std::string> filenames) {
 
 TEST(MoreClassExerciseTest, SomeTest) {
   open("test.txt");
+  append_to_file("test.txt", "something\n");
 
   std::vector<std::string> filenames;
   std::vector<std::string> contents;
