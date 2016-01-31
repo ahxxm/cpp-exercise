@@ -21,9 +21,7 @@ void open(const std::string &filename) {
   // so `out` will be under `build/`
   if (out) {
     std::cout << "java" << std::endl;
-  } else {
-    std::cout << "java failed" << std::endl;
-  }
+  } 
   // close is called automatically when
   // `out` is destroyed
   out.close();
