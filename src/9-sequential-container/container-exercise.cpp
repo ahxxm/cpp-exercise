@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
-
+#include <deque>
+#include <list>
 
 
 TEST(ContainerTest, SomeTest) {
@@ -9,6 +10,10 @@ TEST(ContainerTest, SomeTest) {
   // or associative containers <= FIXME
   // (b): deque
   // (c): vector then sort
+
+  // 9.2 a list holding deque,
+  // where these deques hold ints
+  std::list<std::deque<int>> jar;
 }
 
 int main(int argc, char *argv[]) {
