@@ -35,12 +35,22 @@ TEST(ContainerTest, SomeTest) {
   // where these deques hold ints
   std::list<std::deque<int>> jar;
 
-  // 9.3
+  // 9.4
   std::vector<int> vv = {1, 2, 3, 4, 5};
   EXPECT_EQ(find_int_in_vector(vv, 1), true);
 
+  // 9.5
   auto result = get_int_in_vector(vv, 2);
   EXPECT_EQ(*result, 2);
+
+  // 9.6: fix it
+  std::list<int> lst1;
+  std::list<int>::iterator iter1 = lst1.begin(), iter2 = lst1.end();
+  // while (iter1 < iter2) // can't compare iterator
+  // fix:
+  while (iter1 != iter2) {
+    ++iter1;
+  }
 
 }
 
