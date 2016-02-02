@@ -37,6 +37,14 @@ TEST(MoreContainerTest, SomeTest) {
 
   // vector<int> to vector<double>
   // the same
+
+  // after swap, pointer still points to
+  // previous object, though value has changed
+  std::vector<double> vv2 = {4, 3, 2, 1};
+  std::vector<double> *pl1 = &vv1;
+  std::swap(vv1, vv2);
+  EXPECT_EQ(*vv1.begin(), 4);
+  EXPECT_EQ(*(pl1->begin()), 4);
 }
 
 int main(int argc, char *argv[]) {
