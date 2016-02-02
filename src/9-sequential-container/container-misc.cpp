@@ -5,7 +5,16 @@
 #include <deque>
 #include <forward_list>
 
-TEST(MoreContainerTest, SomeTest) {
+void create_vector() {
+  std::vector<int> v1;
+  std::vector<int> v2 = {1};
+  std::vector<int> v3 (10); // default initialized ten 0
+  std::vector<int> v4 (10, -1);
+  std::vector<int> v5 = v4; // copy from v4
+  std::vector<int> v6 (v4.cbegin(), v4.cend()); // init from iterator
+}
+
+void container_convert() {
   std::list<std::string> authors = {"milton", "shakespear"};
   std::vector<const char*> articles = {"a", "an", "the"};
 
@@ -13,16 +22,26 @@ TEST(MoreContainerTest, SomeTest) {
   // std::deque<std::string> authorList(authors); // no constructor from list to deque
   // std::vector<std::string> words(articles); // same as above
   std::forward_list<std::string> words(articles.begin(), articles.end()); // this is ok: convert const char* to string
+}
 
+std::vector<double> list_int_to_vector_double(const std::list<int> &li) {
+  std::vector<double> vv1(li.cbegin(), li.cend());
+  return vv1;
+}
+
+void some_insert() {
+  std::list<std::string> slist;
+  std::vector<std::string> v = {"quasi", "simba"};
+  slist.insert(slist.end(), {"these", "words"});
+}
+
+
+TEST(MoreContainerTest, SomeTest) {
+  container_convert();
 
   // 11: create and initialize vector
   // 6 ways..
-  std::vector<int> v1;
-  std::vector<int> v2 = {1};
-  std::vector<int> v3 (10); // default initialized ten 0
-  std::vector<int> v4 (10, -1);
-  std::vector<int> v5 = v4; // copy from v4
-  std::vector<int> v6 (v4.cbegin(), v4.cend()); // init from iterator
+  create_vector();
 
   // 12: difference between constructor that
   // takes container to copy
@@ -32,7 +51,7 @@ TEST(MoreContainerTest, SomeTest) {
   // 13:
   // list<int> to vector<double>
   std::list<int> l1 = {1, 2, 3, 4};
-  std::vector<double> vv1(l1.cbegin(), l1.cend());
+  auto vv1 = list_int_to_vector_double(l1);
   EXPECT_EQ(vv1[0], 1.0);
 
   // vector<int> to vector<double>
@@ -45,6 +64,9 @@ TEST(MoreContainerTest, SomeTest) {
   std::swap(vv1, vv2);
   EXPECT_EQ(*vv1.begin(), 4);
   EXPECT_EQ(*(pl1->begin()), 4);
+
+  // container.insert
+  some_insert();
 }
 
 int main(int argc, char *argv[]) {
