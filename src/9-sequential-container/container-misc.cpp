@@ -35,6 +35,15 @@ void some_insert() {
   slist.insert(slist.end(), {"these", "words"});
 }
 
+void continuous_insert() {
+  std::list<int> jar;
+  auto iter = jar.begin();
+  for (int i = 0;i <= 10; ++i) {
+    iter = jar.insert(iter, i);
+  }
+}
+
+
 
 TEST(MoreContainerTest, SomeTest) {
   container_convert();
@@ -67,6 +76,7 @@ TEST(MoreContainerTest, SomeTest) {
 
   // container.insert
   some_insert();
+  continuous_insert();
 }
 
 int main(int argc, char *argv[]) {
