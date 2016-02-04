@@ -49,6 +49,7 @@ void access_container(const std::list<int> &vi) {
     auto last = vi.end(); // iterator
     int val3 = *(--last); // does not support forward_list iterators
     int val4 = vi.back();
+    val4 -= (val3 - val * val2);
   }
 
 }
