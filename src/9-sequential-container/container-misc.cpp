@@ -72,7 +72,6 @@ TEST(MoreContainerTest, SomeTest) {
   std::list<int> l1 = {1, 2, 3, 4};
   auto vv1 = list_int_to_vector_double(l1);
   EXPECT_EQ(vv1[0], 1.0);
-  access_container(l1);
 
   // vector<int> to vector<double>
   // the same
@@ -88,6 +87,20 @@ TEST(MoreContainerTest, SomeTest) {
   // container.insert
   some_insert();
   continuous_insert();
+
+  // container access
+  access_container(l1);
+
+  // 9.23: what if l1.size() is 1?
+  std::list<int> ltest = {1};
+  EXPECT_EQ(ltest.size(), 1);
+  EXPECT_EQ(*ltest.begin(), 1);
+  EXPECT_EQ(ltest.front(), 1);
+  EXPECT_EQ(ltest.back(), 1);
+  // one pass end, so -- makes it point to end
+  auto last = ltest.end();
+  auto val3 = *(--last);
+  EXPECT_EQ(val3, 1);
 }
 
 int main(int argc, char *argv[]) {
