@@ -16,6 +16,10 @@ TEST(ListEraseTest, SomeTest) {
       ++it;
     }
   }
+
+  // removed from lst
+  auto after_len = lst.size();
+  EXPECT_EQ(after_len, 5);
 }
 
 int main(int argc, char *argv[]) {
