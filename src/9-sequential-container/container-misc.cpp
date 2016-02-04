@@ -1,6 +1,4 @@
 #include "gtest/gtest.h"
-#include <vector>
-#include <string>
 #include <list>
 #include <deque>
 #include <forward_list>
@@ -43,6 +41,17 @@ void continuous_insert() {
   }
 }
 
+void access_container(const std::list<int> &vi) {
+  // front and back are values
+  // begin and end are iterator
+  if (!vi.empty()) {
+    int val = *vi.begin(), val2 = vi.front();
+    auto last = vi.end(); // iterator
+    int val3 = *(--last); // does not support forward_list iterators
+    int val4 = vi.back();
+  }
+
+}
 
 
 TEST(MoreContainerTest, SomeTest) {
@@ -62,6 +71,7 @@ TEST(MoreContainerTest, SomeTest) {
   std::list<int> l1 = {1, 2, 3, 4};
   auto vv1 = list_int_to_vector_double(l1);
   EXPECT_EQ(vv1[0], 1.0);
+  access_container(l1);
 
   // vector<int> to vector<double>
   // the same
