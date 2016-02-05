@@ -7,9 +7,10 @@ std::forward_list<int> &remove_odd_from_forward_list(std::forward_list<int> &lst
   // the one before begin
   auto prev = lst.before_begin();
   auto iter = lst.begin();
-  auto end = lst.end();
 
-  while (iter != end) {
+  // avoid store .end()
+  // because it's invalidated
+  while (iter != lst.end()) {
     if ( * iter % 2) {
       iter = lst.erase_after(prev);
     }
