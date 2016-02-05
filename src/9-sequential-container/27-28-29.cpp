@@ -58,6 +58,18 @@ TEST(ForwardListTest, SomeTest) {
   EXPECT_EQ(ls2_i, ls2_e);
 }
 
+TEST(VectorResizeTest, SomeOtherTest) {
+  // 29:
+  std::vector<int> va (25, 10);
+  EXPECT_EQ(va.size(), 25);
+
+  va.resize(100);
+  EXPECT_EQ(va[99], 0);
+
+  va.resize(10);
+  EXPECT_EQ(va[9], 10);
+}
+
 int main(int argc, char *argv[]) {
   ::testing::InitGoogleTest(&argc, argv);
   int ret = RUN_ALL_TESTS();
