@@ -12,7 +12,8 @@ void erase_ins(std::string &st, const std::string &old, const std::string &newVa
       iter = st.erase(iter, iter + old_size);
 
       // insert after pointer
-      iter = st.insert(iter, newVal.begin(), newVal.end());
+      // returns void
+      st.insert(iter, newVal.begin(), newVal.end());
 
       iter += old_size;
     } else {
