@@ -5,10 +5,10 @@
 
 TEST(CopyTest, SomeTest) {
   // must have same type?
-  std::list<int> ll;
-  std::list<int> lst = {1, 2, 3, 4, 5};
-  std::copy(lst.begin(), lst.end(), ll.begin());
-  EXPECT_EQ(ll.back(), 5);
+  // std::list<int> ll;
+  // std::list<int> lst = {1, 2, 3, 4, 5};
+  // std::copy(lst.begin(), lst.end(), ll.begin());
+  // EXPECT_EQ(ll.back(), 5);
 
   // 6: fill_n to 0
   std::vector<int> vec = {1, 2, 3, 4, 5};
