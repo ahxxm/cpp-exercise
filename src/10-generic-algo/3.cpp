@@ -2,6 +2,7 @@
 #include <numeric>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 
 TEST(AlgoMoreTest, SomeTest) {
