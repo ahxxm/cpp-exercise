@@ -13,6 +13,12 @@ TEST(LambdaTest, SomeTest) {
   int k = g();
   EXPECT_EQ(j, 42);
   EXPECT_EQ(k, 44);
+
+  // capture pass name to lambda function scope
+  int i = 2;
+  auto cap = [i]()->int {return i * i;};
+  EXPECT_EQ(cap(), 4);
+
 }
 
 int main(int argc, char *argv[]) {
