@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 
 TEST(UniqueTest, SomeTest) {
@@ -9,6 +10,9 @@ TEST(UniqueTest, SomeTest) {
   auto end = std::unique(in.begin(), in.end());
   in.erase(end, in.end());
   EXPECT_EQ(in, out);
+
+  // first, end, function
+  std::for_each(in.begin(), in.end(), [](const int &i) {std::cout << i << std::endl;});
 }
 
 int main(int argc, char *argv[]) {
