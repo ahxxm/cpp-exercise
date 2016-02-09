@@ -14,10 +14,19 @@ TEST(LambdaTest, SomeTest) {
   EXPECT_EQ(j, 42);
   EXPECT_EQ(k, 44);
 
-  // capture pass name to lambda function scope
+  // 14
+  auto sum = [](const int& i, const int& j)->int {return i + j;};
+  int summer = sum(1, 2);
+  EXPECT_EQ(summer, 3);
+
+  // 15: capture pass name to lambda function scope
   int i = 2;
   auto cap = [i]()->int {return i * i;};
   EXPECT_EQ(cap(), 4);
+
+
+
+
 
 }
 
