@@ -35,6 +35,11 @@ TEST(LambdaTest, SomeTest) {
   EXPECT_EQ(v_lambda2(), 2);
   EXPECT_EQ(r_lambda(), 3);
 
+  // mutable lambda
+  auto m_lambda = [i]() mutable->int {return++i;};
+  EXPECT_EQ(m_lambda(), 4);
+  EXPECT_EQ(i, 3);
+
 }
 
 int main(int argc, char *argv[]) {
