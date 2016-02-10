@@ -24,9 +24,16 @@ TEST(LambdaTest, SomeTest) {
   auto cap = [i]()->int {return i * i;};
   EXPECT_EQ(cap(), 4);
 
+  // by default lambda captures value:
+  // copy into function when created
+  auto v_lambda = [i] {return i;}; // value by default
+  auto v_lambda2 = [&, i] {return i;}; // explicit value by default
+  auto r_lambda = [=, &i] {return i;}; // value by default, &i means reference
+  i = 3;
 
-
-
+  EXPECT_EQ(v_lambda(), 2);
+  EXPECT_EQ(v_lambda2(), 2);
+  EXPECT_EQ(r_lambda(), 3);
 
 }
 
