@@ -12,6 +12,7 @@ TEST(BindTest, SomeTest) {
   EXPECT_EQ(newIsLonger(st), true);
 
   // Bind can re-arrange param
+  // 23: bind takes origin function + params count
   auto rearrangedLongerThanTwo = std::bind(isLonger, std::placeholders::_2, std::placeholders::_1);
   EXPECT_EQ(rearrangedLongerThanTwo(2, st), true);
 
