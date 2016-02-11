@@ -4,9 +4,16 @@
 #include <iostream>
 
 // 34
-void print_vector_reversely(std::vector<std::string> sa) {
+void print_vector_reversely(const std::vector<std::string> &sa) {
   for (auto r_last = sa.rbegin(); r_last != sa.crend(); ++r_last) {
-    std::cout <<* r_last<< std::endl;
+    std::cout << *r_last << std::endl;
+  }
+}
+
+// 35
+void print_vector_reversely_using_ordinary_iterator(const std::vector<std::string> &sa) {
+  for (auto r_last = sa.end(); r_last != sa.cend(); --r_last) {
+    std::cout << *r_last << std::endl;
   }
 }
 
@@ -14,6 +21,7 @@ void print_vector_reversely(std::vector<std::string> sa) {
 TEST(ReverseIteratorTest, SomeTest) {
   std::vector<std::string> sa = {"123", "456", "789"};
   print_vector_reversely(sa);
+  print_vector_reversely_using_ordinary_iterator(sa);
 }
 
 int main(int argc, char *argv[]) {
