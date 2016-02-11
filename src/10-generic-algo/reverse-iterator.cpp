@@ -40,11 +40,18 @@ TEST(FindTest, SomeFindTest) {
   std::list<int> lst_2 = {7, 8, 9};
   lst.merge(lst_2);
   std::list<int> merged_lst = {0, 1, 2, 3, 4, 5, 7, 8, 9};
+
+  // merge/splice will DESTROY the given args..
+  // now lst_2 is a blank list..
+  std::list<int> blank_lst;
   EXPECT_EQ(lst, merged_lst);
+  EXPECT_EQ(lst_2, blank_lst);
 
   std::list<int> reverse_lst = {9, 8, 7, 5, 4, 3, 2, 1, 0};
   lst.reverse();
   EXPECT_EQ(lst, reverse_lst);
+
+
 
 }
 
