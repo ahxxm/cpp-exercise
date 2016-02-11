@@ -21,7 +21,7 @@ void open(const std::string &filename) {
   // so `out` will be under `build/`
   if (out) {
     std::cout << "java" << std::endl;
-  } 
+  }
   // close is called automatically when
   // `out` is destroyed
   out.close();
@@ -53,6 +53,7 @@ std::string read_file(std::string filename) {
 
 // 8.4: read list of files' contents
 // into vector
+// 10.29
 // http://stackoverflow.com/questions/195323/what-is-the-most-elegant-way-to-read-a-text-file-with-c
 std::vector<std::string> read_files(std::vector<std::string> filenames) {
   std::vector<std::string> contents;
