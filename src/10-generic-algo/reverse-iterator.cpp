@@ -30,6 +30,22 @@ TEST(FindTest, SomeFindTest) {
   std::list<int> lst = {1, 2, 3, 4, 0, 5};
   auto result = std::find(lst.crbegin(), lst.crend(), 0);
   EXPECT_EQ(result.base() == lst.cend(), false);
+
+  // in place sort
+  // list itself does not support std::sort
+  lst.sort();
+  std::list<int> sorted_lst = {0, 1, 2, 3, 4, 5};
+  EXPECT_EQ(lst, sorted_lst);
+
+  std::list<int> lst_2 = {7, 8, 9};
+  lst.merge(lst_2);
+  std::list<int> merged_lst = {0, 1, 2, 3, 4, 5, 7, 8, 9};
+  EXPECT_EQ(lst, merged_lst);
+
+  std::list<int> reverse_lst = {9, 8, 7, 5, 4, 3, 2, 1, 0};
+  lst.reverse();
+  EXPECT_EQ(lst, reverse_lst);
+
 }
 
 std::list<int> copy_from_vector(const std::vector<int> &ve) {
