@@ -45,6 +45,9 @@ TEST(MapIteratorTest, SomeTest) {
   EXPECT_EQ(result.first->first, 4);
   EXPECT_EQ(result.first->second[0], 1);
 
+  // non-zero means erase succeed
+  auto removal = oo.erase(5);
+  std::cout << removal << std::endl;
 
 }
 
