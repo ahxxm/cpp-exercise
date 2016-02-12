@@ -18,10 +18,16 @@ void type_identify() {
 
 }
 
-
 TEST(MoreClassExerciseTest, SomeTest) {
   type_identify();
-  EXPECT_EQ(1, 1);
+
+  // 16: use map iterator to assign value to element
+  typedef std::map<int, std::vector<int>> miv;
+  std::vector<int> va = {1, 2, 3};
+  miv oo;
+  oo[1] = va;
+  EXPECT_EQ((oo.begin()->second)[0], 1);
+
 }
 
 int main(int argc, char *argv[]) {
