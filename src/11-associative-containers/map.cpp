@@ -18,15 +18,17 @@ void type_identify() {
 
 }
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(MapIteratorTest, SomeTest) {
   type_identify();
 
   // 16: use map iterator to assign value to element
   typedef std::map<int, std::vector<int>> miv;
   std::vector<int> va = {1, 2, 3};
+  std::vector<int> vb = {4, 5, 6};
   miv oo;
   oo[1] = va;
-  EXPECT_EQ((oo.begin()->second)[0], 1);
+  oo.begin()->second = vb;
+  EXPECT_EQ((oo.begin()->second)[0], 4);
 
 }
 
