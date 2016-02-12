@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include <map>
 #include <vector>
+#include <utility>
 
 
 // 15:
@@ -29,6 +30,21 @@ TEST(MapIteratorTest, SomeTest) {
   oo[1] = va;
   oo.begin()->second = vb;
   EXPECT_EQ((oo.begin()->second)[0], 4);
+
+  // add new element to map
+  oo.insert({2, va});
+  oo.insert(std::make_pair(3, va));
+  auto result = oo.insert(miv::value_type(4, va));
+  EXPECT_EQ(oo[2][0], 1);
+  EXPECT_EQ(oo[3][0], 1);
+  EXPECT_EQ(oo[4][0], 1);
+
+  // .first is an iterator to the element
+  // .second is bool
+  EXPECT_EQ(result.second, true);
+  EXPECT_EQ(result.first->first, 4);
+  EXPECT_EQ(result.first->second[0], 1);
+
 
 }
 
