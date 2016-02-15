@@ -69,6 +69,9 @@ private:
   };
 };
 
+void process(std::shared_ptr<int> ptr) {
+  std::cout << *ptr << std::endl;
+}
 
 
 TEST(SmartPointerTest, SomeTest) {
@@ -82,6 +85,15 @@ TEST(SmartPointerTest, SomeTest) {
   i.push_back("java");
   EXPECT_EQ(i.cfront(), "java");
   EXPECT_EQ(i.cback(), "java");
+
+  // dangling pointer
+  int *j(new int(1024));
+
+  // process(j); // ERROR: can't convert int * to shared_ptr
+
+  // afterwhile j become dangling pointer, because the memory is deleted...
+  // FIXME: not deleted in OSX's clang....
+  process(std::shared_ptr<int> (j));
 }
 
 int main(int argc, char *argv[]) {
