@@ -80,6 +80,12 @@ TEST(SmartPointerTest, SomeTest) {
   *p = 22;
   EXPECT_EQ(*p, 22);
 
+  // get() returns a built-in pointer..
+  // must not delete this pointer
+  int *pp = p.get();
+  EXPECT_EQ(*pp, 22);
+
+
   auto i = StrBlob();
   EXPECT_EQ(i.size(), 0);
   i.push_back("java");
