@@ -76,6 +76,12 @@ TEST(SmartPointerTest, SomeTest) {
   auto p = std::make_shared<int>(42);
   *p = 22;
   EXPECT_EQ(*p, 22);
+
+  auto i = StrBlob();
+  EXPECT_EQ(i.size(), 0);
+  i.push_back("java");
+  EXPECT_EQ(i.cfront(), "java");
+  EXPECT_EQ(i.cback(), "java");
 }
 
 int main(int argc, char *argv[]) {
