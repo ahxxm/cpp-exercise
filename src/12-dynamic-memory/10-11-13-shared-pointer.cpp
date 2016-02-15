@@ -34,9 +34,11 @@ TEST(MoreClassExerciseTest, SomeTest) {
 
   // 13: what happens
   // A: sp gets invalidated!
+  // "pointer being freed was not allocated" during end
+  // of the program
   auto sp = std::make_shared<int>(2);
   int *p = sp.get();
-  delete p;
+  // delete p;
 }
 
 int main(int argc, char *argv[]) {
