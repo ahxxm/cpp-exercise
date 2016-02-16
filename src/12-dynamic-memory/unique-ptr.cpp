@@ -1,6 +1,17 @@
 #include "gtest/gtest.h"
 #include <memory>
 
+// exception: copy/assign when it's about to be destroyed
+std::unique_ptr<int> clone(int p) {
+  return std::unique_ptr<int> (new int(p));
+}
+
+std::unique_ptr<int> clone(int *p) {
+  // return a copy of local object
+  std::unique_ptr<int> ret(new int(*p));
+  return ret;
+}
+
 
 TEST(UniquePtrTest, SomeTest) {
   // unique_ptr "owns" the pointer: does not support copy/assign
