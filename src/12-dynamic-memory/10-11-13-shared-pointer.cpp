@@ -27,12 +27,12 @@ void exercise_11() {
 };
 
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(SmartPointerExerciseTest, SomeTest) {
   exercise_ten();
   exercise_11();
   EXPECT_EQ(1, 1);
 
-  // 13: what happens
+  // 13: what happens after delete
   // A: sp gets invalidated!
   // "pointer being freed was not allocated" during end
   // of the program
