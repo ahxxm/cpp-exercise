@@ -4,9 +4,12 @@
 #include <vector>
 #include <initializer_list>
 #include <stdexcept>
+#include <exception>
+#include <list>
 
-
+class StrBlobPtr;
 class StrBlob {
+  friend class StrBlobPtr;
 public:
   typedef std::vector<std::string>::size_type size_type;
 
@@ -69,6 +72,43 @@ private:
   };
 };
 
+// holds:
+// - (weak)pointer to one vector in a StrBlob
+// - current index of that vector
+class StrBlobPtr {
+public:
+
+  // initialize wptr as nullptr by default..
+  StrBlobPtr(): curr(0) {};
+  StrBlobPtr(StrBlob &b, std::size_t sz = 0): wptr(b.data), curr(sz) {};
+
+
+  std::string &deref() const {
+    auto p = check(curr, "derefence past end");
+    return (*p)[curr];
+  };
+
+  StrBlobPtr &incr() {
+    check(curr, "increment past end of StrBlobPtr");
+    ++curr;
+    return *this;
+  };
+
+private:
+  std::shared_ptr<std::vector<std::string>> check(std::size_t s, const std::string &st) const {
+    auto ret = wptr.lock();
+    if (!ret) {
+      throw std::runtime_error("unbound StrBlobPtr");
+    }
+    if (s >= ret->size()) {
+      throw std::out_of_range(st);
+    }
+    return ret;
+  };
+  std::weak_ptr<std::vector<std::string>> wptr;
+  std::size_t curr;
+};
+
 void process(std::shared_ptr<int> ptr) {
   std::cout << *ptr << std::endl;
 }
@@ -85,7 +125,6 @@ TEST(SmartPointerTest, SomeTest) {
   int *pp = p.get();
   EXPECT_EQ(*pp, 22);
 
-
   auto i = StrBlob();
   EXPECT_EQ(i.size(), 0);
   i.push_back("java");
@@ -100,6 +139,15 @@ TEST(SmartPointerTest, SomeTest) {
   // afterwhile j become dangling pointer, because the memory is deleted...
   // FIXME: not deleted in OSX's clang....
   process(std::shared_ptr<int> (j));
+
+  // Ptr
+  std::initializer_list<std::string> ii {"123", "456"};
+  StrBlob blob (ii);
+  auto blob_ptr = StrBlobPtr(blob);
+  // FIXME: define * and ++
+  EXPECT_EQ(blob_ptr.deref(), "123");
+  blob_ptr.incr();
+  EXPECT_EQ(blob_ptr.deref(), "456");
 }
 
 int main(int argc, char *argv[]) {
