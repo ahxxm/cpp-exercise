@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include <memory>
 #include <iostream>
+#include <vector>
 
 
 // decouple memory allocation from object construction
@@ -33,8 +34,26 @@ void allocator() {
 
 }
 
+void allocator_construct_method() {
+  std::vector<int> vi = {1, 2, 3, 4, 5};
+  std::allocator<int> alloc;
+
+  // allocate twice size
+  auto p = alloc.allocate(vi.size() * 2);
+
+  // copy vi into first half
+  auto q = std::uninitialized_copy(vi.begin(), vi.end(), p);
+
+  // remaining half to initialize with value 42
+  std::uninitialized_fill_n(q, vi.size(), 42);
+
+}
+
+
+
 TEST(AllocatorTest, SomeTest) {
   allocator();
+  allocator_construct_method();
   EXPECT_EQ(1, 1);
 }
 
