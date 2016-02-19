@@ -18,8 +18,12 @@ public:
     std::string text;
     // FIXME: getline no matching function
     while (std::getline(infile, text)) {
+      // read file into vector line by line
       file->push_back(text);
       int cur_line = file->size() - 1;
+
+      // read this line word by word
+      // insert line_number to its value in map
       std::istringstream line(text);
       std::string word;
       while (line >> word) {
