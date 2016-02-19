@@ -6,23 +6,40 @@
 #include <map>
 #include <set>
 
+
+class QueryResult;
+
 class TextQuery {
 public:
+  using line_no = std::vector<std::string>::size_type;
+
   TextQuery() = default;
-
-  // FIXME: initialize word_line_map
-  TextQuery(std::ifstream &infile) {
-
+  TextQuery(std::ifstream &infile): file(new std::vector<std::string>){
+    std::string text;
+    // FIXME: getline no matching function
+    while (std::getline(infile, text)) {
+      file->push_back(text);
+      int cur_line = file->size() - 1;
+      std::istringstream line(text);
+      std::string word;
+      while (line >> word) {
+        auto &lines = word_line_map[word];
+        if (!lines) {
+          lines.reset(new std::set<line_no>);
+        }
+        lines->insert(cur_line);
+      }
+    }
   };
 
-  std::string query(const std::string &s) {
-    // FIXME:
-    std::string result = s;
-    return result;
-  }
+  // FIXME:
+  QueryResult query(const std::string &) const;
 private:
+  // input file
+  std::shared_ptr<std::vector<std::string>> file;
+
   // word->(line1,line2)
-  std::map<std::string, std::set<int>> word_line_map;
+  std::map<std::string, std::shared_ptr<std::set<line_no>>> word_line_map;
 };
 
 
@@ -40,7 +57,8 @@ void runQueries(std::ifstream &infile) {
       break;
     }
 
-    std::cout << tq.query(s) << std::endl;
+    //
+    // std::cout << tq.query(s) << std::endl;
   }
 
 }
