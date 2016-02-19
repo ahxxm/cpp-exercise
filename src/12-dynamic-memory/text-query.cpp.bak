@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <memory>
 #include <string>
@@ -15,7 +16,7 @@ public:
   TextQuery(std::ifstream &infile): file(new std::vector<std::string>){
     std::string text;
     while (std::getline(infile, text)) {
-      // FIXME: getline no matching function
+      // FIXME: matching function requires include fstream
       // read file into vector line by line
       file->push_back(text);
       int cur_line = file->size() - 1;
@@ -82,7 +83,6 @@ QueryResult TextQuery::query(const std::string &keyword) const {
   }
 
 }
-
 
 void runQueries(std::ifstream &infile) {
   // store the file and build query map
