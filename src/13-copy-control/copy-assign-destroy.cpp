@@ -1,10 +1,11 @@
 #include "gtest/gtest.h"
 #include <string>
+#include <iostream>
 
 class Foo {
 public:
   // default constructor
-  Foo();
+  Foo() = default;
 
   // copy constructor:
   // - first param is reference to class type, or param itself's initialization will
@@ -12,7 +13,19 @@ public:
   // - other(if any) params have default values
   // unlike default one, even we defined other constructors, there still
   // will be copy constructor synthesized by compiler.
-  Foo(const Foo &);
+  Foo(const Foo &) {
+
+  };
+
+  // overloaded assignment operator
+  Foo &operator= (const Foo &) {
+    return *this;
+  };
+
+  Foo &operator+= (const int &j) {
+    std::cout << "Answer is 42, nothing changed." << std::endl;
+    return *this;
+  };
 
 
   int answer = 42;
@@ -44,6 +57,8 @@ TEST(ConstructorTest, SomeTest) {
   Foo copy_foo = Foo(direct_foo);
   EXPECT_EQ(copy_foo.answer, 42);
 
+  copy_foo += 1;
+  EXPECT_EQ(copy_foo.answer, 42);
 }
 
 int main(int argc, char *argv[]) {
