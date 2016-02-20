@@ -64,6 +64,10 @@ public:
     return *this;
   }
 
+  // define as deleted functions
+  // no -= then.
+  HasPtr &operator-=(const int &j) = delete;
+
 private:
   std::string *ps;
   int i;
