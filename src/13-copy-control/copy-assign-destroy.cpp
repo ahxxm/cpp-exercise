@@ -29,6 +29,10 @@ public:
 
 
   int answer = 42;
+
+
+  // destructor takes no params, can't be overloaded
+  ~Foo() {};
 };
 
 
