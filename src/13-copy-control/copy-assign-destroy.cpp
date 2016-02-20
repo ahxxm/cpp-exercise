@@ -45,6 +45,7 @@ public:
     return *ps;
   }
 
+  // copy constructor
   HasPtr(HasPtr &hs) {
     ps = new std::string(hs.get_ps());
   }
@@ -55,7 +56,7 @@ public:
     delete ps;
   }
 
-  // copy-assignment operator, in case
+  // assignment operator, in case
   // ps is freed when calling function of HasPtr
   HasPtr &operator=(HasPtr &hs) {
     std::string ps = hs.get_ps();
