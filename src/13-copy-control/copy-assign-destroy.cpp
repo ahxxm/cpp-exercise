@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include <string>
 
 class Foo {
 public:
@@ -15,6 +16,25 @@ public:
 
 
   int answer = 42;
+};
+
+
+// 5: write copy constructor for this class
+class HasPtr {
+public:
+  HasPtr(const std::string &s = std::string()): ps(new std::string(s)), i(0) {};
+
+  std::string get_ps() {
+    return *ps;
+  }
+
+  HasPtr(HasPtr &hs) {
+    ps = new std::string(hs.get_ps());
+  }
+
+private:
+  std::string *ps;
+  int i;
 };
 
 
