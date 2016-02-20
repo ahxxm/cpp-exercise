@@ -49,6 +49,20 @@ public:
     ps = new std::string(hs.get_ps());
   }
 
+  // constructor allocates dynamic memory
+  // so it needs a destructor to free these memory
+  ~HasPtr() {
+    delete ps;
+  }
+
+  // copy-assignment operator, in case
+  // ps is freed when calling function of HasPtr
+  HasPtr &operator=(HasPtr &hs) {
+    std::string ps = hs.get_ps();
+    this->ps = &ps;
+    return *this;
+  }
+
 private:
   std::string *ps;
   int i;
@@ -63,6 +77,10 @@ TEST(ConstructorTest, SomeTest) {
 
   copy_foo += 1;
   EXPECT_EQ(copy_foo.answer, 42);
+
+  HasPtr j("jar");
+  std::string jar = j.get_ps();
+  HasPtr jj(j);
 }
 
 int main(int argc, char *argv[]) {
