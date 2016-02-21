@@ -22,7 +22,7 @@ public:
     return *this;
   };
 
-  Foo &operator+= (const int &j) {
+  Foo &operator+= (const int &) {
     std::cout << "Answer is 42, nothing changed." << std::endl;
     return *this;
   };
@@ -45,7 +45,7 @@ public:
     return *ps;
   }
 
-  // copy constructor
+  // 22: copy constructor and copy assignment operator
   HasPtr(HasPtr &hs) {
     ps = new std::string(hs.get_ps());
   }
