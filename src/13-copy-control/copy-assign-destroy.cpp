@@ -61,6 +61,7 @@ public:
   HasPtr &operator=(HasPtr &hs) {
     std::string ps = hs.get_ps();
     this->ps = &ps;
+    i = hs.i;
     return *this;
   }
 
