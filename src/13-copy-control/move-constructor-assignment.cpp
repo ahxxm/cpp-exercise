@@ -13,10 +13,12 @@ public:
     f.i = nullptr;
   };
 
+  // move assignment operator
   Foo &operator=(Foo &&f) noexcept {
     if (this != &f) {
       int tmp = *f.i;
       i = &tmp;
+      f.i = nullptr;
     };
     return *this;
   };
