@@ -13,6 +13,14 @@ public:
     f.i = nullptr;
   };
 
+  Foo &operator=(Foo &&f) noexcept {
+    if (this != &f) {
+      int tmp = *f.i;
+      i = &tmp;
+    };
+    return *this;
+  };
+
   int square() {
     return *i * *i;
   };
@@ -26,6 +34,10 @@ TEST(MoveTest, SomeTest) {
   Foo a = Foo(3);
   auto b = std::move(a);
   EXPECT_EQ(b.square(), 9);
+
+  Foo c;
+  c = std::move(b);
+  EXPECT_EQ(c.square(), 9);
 }
 
 int main(int argc, char *argv[]) {
