@@ -9,6 +9,9 @@ public:
 
   // move operator "steals" origin value
   // should assure deleting moved object be harmless
+
+  // also crutial that not free left-hand resources before using right-hand one,
+  // because self move assignment
   Foo(Foo &&f) noexcept: i(f.i) {
     f.i = nullptr;
   };
