@@ -20,6 +20,8 @@ public:
   Foo &operator=(Foo &&f) noexcept {
     if (this != &f) {
       int tmp = *f.i;
+      // FIXME: new is not required in clang..
+      // but in gcc.
       i = new int(tmp);
       f.i = nullptr;
     };
