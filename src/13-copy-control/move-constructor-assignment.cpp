@@ -20,11 +20,15 @@ public:
   Foo &operator=(Foo &&f) noexcept {
     if (this != &f) {
       int tmp = *f.i;
-      i = &tmp;
+      i = new int(tmp);
       f.i = nullptr;
     };
     return *this;
   };
+
+  ~Foo() {
+    delete i;
+  }
 
   int square() {
     return *i * *i;
