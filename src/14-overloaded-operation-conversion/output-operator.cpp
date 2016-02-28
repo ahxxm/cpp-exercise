@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include <string>
+#include <iostream>
 
 
 class Foo {
@@ -7,6 +8,11 @@ public:
 
   void operator>>(std::string &i) {
     i = "naive";
+  };
+
+  std::ostream &operator<<(std::ostream &os) {
+    os << "simple" << std::endl;
+    return os;
   };
 };
 
@@ -16,6 +22,9 @@ TEST(OutputTest, SomeTest) {
   Foo a;
   a >> j;
   EXPECT_EQ(j, "naive");
+
+  a << std::cout;
+
 }
 
 int main(int argc, char *argv[]) {
