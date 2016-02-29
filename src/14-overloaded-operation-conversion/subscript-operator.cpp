@@ -5,9 +5,15 @@
 class Foo {
 public:
   std::string &operator[](std::size_t n) {
-    auto a = new std::string("42");
+    *a = "42";
     return *a;
   }
+
+  ~Foo() {
+    delete a;
+  }
+private:
+  std::string *a;
 };
 
 
