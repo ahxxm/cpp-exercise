@@ -9,9 +9,6 @@ public:
     return *a;
   }
 
-  ~Foo() {
-    delete a;
-  }
 private:
   std::string *a;
 };
