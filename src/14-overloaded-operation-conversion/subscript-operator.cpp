@@ -2,15 +2,11 @@
 #include <string>
 
 // must be a member function
-class Foo {
-public:
+struct Foo {
   std::string &operator[](std::size_t n) {
-    *a = "42";
-    return *a;
+    auto b = new std::string("42");
+    return *b;
   }
-
-private:
-  std::string *a;
 };
 
 
