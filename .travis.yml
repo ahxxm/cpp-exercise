@@ -42,7 +42,7 @@ before_install:
 script:
   - cmake .
   - make -j8
-  - make test ARGS="-V"
+  - make test ARGS="-VV"
 after_success:
   - coveralls --exclude lib --exclude gtest --exclude tests --gcov-options '\-lp'
 notifications:
