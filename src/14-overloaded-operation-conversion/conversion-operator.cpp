@@ -12,6 +12,9 @@ public:
   };
 
   operator int() const {return val;}
+
+  // this conversion won't happen automatically
+  explicit operator double() const {return 1.0;};
 private:
   std::size_t val;
 };
