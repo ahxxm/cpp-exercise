@@ -14,6 +14,8 @@ TEST(SignatureTest, SomeTest) {
   std::map<std::string, int(*)(int &, int&)> binops;
   auto mapper = std::pair<std::string, int(*)(int &, int&)> {"+", add};
   binops.insert(mapper);
+  binops.insert({"add", add});
+  binops.insert({"add2", [](int &a, int &b) {return adder(a, b);}});
 
   // null function object to store callable objects
   // with call signature..
