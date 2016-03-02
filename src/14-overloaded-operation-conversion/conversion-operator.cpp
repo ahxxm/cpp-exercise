@@ -23,6 +23,12 @@ TEST(ConversionOperatorTest, SomeTest) {
 
   SmallInt b(255);
   EXPECT_EQ(int(b), 255);
+
+  // implicit convert
+  // does not reconstruct object
+  b = 3;
+  EXPECT_EQ(int(b), 3);
+  EXPECT_EQ(int(b + 1000), 1003);
 }
 
 int main(int argc, char *argv[]) {
