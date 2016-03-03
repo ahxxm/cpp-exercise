@@ -71,7 +71,12 @@ protected:
   double price = 0.0;
 };
 
-class BulkQuote: public Quote {
+// only class name is needed in declaration
+// no `: public Quote`
+class BulkQuote;
+
+class BulkQuote final: public Quote {
+  // final means it can't be inherited from
   // inherits public, so it must override net_price
 public:
   BulkQuote() = default;
