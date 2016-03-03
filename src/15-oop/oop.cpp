@@ -77,7 +77,11 @@ public:
   BulkQuote() = default;
   BulkQuote(const std::string &, double, std::size_t, double) {};
 
-  double net_price(std::size_t) const override;
+  double net_price(std::size_t amount) const override {
+    // virtual function override requires definition
+    auto execution_price = amount > min_qty ? discount : price;
+    return execution_price * amount;
+  };
 private:
   std::size_t min_qty = 0;
   double discount = 0.0;
@@ -87,8 +91,7 @@ private:
 TEST(QuoteTest, SomeTest) {
   Quote quote;
   BulkQuote bulk;
-  // FIXME: does not work in clang 7.0.2..
-  // Quote &r = bulk; // points to Quote part of bulk
+  Quote &r = bulk; // points to Quote part of bulk
 };
 
 
