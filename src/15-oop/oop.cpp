@@ -104,7 +104,7 @@ TEST(QuoteTest, SomeTest) {
   Quote quote;
   BulkQuote bulk;
   Quote &r = bulk; // points to Quote part of bulk
-  double money = r.net_price(0);
+  double money = quote.net_price(0);
   EXPECT_EQ(money, 0);
 };
 
