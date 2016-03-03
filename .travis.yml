@@ -27,7 +27,7 @@ matrix:
             - llvm-toolchain-precise-3.6
           packages:
             - clang-3.6
-      env: COMPILER=clang++-3.6
+      env: COMPILER=clang++-3.6 GCOV=llvm-cov-3.6 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
     - compiler: clang
       addons:
         apt:
@@ -36,7 +36,7 @@ matrix:
             - llvm-toolchain-precise-3.7
           packages:
             - clang-3.7
-      env: COMPILER=clang++-3.7
+      env: COMPILER=clang++-3.7 GCOV=llvm-cov-3.7 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
 before_install:
   - pip install --user cpp-coveralls
 script:
