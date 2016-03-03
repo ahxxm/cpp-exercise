@@ -85,7 +85,10 @@ private:
 
 
 TEST(QuoteTest, SomeTest) {
-
+  Quote quote;
+  BulkQuote bulk;
+  // FIXME: does not work in clang 7.0.2..
+  // Quote &r = bulk; // points to Quote part of bulk
 };
 
 
