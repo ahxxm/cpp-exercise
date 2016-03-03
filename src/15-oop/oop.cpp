@@ -21,7 +21,7 @@ public:
 
   // also requires virtual function
   // so to use dynamic bind, a virtual base function is
-  // required...
+  // required..
   int bind() override {
     return 2;
   }
@@ -45,6 +45,37 @@ TEST(VirtualFunctionTest, SomeTest) {
   EXPECT_EQ(dynamic(c), 1);
 
 }
+
+
+class Quote {
+public:
+
+  Quote() = default;
+  Quote(const std::string &book, double sales_price):
+    bookNo(book), price(sales_price) {};
+
+  std::string isbn() const {return bookNo;};
+
+  virtual double net_price(std::size_t n) const {
+    return n * price;
+  };
+
+  // base class almost always define a virtual destructor
+  virtual ~Quote() = default;
+
+private:
+  std::string bookNo;
+protected:
+  // derived class can't access private memeber
+  // but can access protected one
+  double price = 0.0;
+};
+
+
+TEST(QuoteTest, SomeTest) {
+
+};
+
 
 int main(int argc, char *argv[]) {
   ::testing::InitGoogleTest(&argc, argv);
