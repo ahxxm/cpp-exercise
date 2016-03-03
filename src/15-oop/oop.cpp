@@ -44,6 +44,13 @@ TEST(VirtualFunctionTest, SomeTest) {
   EXPECT_EQ(dynamic(b), 2);
   EXPECT_EQ(dynamic(c), 1);
 
+  int answer;
+  try {
+    answer = c.answer();
+  } catch (std::exception) {
+    answer = 0;
+  };
+  EXPECT_EQ(answer, 0);
 }
 
 
@@ -97,6 +104,8 @@ TEST(QuoteTest, SomeTest) {
   Quote quote;
   BulkQuote bulk;
   Quote &r = bulk; // points to Quote part of bulk
+  double money = r.net_price(0);
+  EXPECT_EQ(money, 0);
 };
 
 
