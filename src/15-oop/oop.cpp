@@ -71,6 +71,18 @@ protected:
   double price = 0.0;
 };
 
+class BulkQuote: public Quote {
+  // inherits public, so it must override net_price
+public:
+  BulkQuote() = default;
+  BulkQuote(const std::string &, double, std::size_t, double) {};
+
+  double net_price(std::size_t) const override;
+private:
+  std::size_t min_qty = 0;
+  double discount = 0.0;
+};
+
 
 TEST(QuoteTest, SomeTest) {
 
