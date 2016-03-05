@@ -9,9 +9,24 @@ struct Derived: Pure {
   int print() {return 42;};
 };
 
+// private inherits and make it private..
+class PrivateDerive: private Pure {
+public:
+  int java() {
+    return print();
+  };
+private:
+  int print() override final {
+    return 44;
+  };
+};
+
 TEST(PureVirtualTest, SomeTest) {
   Derived b;
   EXPECT_EQ(b.print(), 42);
+
+  PrivateDerive pd;
+  EXPECT_EQ(pd.java(), 44);
 
 }
 
