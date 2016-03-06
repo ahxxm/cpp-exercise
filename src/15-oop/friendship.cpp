@@ -26,6 +26,10 @@ public:
   int f3(Sneaky &s) {return s.priv;};
 };
 
+
+// default inherit level
+// class D2: private
+// struct D2: public
 class D2: public Pal {
 public:
   int mem(Base &b) {
