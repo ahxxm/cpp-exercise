@@ -68,6 +68,8 @@ public:
   };
 
   // base class almost always define a virtual destructor
+  // because sometimes base class pointer points to derived
+  // instance, dynamic binding makes destructor smart
   virtual ~Quote() = default;
 
 private:
