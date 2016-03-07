@@ -21,6 +21,16 @@ struct Derived: public Base {
   };
 };
 
+struct DerivedUsing: public Base {
+  int print() override {
+    return 111;
+  };
+
+  // if any funcion overloading,
+  // this 'using' will 'add' them to scope of derived class.
+  using Base::name;
+};
+
 
 TEST(OverrideTest, SomeTest) {
 
@@ -39,6 +49,10 @@ TEST(OverrideTest, SomeTest) {
   EXPECT_EQ(bp2->name(), 22);
   EXPECT_EQ(br1.print(), 1);
   EXPECT_EQ(br2.print(), 11);
+
+  DerivedUsing du;
+  EXPECT_EQ(du.name(), 2);
+  EXPECT_EQ(du.print(), 111);
 }
 
 int main(int argc, char *argv[]) {
