@@ -65,7 +65,11 @@ private:
 
 
 TEST(BasketTest, SomeTest) {
-  EXPECT_EQ(1, 1);
+  Basket ab;
+  Quote q;
+  ab.add_item(q);
+  ab.add_item(Quote());
+  ab.total_receipt(std::cout);
 }
 
 int main(int argc, char *argv[]) {
