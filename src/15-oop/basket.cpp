@@ -2,12 +2,22 @@
 #include <memory>
 #include <set>
 #include <iostream>
+#include <memory>
 
 
 struct Quote {
   std::string isbn() {
     return isbnNo;
   };
+
+  virtual Quote* clone() const & {
+    return new Quote(*this);
+  };
+
+  virtual Quote* clone() && {
+    return new Quote(std::move(*this));
+  }
+
 private:
   std::string isbnNo;
 };
@@ -17,11 +27,30 @@ private:
 
 class Basket {
 public:
-  void add_item(const std::shared_ptr<Quote> &qo) {
-    items.insert(qo);
+  // copy
+  void add_item(const Quote& qo) {
+    items.insert(std::shared_ptr<Quote>(qo.clone()));
   };
 
-  double total_receipt(std::ostream &) const;
+  // move
+  void add_item(Quote &&sale) {
+    items.insert(std::shared_ptr<Quote>(std::move(sale).clone()));
+  }
+
+  double total_receipt(std::ostream &os) const {
+    double sum = 0.0;
+    for (auto iter = items.cbegin();iter != items.cend(); iter = items.upper_bound(*iter)) {
+      // upper_bound skips all elements that has same key value with iter
+      sum += print_total(os, **iter, items.count(*iter));
+    };
+    os << sum << std::endl;
+    return sum;
+  };
+
+  // FIXME:
+  double print_total(std::ostream &os,const Quote &, int) const {
+    return 0.0;
+  };
 
 private:
   static bool compare(const std::shared_ptr<Quote> &lhs, const std::shared_ptr<Quote> &rhs) {
