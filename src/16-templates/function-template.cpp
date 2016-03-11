@@ -19,6 +19,13 @@ int compare(const T &v1, const T &v2) {
 TEST(FunctionTemplateTest, SomeTest) {
   int f = compare<int>(1, 2);
   EXPECT_EQ(f, -1);
+
+  // deduce param type as template param
+  int j = compare(2, 1);
+  EXPECT_EQ(j, 1);
+
+  int k = compare(2, 2);
+  EXPECT_EQ(k, 0);
 }
 
 int main(int argc, char *argv[]) {
