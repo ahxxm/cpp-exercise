@@ -35,6 +35,7 @@ TEST(FunctionTemplateTest, SomeTest) {
   EXPECT_EQ(k, 0);
 
   // compare two string literal
+  // compiler inserts null terminator, so N is 3, M is 4
   int l = compare("hi", "cpp");
   int ll = compare("hi", "zpp");
   EXPECT_EQ((l > 0), true);
