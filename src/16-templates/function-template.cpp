@@ -15,6 +15,12 @@ int compare(const T &v1, const T &v2) {
   return 0;
 }
 
+// nontype param
+template<unsigned N, unsigned M>
+int compare(const char (&p1)[N], const char(&p2)[M]) {
+  return strcmp(p1, p2);
+};
+
 
 
 TEST(FunctionTemplateTest, SomeTest) {
@@ -27,6 +33,12 @@ TEST(FunctionTemplateTest, SomeTest) {
 
   int k = compare(2, 2);
   EXPECT_EQ(k, 0);
+
+  // compare two string literal
+  int l = compare("hi", "cpp");
+  int ll = compare("hi", "zpp");
+  EXPECT_EQ((l > 0), true);
+  EXPECT_EQ((ll < 0), true);
 }
 
 int main(int argc, char *argv[]) {
