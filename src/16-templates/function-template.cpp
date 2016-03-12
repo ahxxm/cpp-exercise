@@ -1,16 +1,17 @@
 #include "gtest/gtest.h"
+#include <functional>
 
 // template <typename T>
 // class/typename are the same
 template <class T>
 int compare(const T &v1, const T &v2) {
-  if (v1 < v2) {
+  // less makes it available to compare 2 pointers
+  if (std::less<T>()(v1, v2)) {
     return -1;
   };
 
-  // if (v1 > v2) {
   // T does not have to support ">" then
-  if (v2 < v1) {
+  if (std::less<T>()(v2, v1)) {
     return 1;
   };
 
