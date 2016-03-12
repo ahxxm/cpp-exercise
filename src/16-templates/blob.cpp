@@ -32,7 +32,8 @@ class Blob {
   friend class BlobPtr<T>;
 };
 
-template <typename Type> class Bar {
+template <typename Type>
+class Bar {
   // in C++ 11: Type become a friend
   friend Type;
 
@@ -40,7 +41,8 @@ private:
   int i = 0;
 };
 
-template<typename T> using twin = std::pair<T, T> ;
+template<typename T>
+using twin = std::pair<T, T>;
 
 
 TEST(BlobTest, SomeTest) {
