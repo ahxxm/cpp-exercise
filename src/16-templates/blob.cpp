@@ -5,7 +5,7 @@
 template <typename T>
 class BlobPtr {
 public:
-  BlobPtr(): curr(0) {};
+  BlobPtr(): curr(0) { };
 
   // one exception when use template without type param:
   // inside template scope
@@ -14,6 +14,8 @@ public:
 
 private:
   std::size_t curr;
+  // all instance using same T share this
+  static std::size_t count;
 };
 
 // return type is not in scope
