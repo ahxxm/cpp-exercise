@@ -25,6 +25,15 @@ int compare(const char (&p1)[N], const char(&p2)[M]) {
 };
 
 
+// 5: print array
+template<typename T>
+void print(T const &a)
+{
+  for (auto const &i: a) {
+    std::cout << i << std::endl;
+  }
+};
+
 
 TEST(FunctionTemplateTest, SomeTest) {
   int f = compare<int>(1, 2);
@@ -43,6 +52,14 @@ TEST(FunctionTemplateTest, SomeTest) {
   int ll = compare("hi", "zpp");
   EXPECT_EQ((l > 0), true);
   EXPECT_EQ((ll < 0), true);
+
+  // 5: print array
+  std::string s[] = {"string", "array"};
+  char c[] = { 'c', 'h', 'a', 'r' };
+  int i[] = { 1 };
+  print(s);
+  print(c);
+  print(i);
 }
 
 int main(int argc, char *argv[]) {
