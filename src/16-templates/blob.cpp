@@ -18,6 +18,21 @@ private:
   static std::size_t count;
 };
 
+template<typename T> class ListItem;
+template<typename T> class List {
+public:
+  List();
+  List(const List&);
+  List& operator=(const List&);
+  ~List();
+  // exercise 11: fix code
+  // ListItem is not in this scope, should specify T
+  void insert(ListItem<T> *ptr, T value);
+private:
+  ListItem<T> *front;
+};
+
+
 // return type is not in scope
 template <typename T>
 BlobPtr<T>& BlobPtr<T>::operator--() {
