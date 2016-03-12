@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include <utility>
 
 
 template <typename T>
@@ -23,6 +24,7 @@ BlobPtr<T>& BlobPtr<T>::operator--() {
   return ret;
 };
 
+
 // each instantiantion grants access to
 // BlobPtr with same T
 template <typename T>
@@ -30,10 +32,27 @@ class Blob {
   friend class BlobPtr<T>;
 };
 
+template <typename Type> class Bar {
+  // in C++ 11: Type become a friend
+  friend Type;
+
+private:
+  int i = 0;
+};
+
+template<typename T> using twin = std::pair<T, T> ;
 
 
 TEST(BlobTest, SomeTest) {
   EXPECT_EQ(1, 1);
+
+  // typedef and using
+  typedef Bar<int> intbar;
+  intbar a;
+
+  twin<int> b {1, 1};
+  EXPECT_EQ(b.first, 1);
+
 }
 
 int main(int argc, char *argv[]) {
