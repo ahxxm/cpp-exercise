@@ -23,6 +23,15 @@ BlobPtr<T>& BlobPtr<T>::operator--() {
   return ret;
 };
 
+// each instantiantion grants access to
+// BlobPtr with same T
+template <typename T>
+class Blob {
+  friend class BlobPtr<T>;
+};
+
+
+
 TEST(BlobTest, SomeTest) {
   EXPECT_EQ(1, 1);
 }
