@@ -19,7 +19,9 @@ private:
 };
 
 template<typename T> class ListItem;
-template<typename T> class List {
+
+// template default arg
+template<typename T = int> class List {
 public:
   List();
   List(const List&);
