@@ -7,6 +7,7 @@ T fobj(T a, T) {
   return a;
 };
 
+// NOTE: non-template param can be implicitly converted
 template <typename T>
 T fref(const T &a, const T&) {
   return a;
