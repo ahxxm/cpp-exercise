@@ -7,12 +7,15 @@ T fobj(T a, T) {
   return a;
 };
 
-// NOTE: non-template param can be implicitly converted
 template <typename T>
 T fref(const T &a, const T&) {
   return a;
 };
 
+
+// NOTE: non-template param can be implicitly converted
+template <class T>
+int compare(const T&, const T&) {return 42;};
 
 TEST(DeductionTest, SomeTest) {
   std::string s1("something");
@@ -23,6 +26,15 @@ TEST(DeductionTest, SomeTest) {
   int a[10], b[42];
   fobj(a, b); // (int *, int *)
   // fref(a, b); // error, type not consistent
+
+  // 34: string literal is basic char *,
+  // thus no matching function
+  // compare("hi", "world");
+
+  std::string c = "hi";
+  std::string d = "world";
+  compare(c, d);
+  compare("bye", "dad");
 }
 
 int main(int argc, char *argv[]) {
