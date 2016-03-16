@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include <string>
+#include <vector>
 
 
 template <typename T>
@@ -16,6 +17,14 @@ T fref(const T &a, const T&) {
 // NOTE: non-template param can be implicitly converted
 template <class T>
 int compare(const T&, const T&) {return 42;};
+
+// trailing return type
+template <typename T>
+auto fcn(T beg, T) -> decltype(*beg) {
+  return *beg;
+};
+
+
 
 TEST(DeductionTest, SomeTest) {
   std::string s1("something");
@@ -35,6 +44,11 @@ TEST(DeductionTest, SomeTest) {
   std::string d = "world";
   compare(c, d);
   compare("bye", "dad");
+
+
+  std::vector<int> vi = {1, 2, 3, 4};
+  auto &i = fcn(vi.begin(), vi.end());
+  EXPECT_EQ(i, 1);
 }
 
 int main(int argc, char *argv[]) {
