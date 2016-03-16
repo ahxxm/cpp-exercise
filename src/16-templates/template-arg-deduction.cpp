@@ -48,6 +48,11 @@ TEST(DeductionTest, SomeTest) {
   compare(c, d);
   compare("bye", "dad");
 
+  // function pointer
+  // compiler deduct arg type from pointer type
+  int (*pf1)(const int &, const int &) = compare;
+  EXPECT_EQ(pf1(1, 2), 42);
+
 
   std::vector<int> vi = {1, 2, 3, 4};
   auto &i = fcn(vi.begin(), vi.end());
