@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include <string>
 #include <vector>
+#include <type_traits>
 
 
 template <typename T>
@@ -20,7 +21,7 @@ int compare(const T&, const T&) {return 42;};
 
 // trailing return type
 template <typename T>
-auto fcn(T beg, T) -> decltype(*beg) {
+auto fcn(T beg, T) -> typename std::remove_reference<decltype(*beg)>::type {
   return *beg;
 };
 
