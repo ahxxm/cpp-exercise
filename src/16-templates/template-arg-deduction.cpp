@@ -21,7 +21,9 @@ int compare(const T&, const T&) {return 42;};
 
 // trailing return type
 template <typename T>
-auto fcn(T beg, T) -> typename std::remove_reference<decltype(*beg)>::type {
+auto fcn(T beg, T)-> decltype(*beg) {
+// auto fcn(T beg, T) -> typename std::remove_reference<decltype(*beg)>::type {
+// FIXME: result in error...
   return *beg;
 };
 
