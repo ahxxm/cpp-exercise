@@ -7,9 +7,11 @@ TEST(TupleTest, SomeTest) {
   int i = 2;
   float j = 1.1;
   auto k = std::tuple<int, float>(i, j);
+  auto item = std::make_tuple(i, j);
   std::cout << std::get<0>(k) << std::endl;
 
   EXPECT_EQ(std::tuple_size<decltype(k)>::value, 2);
+  EXPECT_EQ(std::tuple_size<decltype(item)>::value, 2);
 }
 
 int main(int argc, char *argv[]) {
