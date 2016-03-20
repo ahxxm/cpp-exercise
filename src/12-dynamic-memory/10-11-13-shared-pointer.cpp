@@ -38,6 +38,7 @@ TEST(SmartPointerExerciseTest, SomeTest) {
   // of the program
   auto sp = std::make_shared<int>(2);
   int *p = sp.get();
+  std::cout << *p << std::endl;
   // delete p;
 }
 
