@@ -12,6 +12,10 @@ TEST(TupleTest, SomeTest) {
 
   EXPECT_EQ(std::tuple_size<decltype(k)>::value, 2);
   EXPECT_EQ(std::tuple_size<decltype(item)>::value, 2);
+
+  // 1: 3 int tuple
+  std::tuple<int, int, int> three (10, 20, 30);
+  EXPECT_EQ(std::tuple_size<decltype(three)>::value, 3);
 }
 
 int main(int argc, char *argv[]) {
