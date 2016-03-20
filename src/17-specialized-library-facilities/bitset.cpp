@@ -23,6 +23,11 @@ TEST(BitsetTest, SomeTest) {
   std::cout << bitvec2.to_string() << std::endl;
   std::cout << bitvec2.to_ullong() << std::endl;
 
+  // more bitset from string
+  std::string str("1111111000000011001101");
+  std::bitset<32> bitvec5(str, 5, 4); //  four bits starting at str[5], 1100
+  std::bitset<32> bitvec6(str, str.size() - 4); // use last four characters
+
 
 
 }
