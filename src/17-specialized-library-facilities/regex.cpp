@@ -15,6 +15,8 @@ TEST(RegexTest, SomeTest) {
   std::smatch results;
   auto result = std::regex_search(text, results, r);
   EXPECT_EQ(result, true);
+  // str() equals str(0), the first sub-regex
+  // is r itself.
   EXPECT_EQ(results.str(), "aei");
 
   std::smatch no_results;
@@ -23,14 +25,13 @@ TEST(RegexTest, SomeTest) {
   EXPECT_EQ(no_result, false);
   EXPECT_EQ(no_results.str(), "");
 
-  //
+  // error
   try {
     std::regex rre("[[:alm:]+\\.");
     EXPECT_EQ(1, 2); // never reached here
   } catch(std::regex_error e) {
     std::cout << e.what() << "\n" << std::endl;
   };
-
 
 }
 
