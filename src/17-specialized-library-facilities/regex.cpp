@@ -10,6 +10,8 @@ TEST(RegexTest, SomeTest) {
   std::string text("ooaeiuuuu");
   std::regex r(re_pattern);
 
+  // only matches string input sequence
+  // for char use std::cmatch
   std::smatch results;
   auto result = std::regex_search(text, results, r);
   EXPECT_EQ(result, true);
