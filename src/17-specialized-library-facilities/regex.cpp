@@ -21,6 +21,15 @@ TEST(RegexTest, SomeTest) {
   EXPECT_EQ(no_result, false);
   EXPECT_EQ(no_results.str(), "");
 
+  //
+  try {
+    std::regex rre("[[:alm:]+\\.");
+    EXPECT_EQ(1, 2); // never reached here
+  } catch(std::regex_error e) {
+    std::cout << e.what() << "\n" << std::endl;
+  };
+
+
 }
 
 int main(int argc, char *argv[]) {
