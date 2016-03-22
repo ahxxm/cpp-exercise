@@ -26,13 +26,13 @@ TEST(RegexTest, SomeTest) {
   EXPECT_EQ(no_results.str(), "");
 
   // error
-  // FIXME: clang and gcc 5.3 both didn't raise error..
-  // try {
-  // std::regex rre("[[:alm:]+\\.");
-  // EXPECT_EQ(1, 2); // never reached here
-  // } catch(std::regex_error e) {
-  // std::cout << e.what() << "\n" << std::endl;
-  // };
+  try {
+    std::regex rre("[[:alm:]+\\.");
+    EXPECT_EQ(1, 2); // never reached here
+  } catch(std::regex_error e) {
+    std::cout << e.what() << "\n" << std::endl;
+    EXPECT_EQ(1, 1);
+  };
 
 }
 
