@@ -33,6 +33,11 @@ Foo<T>::Foo(std::string i)
   };
 
 
+// `noexcept` specification: nonthrowing
+// noexcept or noexcept(bool)
+template <typename T>
+void nothing(T&&) noexcept(true) {};
+
 
 
 TEST(ExceptionTest, SomeTest) {
@@ -41,6 +46,8 @@ TEST(ExceptionTest, SomeTest) {
   // auto j = Foo<int> ("hi");
   EXPECT_EQ(i.ii, "hello");
   // EXPECT_EQ(j.ii, "hello");
+
+  nothing("jar");
 }
 
 int main(int argc, char *argv[]) {
