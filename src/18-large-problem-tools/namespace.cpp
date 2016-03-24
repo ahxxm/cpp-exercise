@@ -1,5 +1,8 @@
 #include "gtest/gtest.h"
 
+
+// namespace can be defined in several parts
+// either define a new namespace or adds to an existing one
 namespace ns {
   class Foo {
   public:
