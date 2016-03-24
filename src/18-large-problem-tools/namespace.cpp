@@ -1,6 +1,12 @@
 #include "gtest/gtest.h"
 
 
+class Bar {
+public:
+  int i = 0;
+};
+
+
 // namespace can be defined in several parts
 // either define a new namespace or adds to an existing one
 namespace ns {
@@ -15,6 +21,10 @@ namespace ns {
 TEST(NamespaceTest, SomeTest) {
   auto a = ns::Foo();
   EXPECT_EQ(a.i, 42);
+
+  // explicit global namespace
+  auto b = ::Bar();
+  EXPECT_EQ(b.i, 0);
 }
 
 int main(int argc, char *argv[]) {
