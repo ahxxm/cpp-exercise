@@ -1,4 +1,6 @@
 #include "gtest/gtest.h"
+#include <iostream>
+
 
 
 class Bar {
@@ -25,6 +27,17 @@ namespace n = ns;
 namespace ni = ns::nested;
 
 
+void f() {
+  // using derivative:
+  // lifting the namespace members into the
+  // nearest scope that contains both
+  // the namespace itself and the using directive.
+  using namespace ns::nested; // injects 1 into global namespace
+  std::cout << i << std::endl;
+
+}
+
+
 TEST(NamespaceTest, SomeTest) {
   auto a = ns::Foo();
   EXPECT_EQ(a.i, 42);
@@ -38,6 +51,9 @@ TEST(NamespaceTest, SomeTest) {
   // explicit global namespace
   auto b = ::Bar();
   EXPECT_EQ(b.i, 0);
+
+  // verify injection of using directive
+  EXPECT_EQ(i, 1);
 }
 
 int main(int argc, char *argv[]) {
