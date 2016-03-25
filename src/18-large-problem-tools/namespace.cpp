@@ -14,10 +14,15 @@ namespace ns {
   public:
     int i = 42;
   };
+
+  namespace nested {
+    int i = 1;
+  }
 }
 
 // association
 namespace n = ns;
+namespace ni = ns::nested;
 
 
 TEST(NamespaceTest, SomeTest) {
@@ -26,6 +31,9 @@ TEST(NamespaceTest, SomeTest) {
 
   auto j = ns::Foo();
   EXPECT_EQ(j.i, 42);
+
+  auto i = ni::i;
+  EXPECT_EQ(i, 1);
 
   // explicit global namespace
   auto b = ::Bar();
