@@ -32,7 +32,10 @@ void f() {
   // lifting the namespace members into the
   // nearest scope that contains both
   // the namespace itself and the using directive.
-  using namespace ns::nested; // injects 1 into global namespace
+  using namespace ns::nested;
+  // FIXME: "injects 1 into global namespace"
+  // the book says...
+  ++i;
   std::cout << i << std::endl;
 
 }
@@ -45,15 +48,17 @@ TEST(NamespaceTest, SomeTest) {
   auto j = ns::Foo();
   EXPECT_EQ(j.i, 42);
 
-  auto i = ni::i;
-  EXPECT_EQ(i, 1);
+  auto k = ni::i;
+  EXPECT_EQ(k, 1);
 
   // explicit global namespace
   auto b = ::Bar();
   EXPECT_EQ(b.i, 0);
 
-  // verify injection of using directive
-  EXPECT_EQ(i, 1);
+
+  f();
+  EXPECT_EQ(ns::nested::i, 2);
+
 }
 
 int main(int argc, char *argv[]) {
