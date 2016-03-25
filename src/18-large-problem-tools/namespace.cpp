@@ -16,11 +16,16 @@ namespace ns {
   };
 }
 
+// association
+namespace n = ns;
 
 
 TEST(NamespaceTest, SomeTest) {
   auto a = ns::Foo();
   EXPECT_EQ(a.i, 42);
+
+  auto j = ns::Foo();
+  EXPECT_EQ(j.i, 42);
 
   // explicit global namespace
   auto b = ::Bar();
