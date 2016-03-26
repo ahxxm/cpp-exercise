@@ -41,6 +41,14 @@ void f() {
 }
 
 
+namespace A {
+  class C {
+    friend void f2() {};
+    friend f(const C&) {};
+  };
+}
+
+
 TEST(NamespaceTest, SomeTest) {
   auto a = ns::Foo();
   EXPECT_EQ(a.i, 42);
@@ -58,6 +66,12 @@ TEST(NamespaceTest, SomeTest) {
 
   f();
   EXPECT_EQ(ns::nested::i, 2);
+
+
+  // A::f through friend declaration
+  A::C cobj;
+  f(cobj);
+  // f2(); // not declared
 
 }
 
