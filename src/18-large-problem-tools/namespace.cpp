@@ -44,7 +44,7 @@ void f() {
 namespace A {
   class C {
     friend void f2() {};
-    friend f(const C&) {};
+    friend void f(const C&) {};
   };
 }
 
