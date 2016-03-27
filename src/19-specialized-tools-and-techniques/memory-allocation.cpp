@@ -43,6 +43,7 @@ TEST(MemAllocationTest, SomeTest) {
 
 
   // FIXME: explicit destructor invocation
+  // destroy but won't free memory
   // int *i = new int(1);
   // i->~int();
 }
