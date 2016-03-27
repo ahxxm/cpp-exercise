@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include <string>
+#include <iostream>
 
 
 // if virtual function can't be used, RTTI operators are viable.
@@ -17,8 +18,25 @@ void cast() {
 };
 
 
+void idtype() {
+
+
+}
+
+
 TEST(RTTITest, SomeTest) {
   cast();
+  idtype();
+
+
+  int *i = new int(1);
+  int *j = new int(2);
+  EXPECT_EQ(typeid(i), typeid(j));
+
+  // name is "Pi"... pointer to int?
+  std::cout << typeid(i).name() << std::endl;
+  std::cout << typeid(i).hash_code() << std::endl;
+
 }
 
 int main(int argc, char *argv[]) {
