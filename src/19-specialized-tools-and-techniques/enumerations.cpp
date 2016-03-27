@@ -1,10 +1,13 @@
 #include "gtest/gtest.h"
 
-// scoped
+// unscoped, enum struct
 enum color {yellow, red, green};
 
-// unscoped
+// unnamed, unscoped
 enum {integer = 1, floating = 2};
+
+// scoped
+enum class height {low, mid, high};
 
 
 TEST(EnumTest, SomeTest) {
@@ -13,6 +16,10 @@ TEST(EnumTest, SomeTest) {
   // increment by 1 by default.
   color test_color = yellow;
   color wut = color::green;
+
+  // scoped enum are not implicitly converted
+  // int higher = height::low;
+  auto higher = height::high;
 
   EXPECT_EQ(test_color, 0);
   EXPECT_EQ(wut, 2);
