@@ -1,7 +1,9 @@
 #include "gtest/gtest.h"
 
 // unscoped, enum struct
-// specify size
+// specify size:
+// - scoped ones are int
+// - unscoped ones are not determined, but will be large enough.
 enum color: unsigned long long {yellow, red, green};
 
 // unnamed, unscoped
