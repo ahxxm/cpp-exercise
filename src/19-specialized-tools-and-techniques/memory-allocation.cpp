@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include <string>
 #include <new>
+#include <cstdlib>
 
 
 void test() {
@@ -21,11 +22,19 @@ class Foo {
 
   // called when new a Foo object
   // must return void*
-  void *operator new(std::size_t, void *) noexcept;
+  void *operator new(std::size_t size, void *) noexcept {
+    if (void *mem = malloc(size)) {
+      return mem;
+    } else {
+      throw std::bad_alloc();
+    };
+  };
 
   // called when delete a Foo pointer
   // must return void
-  void operator delete(void *, std::nothrow_t &) noexcept;
+  void operator delete(void *mem, std::nothrow_t &) noexcept {
+    free(mem);
+  };
 };
 
 
