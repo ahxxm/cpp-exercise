@@ -9,10 +9,17 @@ class File {
   Bit modified: 1;
 public:
   enum modes {READ = 01, WRITE = 02, EXECUTE = 03};
-  File &open(modes);
   void close();
   void write();
   bool isRead();
+
+  File &open(modes m) {
+    mode |= READ; // set bit
+    if (m & WRITE) {
+      // do something
+    };
+    return *this;
+  };
 };
 
 
