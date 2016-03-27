@@ -73,6 +73,11 @@ TEST(NamespaceTest, SomeTest) {
   f(cobj);
   // f2(); // not declared
 
+  // using brought C into current scope
+  using A::C;
+  C cobj2;
+  f(cobj2);
+
 }
 
 int main(int argc, char *argv[]) {
