@@ -74,6 +74,8 @@ TEST(NamespaceTest, SomeTest) {
   // f2(); // not declared
 
   // using brought C into current scope
+  // when same name exists, C will be added
+  // to overload set
   using A::C;
   C cobj2;
   f(cobj2);
