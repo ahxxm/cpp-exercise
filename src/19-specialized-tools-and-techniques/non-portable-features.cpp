@@ -6,7 +6,10 @@ class File {
   // following the member name with a colon and
   // a constant expression specifying the number of bits:
   Bit mode: 2; //  mode has 2 bits
-  Bit modified: 1;
+
+  // machine dependent member
+  // only volatile function can call
+  volatile Bit modified: 1;
 public:
   enum modes {READ = 01, WRITE = 02, EXECUTE = 03};
   void close();
