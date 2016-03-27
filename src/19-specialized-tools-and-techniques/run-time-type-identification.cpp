@@ -7,7 +7,13 @@
 // cast and must check that the cast was performed successfully."
 
 void cast() {
+  // dynamic_cast <type *> (e)
+  // dynamic_cast <type &> (e)
+  // dynamic_cast <type &&> (e)
 
+  // If a dynamic_cast to a pointer type fails, the result is 0.
+  // If a dynamic_cast to a reference type fails, the operator
+  // throws an exception of type bad_cast.
 };
 
 
