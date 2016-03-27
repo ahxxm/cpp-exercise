@@ -16,8 +16,7 @@ TEST(DynamicTest, SomeTest) {
   std::string st1 = "ja";
   std::string st2 = "va";
   char *j = string_concat(st1, st2);
-  // FIXME: test j...
-  std::cout << j << std::endl;
+  EXPECT_EQ(std::string(j), "java");
 
   // 25: delete pa
   int *pa = new int[10];
