@@ -40,6 +40,11 @@ class Foo {
 
 TEST(MemAllocationTest, SomeTest) {
   test();
+
+
+  // FIXME: explicit destructor invocation
+  // int *i = new int(1);
+  // i->~int();
 }
 
 int main(int argc, char *argv[]) {
