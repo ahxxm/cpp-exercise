@@ -1,5 +1,6 @@
 #include <string>
 
+
 // 36: return a reference to array of 10 strings
 std::string (&return_array_of10_string(void))[10];
 
@@ -13,9 +14,12 @@ sa &return_array_of_10_string_alas(void);
 salias &alias(void);
 
 // trailing return
-// FIXME: how??
-// auto return_array_of_10_string_trailing(void) -> decltype(&sa);
-int main(int argc, char *argv[]) {
+// C++ function can't return C-style array
+auto return_array_of_10_string_trailing(void) -> std::string* {
+  auto sp = new std::string("null string");
+  return sp;
+};
 
+int main(int argc, char *argv[]) {
   return 0;
 }
