@@ -18,10 +18,11 @@ public:
 
   // move assignment operator
   Foo &operator=(Foo &&f) noexcept {
+    // assure self move assignment works
     if (this != &f) {
+      // store this value and make a new pointer
+      // to i for new Foo.
       int tmp = *f.i;
-      // FIXME: new is not required in clang..
-      // but in gcc.
       i = new int(tmp);
       f.i = nullptr;
     };
