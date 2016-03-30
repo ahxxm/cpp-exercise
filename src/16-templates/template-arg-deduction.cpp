@@ -21,9 +21,11 @@ int compare(const T&, const T&) {return 42;};
 
 // trailing return type
 template <typename T>
-auto fcn(T beg, T)-> decltype(*beg) {
-// auto fcn(T beg, T) -> typename std::remove_reference<decltype(*beg)>::type {
-// FIXME: result in error...
+// auto fcn(T beg, T)-> decltype(*beg) {
+// typename<->class: indicate type template param
+auto fcn(T beg, T) -> typename std::remove_reference<decltype(*beg)>::type {
+  // once reference removed and dereference result in rvalue
+  // it requires lvalue to have const specifier
   return *beg;
 };
 
@@ -55,7 +57,9 @@ TEST(DeductionTest, SomeTest) {
 
 
   std::vector<int> vi = {1, 2, 3, 4};
-  auto &i = fcn(vi.begin(), vi.end());
+
+  // from rvalue, should be const reference
+  const auto &i = fcn(vi.begin(), vi.end());
   EXPECT_EQ(i, 1);
 }
 
