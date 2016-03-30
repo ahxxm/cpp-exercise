@@ -2,8 +2,8 @@
 #include <iostream>
 #include <string>
 
-
-bool aIsLongerThanb(const std::string &a, const std::string &b) {
+template <typename T>
+bool aIsLongerThanb(T &&a, T &&b) {
   if (a > b) {
     return true;
   } else {
@@ -22,22 +22,9 @@ TEST (CompareStringTest, Something) {
 
 int main(int argc, char *argv[]) {
 
-  // 37: this snippet prints y a y line by line
-  // const char ca[] = {'y', 'a', 'y'};
-  // const char *cp = ca;
-  // while (*cp) {
-  // std::cout << *cp << std::endl;
-  // ++cp;
-  // };
-
-  // FIXME: why these will cause the first string definition
-  // to cout?
-
   // 38: why adding 2 pointers meaningless?
   // because pointers are address?
 
-  // 39: compare 2 string
-  // FIXME: any special comparison technique?
   ::testing::InitGoogleTest(&argc, argv);
   int ret = RUN_ALL_TESTS();
   return ret;
