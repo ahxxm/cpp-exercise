@@ -133,12 +133,10 @@ TEST(SmartPointerTest, SomeTest) {
 
   // dangling pointer
   int *j(new int(1024));
-
-  // process(j); // ERROR: can't convert int * to shared_ptr
-
-  // afterwhile j become dangling pointer, because the memory is deleted...
-  // FIXME: not deleted in OSX's clang....
-  process(std::shared_ptr<int> (j));
+  auto k = j; // k and j points to same memory
+  delete j; // now j become dangling
+  k = nullptr; // indicate k no longer bound to object
+  // process(std::shared_ptr<int> (j));
 
   // Ptr
   std::initializer_list<std::string> ii {"123", "456"};
@@ -148,7 +146,7 @@ TEST(SmartPointerTest, SomeTest) {
   EXPECT_EQ(blob_ptr.deref(), "123");
   blob_ptr.incr();
   EXPECT_EQ(blob_ptr.deref(), "456");
-}
+};
 
 int main(int argc, char *argv[]) {
   ::testing::InitGoogleTest(&argc, argv);
