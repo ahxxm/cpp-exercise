@@ -47,8 +47,7 @@ public:
     return sum;
   };
 
-  // FIXME:
-  double print_total(std::ostream &os,const Quote &, int) const {
+  double print_total(std::ostream &,const Quote &, int) const {
     return 0.0;
   };
 
@@ -57,9 +56,15 @@ private:
     return lhs->isbn() < rhs->isbn();
   };
 
-  // multiset<element type, comparison function pointer>
-  // and initialize items using compare function
-  // FIXME: what happened when initializing...
+
+  // FIXME: read red black tree...
+  // multiset use rb_tree as internal data structure...
+  // template<
+  // class Key,
+  // class Compare = std::less <Key>,
+  // class Allocator = std::allocator <Key>
+  // >  class multiset;
+
   std::multiset<std::shared_ptr<Quote>, decltype(compare)*> items {compare};
 };
 
