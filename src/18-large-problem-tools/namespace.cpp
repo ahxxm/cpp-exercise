@@ -30,11 +30,9 @@ namespace ni = ns::nested;
 void f() {
   // using derivative:
   // lifting the namespace members into the
-  // nearest scope that contains both
+  // <b>nearest<b> scope that contains both
   // the namespace itself and the using directive.
   using namespace ns::nested;
-  // FIXME: "injects 1 into global namespace"
-  // the book says...
   ++i;
   std::cout << i << std::endl;
 
