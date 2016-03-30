@@ -1,21 +1,20 @@
 #include <iostream>
+#include <assert.h>
 
 int main(int argc, char *argv[]) {
   // two int
-  int a = 3,  b = 4;
+  int a = 3, b = 4;
 
   // c is a copy of a
   decltype(a) c = a;
+  assert(&c != &a);
 
-  // d is a reference to int
-  // FIXME: but not to a? because ++d didn't change a
-  decltype((b)) d = a;
-
-  // increments c
-  ++c;
+  decltype(b) d = a;
+  assert(typeid(d).hash_code() == typeid(a).hash_code());
 
   // increments d
   ++d;
+  assert(d != a);
 
 
   // e also has type of reference to int
