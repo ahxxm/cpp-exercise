@@ -11,12 +11,12 @@ int main(int argc, char *argv[]) {
   // 29: result
   int x[10];
   int *p = x;
-  // 10, whole size of array / single element's
-  std::cout << sizeof(x) / sizeof(*x)<< std::endl;
+  // 10, whole size of array / single element's, 40 4
+  std::cout << "size of array, array element" << std::endl;
+  std::cout << sizeof(x) << " " << sizeof(*x)<< std::endl;
   // 2, size of int pointer / size of int, 8 / 4
-  // FIXME: why 8?
-  std::cout << sizeof(*p) << std::endl;
-  std::cout << sizeof(p) / sizeof(*p)<< std::endl;
+  std::cout << "size of int *, int "<< sizeof(p) << " " << sizeof(*p) << std::endl;
+
 
   // 32: explain loop
   // ptr is a pointer to first eleent in array ia, ix is count of element used in

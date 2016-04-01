@@ -12,7 +12,7 @@ bool find_int_in_vector(std::vector<int> vv, int target) {
   return false;
 }
 
-std::vector<int>::iterator get_int_in_vector(std::vector<int> vv, int target) {
+std::vector<int>::iterator get_int_in_vector(std::vector<int> &vv, int target) {
   std::vector<int>::iterator end = std::end(vv);
   for (std::vector<int>::iterator i = std::begin(vv); i != end; ++i) {
     if (*i == target) {
@@ -24,13 +24,6 @@ std::vector<int>::iterator get_int_in_vector(std::vector<int> vv, int target) {
 
 
 TEST(ContainerTest, SomeTest) {
-  EXPECT_EQ(1, 1);
-  // 9.1 vector, deque, or a (linked) list?
-  // (a): list then convert, or vector then sort,
-  // or associative containers <= FIXME
-  // (b): deque
-  // (c): vector then sort
-
   // 9.2 a list holding deque,
   // where these deques hold ints
   std::list<std::deque<int>> jar;
@@ -40,8 +33,8 @@ TEST(ContainerTest, SomeTest) {
   EXPECT_EQ(find_int_in_vector(vv, 1), true);
 
   // 9.5
-  std::vector<int>::iterator result = get_int_in_vector(vv, 2);
-  // EXPECT_EQ(*result, 2); //FIXME: does not equal to 2 in travis
+  auto result = get_int_in_vector(vv, 2);
+  EXPECT_EQ(*result, 2);
 
   // 9.6: fix it
   std::list<int> lst1;

@@ -23,17 +23,6 @@ std::string string_to_lowercase(std::string s) {
   return s;
 }
 
-// exercise 18
-// (a)
-class matrix {};
-// bool compare_matrix(matrix &a, matrix & b) {
-// FIXME: to diminish warning..
-// if (&a == &b) {
-// return true;
-// }
-// return false;
-// }
-
 // (b)
 std::vector<int> compare_value_in_vector(const int &num, const std::vector<int> &vec) {
   std::vector<int> result;

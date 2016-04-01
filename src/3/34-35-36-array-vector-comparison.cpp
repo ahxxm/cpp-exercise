@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <array>
+#include <assert.h>
 
 bool array_compare(int *a, int *b) {
   if ( *a != *b) {
@@ -40,10 +41,12 @@ int main(int argc, char *argv[]) {
     *b1 = 0;
   }
 
-  // FIXME: array defined in this way are "decaying"
+  // array defined in this way are "decaying"
   // into pointers.. to compare, use std::array or vector
   // More: http://stackoverflow.com/questions/12866413/comparing-arrays-c
   int c[] = {1, 2, 3, 4, 5};
+  auto d = c; // d is a pointer
+  assert(*d == 1);
   bool result = array_compare(c, b);
   std::cout << "Array comparison result: " << std::endl;
   std::cout << result << std::endl;

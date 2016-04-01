@@ -18,8 +18,9 @@ int compare(const char* const &p1, const char* const &p2) {
 
 TEST(SpecializationTest, SomeTest) {
   // specialization instantiate a template
-  // FIXME: no matching function...
-  // std::cout << compare("j1", "j23") << std::endl;
+  // no matching function when length are not the same,
+  // const char[len]
+  std::cout << compare("j12", "j23") << std::endl;
 
   std::cout << strcmp("j1", "j23") << std::endl;
 }

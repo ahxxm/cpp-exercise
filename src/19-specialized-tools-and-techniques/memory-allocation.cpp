@@ -42,10 +42,11 @@ TEST(MemAllocationTest, SomeTest) {
   test();
 
 
-  // FIXME: explicit destructor invocation
+  // explicit destructor invocation
   // destroy but won't free memory
-  // int *i = new int(1);
-  // i->~int();
+  Foo a = Foo();
+  auto b = &a;
+  b->~Foo();
 }
 
 int main(int argc, char *argv[]) {

@@ -4,7 +4,6 @@
 
 int main(int argc, char *argv[]) {
   // this prints abcdeft, bcdefg, ..., g
-  // FIXME: correct?
   // because "compiler ordinarily converts the array to a pointer..",
   // the for-loop actually loops this iterator. Address-of operator
   // & restore it to [current location -- and -- later --char]..

@@ -20,7 +20,7 @@ public:
 };
 
 // catch with initializer
-// FIXME: does not caught "hi"
+// does not caught "hi", because it's basic_char *
 template <typename T>
 Foo<T>::Foo(std::string i)
   try: ii(i) {

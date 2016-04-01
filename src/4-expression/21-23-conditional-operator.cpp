@@ -13,11 +13,6 @@ bool is_odd(int &j) {
 
 int main(int argc, char *argv[]) {
 
-  // FIXME: how to assign j to i and *p inline
-  int i, *p = 0;
-  int j = 2;
-  std::cout << "jar" << std::endl;
-
   // member access operator ->
   std::string s1 = "string";
   std::string *pp = &s1;

@@ -12,7 +12,8 @@ int main(int argc, char *argv[]) {
 
   // const_cast
   // ok, but writing *pcc is undefined.
-  // FIXME: "can be useful in ocntext of overloaded functions, other uses often indicate design flaw."
+  // "can be useful in context of overloaded functions, other uses often indicate design flaw."
+  // also context of dynamic binding.. but template might be better.
   char u = 'u';
   const char *pc = &u;
   char *pcc = const_cast<char*>(pc);

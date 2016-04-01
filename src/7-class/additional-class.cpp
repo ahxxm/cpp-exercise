@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include <string>
 #include <vector>
+#include <iostream>
 
 
 class Screen {
@@ -34,7 +35,12 @@ public:
   inline char get(pos r, pos c) const;
 
   inline Screen &set(char c) {
-    contents[cursorPosition] = c;
+    // can't set [0] to a char on string of size 0
+    if (contents.size() == cursorPosition) {
+      contents += c;
+    } else {
+      contents[cursorPosition] = c;
+    }
     return *this;
   };
   inline Screen &set(pos r, pos col, char c) {
@@ -121,19 +127,20 @@ TEST(AdditionalClassTest, SomeTest) {
   Screen new_empty_screen = Screen();
   std::string::size_type *count = new_empty_screen.some_member();
   EXPECT_EQ(*count, 1);
-  // EXPECT_EQ((std::string)new_empty_screen.get(),  "");
 
   // set first element to 1 and display whole screen
-  Screen not_empty_screen = new_empty_screen.set('1').display(std::cout);
-  // FIXME: fail on gcc 5.3
-  // EXPECT_EQ(not_empty_screen.get(), '1');
+  Screen not_empty_screen = new_empty_screen.set('1').display(std::cerr);
+  EXPECT_EQ(not_empty_screen.get(), '1');
+
+  not_empty_screen.display(std::cerr);
+  std::cout << std::endl;
+
   EXPECT_EQ(new_empty_screen.get(), '1');
 
   // clear this screen's content
   WindowMgr wm = WindowMgr(not_empty_screen);
   wm.clear();
-  // FIXME: failure on travis..
-  // EXPECT_EQ(not_empty_screen.get() == '1', 0);
+  EXPECT_EQ(not_empty_screen.get() == '1', 0);
 
   // scope
   Screen::pos a = 20;

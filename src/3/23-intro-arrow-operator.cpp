@@ -4,7 +4,7 @@
 int main(int argc, char *argv[]) {
 
   // create a vector of length 10
-  // FIXME: any elegant solution?
+  // any elegant solution? seems no, this is efficient, though lengthy...
   std::vector<int> ten;
   for (int i = 0; i != 10; i++) {
     ten.push_back(i);

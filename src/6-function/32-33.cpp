@@ -25,7 +25,6 @@ int get_main() {
 
 // 33: recursively print vector content
 void loop_pointer_and_print(std::vector<int>::iterator &vec_ptr) {
-  // FIXME: what if it's zero..
   if (*vec_ptr) {
     std::cout << *vec_ptr << std::endl;
     ++vec_ptr;
@@ -37,7 +36,9 @@ void loop_pointer_and_print(std::vector<int>::iterator &vec_ptr) {
 
 void recursively_print_vector(std::vector<int> &vec) {
   decltype(std::begin(vec)) begin = vec.begin();
-  loop_pointer_and_print(begin);
+  if (begin != vec.end()) {
+    loop_pointer_and_print(begin);
+  };
 }
 
 TEST(VectorBasicTest, VB) {

@@ -29,9 +29,6 @@ void allocator() {
   // return memory to system, 10 must be the same as size
   a.deallocate(q, 10);
 
-  // FIXME: still prints 233
-  std::cout << a1[2] << std::endl;
-
 }
 
 void allocator_construct_method() {
