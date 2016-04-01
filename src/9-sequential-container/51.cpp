@@ -25,9 +25,8 @@ public:
 
   };
 
-  // FIXME: handle different format
-  //
-  BasicDate(const std::string &datestr) {
+  // TODO: handle different format
+  BasicDate(const std::string &) {
 
   }
 private:
@@ -37,13 +36,11 @@ private:
 
 TEST(BasicDateTest, SomeTest) {
   auto dd = BasicDate();
-  std::cout << dd.year << std::endl;
-
   EXPECT_EQ(dd.year >= 2015, 1);
 
-  std::string d1 = "1993-01-01";
-  std::string d2 = "Jan 1,1993";
-  auto dd1 = BasicDate(d1);
+  // std::string d1 = "1993-01-01";
+  // std::string d2 = "Jan 1,1993";
+  // auto dd1 = BasicDate(d1);
   // EXPECT_EQ(dd1.year, 1993);
   // EXPECT_EQ(dd1.month, 1);
   // EXPECT_EQ(dd1.day, 1);
