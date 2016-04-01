@@ -2,6 +2,9 @@
 #include <string>
 #include <iostream>
 #include "time.h"
+#include <chrono>
+#include <ctime>
+#include <iomanip>
 
 class BasicDate {
 public:
@@ -10,10 +13,16 @@ public:
   unsigned int day = 0;
 
   BasicDate() {
-    // FIXME: default initialize as now
-    std::time_t tt = std::time(NULL);
-    std::string result = asctime(gmtime(&tt));
-    std::cout << result << std::endl;
+    // default unix time, of type long
+    std::time_t tt = std::time(nullptr);
+
+    // set year
+    auto localtime = std::localtime(&tt);
+    year = localtime->tm_year + 1900; // years since 1900
+    month = localtime->tm_mon;
+    day = localtime->tm_mday;
+    std::cout << "year" << year << " month" << month << std::endl;
+
   };
 
   // FIXME: handle different format
@@ -22,14 +31,15 @@ public:
 
   }
 private:
-
 };
 
 
 
 TEST(BasicDateTest, SomeTest) {
   auto dd = BasicDate();
-  // EXPECT_EQ(dd.year >= 2015, 1);
+  std::cout << dd.year << std::endl;
+
+  EXPECT_EQ(dd.year >= 2015, 1);
 
   std::string d1 = "1993-01-01";
   std::string d2 = "Jan 1,1993";
