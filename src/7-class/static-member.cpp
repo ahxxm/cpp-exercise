@@ -2,14 +2,12 @@
 #include "static-member.h"
 #include <vector>
 
-// 58: fix errors and explain why
-// FIXME: not sure what static member can do..
 double Example::rate;
-// std::vector<double> Example::vec;
+const std::vector<double> Example::vec = {1.0, 2.0};
 
 TEST(MoreClassExerciseTest, SomeTest) {
   Example data;
-  EXPECT_EQ(1, 1);
+  EXPECT_EQ(data.vec[0], 1.0);
 }
 
 int main(int argc, char *argv[]) {
