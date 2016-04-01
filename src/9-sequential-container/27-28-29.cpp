@@ -30,7 +30,6 @@ std::forward_list<int> &remove_odd_from_forward_list(std::forward_list<int> &lst
 
 std::forward_list<std::string> &find_and_insert(std::forward_list<std::string> &fl, const std::string &st1, const std::string &st2) {
   // insert only once
-  // FIXME: what if st1==st2
   auto prev = fl.before_begin();
 
   for (auto iter = fl.begin(); iter != fl.end(); prev = iter++) {
