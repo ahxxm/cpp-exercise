@@ -86,7 +86,6 @@ Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
 
 // 4: a Person class for later usage
 // 19: seperate private/public,
-// FIXME: 19 seems redundant..
 class Person {
 public:
   // 5: return name and address
@@ -122,8 +121,6 @@ TEST(ClassIntroTest, SomeTest) {
   Sales_data sd4 = Sales_data(bookName, 0, 20.0);
   Sales_data sd_combined_2 = add(sd3, sd4);
   EXPECT_EQ(sd_combined_2.avg_price(), 0);
-
-  // FIXME: expect raise?
 
   // will initialize a temporary Sales_data from this
   // null_book string, then pass to combine.
