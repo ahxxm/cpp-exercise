@@ -1,6 +1,6 @@
 # C++ Primer 5th edition exercises
 
-[![Build Status](https://travis-ci.org/ahxxm/cpp-exercise.svg)](https://travis-ci.org/ahxxm/cpp-exercise)
+with problems when reading the book.
 
 ## Build
 

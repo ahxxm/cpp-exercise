@@ -42,3 +42,6 @@ install_manifest.txt
 
 # Ebook
 *.pdf
+
+# input file for algorithm
+**/*.in
