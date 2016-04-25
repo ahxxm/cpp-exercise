@@ -4,5 +4,5 @@
 
 ## Structure
 
-`cppp`: C++ Primer 5th edition
-`algo`: algorithm and data structure related
+- `cppp`: C++ Primer 5th edition
+- `algo`: algorithm and data structure related
