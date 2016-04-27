@@ -1,12 +1,8 @@
-cmake_minimum_required (VERSION 2.8)
-
-project (CppPrimeFifth)
 find_package(Threads REQUIRED)
 
 # http://www.kaizou.org/2014/11/gtest-cmake/
 # Enable ExternalProject CMake module
 
-enable_testing()
 include(ExternalProject)
 
 # Download and install GoogleTest
@@ -21,12 +17,6 @@ ExternalProject_Add(
 # Create a libgtest target to be used as a dependency by test programs
 ExternalProject_Get_Property(gtest source_dir binary_dir)
 
-# Use C++11 standard
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED on)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
 file(GLOB_RECURSE X_SOURCES "src/*.cpp")
 file(GLOB_RECURSE X_HEADERS "src/*.h")
