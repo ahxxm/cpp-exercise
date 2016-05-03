@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-int binary(std::vector<int> wut, int target){
+int binary(std::vector<int> wut, int target) {
   // binary search using iterator..
   auto left = wut.begin();
   auto right = wut.end();
