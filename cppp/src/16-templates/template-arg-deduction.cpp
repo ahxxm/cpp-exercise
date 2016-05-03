@@ -34,11 +34,11 @@ auto fcn(T beg, T) -> typename std::remove_reference<decltype(*beg)>::type {
 TEST(DeductionTest, SomeTest) {
   std::string s1("something");
   const std::string s2("else");
-  fobj(s1, s1); // calls (string,string), ignore const
-  fref(s1, s2); // convert s1 to const
+  fobj(s1, s1);  // calls (string,string), ignore const
+  fref(s1, s2);  // convert s1 to const
 
   int a[10], b[42];
-  fobj(a, b); // (int *, int *)
+  fobj(a, b);  // (int *, int *)
   // fref(a, b); // error, type not consistent
 
   // 34: string literal is basic char *,

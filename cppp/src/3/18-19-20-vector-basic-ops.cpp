@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 
   // 19: initialize with 10 * "42"
   std::vector<std::string> v1(10, "42");
-  std::vector<std::string> v2; // manually..
+  std::vector<std::string> v2;  // manually..
   for (int i = 0; i < 10; i++) {
     v2.push_back("42");
   }

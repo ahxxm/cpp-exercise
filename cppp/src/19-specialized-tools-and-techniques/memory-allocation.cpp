@@ -11,8 +11,8 @@ void test() {
   std::string *sp = new std::string("str");
   std::string *arr = new std::string[10];
 
-  delete sp; // destroy pointer and free pointed memory
-  delete [] arr; // destroy 10 strings and free memory
+  delete sp;  // destroy pointer and free pointed memory
+  delete [] arr;  // destroy 10 strings and free memory
 
 };
 

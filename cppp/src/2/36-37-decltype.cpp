@@ -1,8 +1,9 @@
 #include <assert.h>
 #include <iostream>
-#include <typeinfo> // required for typeid
+#include <typeinfo>  // required by typeid
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
   // two int
   int a = 3, b = 4;
 

@@ -142,9 +142,9 @@ TEST(SmartPointerTest, SomeTest) {
 
   // dangling pointer
   int *j(new int(1024));
-  auto k = j; // k and j points to same memory
-  delete j; // now j become dangling
-  k = nullptr; // indicate k no longer bound to object
+  auto k = j;  // k and j points to same memory
+  delete j;  // now j become dangling
+  k = nullptr;  // indicate k no longer bound to object
   // process(std::shared_ptr<int> (j));
 
   // Ptr

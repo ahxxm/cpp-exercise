@@ -24,11 +24,8 @@ TEST(BitsetTest, SomeTest) {
 
   // more bitset from string
   std::string str("1111111000000011001101");
-  std::bitset<32> bitvec5(str, 5, 4); //  four bits starting at str[5], 1100
-  std::bitset<32> bitvec6(str, str.size() - 4); // use last four characters
-
-
-
+  std::bitset<32> bitvec5(str, 5, 4);  // four bits starting at str[5], 1100
+  std::bitset<32> bitvec6(str, str.size() - 4);  // use last four characters
 }
 
 int main(int argc, char *argv[]) {

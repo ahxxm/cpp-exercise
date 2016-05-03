@@ -26,9 +26,9 @@ TEST(LambdaTest, SomeTest) {
 
   // by default lambda captures value:
   // copy into function when created
-  auto v_lambda = [i] {return i;}; // value by default
-  auto v_lambda2 = [&, i] {return i;}; // explicit value by default
-  auto r_lambda = [=, &i] {return i;}; // value by default, &i means reference
+  auto v_lambda = [i] {return i;};  // value by default
+  auto v_lambda2 = [&, i] {return i;};  // explicit value by default
+  auto r_lambda = [=, &i] {return i;};  // value by default, &i means reference
   i = 3;
 
   EXPECT_EQ(v_lambda(), 2);
