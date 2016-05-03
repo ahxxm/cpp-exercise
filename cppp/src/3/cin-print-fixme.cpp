@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
 
   const std::string hexdigits("0123456789ABCDEF");
   std::string result;
-  std::string::size_type n;
+  std::string::size_type n = 0;
 
   // while (std::cin >> n) {
   // if (n < hexdigits.size()) {
@@ -15,5 +15,6 @@ int main(int argc, char *argv[]) {
   // }
 
   std::cout << result << std::endl;
+  std::cout << n << std::endl;
 
 }

@@ -1,6 +1,6 @@
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
   // of course fine
   int i1 = -1;
@@ -27,5 +27,6 @@ int main(int argc, char *argv[]) {
 
   // of course fine
   const int i2 = i1;
-  std::cout <<& i2 << std::endl;
+  std::cout << &i2 + *p4 + *p5 << std::endl;
+
 }

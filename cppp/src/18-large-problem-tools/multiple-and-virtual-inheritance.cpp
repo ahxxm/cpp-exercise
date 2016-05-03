@@ -23,7 +23,7 @@ public:
   A() = default;
 
   // must define its own Class(int)
-  A(int i):k(i) {};
+  A(int i) {k = i;};
 private:
   int k;
 };

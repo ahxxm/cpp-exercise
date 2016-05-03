@@ -26,6 +26,7 @@ TEST(EnumTest, SomeTest) {
 
   EXPECT_EQ(test_color, 0);
   EXPECT_EQ(wut, 2);
+  EXPECT_EQ((int)higher, 2);
 
 }
 

@@ -1,15 +1,18 @@
+#include <iostream>
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
   // const int
   const int i = 42;
 
-  //  int
+  // int
   auto j = i;
 
-  //  const int reference
+  // const int reference
   const auto &k = i;
 
   // const int*
   auto *p = &i;
+
+  std::cout << j << " " << *p << " " << k << std::endl;
 }

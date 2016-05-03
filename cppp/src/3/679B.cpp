@@ -20,9 +20,11 @@ int main(int argc, char *argv[]) {
   // 11
   // legal, it just did nothing..
   const std::string ss = "Keep out!";
-  for (auto & c: ss) {
-    /*  ... */
-  }
+  /* 
+  for (auto &: ss) {
+    //  ... 
+  } 
+  */
 
   return 0;
 }

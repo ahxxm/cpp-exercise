@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
   // unique.
   // behavior of `assert` depends on NDEBUG, if NDEBUG is defined, assert
   // does nothing.
-  int NDEBUG = 1;
+  // int NDEBUG = 1;
   assert(1 == 1);
   assert(1 != 0);
 
