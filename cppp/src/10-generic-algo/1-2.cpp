@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
 #include <algorithm>
-#include <vector>
 #include <iostream>
+#include <vector>
+#include "gtest/gtest.h"
 
 
 

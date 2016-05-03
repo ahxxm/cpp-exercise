@@ -1,8 +1,9 @@
-#include "gtest/gtest.h"
 #include <fstream>
-#include <string>
 #include <iostream>
+#include <string>
 #include <vector>
+#include "gtest/gtest.h"
+
 
 // fstream: file stream
 // - ifstream: read file

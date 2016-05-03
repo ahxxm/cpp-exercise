@@ -1,4 +1,3 @@
-#include "gtest/gtest.h"
 #include <memory>
 #include <string>
 #include <vector>
@@ -6,6 +5,8 @@
 #include <stdexcept>
 #include <exception>
 #include <list>
+#include "gtest/gtest.h"
+
 
 class StrBlobPtr;
 class StrBlob {

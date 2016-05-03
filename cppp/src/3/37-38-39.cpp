@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
 #include <iostream>
 #include <string>
+#include "gtest/gtest.h"
+
 
 template <typename T>
 bool aIsLongerThanb(T &&a, T &&b) {

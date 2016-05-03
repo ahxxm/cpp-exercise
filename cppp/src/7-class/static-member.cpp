@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
-#include "static-member.h"
 #include <vector>
+#include "static-member.h"
+#include "gtest/gtest.h"
 
 double Example::rate;
 const std::vector<double> Example::vec = {1.0, 2.0};

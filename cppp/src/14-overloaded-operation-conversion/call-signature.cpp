@@ -1,8 +1,9 @@
-#include "gtest/gtest.h"
+#include <functional>
 #include <map>
 #include <string>
 #include <utility>
-#include <functional>
+#include "gtest/gtest.h"
+
 
 int adder(int &i, int &j) {
   return i + j;

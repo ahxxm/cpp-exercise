@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
 #include <vector>
+#include "gtest/gtest.h"
 
 // 45: iterator, insert and append
 // add prefix and suffix to a string

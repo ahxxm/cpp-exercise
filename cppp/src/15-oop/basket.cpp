@@ -1,8 +1,7 @@
-#include "gtest/gtest.h"
 #include <memory>
 #include <set>
 #include <iostream>
-#include <memory>
+#include "gtest/gtest.h"
 
 
 struct Quote {

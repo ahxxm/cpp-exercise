@@ -1,8 +1,8 @@
-#include "gtest/gtest.h"
-#include <numeric>
-#include <vector>
-#include <string>
 #include <algorithm>
+#include <numeric>
+#include <string>
+#include <vector>
+#include "gtest/gtest.h"
 
 
 TEST(AlgoMoreTest, SomeTest) {

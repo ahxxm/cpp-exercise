@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
-#include <vector>
 #include <algorithm>
 #include <iostream>
+#include <vector>
+#include "gtest/gtest.h"
 
 
 TEST(UniqueTest, SomeTest) {

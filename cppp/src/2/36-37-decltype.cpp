@@ -1,5 +1,5 @@
-#include <iostream>
 #include <assert.h>
+#include <iostream>
 #include <typeinfo> // required for typeid
 
 int main(int argc, char *argv[]) {

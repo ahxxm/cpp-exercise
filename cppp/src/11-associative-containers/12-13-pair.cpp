@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
 #include <utility>
 #include <vector>
 #include <string>
+#include "gtest/gtest.h"
 
 // 12:
 // sequence of strings ints into vector<pair>

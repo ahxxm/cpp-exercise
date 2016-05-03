@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 #include <iostream>
+#include "gtest/gtest.h"
+
 
 // This class has no default initializer
 class NoDefault {

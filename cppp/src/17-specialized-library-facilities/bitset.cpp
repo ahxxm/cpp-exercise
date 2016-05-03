@@ -1,6 +1,5 @@
-#include "gtest/gtest.h"
 #include <bitset>
-
+#include "gtest/gtest.h"
 
 
 TEST(BitsetTest, SomeTest) {

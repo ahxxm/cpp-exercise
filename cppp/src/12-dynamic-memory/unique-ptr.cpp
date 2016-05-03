@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 #include <memory>
+#include "gtest/gtest.h"
+
 
 // exception: copy/assign when it's about to be destroyed
 std::unique_ptr<int> clone(int p) {

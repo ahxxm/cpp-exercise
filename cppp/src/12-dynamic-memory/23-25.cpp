@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
-#include <string>
 #include <iostream>
 #include <iterator>
+#include <string>
+#include "gtest/gtest.h"
 
 
 // 23: concatenate 2 string, return dynamical char[]

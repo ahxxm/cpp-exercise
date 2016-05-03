@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
-#include <string>
 #include <iostream>
+#include <string>
+#include "gtest/gtest.h"
 
 // 18: string constructor
 class Employee {

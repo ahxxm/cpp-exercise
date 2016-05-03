@@ -1,7 +1,8 @@
-#include <vector>
-#include <iostream>
-#include <array>
 #include <assert.h>
+#include <array>
+#include <iostream>
+#include <vector>
+
 
 bool array_compare(int *a, int *b) {
   if ( *a != *b) {

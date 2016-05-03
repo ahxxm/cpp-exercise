@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 #include <list>
+#include "gtest/gtest.h"
+
 
 int erase_test() {
   std::list<int> lst1 = {0, 1, 2, 3, 4, 5, 6};

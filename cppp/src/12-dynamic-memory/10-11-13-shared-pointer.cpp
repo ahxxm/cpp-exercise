@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
-#include <memory>
 #include <iostream>
+#include <memory>
+#include "gtest/gtest.h"
 
 
 void process(std::shared_ptr<int> p) {

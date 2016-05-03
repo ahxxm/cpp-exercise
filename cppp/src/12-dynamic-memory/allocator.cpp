@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
 #include <memory>
 #include <iostream>
 #include <vector>
+#include "gtest/gtest.h"
 
 
 // decouple memory allocation from object construction

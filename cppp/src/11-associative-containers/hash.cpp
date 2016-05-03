@@ -1,8 +1,8 @@
-#include "gtest/gtest.h"
 #include <vector>
 #include <iostream>
 #include <functional>
 #include <string>
+#include "gtest/gtest.h"
 
 
 TEST(HashTest, SomeTest) {

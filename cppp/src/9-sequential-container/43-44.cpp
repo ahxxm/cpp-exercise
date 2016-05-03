@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 #include <string>
+#include "gtest/gtest.h"
+
 
 // 43: takes: string s, old, new
 // replace all old with new in s, using iterator, insert and erase.

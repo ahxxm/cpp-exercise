@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
-#include <list>
 #include <deque>
 #include <forward_list>
+#include <list>
+#include "gtest/gtest.h"
 
 void create_vector() {
   std::vector<int> v1;

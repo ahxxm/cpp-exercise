@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
-#include <string>
-#include <new>
 #include <cstdlib>
+#include <new>
+#include <string>
+#include "gtest/gtest.h"
 
 
 void test() {

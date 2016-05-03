@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
-#include <string>
 #include <iostream>
+#include <string>
+#include "gtest/gtest.h"
+
 
 // 17: Only different between struct and class: default access level
 // only when all members are public we use struct, otherwise

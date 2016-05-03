@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
 #include <algorithm>
 #include <list>
+#include "gtest/gtest.h"
 
 
 TEST(CopyTest, SomeTest) {

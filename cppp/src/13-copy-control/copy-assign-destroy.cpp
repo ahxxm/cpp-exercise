@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
-#include <string>
 #include <iostream>
+#include <string>
+#include "gtest/gtest.h"
+
 
 class Foo {
 public:

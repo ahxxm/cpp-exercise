@@ -1,8 +1,8 @@
-#include "gtest/gtest.h"
-#include <vector>
-#include <string>
 #include <memory>
+#include <string>
 #include <utility>
+#include <vector>
+#include "gtest/gtest.h"
 
 
 class StrVec {

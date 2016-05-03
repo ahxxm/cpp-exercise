@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
 #include <string>
-#include <vector>
 #include <type_traits>
+#include <vector>
+#include "gtest/gtest.h"
 
 
 template <typename T>

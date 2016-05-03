@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 #include <functional>
+#include "gtest/gtest.h"
+
 
 // template <typename T>
 // class/typename are the same

@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 #include <string>
+#include "gtest/gtest.h"
+
 
 // must be a member function
 struct Foo {
