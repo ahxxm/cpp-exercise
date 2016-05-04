@@ -1,17 +1,17 @@
-#include "gtest/gtest.h"
 #include <map>
-#include <vector>
 #include <utility>
+#include <vector>
+#include "gtest/gtest.h"
 
 
 // 15:
 void type_identify() {
   typedef std::map<int, std::vector<int>> miv;
 
-  miv::mapped_type j; // std::vector<int>
+  miv::mapped_type j;  // std::vector<int>
   j.size();
 
-  miv::key_type k; // int
+  miv::key_type k;  // int
   std::cout << sizeof(k) << std::endl;
 
   miv::value_type i;

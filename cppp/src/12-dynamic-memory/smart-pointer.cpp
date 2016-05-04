@@ -1,4 +1,3 @@
-#include "gtest/gtest.h"
 #include <memory>
 #include <string>
 #include <vector>
@@ -6,6 +5,8 @@
 #include <stdexcept>
 #include <exception>
 #include <list>
+#include "gtest/gtest.h"
+
 
 class StrBlobPtr;
 class StrBlob {
@@ -141,14 +142,14 @@ TEST(SmartPointerTest, SomeTest) {
 
   // dangling pointer
   int *j(new int(1024));
-  auto k = j; // k and j points to same memory
-  delete j; // now j become dangling
-  k = nullptr; // indicate k no longer bound to object
+  auto k = j;  // k and j points to same memory
+  delete j;  // now j become dangling
+  k = nullptr;  // indicate k no longer bound to object
   // process(std::shared_ptr<int> (j));
 
   // Ptr
   std::initializer_list<std::string> ii {"123", "456", "789"};
-  StrBlob blob (ii);
+  StrBlob blob(ii);
   auto blob_ptr = StrBlobPtr(blob);
   EXPECT_EQ(blob_ptr.deref(), "123");
   blob_ptr.incr();

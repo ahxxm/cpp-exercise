@@ -1,5 +1,7 @@
-#include "gtest/gtest.h"
 #include <functional>
+#include <string>
+#include "gtest/gtest.h"
+
 
 // template <typename T>
 // class/typename are the same
@@ -27,9 +29,8 @@ int compare(const char (&p1)[N], const char(&p2)[M]) {
 
 // 5: print array
 template<typename T>
-void print(T const &a)
-{
-  for (auto const &i: a) {
+void print(T const &a) {
+  for (auto const &i : a) {
     std::cout << i << std::endl;
   }
 };

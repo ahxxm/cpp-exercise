@@ -47,7 +47,7 @@ double Exercise::setVal(double parm) {
   // return val;
   // can't return val, because return Type is string
   // and val is int.
-  return val; // fix
+  return val;  // fix
 }
 
 TEST(ScopeTest, SomeScopeTest) {

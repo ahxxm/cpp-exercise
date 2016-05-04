@@ -1,8 +1,10 @@
-#include "gtest/gtest.h"
+#include <algorithm>
+#include <iostream>
 #include <list>
 #include <string>
-#include <iostream>
-#include <algorithm>
+#include <vector>
+#include "gtest/gtest.h"
+
 
 // 34
 void print_vector_reversely(const std::vector<std::string> &sa) {

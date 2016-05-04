@@ -5,7 +5,7 @@ typedef unsigned int Bit;
 class File {
   // following the member name with a colon and
   // a constant expression specifying the number of bits:
-  Bit mode: 2; //  mode has 2 bits
+  Bit mode: 2;  //  mode has 2 bits
 
   // machine dependent member
   // only volatile function can call
@@ -17,7 +17,7 @@ public:
   bool isRead();
 
   File &open(modes m) {
-    mode |= READ; // set bit
+    mode |= READ;  // set bit
     if (m & WRITE) {
       // do something
     };

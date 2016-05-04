@@ -1,10 +1,11 @@
-#include "gtest/gtest.h"
 #include <deque>
 #include <list>
 #include <vector>
+#include "gtest/gtest.h"
+
 
 bool find_int_in_vector(std::vector<int> vv, int target) {
-  for (int j: vv) {
+  for (int j : vv) {
     if (j == target) {
       return true;
     }

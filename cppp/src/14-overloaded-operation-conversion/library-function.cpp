@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
 #include <functional>
+#include "gtest/gtest.h"
 
 
 TEST(FunctionTest, SomeTest) {

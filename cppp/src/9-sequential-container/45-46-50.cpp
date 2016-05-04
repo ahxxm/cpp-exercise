@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
+#include <string>
 #include <vector>
+#include "gtest/gtest.h"
 
 // 45: iterator, insert and append
 // add prefix and suffix to a string
@@ -17,7 +18,7 @@ void insert_prefix_suffix(std::string &s, const std::string &prefix, const std::
 // 50:
 int sum_vector_int_string(std::vector<std::string> &va) {
   int result = 0;
-  for (auto i: va) {
+  for (auto i : va) {
     result += std::stoi(i);
   }
 

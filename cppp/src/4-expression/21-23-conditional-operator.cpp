@@ -2,35 +2,38 @@
 #include <string>
 #include <vector>
 
-bool is_odd(int &j) {
+bool is_odd(const int &j) {
 
-  if (int((j - 1) / 2) == int(j / 2)) {
+  // (int) is deprecated
+  if (static_cast<int>((j - 1) / 2) == static_cast<int>(j / 2)) {
     return true;
   }
 
   return false;
 }
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
   // member access operator ->
   std::string s1 = "string";
   std::string *pp = &s1;
-  long nn = pp->size();
+  auto nn = pp->size();
   std::cout << nn << std::endl;
 
   // 21: double odd value in vector
   // using ?: operator...
   std::cout << "Double odd value" << std::endl;
   std::vector<int> va {1, 2, 3, 4, 5, 6, 7};
-  for (int &i: va) {
+  for (int &i : va) {
     if (is_odd(i)) {
       // i *= 2;
       std::cout << "Doubled: " << i * 2 << std::endl;
     };
 
     // ?: usage
-    std::cout << i << " " << ((int((i - 1) /  2) !=  int(i / 2)) ? "is even" : "is odd") << std::endl;
+    std::cout << i << " "
+              << (static_cast<int>((i - 1) / 2) != static_cast<int>(i / 2) ? "is even" : "is odd")
+              << std::endl;
 
   }
 

@@ -1,12 +1,13 @@
-#include "gtest/gtest.h"
 #include <utility>
 #include <vector>
 #include <string>
+#include "gtest/gtest.h"
 
 // 12:
 // sequence of strings ints into vector<pair>
-std::vector<std::pair<std::string, int>> convert_string_int_into_pair(const std::vector<std::string> &st, const std::vector<int> it) {
-  std::vector<std::pair<std::string, int>> pa;
+typedef std::vector<std::pair<std::string, int>> vps;
+vps convert_string_int_into_pair(const std::vector<std::string> &st, const std::vector<int> it) {
+  vps pa;
 
   if (st.size() != it.size()) {
     return pa;

@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
 #include <exception>
 #include <string>
+#include "gtest/gtest.h"
+
 
 void catch_all() {
   try {
@@ -14,7 +15,7 @@ template <class T>
 class Foo {
 public:
   Foo() = default;
-  Foo(std::string);
+  explicit Foo(std::string);
 
   std::string ii;
 };

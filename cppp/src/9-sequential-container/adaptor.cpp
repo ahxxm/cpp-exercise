@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
-#include <stack>
 #include <queue>
+#include <stack>
+#include "gtest/gtest.h"
+
 
 std::stack<int> some_stack() {
   std::stack<int> intStack;

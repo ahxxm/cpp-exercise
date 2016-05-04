@@ -1,10 +1,10 @@
-#include "gtest/gtest.h"
+#include <ctime>
 #include <string>
 #include <iostream>
-#include "time.h"
 #include <chrono>
-#include <ctime>
 #include <iomanip>
+#include "time.h"
+#include "gtest/gtest.h"
 
 class BasicDate {
 public:
@@ -18,7 +18,7 @@ public:
 
     // set year
     auto localtime = std::localtime(&tt);
-    year = localtime->tm_year + 1900; // years since 1900
+    year = localtime->tm_year + 1900;  // years since 1900
     month = localtime->tm_mon;
     day = localtime->tm_mday;
     std::cout << "year" << year << " month" << month << std::endl;
@@ -26,7 +26,7 @@ public:
   };
 
   // TODO: handle different format
-  BasicDate(const std::string &) {
+  explicit BasicDate(const std::string &) {
 
   }
 private:

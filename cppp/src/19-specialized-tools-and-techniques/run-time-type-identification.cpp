@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
-#include <string>
 #include <iostream>
+#include <string>
+#include "gtest/gtest.h"
 
 
 // if virtual function can't be used, RTTI operators are viable.

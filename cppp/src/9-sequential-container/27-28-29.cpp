@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
 #include <forward_list>
 #include <string>
+#include <vector>
+#include "gtest/gtest.h"
 
 // 27
 std::forward_list<int> &remove_odd_from_forward_list(std::forward_list<int> &lst) {
@@ -11,10 +12,9 @@ std::forward_list<int> &remove_odd_from_forward_list(std::forward_list<int> &lst
   // avoid store .end()
   // because it's invalidated
   while (iter != lst.end()) {
-    if ( * iter % 2) {
+    if (*iter % 2) {
       iter = lst.erase_after(prev);
-    }
-    else {
+    } else {
       prev = iter;
       iter++;
     }
@@ -28,7 +28,8 @@ std::forward_list<int> &remove_odd_from_forward_list(std::forward_list<int> &lst
 // if (find string 1){ insert string2 after string1 }
 // else { insert string2 at the end }
 
-std::forward_list<std::string> &find_and_insert(std::forward_list<std::string> &fl, const std::string &st1, const std::string &st2) {
+typedef std::forward_list<std::string> sfs;
+sfs &find_and_insert(sfs &fl, const std::string &st1, const std::string &st2) {
   // insert only once
   auto prev = fl.before_begin();
 
@@ -48,7 +49,7 @@ TEST(ForwardListTest, SomeTest) {
   auto new_lst = remove_odd_from_forward_list(sample_lst);
 
   std::forward_list<std::string> ls = {"string1", "aa", "bb"};
-  std::forward_list<std::string> ls_e = {"string1", "aa", "cc","bb"};
+  std::forward_list<std::string> ls_e = {"string1", "aa", "cc", "bb"};
   auto ls_i = find_and_insert(ls, "aa", "cc");
   EXPECT_EQ(ls_i, ls_e);
 
@@ -60,7 +61,7 @@ TEST(ForwardListTest, SomeTest) {
 
 TEST(VectorResizeTest, SomeOtherTest) {
   // 29:
-  std::vector<int> va (25, 10);
+  std::vector<int> va(25, 10);
   EXPECT_EQ(va.size(), 25);
 
   va.resize(100);

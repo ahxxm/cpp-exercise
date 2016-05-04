@@ -4,8 +4,8 @@
 int main(int argc, char *argv[]) {
 
   int ia[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  auto ia2(ia); // equals to auto ia2(&ia[0]);
-  ia2[4] = 4; // this actually changes ia[4]
+  auto ia2(ia);  // equals to auto ia2(&ia[0]);
+  ia2[4] = 4;  // this actually changes ia[4]
   std::cout << ia[4] << std::endl;
   std::cout << "" << std::endl;
 
@@ -33,8 +33,8 @@ int main(int argc, char *argv[]) {
 
 
   int *p = &ia3[2];
-  int p2 = p[1]; // equivalent to *(p+1), ia[3]
-  int p3 = p[-2]; // equivalent to *(p-2), ia[0]
+  int p2 = p[1];  // equivalent to *(p+1), ia[3]
+  int p3 = p[-2];  // equivalent to *(p-2), ia[0]
   std::cout << p2 << std::endl;
   std::cout << p3 << std::endl;
 

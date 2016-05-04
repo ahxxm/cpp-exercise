@@ -1,8 +1,8 @@
-#include "gtest/gtest.h"
-#include <memory>
-#include <set>
 #include <iostream>
 #include <memory>
+#include <set>
+#include <string>
+#include "gtest/gtest.h"
 
 
 struct Quote {
@@ -39,7 +39,7 @@ public:
 
   double total_receipt(std::ostream &os) const {
     double sum = 0.0;
-    for (auto iter = items.cbegin();iter != items.cend(); iter = items.upper_bound(*iter)) {
+    for (auto iter = items.cbegin(); iter != items.cend(); iter = items.upper_bound(*iter)) {
       // upper_bound skips all elements that has same key value with iter
       sum += print_total(os, **iter, items.count(*iter));
     };
@@ -47,7 +47,7 @@ public:
     return sum;
   };
 
-  double print_total(std::ostream &,const Quote &, int) const {
+  double print_total(std::ostream &, const Quote &, int) const {
     return 0.0;
   };
 

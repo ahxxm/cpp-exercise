@@ -1,13 +1,13 @@
-#include "gtest/gtest.h"
-#include <string>
 #include <iostream>
+#include <string>
+#include "gtest/gtest.h"
 
 // 18: string constructor
 class Employee {
 public:
   static int n;
   Employee() = delete;
-  Employee(const std::string &s): currentID(n++) {
+  explicit Employee(const std::string &s): currentID(n++) {
     name = s;
   }
 

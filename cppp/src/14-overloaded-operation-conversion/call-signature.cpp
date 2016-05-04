@@ -1,8 +1,9 @@
-#include "gtest/gtest.h"
+#include <functional>
 #include <map>
 #include <string>
 #include <utility>
-#include <functional>
+#include "gtest/gtest.h"
+
 
 int adder(int &i, int &j) {
   return i + j;
@@ -27,7 +28,7 @@ TEST(SignatureTest, SomeTest) {
 }
 
 int main(int argc, char *argv[]) {
-  ::testing::InitGoogleTest( & argc, argv);
+  ::testing::InitGoogleTest(&argc, argv);
   int ret = RUN_ALL_TESTS();
   return ret;
 }

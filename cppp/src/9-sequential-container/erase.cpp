@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 #include <list>
+#include "gtest/gtest.h"
+
 
 int erase_test() {
   std::list<int> lst1 = {0, 1, 2, 3, 4, 5, 6};
@@ -27,7 +28,7 @@ TEST(ListEraseTest, SomeTest) {
   auto it = lst.begin();
 
   while (it != lst.end()) {
-    if ( * it % 2) {
+    if (*it % 2) {
       int previous_val = *it;
       it = lst.erase(it);
       int new_val = *it;

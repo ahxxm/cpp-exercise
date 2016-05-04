@@ -1,5 +1,7 @@
-#include "gtest/gtest.h"
 #include <stdexcept>
+#include <string>
+#include "gtest/gtest.h"
+
 
 class V {
 public:
@@ -105,7 +107,7 @@ private:
 TEST(QuoteTest, SomeTest) {
   Quote quote;
   BulkQuote bulk;
-  Quote &r = bulk; // points to Quote part of bulk
+  Quote &r = bulk;  // points to Quote part of bulk
   double money = quote.net_price(0);
   double money_2 = r.net_price(0);
   EXPECT_EQ(money, 0);

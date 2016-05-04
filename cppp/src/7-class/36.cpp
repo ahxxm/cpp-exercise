@@ -8,7 +8,7 @@ struct X {
 
   // fix 2: use i and j directly
   // % is mod
-  X (int i, int j): base(i) {
+  X(int i, int j): base(i) {
     rem = i % j;
   };
   int rem, base;

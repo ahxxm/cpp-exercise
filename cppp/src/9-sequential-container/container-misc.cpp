@@ -1,15 +1,18 @@
-#include "gtest/gtest.h"
-#include <list>
+#include <algorithm>
 #include <deque>
 #include <forward_list>
+#include <list>
+#include <string>
+#include <vector>
+#include "gtest/gtest.h"
 
 void create_vector() {
   std::vector<int> v1;
   std::vector<int> v2 = {1};
-  std::vector<int> v3 (10); // default initialized ten 0
-  std::vector<int> v4 (10, -1);
-  std::vector<int> v5 = v4; // copy from v4
-  std::vector<int> v6 (v4.cbegin(), v4.cend()); // init from iterator
+  std::vector<int> v3(10);  // default initialized ten 0
+  std::vector<int> v4(10, -1);
+  std::vector<int> v5 = v4;  // copy from v4
+  std::vector<int> v6(v4.cbegin(), v4.cend());  // init from iterator
 }
 
 void container_convert() {
@@ -19,7 +22,7 @@ void container_convert() {
   std::list<std::string> list2(authors);
   // std::deque<std::string> authorList(authors); // no constructor from list to deque
   // std::vector<std::string> words(articles); // same as above
-  std::forward_list<std::string> words(articles.begin(), articles.end()); // this is ok: convert const char* to string
+  std::forward_list<std::string> words(articles.begin(), articles.end());  // this is ok: convert const char* to string
 }
 
 std::vector<double> list_int_to_vector_double(const std::list<int> &li) {
@@ -36,7 +39,7 @@ void some_insert() {
 void continuous_insert() {
   std::list<int> jar;
   auto iter = jar.begin();
-  for (int i = 0;i <= 10; ++i) {
+  for (int i = 0; i <= 10; ++i) {
     iter = jar.insert(iter, i);
   }
 }
@@ -46,8 +49,8 @@ void access_container(const std::list<int> &vi) {
   // begin and end are iterator
   if (!vi.empty()) {
     int val = *vi.begin(), val2 = vi.front();
-    auto last = vi.end(); // iterator
-    int val3 = *(--last); // does not support forward_list iterators
+    auto last = vi.end();  // iterator
+    int val3 = *(--last);  // does not support forward_list iterators
     int val4 = vi.back();
     val4 -= (val3 - val * val2);
   }

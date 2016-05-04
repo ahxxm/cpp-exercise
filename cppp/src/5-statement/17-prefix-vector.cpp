@@ -17,14 +17,14 @@ bool is_prefix_of(std::vector<int> sub, std::vector<int> main) {
   return true;
 }
 
-int main(int argc, char *argv[]) {
+int main(void) {
 // int main() {
   // null statement...............
-  ;
+  // ;
 
   while (1 == 2) {
-    ;
-  }
+
+  };
 
   int val = 0;
 

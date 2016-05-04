@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
 #include <string>
+#include "gtest/gtest.h"
 
 
 // pointer to static member are ordinary pointers

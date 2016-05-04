@@ -1,14 +1,14 @@
 #include <string>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
   // 6: change all char in a string into `x`
   // notice that single quote means char, double
   // means string literal
   // 7: specify char in for loop works fine.
   std::string pend("wat");
-  for (char & x: pend) {
+  for (char & x : pend) {
     x = 'x';
   }
 
@@ -20,10 +20,10 @@ int main(int argc, char *argv[]) {
   // 11
   // legal, it just did nothing..
   const std::string ss = "Keep out!";
-  /* 
+  /*
   for (auto &: ss) {
-    //  ... 
-  } 
+    //  ...
+  }
   */
 
   return 0;

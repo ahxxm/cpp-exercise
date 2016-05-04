@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
-#include <string>
 #include <iostream>
+#include <string>
+#include "gtest/gtest.h"
+
 
 // 17: Only different between struct and class: default access level
 // only when all members are public we use struct, otherwise
@@ -44,7 +45,7 @@ public:
   // a single argument.
   // because other constructors can't perform implicit conversion.
   explicit Sales_data(std::istream &is) {
-    read(is,* this);
+    read(is, *this);
   };
 
   Sales_data(const std::string &s, unsigned n, double p): bookNo(s), units_sold(n), revenue(p * n) {
@@ -95,7 +96,7 @@ public:
 
   // 15: constructor
   Person() = default;
-  Person(const std::string &n): Name(n) {};
+  explicit Person(const std::string &n): Name(n) {};
 
 private:
   std::string Name;

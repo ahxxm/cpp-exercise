@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
 #include <iostream>
 #include <string>
+#include "gtest/gtest.h"
+
 
 template <typename T>
 bool aIsLongerThanb(T &&a, T &&b) {
@@ -12,7 +13,7 @@ bool aIsLongerThanb(T &&a, T &&b) {
 }
 
 
-TEST (CompareStringTest, Something) {
+TEST(CompareStringTest, Something) {
   const std::string a = "wutt";
   const std::string b = "wut";
   const std::string c = "wu";
