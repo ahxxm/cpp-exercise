@@ -1,6 +1,9 @@
+#include <algorithm>
 #include <deque>
 #include <forward_list>
 #include <list>
+#include <string>
+#include <vector>
 #include "gtest/gtest.h"
 
 void create_vector() {

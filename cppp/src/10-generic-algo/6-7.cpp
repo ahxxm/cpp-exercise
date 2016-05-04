@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <list>
+#include <vector>
 #include "gtest/gtest.h"
 
 

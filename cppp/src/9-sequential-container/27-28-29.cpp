@@ -1,5 +1,6 @@
 #include <forward_list>
 #include <string>
+#include <vector>
 #include "gtest/gtest.h"
 
 // 27

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ostream>
 #include <sstream>
+#include <string>
 #include "gtest/gtest.h"
 
 

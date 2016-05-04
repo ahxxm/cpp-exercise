@@ -1,4 +1,5 @@
 #include <bitset>
+#include <string>
 #include "gtest/gtest.h"
 
 
