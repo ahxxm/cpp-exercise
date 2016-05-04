@@ -2,13 +2,13 @@
 #include <vector>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+int main(void) {
   // this prints abcdeft, bcdefg, ..., g
   // because "compiler ordinarily converts the array to a pointer..",
   // the for-loop actually loops this iterator. Address-of operator
   // & restore it to [current location -- and -- later --char]..
   std::string chart = "abcdefg";
-  for (char &c: chart) {
+  for (char &c : chart) {
     std::cout << &c << std::endl;
   }
 

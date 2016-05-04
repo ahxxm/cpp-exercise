@@ -33,7 +33,7 @@ std::vector<int> compare_value_in_vector(const int &num, const std::vector<int> 
   }
 
   for (decltype(vec.begin()) i = vec.begin(); i != vec.end(); ++i) {
-    if ( *i == num) {
+    if (*i == num) {
       result.push_back(1);
     } else {
       result.push_back(0);

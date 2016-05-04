@@ -5,7 +5,7 @@
 
 
 bool find_int_in_vector(std::vector<int> vv, int target) {
-  for (int j: vv) {
+  for (int j : vv) {
     if (j == target) {
       return true;
     }

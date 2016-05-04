@@ -2,7 +2,7 @@
 
 
 // 36: return a reference to array of 10 strings
-std::string (&return_array_of10_string(void))[10];
+// std::string (&return_array_of10_string(void))[10];
 
 
 

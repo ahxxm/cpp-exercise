@@ -32,7 +32,7 @@ int main(void) {
 
   std::ofstream out;
   out.open(filename, std::ofstream::out);
-  for (ll i = 0;i != line_count; ++i) {
+  for (ll i = 0; i != line_count; ++i) {
     int rand = std::rand();
     out << rand << "\n";
   };

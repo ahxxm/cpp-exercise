@@ -2,6 +2,7 @@
 #include <string>
 #include "sale.h"
 
+
 int main(int argc, char *argv[]) {
 
   Sales_data data1, data2;

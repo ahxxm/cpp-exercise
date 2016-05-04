@@ -6,7 +6,7 @@
 // 28: type of e
 // is const std::string
 void error_msg(std::initializer_list<std::string> il) {
-  for ( const std::string &e: il ) {
+  for (const std::string &e : il) {
     std::cout << e << std::endl;
   }
 }

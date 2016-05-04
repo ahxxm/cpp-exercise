@@ -49,7 +49,7 @@ public:
   }
 
 
-  Screen &move(pos r, pos c) ;
+  Screen &move(pos r, pos c);
 
   pos *some_member() const {
     ++access_count;
@@ -100,7 +100,7 @@ public:
   ScreenIndex addScreen(const Screen &s);
 
   WindowMgr() = default;
-  WindowMgr(Screen &s): single_screen(s) {};
+  explicit WindowMgr(Screen &s): single_screen(s) {};
 
 private:
   Screen &single_screen;

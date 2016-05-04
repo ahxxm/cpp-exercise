@@ -26,7 +26,7 @@ public:
   };
 
   // TODO: handle different format
-  BasicDate(const std::string &) {
+  explicit BasicDate(const std::string &) {
 
   }
 private:

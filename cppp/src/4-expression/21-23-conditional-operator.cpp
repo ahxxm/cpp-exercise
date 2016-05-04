@@ -24,14 +24,14 @@ int main(void) {
   // using ?: operator...
   std::cout << "Double odd value" << std::endl;
   std::vector<int> va {1, 2, 3, 4, 5, 6, 7};
-  for ( int &i: va ) {
+  for (int &i : va) {
     if (is_odd(i)) {
       // i *= 2;
       std::cout << "Doubled: " << i * 2 << std::endl;
     };
 
     // ?: usage
-    std::cout << i << " " << ((int((i - 1) /  2) !=  int(i / 2)) ? "is even" : "is odd") << std::endl;
+    std::cout << i << " " << (static_cast<int>((i - 1) / 2) != int(i / 2) ? "is even" : "is odd") << std::endl;
 
   }
 

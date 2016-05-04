@@ -18,7 +18,7 @@ size_t count_calls() {
   return ++ctr;
 }
 
-int main(int argc, char *argv[]) {
+int main(void) {
   long a = factorial(3);
   std::cout << a << std::endl;
 
