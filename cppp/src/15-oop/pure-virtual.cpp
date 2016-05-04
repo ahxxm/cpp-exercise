@@ -16,7 +16,9 @@ public:
     return print();
   };
 private:
-  int print() override final {
+  // int print() override final {
+  // no need to override because final
+  int print() final {
     return 44;
   };
 };

@@ -6,13 +6,13 @@
 TEST(RandomNumberTest, SomeTest) {
   // seed value 42
   std::default_random_engine e(42);
-  for (std::size_t i = 0;i < 10; ++i) {
+  for (std::size_t i = 0; i < 10; ++i) {
     std::cout << e() << std::endl;
   };
 
   // !
   std::uniform_real_distribution<double> u(0, 1);
-  for (std::size_t i = 0;i < 10; ++i) {
+  for (std::size_t i = 0; i < 10; ++i) {
     std::cout << u(e) << std::endl;
   };
 }

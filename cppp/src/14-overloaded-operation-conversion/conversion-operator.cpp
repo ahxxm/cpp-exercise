@@ -22,16 +22,17 @@ private:
 
 TEST(ConversionOperatorTest, SomeTest) {
   SmallInt a(256);
-  EXPECT_EQ(int(a), 0);
+  EXPECT_EQ(static_cast<int>(a), 0);
+
 
   SmallInt b(255);
-  EXPECT_EQ(int(b), 255);
+  EXPECT_EQ(static_cast<int>(b), 255);
 
   // implicit convert
   // does not reconstruct object
   b = 3;
-  EXPECT_EQ(int(b), 3);
-  EXPECT_EQ(int(b + 1000), 1003);
+  EXPECT_EQ(static_cast<int>(b), 3);
+  EXPECT_EQ(static_cast<int>(b + 1000), 1003);
 }
 
 int main(int argc, char *argv[]) {

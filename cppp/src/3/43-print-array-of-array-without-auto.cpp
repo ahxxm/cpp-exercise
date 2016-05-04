@@ -9,8 +9,8 @@ int main(int argc, char *argv[]) {
 
   // 43: print array of array
   // without `auto`
-  for (int (&row)[col]: ia) {
-    for (int &col: row) {
+  for ( int (&row)[col]: ia ) {
+    for ( int &col: row ) {
       // `col` without `&`, array element's value won't change
       // because that way a new col is created by copy previous value..
       col = 5;

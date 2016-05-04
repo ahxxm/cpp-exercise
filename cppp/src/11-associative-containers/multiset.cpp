@@ -6,7 +6,7 @@
 
 TEST(SetTest, SomeTest) {
   std::vector<int> ivec;
-  for (int i = 0;i != 10; ++i) {
+  for (int i = 0; i != 10; ++i) {
     ivec.push_back(i);
     ivec.push_back(i);
   }

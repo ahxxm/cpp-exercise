@@ -15,7 +15,7 @@ template <class T>
 class Foo {
 public:
   Foo() = default;
-  Foo(std::string);
+  explicit Foo(std::string);
 
   std::string ii;
 };

@@ -7,7 +7,7 @@ class Employee {
 public:
   static int n;
   Employee() = delete;
-  Employee(const std::string &s): currentID(n++) {
+  explicit Employee(const std::string &s): currentID(n++) {
     name = s;
   }
 

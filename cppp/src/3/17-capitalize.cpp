@@ -2,14 +2,15 @@
 #include <string>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
 
   std::vector<std::string> strong;
   strong.push_back("wat");
   strong.push_back("wat2");
 
-  for (std::string &c: strong) {
-    for (char &ch: c) {
+  for ( std::string &c: strong ) {
+    for ( char &ch: c ) {
       ch = std::toupper(ch);
     }
     std::cout << c << std::endl;

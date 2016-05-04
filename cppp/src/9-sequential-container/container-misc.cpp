@@ -9,10 +9,10 @@
 void create_vector() {
   std::vector<int> v1;
   std::vector<int> v2 = {1};
-  std::vector<int> v3 (10);  // default initialized ten 0
-  std::vector<int> v4 (10, -1);
+  std::vector<int> v3(10);  // default initialized ten 0
+  std::vector<int> v4(10, -1);
   std::vector<int> v5 = v4;  // copy from v4
-  std::vector<int> v6 (v4.cbegin(), v4.cend());  // init from iterator
+  std::vector<int> v6(v4.cbegin(), v4.cend());  // init from iterator
 }
 
 void container_convert() {
@@ -39,7 +39,7 @@ void some_insert() {
 void continuous_insert() {
   std::list<int> jar;
   auto iter = jar.begin();
-  for (int i = 0;i <= 10; ++i) {
+  for (int i = 0; i <= 10; ++i) {
     iter = jar.insert(iter, i);
   }
 }
