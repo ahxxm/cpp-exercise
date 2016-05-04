@@ -31,7 +31,9 @@ int main(void) {
     };
 
     // ?: usage
-    std::cout << i << " " << (static_cast<int>((i - 1) / 2) != int(i / 2) ? "is even" : "is odd") << std::endl;
+    std::cout << i << " "
+              << (static_cast<int>((i - 1) / 2) != static_cast<int>(i / 2) ? "is even" : "is odd")
+              << std::endl;
 
   }
 
