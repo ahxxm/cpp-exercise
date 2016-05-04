@@ -6,7 +6,7 @@
 // replace all old with new in s, using iterator, insert and erase.
 void erase_ins(std::string &st, const std::string &old, const std::string &newVal) {
   auto old_size = old.size();
-  for (auto iter = st.begin();iter <= st.end() - old_size; ++iter) {
+  for (auto iter = st.begin(); iter <= st.end() - old_size; ++iter) {
     std::string cur_string = std::string(iter, iter + old_size);
     if (cur_string == old) {
       // erase get pointer

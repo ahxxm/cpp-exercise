@@ -28,7 +28,7 @@ TEST(ListEraseTest, SomeTest) {
   auto it = lst.begin();
 
   while (it != lst.end()) {
-    if ( * it % 2) {
+    if (*it % 2) {
       int previous_val = *it;
       it = lst.erase(it);
       int new_val = *it;

@@ -149,7 +149,7 @@ TEST(SmartPointerTest, SomeTest) {
 
   // Ptr
   std::initializer_list<std::string> ii {"123", "456", "789"};
-  StrBlob blob (ii);
+  StrBlob blob(ii);
   auto blob_ptr = StrBlobPtr(blob);
   EXPECT_EQ(blob_ptr.deref(), "123");
   blob_ptr.incr();

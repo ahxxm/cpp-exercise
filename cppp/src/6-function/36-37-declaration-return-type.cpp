@@ -20,6 +20,6 @@ auto return_array_of_10_string_trailing(void) -> std::string* {
   return sp;
 };
 
-int main(int argc, char *argv[]) {
+int main(void) {
   return 0;
 }

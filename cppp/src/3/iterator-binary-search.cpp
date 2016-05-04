@@ -11,10 +11,10 @@ int binary(std::vector<int> wut, int target) {
   }
 
   auto mid = left + (right - left) / 2;
-  while ( *mid != target && mid != left) {
-    if ( *mid > target) {
+  while (*mid != target && mid != left) {
+    if (*mid > target) {
       right = mid;
-    } else  {
+    } else {
         left = mid;
       }
 
@@ -26,7 +26,7 @@ int binary(std::vector<int> wut, int target) {
 }
 
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
   std::vector<int> wut;
   for (int i = 50; i != 10000; i++) {
