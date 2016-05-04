@@ -29,7 +29,7 @@ void print(const int ia[10]) {
   }
 }
 
-int main(int argc, char *argv[]) {
+int main(void) {
   int i = 10;
   int j = 42;
   int *k = &j;

@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 
 
-bool isLonger(std::string &s, std::size_t sz) {
+bool isLonger(const std::string &s, const std::size_t sz) {
   return s.size() > sz;
 }
 

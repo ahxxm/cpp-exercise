@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-bool is_odd(int &j) {
+bool is_odd(const int &j) {
 
   if (int((j - 1) / 2) == int(j / 2)) {
     return true;
@@ -11,7 +11,7 @@ bool is_odd(int &j) {
   return false;
 }
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
   // member access operator ->
   std::string s1 = "string";

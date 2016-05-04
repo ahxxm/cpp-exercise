@@ -11,12 +11,12 @@ bool array_compare(int *a, int *b) {
   return true;
 }
 
-bool vector_compare(std::vector<int> a, std::vector<int> &b) {
+bool vector_compare(const std::vector<int> &a, const std::vector<int> &b) {
   if (a.size() != b.size()) {
     return false;
   }
 
-  for (int i = 0; i!= a.size(); i++) {
+  for (unsigned long i = 0; i!= a.size(); i++) {
     if (a[i] != b[i]) {
       return false;
     }
@@ -25,7 +25,7 @@ bool vector_compare(std::vector<int> a, std::vector<int> &b) {
   return true;
 }
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
   // 34: even p1 points to a[10], it still works
   int a[] = {1, 2, 3, 4, 5};
