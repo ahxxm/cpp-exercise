@@ -37,10 +37,6 @@ matrix:
           packages:
             - clang-3.7
       env: COMPILER=clang++-3.7 GCOV=llvm-cov-3.7 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
-os:
-  - linux
-  - osx
-  - windows
 before_install:
   - pip install --user cpp-coveralls cpplint
 script:
