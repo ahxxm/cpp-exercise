@@ -24,10 +24,10 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.6
+            - llvm-toolchain-precise-3.8
           packages:
-            - clang-3.6
-      env: COMPILER=clang++-3.6 GCOV=llvm-cov-3.6 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
+            - clang-3.8
+      env: COMPILER=clang++-3.8 GCOV=llvm-cov-3.8 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
     - compiler: clang
       addons:
         apt:
