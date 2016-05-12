@@ -28,7 +28,7 @@ int main(void) {
             << std::endl;
 
   typedef unsigned long long ll;
-  ll line_count = 10000000;
+  ll line_count = 1000000;
 
   std::ofstream out;
   out.open(filename, std::ofstream::out);
