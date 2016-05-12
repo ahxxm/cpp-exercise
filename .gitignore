@@ -45,3 +45,6 @@ install_manifest.txt
 
 # input file for algorithm
 **/*.in
+
+# debug
+**/*.dSYM/
