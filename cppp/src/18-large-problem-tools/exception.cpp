@@ -30,7 +30,7 @@ Foo<T>::Foo(std::string i)
       throw std::logic_error("only accept `hello`.");
     };
     } catch(const std::logic_error &){
-    ii = "hello";
+    // ii = "hello";
   };
 
 
