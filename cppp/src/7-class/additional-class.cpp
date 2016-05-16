@@ -126,7 +126,8 @@ void WindowMgr::clear(ScreenIndex i) {
 TEST(AdditionalClassTest, SomeTest) {
   Screen new_empty_screen = Screen();
   std::string::size_type *count = new_empty_screen.some_member();
-  EXPECT_EQ(*count, 1);
+  std::string::size_type count_one = 1;
+  EXPECT_EQ(*count, count_one);
 
   // set first element to 1 and display whole screen
   Screen not_empty_screen = new_empty_screen.set('1').display(std::cerr);
@@ -144,7 +145,7 @@ TEST(AdditionalClassTest, SomeTest) {
 
   // scope
   Screen::pos a = 20;
-  EXPECT_EQ(a, 20);
+  EXPECT_EQ(static_cast<int>(a), 20);
 
 }
 
