@@ -19,10 +19,11 @@ union Token {
 void union_test() {
   Token first_token = {'a'};
   Token last_token;
+  last_token.ival = 2;
   Token *pt = new Token;
 
-  last_token.ival = 2;
   std::cout << first_token.cval << std::endl;
+  std::cout << last_token.ival << std::endl;
   pt->dval = 42.0;
 
 };
