@@ -24,9 +24,12 @@ TEST(EnumTest, SomeTest) {
   // int higher = height::low;
   auto higher = height::high;
 
-  EXPECT_EQ(test_color, 0);
-  EXPECT_EQ(wut, 2);
-  EXPECT_EQ((int)higher, 2);
+  // union values seems unsigned
+  unsigned int j = 0;
+  unsigned int floating = 2;
+  EXPECT_EQ(test_color, j);
+  EXPECT_EQ(wut, floating);
+  EXPECT_EQ((unsigned int)higher, floating);
 
 }
 
