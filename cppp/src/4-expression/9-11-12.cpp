@@ -1,7 +1,7 @@
 #include <iostream>
 
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
   // 9: explain this if
   // if: FIRST, `cp` in if means `cp != false`, where false will be 0.
@@ -31,9 +31,11 @@ int main(int argc, char *argv[]) {
   int j = 1;
   int k = 19;
 
-  if (i != j < k) {
-    // this will evaluate j<k first!!!
-    // it means: if j < k, and i does not equal to their comparison result..
+  // if (i != j < k) {
+  // this will evaluate j<k first!!!
+  // equals to:
+  if (i != (j < k)) {
+    // it means: if j < k, and i does not equal to their comparison result(bool)..
     std::cout << "wut" << std::endl;
   }
 }
