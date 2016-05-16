@@ -22,7 +22,10 @@ public:
 
 TEST(FirstClassExerciseTest, SomeTest) {
   X testX;
-  std::cout << &(testX.pointer->object) << std::endl;
+  std::cout << &testX << std::endl;
+
+  // not initialized, don't use
+  // std::cout << &(testX.pointer->object) << std::endl;
 
 }
 

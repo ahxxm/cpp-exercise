@@ -1,6 +1,6 @@
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+int main(void) {
   // int i, *const cp = 1.233;
   // no, cp is a const pointer to int, but 1.233 is not int.
   // to make this happen, define a int then point to it:
@@ -18,4 +18,6 @@ int main(int argc, char *argv[]) {
   const int *p;
   p = &iv;
   p = &j;
+  std::cout << *p << std::endl;
+
 }

@@ -135,7 +135,8 @@ TEST(SmartPointerTest, SomeTest) {
   EXPECT_EQ(*pp, 22);
 
   auto i = StrBlob();
-  EXPECT_EQ(i.size(), 0);
+  unsigned int empty_size = 0;
+  EXPECT_EQ(i.size(), empty_size);
   i.push_back("java");
   EXPECT_EQ(i.cfront(), "java");
   EXPECT_EQ(i.cback(), "java");
@@ -143,8 +144,9 @@ TEST(SmartPointerTest, SomeTest) {
   // dangling pointer
   int *j(new int(1024));
   auto k = j;  // k and j points to same memory
-  delete j;  // now j become dangling
+  delete j;  // now k become dangling
   k = nullptr;  // indicate k no longer bound to object
+  delete k;
   // process(std::shared_ptr<int> (j));
 
   // Ptr

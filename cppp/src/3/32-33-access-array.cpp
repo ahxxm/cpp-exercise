@@ -27,5 +27,7 @@ int main(void) {
   for (int i = 0; i != length; i++) {
     pv2[i] = pv[i];
     pv3.push_back(pv[i]);
+    std::cout << pv2[i] << std::endl;
+    std::cout << pv3.back() << std::endl;
   }
 }

@@ -26,7 +26,9 @@ class Foo {
     if (void *mem = malloc(size)) {
       return mem;
     } else {
-      throw std::bad_alloc();
+      // FIXME:
+      return nullptr;
+      // throw std::bad_alloc();
     };
   };
 

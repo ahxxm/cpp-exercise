@@ -1,6 +1,6 @@
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+int main(void) {
   // Definitions given by the book
   int i = 0;
   const int v2 = 1;
@@ -25,4 +25,6 @@ int main(int argc, char *argv[]) {
 
   // yes, it points to converted const value, then converted i(what p3 points to).
   p2 = p3;
+  std::cout << *p2 << std::endl;
+
 }

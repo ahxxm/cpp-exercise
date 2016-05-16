@@ -42,7 +42,7 @@ TEST(ListEraseTest, SomeTest) {
 
   // removed from lst
   auto after_len = lst.size();
-  EXPECT_EQ(after_len, 5);
+  EXPECT_EQ(static_cast<int>(after_len), 5);
 
   // 9.25 erase test
   int length = erase_test();
@@ -50,7 +50,7 @@ TEST(ListEraseTest, SomeTest) {
 
   // 9.26 array to list
   auto converted_lst = copy_array_into_list();
-  EXPECT_EQ(converted_lst.size(), 11);
+  EXPECT_EQ(static_cast<int>(converted_lst.size()), 11);
   // single iterator form of erase remove odd values
   // check `while` part above..
 

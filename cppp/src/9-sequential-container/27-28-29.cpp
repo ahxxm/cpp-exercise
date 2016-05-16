@@ -62,7 +62,7 @@ TEST(ForwardListTest, SomeTest) {
 TEST(VectorResizeTest, SomeOtherTest) {
   // 29:
   std::vector<int> va(25, 10);
-  EXPECT_EQ(va.size(), 25);
+  EXPECT_EQ(static_cast<int>(va.size()), 25);
 
   va.resize(100);
   EXPECT_EQ(va[99], 0);

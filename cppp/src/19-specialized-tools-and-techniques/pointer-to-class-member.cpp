@@ -31,6 +31,7 @@ TEST(MemberPointerTest, SomeTest) {
   // pointer to member functions
   // const function requires const pointer
   auto pmf = &Screen::func;
+  std::cout << pmf << std::endl;
 
 }
 

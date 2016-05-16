@@ -34,9 +34,12 @@ TEST(PairTest, SomeTest) {
   std::vector<int> it_2 = {1, 2, 3, 4};
   auto p = convert_string_int_into_pair(st, it);
   auto p2 = convert_string_int_into_pair(st, it_2);
-  EXPECT_EQ(p2.size(), 0);
+
+  unsigned int p2_size = 0;
+  int p_second = 1;
+  EXPECT_EQ(p2.size(), p2_size);
   EXPECT_EQ(p[0].first, "a");
-  EXPECT_EQ(p[0].second, 1);
+  EXPECT_EQ(p[0].second, p_second);
 
 }
 

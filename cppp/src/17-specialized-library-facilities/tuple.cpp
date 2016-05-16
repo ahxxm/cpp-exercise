@@ -10,12 +10,12 @@ TEST(TupleTest, SomeTest) {
   auto item = std::make_tuple(i, j);
   std::cout << std::get<0>(k) << std::endl;
 
-  EXPECT_EQ(std::tuple_size<decltype(k)>::value, 2);
-  EXPECT_EQ(std::tuple_size<decltype(item)>::value, 2);
+  EXPECT_EQ(static_cast<int>(std::tuple_size<decltype(k)>::value), i);
+  EXPECT_EQ(static_cast<int>(std::tuple_size<decltype(item)>::value), i);
 
   // 1: 3 int tuple
   std::tuple<int, int, int> three(10, 20, 30);
-  EXPECT_EQ(std::tuple_size<decltype(three)>::value, 3);
+  EXPECT_EQ(static_cast<int>(std::tuple_size<decltype(three)>::value), 3);
 }
 
 int main(int argc, char *argv[]) {

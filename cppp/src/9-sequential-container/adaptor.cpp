@@ -29,11 +29,13 @@ std::queue<int> some_queue() {
 
 
 TEST(AdaptorTest, SomeTest) {
+  unsigned int stack_size = 0;
   auto sta = some_stack();
-  EXPECT_EQ(sta.size(), 0);
+  EXPECT_EQ(sta.size(), stack_size);
 
+  int que_backvalue = 2;
   auto que = some_queue();
-  EXPECT_EQ(que.back(), 2);
+  EXPECT_EQ(que.back(), que_backvalue);
 }
 
 int main(int argc, char *argv[]) {
