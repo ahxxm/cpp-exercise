@@ -96,7 +96,8 @@ TEST(MoreContainerTest, SomeTest) {
 
   // 9.23: what if l1.size() is 1?
   std::list<int> ltest = {1};
-  EXPECT_EQ(ltest.size(), 1);
+  unsigned int one = 1;
+  EXPECT_EQ(ltest.size(), one);
   EXPECT_EQ(*ltest.begin(), 1);
   EXPECT_EQ(ltest.front(), 1);
   EXPECT_EQ(ltest.back(), 1);
