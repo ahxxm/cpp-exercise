@@ -87,7 +87,12 @@ void const_ptr_to_const() {
   f3(ptr);
 }
 
-void arr() {
+
+// Decay
+// array decay into pointer
+// function also decay into function pointer
+void some_func(int, double);
+void decay() {
   const char name[] = "J.P.";
   // const char *ptr = name;
 
@@ -95,9 +100,17 @@ void arr() {
   // T is char* ... !
   f3(name);
 
-  // T is char[size] ... ! FIXME: verify this?
+  // void (*)(int, double);
+  f3(some_func);
+
+  // T& prevents decay.
+
+  // T is char[size] ... ! FIXME: verify this
   // this enables to get array size.
   f1(name);
+
+  // T: void (&)(int, double)
+  // f1(some_func); // copy needs instantiation
 };
 
 
@@ -112,7 +125,7 @@ TEST(TemplateDeductionTest, SomeTest) {
   case2();
   case3();
   const_ptr_to_const();
-  arr();
+  decay();
 
   // modern cpp array
   int keyVals[] = {1, 2, 3, 4, 5, 6};
