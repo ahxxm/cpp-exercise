@@ -78,6 +78,14 @@ void case3() {
   f3(rx);  // int, int
 };
 
+void case4() {
+  const char* const ptr = "kk";
+
+  // here ptr copied into param, a pointer that points to const char,
+  // but can be changed to point to other object
+  f3(ptr);
+}
+
 
 TEST(TemplateDeductionTest, SomeTest) {
   case1();
