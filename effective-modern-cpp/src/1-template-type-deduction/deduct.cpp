@@ -1,3 +1,4 @@
+#include <array>
 #include <iostream>
 #include "gtest/gtest.h"
 
@@ -78,7 +79,7 @@ void case3() {
   f3(rx);  // int, int
 };
 
-void case4() {
+void const_ptr_to_const() {
   const char* const ptr = "kk";
 
   // here ptr copied into param, a pointer that points to const char,
@@ -86,11 +87,37 @@ void case4() {
   f3(ptr);
 }
 
+void arr() {
+  const char name[] = "J.P.";
+  // const char *ptr = name;
+
+  // name is char[], ptr is char*.
+  // T is char* ... !
+  f3(name);
+
+  // T is char[size] ... ! FIXME: verify this?
+  // this enables to get array size.
+  f1(name);
+};
+
+
+template<typename T, std::size_t N>
+constexpr std::size_t arraySize(T (&)[N]) noexcept {
+  return N;
+};
+
 
 TEST(TemplateDeductionTest, SomeTest) {
   case1();
   case2();
   case3();
+  const_ptr_to_const();
+  arr();
+
+  // modern cpp array
+  int keyVals[] = {1, 2, 3, 4, 5, 6};
+  std::array<int, arraySize(keyVals)> vals;
+  EXPECT_EQ(static_cast<int>(vals.size()), 6);
 }
 
 int main(int argc, char *argv[]) {
