@@ -1,3 +1,4 @@
+#include <iostream>
 #include "gtest/gtest.h"
 
 // with 1 exception, auto deduction is template deduction.
@@ -12,8 +13,37 @@ int auto1() {
   return x;
 }
 
+void auto2() {
+  // FIXME: test these
+  auto x = 2;
+  const auto cx = x;
+
+  auto &&uref1 = x; // int&
+  auto &&uref2 = cx; // const int&
+  auto &&uref3 = 23; // int&&
+  std::cout << &uref1 << std::endl;
+  std::cout << &uref2 << std::endl;
+  std::cout << &uref3 << std::endl;
+}
+
+// array and function decay
+void auto3() {
+  const char name[] = "ahxxm";
+  auto arr1 = name; // char char*
+  auto &arr2 = name; // char(&)[]
+  std::cout << arr1 << std::endl;
+  std::cout << &arr2 << std::endl;
+  // delete[] arr1;
+  // delete[] &arr2;
+
+  // the same for function
+}
+
+
 TEST(MoreClassExerciseTest, SomeTest) {
   EXPECT_EQ(auto1(), 233);
+  auto2();
+  auto3();
 }
 
 int main(int argc, char *argv[]) {
