@@ -91,7 +91,7 @@ void const_ptr_to_const() {
 // Decay
 // array decay into pointer
 // function also decay into function pointer
-void some_func(int, double);
+void some_func(int, double) {};
 void decay() {
   const char name[] = "J.P.";
   // const char *ptr = name;
