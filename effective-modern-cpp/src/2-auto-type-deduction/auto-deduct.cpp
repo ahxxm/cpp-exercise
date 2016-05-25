@@ -52,6 +52,8 @@ void auto4() {
   std::cout << &x4 << std::endl;
 }
 
+// the only different between auto and template deduction:
+// - auto assumes braced list means initializer list
 // f({1, 2, 3})
 template<typename T>
 void f(T) {}; // not work
