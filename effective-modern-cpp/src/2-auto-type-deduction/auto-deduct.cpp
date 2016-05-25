@@ -1,3 +1,4 @@
+#include <initializer_list>
 #include <iostream>
 #include "gtest/gtest.h"
 
@@ -50,6 +51,14 @@ void auto4() {
   std::cout << &x3 << std::endl;
   std::cout << &x4 << std::endl;
 }
+
+// f({1, 2, 3})
+template<typename T>
+void f(T) {}; // not work
+
+template<typename T>
+void f(std::initializer_list<T>) {}; // T is int
+
 
 
 TEST(MoreClassExerciseTest, SomeTest) {
