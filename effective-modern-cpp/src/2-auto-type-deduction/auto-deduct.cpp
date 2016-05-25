@@ -39,11 +39,24 @@ void auto3() {
   // the same for function
 }
 
+void auto4() {
+  auto x1 = 27; // int
+  auto x2(27); // int
+  std::cout << x1 << std::endl;
+  std::cout << x2 << std::endl;
+
+  auto x3 = {3}; // std::initializer_list<int> .....
+  auto x4 {3}; // "ditto"
+  std::cout << &x3 << std::endl;
+  std::cout << &x4 << std::endl;
+}
+
 
 TEST(MoreClassExerciseTest, SomeTest) {
   EXPECT_EQ(auto1(), 233);
   auto2();
   auto3();
+  auto4();
 }
 
 int main(int argc, char *argv[]) {
