@@ -8,8 +8,11 @@
 void decl() {
   int w = 2;
   std::cout << &w << std::endl;
-
   // decltype(auto) k = w; // c++14 extension
+
+  //  (w) <- expression yields lvalue
+  // decltype((w)) <- int&
+  // return (w) // returns ref to local variable, undefined.
 
 }
 
