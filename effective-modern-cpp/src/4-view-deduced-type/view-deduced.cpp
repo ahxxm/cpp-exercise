@@ -21,6 +21,7 @@ void view() {
 // print in function template
 template<typename T>
 void f(const T &param) {
+  // NOT RELIABLE: type be treated as if it had been passed to as a by-value param.
   std::cout << typeid(T).name() << std::endl;
   std::cout << typeid(param).name() << std::endl;
 };
