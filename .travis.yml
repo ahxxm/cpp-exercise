@@ -38,6 +38,7 @@ matrix:
             - clang-3.7
       env: COMPILER=clang++-3.7 GCOV=llvm-cov-3.7 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
 before_install:
+  - sudo apt-get update && sudo apt-get install -y libboost-all-dev
   - pip install --user cpp-coveralls cpplint
 script:
   - ./build.sh
