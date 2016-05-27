@@ -10,7 +10,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.9
-      env: CC=gcc-4.9 CXX=g++-4.9 COMPILER=g++-4.9
+      env: COMPILER=gcc-4.9 CCOMPILER=g++-4.9
     - compiler: gcc
       addons:
         apt:
@@ -18,7 +18,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-5
-      env: COMPILER=g++-5
+      env: COMPILER=gcc-5 CCOMPILER=g++-5
     - compiler: clang
       addons:
         apt:
@@ -27,7 +27,7 @@ matrix:
             - llvm-toolchain-precise-3.8
           packages:
             - clang-3.8
-      env: COMPILER=clang++-3.8 GCOV=llvm-cov-3.8 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
+      env: COMPILER=clang-3.8 CCOMPILER=clang++-3.8 GCOV=llvm-cov-3.8 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
     - compiler: clang
       addons:
         apt:
@@ -36,14 +36,16 @@ matrix:
             - llvm-toolchain-precise-3.7
           packages:
             - clang-3.7
-      env: COMPILER=clang++-3.7 GCOV=llvm-cov-3.7 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
+      env: COMPILER=clang-3.7 CCOMPILER=clang++-3.7 GCOV=llvm-cov-3.7 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
 before_install:
   - sudo apt-get update && sudo apt-get install -y libboost-all-dev
   - pip install --user cpp-coveralls cpplint
 install:
-  - mkdir build && cd build && cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make -j8 && make test ARGS="-VV"
+  - mkdir build && cd build && cmake -DCMAKE_C_COMPILER=$COMPILER -DCMAKE_CXX_COMPILER=$CCOMPILER .. && make -j8 && make test ARGS="-VV"
 script:
   - cpplint --linelength=120 --extensions=hpp,cpp --output=emacs --recursive --counting=detailed --filter=-legal/copyright,-whitespace/blank_line,-build/namespaces,-whitespace/indent,-readability/braces,-build/c++11,-runtime/references,-runtime/indentation_namespace,-runtime/int,-build/include_subdir ./ || echo "0"
 notifications:
   slack:
     secure: jJM62Z4tppIg7qSdnXO1X0fWfWmZBRfKififFUew+CXyy/LI/cPOhC+zxCbH5kF9jXJhCc6SltYIO29rTnciBOF6nIMjL4ZY/n9xJsR/RQylOq9nxDrqPgKoN4lExuDqAvFq8ZM/+4GKKOlbSXm5IBDlT2HvNae6+Nv8lx22Vzm1SPNmy40PGsfEpd41/sFJQRMPGCjT6y2iXYya2uPYB8xW73uHn36X4SO0tIswn1R/H36qU1znRpAQCzAbeFaaaBf4o8WsbY7fKs4lPSUZZT5Z9O0TY0M7qpSwLDWsCOcwuheGaYnzdTLti2cb0aLuF7LEEt37m0k+QjVz+UjKeEkTKKcvF/GOen5RjG/Ti4OlAfD/mHUHXtBW4x5cHo74upFuBKz229jqZ+QYGFiyeajikdQ4xRsviRpUXENmAEDRdmmcOcFuXKQcUgiL7F6mExfIQMkrPjnVPtN1ZlOb+I4ikZoK6IitWRq5HvR2e8gUMs1uKHq1ZBf+0RIb72ZKnI74DKiA7bKARMrlciZz3Yjxd55oNP5di1cSPFd5YrJSLGW2ckxJVy1A4wF1RmtmwWjLTUtPEFZHGIZ+mOhNk0nj8V9s24hsGYCe1cu0y/NdT6gZSwYX7bd6KLO/7qM9S8QGGmxcwpW2+i3QAnOHXsGiiMYV0CZ9FTwfQxIcfYU=
+
+
