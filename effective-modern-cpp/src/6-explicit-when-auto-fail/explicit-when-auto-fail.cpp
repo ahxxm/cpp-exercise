@@ -15,9 +15,12 @@ void fail() {
   // jar could be a dangling pointer, depends on implementation of std::vector<bool>::reference.
   // here auto fail because [] returns:
   // 1 bit per bool in vector<bool>, ref to bool is forbidden in cpp.
-  // auto jar_ptr = features(w)[1];
-  bool jar = features(w)[1];
+
+  // bool jar = features(w)[1];
+  // solution: cast
+  auto jar = static_cast<bool>(features(w)[1]);
   std::cout << &jar << std::endl;
+
 }
 
 
