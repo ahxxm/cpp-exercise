@@ -1,5 +1,7 @@
 #include <iostream>
 #include "gtest/gtest.h"
+// #include <boost/type_index.hpp>
+// FIXME: fix this on travis?
 
 // Get deduced info during: edit, compile, runtime
 
@@ -24,19 +26,23 @@ void f(const T &param) {
   // NOT RELIABLE: type be treated as if it had been passed to as a by-value param.
   std::cout << typeid(T).name() << std::endl;
   std::cout << typeid(param).name() << std::endl;
+
+  // FIXME:
+  // std::cout << boost::typeindex::type_id_with_cvr<T>().pretty_name() << std::endl;
+
 };
 
 
 void print() {
-  int a = 10;
-  auto b = &a;
+  // int a = 10;
+  // auto b = &a;
 
   // std::type_info::name() -> const char*
   // i: int
   // Pi: pointer to int
   // PKi: pointer to k(c)onst int
-  std::cout << typeid(a).name() << std::endl;
-  std::cout << typeid(b).name() << std::endl;
+  // std::cout << typeid(a).name() << std::endl;
+  // std::cout << typeid(b).name() << std::endl;
 
   // print T and param
   // P13TypeDisplayerIiE
