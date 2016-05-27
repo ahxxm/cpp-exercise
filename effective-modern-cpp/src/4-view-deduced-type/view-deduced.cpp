@@ -28,6 +28,7 @@ void f(const T &param) {
   std::cout << typeid(param).name() << std::endl;
 
   // FIXME:
+  // with_cvr: const, volatile, ref
   // std::cout << boost::typeindex::type_id_with_cvr<T>().pretty_name() << std::endl;
 
 };
