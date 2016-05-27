@@ -24,12 +24,19 @@ ExternalProject_Add(
 ExternalProject_Get_Property(gtest source_dir binary_dir)
 
 
+# Boost
+find_package(Boost 1.47 COMPONENTS system filesystem unit_test_framework REQUIRED)
+message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
+message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
+message(STATUS "Boost_VERSION: ${Boost_VERSION}")
+include_directories(${Boost_INCLUDE_DIRS})
+
 # Use C++11 standard
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED on)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -I${Boost_INCLUDE_DIRS}")
 
 # CMakeLists.txt in subdirectories
 add_subdirectory(cppp)

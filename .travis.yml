@@ -10,7 +10,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.9
-      env: COMPILER=g++-4.9
+      env: COMPILER=gcc-4.9 CCOMPILER=g++-4.9
     - compiler: gcc
       addons:
         apt:
@@ -18,7 +18,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-5
-      env: COMPILER=g++-5
+      env: COMPILER=gcc-5 CCOMPILER=g++-5
     - compiler: clang
       addons:
         apt:
@@ -27,20 +27,13 @@ matrix:
             - llvm-toolchain-precise-3.8
           packages:
             - clang-3.8
-      env: COMPILER=clang++-3.8 GCOV=llvm-cov-3.8 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
-    - compiler: clang
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.7
-          packages:
-            - clang-3.7
-      env: COMPILER=clang++-3.7 GCOV=llvm-cov-3.7 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
+      env: COMPILER=clang-3.8 CCOMPILER=clang++-3.8 GCOV=llvm-cov-3.8 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
 before_install:
+  - sudo apt-get update && sudo apt-get install -y libboost-all-dev
   - pip install --user cpp-coveralls cpplint
+install:
+  - mkdir build && cd build && cmake -DCMAKE_C_COMPILER=$COMPILER -DCMAKE_CXX_COMPILER=$CCOMPILER .. && make -j8 && make test ARGS="-VV"
 script:
-  - ./build.sh
   - cpplint --linelength=120 --extensions=hpp,cpp --output=emacs --recursive --counting=detailed --filter=-legal/copyright,-whitespace/blank_line,-build/namespaces,-whitespace/indent,-readability/braces,-build/c++11,-runtime/references,-runtime/indentation_namespace,-runtime/int,-build/include_subdir ./ || echo "0"
 notifications:
   slack:
