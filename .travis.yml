@@ -40,8 +40,9 @@ matrix:
 before_install:
   - sudo apt-get update && sudo apt-get install -y libboost-all-dev
   - pip install --user cpp-coveralls cpplint
+install:
+  - mkdir build && cd build && cmake .. && make -j8 && make test ARGS="-VV"
 script:
-  - ./build.sh
   - cpplint --linelength=120 --extensions=hpp,cpp --output=emacs --recursive --counting=detailed --filter=-legal/copyright,-whitespace/blank_line,-build/namespaces,-whitespace/indent,-readability/braces,-build/c++11,-runtime/references,-runtime/indentation_namespace,-runtime/int,-build/include_subdir ./ || echo "0"
 notifications:
   slack:
