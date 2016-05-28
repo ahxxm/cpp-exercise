@@ -27,10 +27,17 @@ void ctor() {
 
 }
 
+void drawback() {
+  // as mentionedin Item 2, constructed as initializer list
+  auto a = {1, 2, 3};
+  std::cout << a.size() << std::endl;
+}
+
 
 TEST(BraceParenTest, SomeTest) {
   prevent_implicit_conversion();
   ctor();
+  drawback();
 }
 
 int main(int argc, char *argv[]) {
