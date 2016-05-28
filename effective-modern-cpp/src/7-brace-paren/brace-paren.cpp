@@ -9,7 +9,7 @@
 // FIXME: like std::atomic but what's that
 
 void prevent_implicit_conversion() {
-  double a, b, c;
+  double a = 0.0, b = 0.0, c = 0.0;
   // int sum {a + b + c}; //warning
   int sum(a + b + c); // this works..
   int sum2 = a + b + c; // also this
