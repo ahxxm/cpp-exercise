@@ -1,3 +1,4 @@
+#include <utility>
 #include <iostream>
 #include <vector>
 #include "gtest/gtest.h"
@@ -16,7 +17,18 @@ void prevent_implicit_conversion() {
 }
 
 
-class Widget {};
+class Widget {
+public:
+  Widget() = default;
+  Widget(int, bool) {};
+  Widget(int, double) {};
+  Widget(std::initializer_list<long double>) {
+    std::cout << "WAT" << std::endl;
+    value = 42;
+  };
+  int value = 0;
+
+};
 
 void ctor() {
   // Anything that can be parsed as a declaration must be
@@ -34,10 +46,16 @@ void drawback() {
 }
 
 
+
 TEST(BraceParenTest, SomeTest) {
   prevent_implicit_conversion();
   ctor();
   drawback();
+
+  // Drawback 2, args converted to initializer_list and pass
+  // to "matched ctor"
+  Widget W1 {10, true};
+  EXPECT_EQ(W1.value, 42);
 }
 
 int main(int argc, char *argv[]) {
