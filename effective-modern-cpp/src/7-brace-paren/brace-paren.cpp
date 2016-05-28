@@ -54,8 +54,11 @@ TEST(BraceParenTest, SomeTest) {
 
   // Drawback 2, args converted to initializer_list and pass
   // to "matched ctor"
+  // true and 5.0 are converted to long double
   Widget W1 {10, true};
+  Widget W2 {10, 5.0};
   EXPECT_EQ(W1.value, 42);
+  EXPECT_EQ(W2.value, 42);
 }
 
 int main(int argc, char *argv[]) {
