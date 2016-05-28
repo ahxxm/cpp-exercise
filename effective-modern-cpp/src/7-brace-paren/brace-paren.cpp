@@ -19,6 +19,8 @@ void prevent_implicit_conversion() {
 class Widget {};
 
 void ctor() {
+  // Anything that can be parsed as a declaration must be
+  // interpreted as one
   Widget w1 (); // this is a function, "most vexing parse"
   Widget w2 {}; // this constructs w2 with no args
   std::cout << &w2 << std::endl;
