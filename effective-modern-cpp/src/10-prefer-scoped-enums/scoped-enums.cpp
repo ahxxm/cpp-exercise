@@ -2,6 +2,16 @@
 #include "gtest/gtest.h"
 
 
+// Advantages
+// - name does not leak
+// - strong type
+// - forward declaration
+
+// enum Yay; error
+enum class Yay;
+
+
+
 void scope() {
   // names in C++98-style enums belong to scope containing enum
   enum Color {black, white, red}; // then whole scope has black
@@ -14,6 +24,19 @@ void scope() {
   std::cout << &three << std::endl;
   std::cout << &c << std::endl;
 
+  // unscoped enumerators implicitly convert to integral type
+  auto a = black;
+  if (a < 233) {
+    std::cout << "123" << std::endl;
+  }
+
+  // no matched operator for scoped
+  // if (c < 123)
+
+  // weird but it compiles
+  if (static_cast<int>(c) < 233) {
+    std::cout << "c" << std::endl;
+  }
 }
 
 
