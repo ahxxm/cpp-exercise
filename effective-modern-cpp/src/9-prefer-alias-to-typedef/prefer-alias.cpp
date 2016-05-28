@@ -1,5 +1,6 @@
 #include <list>
 #include <string>
+#include <type_traits>
 #include "gtest/gtest.h"
 
 
@@ -16,6 +17,14 @@ void prefer() {
 // template<typename T>
 // using MyAllocator = std::list<T, MyAlloc<T>> ;
 // FIXME: implement custom allocator MyAlloc
+
+
+
+// FIXME: try this
+// C++14's std::remove_const_t
+// same for: remove_reference_t, add_lvalue_reference_t
+template<class T>
+using remove_const_t = typename std::remove_const<T>::type;
 
 
 
