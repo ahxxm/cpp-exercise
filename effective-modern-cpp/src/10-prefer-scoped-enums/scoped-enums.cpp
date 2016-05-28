@@ -10,6 +10,9 @@
 // enum Yay; error
 enum class Yay;
 
+// compiler might choose char for enum that only have
+// 3 values to represent.
+// and choose larger interal type when more values.
 
 
 void scope() {
