@@ -1,3 +1,5 @@
+#include <memory>
+#include <mutex>
 #include "gtest/gtest.h"
 
 
@@ -20,8 +22,28 @@ void ff() {
   f(nullptr);
 }
 
+int f1(std::shared_ptr<int>) {return 42;}
+
+using MuxGuard = std::lock_guard<std::mutex>;
+template<typename FuncType, typename MuxType, typename PtrType>
+auto lockAndCall(FuncType func, MuxType &mutex, PtrType ptr)->decltype(func(ptr)) {
+  MuxGuard g(mutex);
+  return func(ptr);
+}
+
+void mu() {
+  std::mutex f1m;
+
+  // 0 or NULL won't work because shared_ptr requires pointer
+  // template deducts "wrong" type for them.
+  auto result1 = lockAndCall(f1, f1m, nullptr);
+  std::cout << &result1 << std::endl;
+
+}
+
 TEST(NullptrTest, SomeTest) {
   ff();
+  mu();
 }
 
 int main(int argc, char *argv[]) {
