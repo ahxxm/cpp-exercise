@@ -6,4 +6,4 @@
 
 - `algo`: algorithm and data structure related
 - `cppp`: C++ Primer 5th edition
-- `effective-modern-cppp`: Effective Modern C++ 
+- `effective-modern-cpp`: Effective Modern C++ 
