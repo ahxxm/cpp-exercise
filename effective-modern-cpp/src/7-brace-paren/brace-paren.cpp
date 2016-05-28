@@ -68,6 +68,8 @@ TEST(BraceParenTest, SomeTest) {
   EXPECT_EQ(W2.value, 42);
 
   // NOTE: {} means no args, not empty initializer list.
+  Widget W3 {{}};
+  EXPECT_EQ(W3.value, 42);
 }
 
 int main(int argc, char *argv[]) {
