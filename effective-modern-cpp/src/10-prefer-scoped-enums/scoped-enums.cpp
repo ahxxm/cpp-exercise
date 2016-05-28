@@ -14,6 +14,10 @@ enum class Yay;
 // 3 values to represent.
 // and choose larger interal type when more values.
 
+// scoped enum's type is always known
+// can specify both's type
+enum class Status: std::uint32_t;
+
 
 void scope() {
   // names in C++98-style enums belong to scope containing enum
