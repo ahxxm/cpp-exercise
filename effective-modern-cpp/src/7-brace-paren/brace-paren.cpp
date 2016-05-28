@@ -22,6 +22,10 @@ public:
   Widget() = default;
   Widget(int, bool) {};
   Widget(int, double) {};
+
+  // bool will cause narrow conversion(warning)
+  // string will let other 2 ctor work because
+  // no conversion
   Widget(std::initializer_list<long double>) {
     std::cout << "WAT" << std::endl;
     value = 42;
