@@ -9,7 +9,7 @@ void swap_value(int *a, int *b) {
 }
 
 
-int main(int argc, char *argv[]) {
+int main(void) {
   int i = 2, j = 5;
   swap_value(&i, &j);
 

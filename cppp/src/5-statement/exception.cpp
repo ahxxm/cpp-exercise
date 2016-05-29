@@ -1,7 +1,8 @@
 #include <stdexcept>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
   // Once caught, other catch won't be executed.
   try {
     // int a = 1;

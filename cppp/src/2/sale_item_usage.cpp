@@ -3,7 +3,7 @@
 #include "sale.h"
 
 
-int main(int argc, char *argv[]) {
+int main(void) {
 
   Sales_data data1, data2;
 

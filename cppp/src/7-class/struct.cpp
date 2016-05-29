@@ -19,8 +19,9 @@ TEST(MoreClassExerciseTest, SomeTest) {
   EXPECT_EQ(data1.ival, j);
 
   // missing field will be default initialized
-  Data data2 = {j};
-  EXPECT_EQ(data2.s, "");
+  // but there will be a warning in -Wextra
+  // Data data2 = {j};
+  // EXPECT_EQ(data2.s, "");
 }
 
 int main(int argc, char *argv[]) {

@@ -1,7 +1,8 @@
 #include <string>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
 
   int ia[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
   auto ia2(ia);  // equals to auto ia2(&ia[0]);
@@ -22,7 +23,8 @@ int main(int argc, char *argv[]) {
 
   // begin/end are std method..
   int *ia_begin = std::begin(ia), *ia_end = std::end(ia);
-  while (ia_begin != ia_end && ia_begin >= 0) {
+  // FIXME
+  while (ia_begin != ia_end && *ia_begin >= 0) {
     std::cout << *(++ia_begin) << std::endl;
     ++ia_begin;
   }

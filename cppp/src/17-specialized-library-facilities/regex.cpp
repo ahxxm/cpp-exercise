@@ -2,10 +2,15 @@
 #include <string>
 #include "gtest/gtest.h"
 
-
 /*
   http://stackoverflow.com/questions/12530406/is-gcc-4-8-or-earlier-buggy-about-regular-expressions/12665408#12665408
 
+int main(void) {
+
+  return 0;
+}
+
+*/
 TEST(RegexTest, SomeTest) {
   // find ei, that follow a char other than c
   std::string re_pattern("[^c]ei");
@@ -38,15 +43,10 @@ TEST(RegexTest, SomeTest) {
 
 }
 
+
+
 int main(int argc, char *argv[]) {
   ::testing::InitGoogleTest(&argc, argv);
   int ret = RUN_ALL_TESTS();
   return ret;
-}
-*/
-
-
-int main(int argc, char *argv[]) {
-
-  return 0;
 }

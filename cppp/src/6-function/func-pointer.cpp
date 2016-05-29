@@ -16,7 +16,7 @@
 // };
 
 
-int main(int argc, char *argv[]) {
+int main(void) {
   std::cout << "Nothing here." << std::endl;
 
   return 0;

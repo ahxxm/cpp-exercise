@@ -9,7 +9,7 @@ void catch_all() {
   } catch(...) {
     std::cout << "caught!" << std::endl;
   };
-};
+}
 
 template <class T>
 class Foo {
@@ -37,7 +37,7 @@ Foo<T>::Foo(std::string i)
 // `noexcept` specification: nonthrowing
 // noexcept or noexcept(bool)
 template <typename T>
-void nothing(T&&) noexcept(true) {};
+void nothing(T&&) noexcept(true) {}
 
 
 

@@ -1,7 +1,8 @@
 #include <vector>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
 
   // create a vector of length 10
   // any elegant solution? seems no, this is efficient, though lengthy...

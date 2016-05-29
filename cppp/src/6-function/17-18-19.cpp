@@ -57,7 +57,7 @@ void exercise_19(void) {
   // int sum_vec = sum(vec.begin(), vec.end(), 3.8); // 3.8 is a double
 }
 
-int main(int argc, char *argv[]) {
+int main(void) {
   exercise_19();
   bool result = capital_letter_in_string("tesT");
   bool result_2 = capital_letter_in_string("test");

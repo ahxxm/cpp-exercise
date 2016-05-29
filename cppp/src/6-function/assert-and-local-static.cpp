@@ -1,7 +1,8 @@
 #include <cassert>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
 
   // `assert` is preprocessor marco, so no std::, and its name should be
   // unique.
