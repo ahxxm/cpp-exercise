@@ -5,7 +5,7 @@
 // Advantages
 // - name does not leak
 // - strong type
-// - forward declaration
+// - forward declaration, unscoped can do this only when type specified
 
 // enum Yay; error
 enum class Yay;
@@ -14,7 +14,7 @@ enum class Yay;
 // 3 values to represent.
 // and choose larger interal type when more values.
 
-// scoped enum's type is always known
+// scoped enum's type is always known(default int)
 // can specify both's type
 enum class Status: std::uint32_t;
 
