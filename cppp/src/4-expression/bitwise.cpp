@@ -1,6 +1,7 @@
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
 
   int a = 5;
   int b = a >> 1;

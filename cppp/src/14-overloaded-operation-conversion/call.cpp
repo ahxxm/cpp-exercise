@@ -3,7 +3,7 @@
 // 33: how many operands may an function call operator take
 // seems no limit
 struct Foo {
-  int operator() (const int i, const int j){
+  int operator() (const int, const int){
     return 42;
   };
 };

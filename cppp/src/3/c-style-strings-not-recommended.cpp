@@ -2,7 +2,8 @@
 #include <iostream>
 #include <vector>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
 
   // string functions C-style: must pass null-ended arrays
   // not counting the tail null

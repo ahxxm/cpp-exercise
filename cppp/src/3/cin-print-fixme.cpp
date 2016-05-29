@@ -2,7 +2,8 @@
 #include <string>
 #include <cctype>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
 
   const std::string hexdigits("0123456789ABCDEF");
   std::string result;

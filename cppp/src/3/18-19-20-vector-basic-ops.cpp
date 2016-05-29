@@ -2,7 +2,8 @@
 #include <string>
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
 
   // 18: index/subscription does not change a vector, use push_back
   // instead

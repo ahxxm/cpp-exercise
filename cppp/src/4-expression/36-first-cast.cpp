@@ -1,6 +1,7 @@
 #include <iostream>
 
-int main(int argc, char *argv[]) {
+
+int main(void) {
   double d = 3.14;
 
   // couvert back to double pointer will preserve its values
