@@ -8,6 +8,18 @@ bool isLucky(int) {return false;}
 bool isLucky(double) = delete;
 
 
+// delete can also be used to prevent template instantiations
+// char* and void* are often not wanted
+template<typename T>
+void processPtr(T *) {}
+
+template<>
+void processPtr<void>(void *) = delete;
+
+template<>
+void processPtr<char>(char *) = delete;
+
+
 TEST(DeletedTest, SomeTest) {
 
 }
