@@ -16,7 +16,8 @@ public:
 
   // explicit and implicit override
   int doWork() & override {return 2;};
-  int doWork() && {return 3;};
+  int doWork() &&  override {return 3;};
+  // int doWork() && {return 3;}; // will be warned
 };
 
 
