@@ -32,10 +32,11 @@ void scope() {
   std::cout << &c << std::endl;
 
   // unscoped enumerators implicitly convert to integral type
-  auto a = black;
-  if (a < 233) {
-    std::cout << "123" << std::endl;
-  }
+  // auto a = black;
+  // if (a < 233) {
+  // std::cout << "123" << std::endl;
+  // }
+  // THIS is always true, warned by clang
 
   // no matched operator for scoped
   // if (c < 123)
