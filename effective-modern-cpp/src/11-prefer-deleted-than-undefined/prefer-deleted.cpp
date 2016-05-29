@@ -9,7 +9,10 @@ bool isLucky(double) = delete;
 
 
 // delete can also be used to prevent template instantiations
+// ONLY/MUST be written at namespace scope, not class scope.
 // char* and void* are often not wanted
+// also const char*, const volatile char*...
+// FIXME: how to easily do this
 template<typename T>
 void processPtr(T *) {}
 
