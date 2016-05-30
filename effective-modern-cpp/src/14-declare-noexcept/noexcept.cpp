@@ -5,6 +5,8 @@
 
 
 // noexcept allow compiler generate better code
+// FIXME: with C++11, "the stack is only possibly unwound before
+// program execution is terminated"
 // C++98
 void f(int) throw() {};
 // C++11
