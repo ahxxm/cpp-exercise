@@ -8,6 +8,14 @@
 // generate only when it's needed/used, generated functions are
 // implicitly public and inline.
 
+// Move: more like more request
+// type that aren't move-enabled will be "moved" via copy.
+// 2 move NOT independed, will prevent compiler generate the other.
+
+// Copy: 2 synthesized member are independent, declare one
+// won't prevent generating the other when needed.
+
+
 class Widget {
 public:
   // move ctor and move assign operator
