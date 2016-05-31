@@ -11,6 +11,10 @@ public:
     // easiest way: add lock
     // std::lock_guard<std::mutex> g(m);
 
+    // atomic
+    // ONLY for one variable, 2 or more can cause headache
+    // ++callCount;
+
     if( !rootsAreValid ) {
       // compute root
       rootsAreValid = true;
@@ -20,9 +24,14 @@ public:
 
 
 private:
-  // lock->  mutable std::mutex m;
+  // lock
+  // mutable std::mutex m;
   // NOTE: std::mutex is move only object, this makes whole class
   // lose ability to be copied.
+
+
+  // usually less expensive:
+  // std::atomic<unsigned>  callCount { 0 };
   mutable bool rootsAreValid {false};
   mutable RootsType rootVals {};
 };
