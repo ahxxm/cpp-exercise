@@ -2,11 +2,15 @@
 #include "gtest/gtest.h"
 
 
+// roots() needs to modify mutable fields, should be thread safe
 class Polynomial {
 public:
   using RootsType = std::vector<double>;
 
   RootsType roots() const {
+    // easiest way: add lock
+    // std::lock_guard<std::mutex> g(m);
+
     if( !rootsAreValid ) {
       // compute root
       rootsAreValid = true;
@@ -16,6 +20,9 @@ public:
 
 
 private:
+  // lock->  mutable std::mutex m;
+  // NOTE: std::mutex is move only object, this makes whole class
+  // lose ability to be copied.
   mutable bool rootsAreValid {false};
   mutable RootsType rootVals {};
 };
