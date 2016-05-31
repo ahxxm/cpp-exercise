@@ -15,6 +15,12 @@
 // Copy: 2 synthesized member are independent, declare one
 // won't prevent generating the other when needed.
 
+// Rule of 3: copy assignment operator, copy ctor, and destructor
+// should be declared all three.
+// Rationale: user-defined destructor "INDICATES" memberwise
+// destruction is not adequate, those memberwise copy/copy assign
+// might also be wrong.
+
 
 class Widget {
 public:
