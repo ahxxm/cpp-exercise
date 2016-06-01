@@ -4,6 +4,13 @@
 
 class Widget {};
 
+// FIXME: weakptr for cache
+
+// FIXME: weakptr for observer pattern:
+// subject has no interest control observer's lifetime,
+// hold a container of weakptrs, make sure not dangling
+// before use.
+
 int check() {
   // weak_ptr is usually? created using shared_ptr
   // check dangling
