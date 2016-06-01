@@ -28,6 +28,8 @@ matrix:
           packages:
             - clang-3.8
       env: COMPILER=clang-3.8 CCOMPILER=clang++-3.8 GCOV=llvm-cov-3.8 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
+  allow_failures:
+    - env: COMPILER=clang-3.8
 before_install:
   - sudo apt-get update && sudo apt-get install -y libboost-all-dev
   - pip install --user cpp-coveralls cpplint
