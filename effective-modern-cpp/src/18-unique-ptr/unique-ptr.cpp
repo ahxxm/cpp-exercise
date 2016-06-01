@@ -24,6 +24,7 @@ auto delInvmt = [](Investment *pInvestment) {
 // - unique_ptr<T[]>, no *deref or -> operator
 using return_type = std::unique_ptr<Investment, decltype(delInvmt)>;
 
+
 template<typename... Ts>
 return_type makeInvestment(Ts&&... params) {
   return_type pInv(nullptr, delInvmt);
@@ -37,6 +38,9 @@ return_type makeInvestment(Ts&&... params) {
 
 
 TEST(UniquePtrTest, SomeTest) {
+  // unique_ptr can be easily converted to shared_ptr
+  // std::shared_ptr<Investment> sp = makeInvestment(...  )
+
   EXPECT_EQ(1, 1);
 }
 
