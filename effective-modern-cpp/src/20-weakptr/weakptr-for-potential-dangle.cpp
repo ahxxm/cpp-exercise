@@ -4,7 +4,7 @@
 
 class Widget {};
 
-int w() {
+int check() {
   // weak_ptr is usually? created using shared_ptr
   // check dangling
 
@@ -17,9 +17,20 @@ int w() {
   return 0;
 };
 
+void lo() {
+  // atomic between check and operation
+  auto spw = std::make_shared<Widget>();
+  std::weak_ptr<Widget> wpw(spw);
+
+  // lock creates a shared_ptr
+  auto spw1 = wpw.lock();
+  std::cout << &spw1 << std::endl;
+}
+
 
 TEST(WeakptrTest, SomeTest) {
-  EXPECT_EQ(w(), 42);
+  EXPECT_EQ(check(), 42);
+  lo();
 }
 
 int main(int argc, char *argv[]) {
