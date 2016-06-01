@@ -19,6 +19,9 @@ auto delInvmt = [](Investment *pInvestment) {
   delete pInvestment;
 };
 
+// unique_ptr has 2 form:
+// - unique_ptr<T>, no [] operator
+// - unique_ptr<T[]>, no *deref or -> operator
 using return_type = std::unique_ptr<Investment, decltype(delInvmt)>;
 
 template<typename... Ts>
