@@ -16,6 +16,8 @@
 // shared_ptr to same object can have different deleter
 class Widget {};
 
+// FIXME: test performance, overhead of control block,
+// custom deleter and atomic ref count operation
 
 void dif_deleter() {
   auto customDel1 = [](Widget *pw) {delete pw;};
