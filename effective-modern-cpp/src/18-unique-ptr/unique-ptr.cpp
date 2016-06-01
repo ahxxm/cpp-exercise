@@ -13,6 +13,7 @@ class Cash: public Investment {};
 
 
 // custom deleter: more efficient
+// lambda deleter add less size to smart pointer, than void*
 auto delInvmt = [](Investment *pInvestment) {
   // log
   delete pInvestment;
