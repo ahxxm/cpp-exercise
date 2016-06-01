@@ -29,10 +29,24 @@ void dif_deleter() {
 };
 
 
+void control_block() {
+  // ERROR: undefined control block behavior by
+  // creating more than 1 shared_ptr
+  auto pw = new Widget;
+  // create control block 1
+  std::shared_ptr<Widget> spw1(pw);
+
+  // create control block 2
+  // std::shared_ptr<Widget> spw2(pw);
+
+  std::cout << &spw1 << std::endl;
+  // std::cout << &spw2 << std::endl;
+}
 
 
 TEST(SharedPtrTest, SomeTest) {
   dif_deleter();
+  control_block();
 }
 
 int main(int argc, char *argv[]) {
