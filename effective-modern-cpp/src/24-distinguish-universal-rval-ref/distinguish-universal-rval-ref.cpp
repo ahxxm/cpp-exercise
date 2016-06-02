@@ -1,3 +1,4 @@
+#include <utility>
 #include "gtest/gtest.h"
 
 
@@ -13,10 +14,21 @@ void f(int &&) {};
 
 int &&vv = 1;
 
+// T&& is universal ref, <T>&& is rvalue
+template<typename T>
+void ff(std::vector<T> &&) {};
 
 
 TEST(RefTest, SomeTest) {
-  EXPECT_EQ(1, 1);
+  std::vector<int> v {};
+
+  // no matching function
+  // ff(v);
+
+  // this works
+  ff(std::move(v));
+
+
 }
 
 int main(int argc, char *argv[]) {
