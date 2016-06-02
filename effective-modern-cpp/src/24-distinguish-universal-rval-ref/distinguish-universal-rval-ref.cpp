@@ -14,9 +14,11 @@ void f(int &&) {};
 
 int &&vv = 1;
 
-// T&& is universal ref, <T>&& is rvalue
+// T&& might be universal ref, <T>&& is rvalue
 template<typename T>
 void ff(std::vector<T> &&) {};
+
+
 
 
 TEST(RefTest, SomeTest) {
