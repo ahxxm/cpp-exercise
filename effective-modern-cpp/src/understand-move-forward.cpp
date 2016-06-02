@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 
 // std::move casts into rvalue,
-// std::forward sometimes casts into rvalue
+// std::forward sometimes casts into rvalue: when arg is initialized with rvalud
 
 // close to STL ipml
 template<typename T>
