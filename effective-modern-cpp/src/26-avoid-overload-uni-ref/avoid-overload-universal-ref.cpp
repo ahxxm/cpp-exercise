@@ -28,6 +28,8 @@ TEST(OverloadUniversalRefTest, SomeTest) {
 
   logAndAdd("dog");
 
+  // overload for int/short will be bad idea:
+  // T resolves to type and be a perfect match.
   // logAndAdd(22);
 }
 
