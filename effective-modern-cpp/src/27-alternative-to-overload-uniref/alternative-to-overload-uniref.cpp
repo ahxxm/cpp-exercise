@@ -12,9 +12,10 @@ public:
   // when T is not person, nor const/volatile person
   // decay removes these(also turn array into pointer)
   template<typename T, typename = typename std::enable_if<
-                         !std::is_same<Person,
-                                       typename std::decay<T>::type
-                                       >::value
+                         // works for inheritance
+                         !std::is_base_of<Person,
+                                          typename std::decay<T>::type
+                                          >::value
                          >::type>
   explicit Person(T &&) {};
 
