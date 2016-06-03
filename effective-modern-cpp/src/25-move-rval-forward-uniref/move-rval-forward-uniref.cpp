@@ -2,6 +2,7 @@
 
 // apply move/forward on the last time used
 // move ctor more efficient
+// FIXME: usage?
 
 // RVO: return value optimization // FIXME:
 
