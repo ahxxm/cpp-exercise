@@ -81,10 +81,6 @@ int processVal(int, int) {
 }
 
 
-
-
-
-
 void overload_name_fail() {
   // fine, compiler knows which processVal is needed:
   // the one that takes 1 int
@@ -101,15 +97,41 @@ void overload_name_fail() {
   ProcessFuncType processValPtr = processVal;
   fwd(processValPtr);
 
-  // fix: cast
+  // conversion failure..
   // fwd(static_cast<ProcessFuncType>(work));
 }
+
+
+// 5. bitfields
+struct Field {
+  int len:16;
+};
+
+// one f() takes int
+void bitfield_fail() {
+  Field h;
+
+  // fine
+  f(h.len);
+
+  // can't bind bitfield to int&
+  // no way to create a pointer to arbitrary bits.
+  // (any function that use bitfield will receive
+  // a **copy** of its value.)
+  // fwd(h.len);
+
+  // fix: cast with specific size
+  auto length = static_cast<int>(h.len);
+  fwd(length);
+}
+
 
 
 TEST(PerfectForwardFailureTest, SomeTest) {
   brace_fail();
   static_const_fail();
   overload_name_fail();
+  bitfield_fail();
 }
 
 int main(int argc, char *argv[]) {
