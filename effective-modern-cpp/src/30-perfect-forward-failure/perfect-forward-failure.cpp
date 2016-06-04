@@ -110,6 +110,7 @@ struct Field {
 // one f() takes int
 void bitfield_fail() {
   Field h;
+  h.len = 2;
 
   // fine
   f(h.len);
