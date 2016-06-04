@@ -3,6 +3,9 @@
 
 // compilers are **required** to use move
 
+// Reason to assume move not available:
+// some types does not have cheap move: std::array for example
+// unstable api could result in: no move operation
 
 
 TEST(NoMoveTest, SomeTest) {
