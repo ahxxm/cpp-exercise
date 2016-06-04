@@ -8,8 +8,7 @@
 // Failures
 
 
-
-// Brace initializer
+// 1. Brace initializer
 void f(const std::vector<int> &) {}
 void f(int) {}
 
@@ -32,9 +31,9 @@ void brace_fail() {
   fwd(il);
 }
 
-// 0/NULL as nullptr
+// 2. 0/NULL as nullptr
 
-// static const member
+// 3. static const member
 
 class Widget {
 public:
@@ -62,7 +61,7 @@ void static_const_fail() {
 }
 
 
-// overloaded function/template names
+// 4. overloaded function/template names
 int processVal(int) {
   return 42;
 }
@@ -76,14 +75,23 @@ int processVal(int, int) {
 // simpler syntax:
 void f(int (int)) {}
 
+// template
+template<typename T>
+T work(T) {
+
+}
+
 
 void overload_name_fail() {
   // fine, compiler knows which processVal is needed:
   // the one that takes 1 int
   f(processVal);
 
-  // fail to know
+  // fail to know which function
   // fwd(processVal);
+
+  // fail on template: too many functions
+  // fwd(work);
 }
 
 
