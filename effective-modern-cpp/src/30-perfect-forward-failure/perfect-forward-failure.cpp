@@ -62,10 +62,35 @@ void static_const_fail() {
 }
 
 
+// overloaded function/template names
+int processVal(int) {
+  return 42;
+}
+
+int processVal(int, int) {
+  return 42;
+}
+
+// f takes a function:
+// void f(int (*)(int)) {}
+// simpler syntax:
+void f(int (int)) {}
+
+
+void overload_name_fail() {
+  // fine, compiler knows which processVal is needed:
+  // the one that takes 1 int
+  f(processVal);
+
+  // fail to know
+  // fwd(processVal);
+}
+
 
 TEST(PerfectForwardFailureTest, SomeTest) {
   brace_fail();
   static_const_fail();
+  overload_name_fail();
 }
 
 int main(int argc, char *argv[]) {
