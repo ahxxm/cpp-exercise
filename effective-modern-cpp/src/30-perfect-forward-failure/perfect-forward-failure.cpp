@@ -18,6 +18,10 @@ void f(int (int)) {}
 void f(const std::vector<int> &) {}
 void f(int) {}
 
+// template
+template<typename T>
+void work(T) {}
+
 
 template<typename... Ts>
 void fwd(Ts&&... params){
@@ -78,11 +82,7 @@ int processVal(int, int) {
 
 
 
-// template
-template<typename T>
-T work(T) {
 
-}
 
 
 void overload_name_fail() {
@@ -100,6 +100,9 @@ void overload_name_fail() {
   using ProcessFuncType = int(*)(int);
   ProcessFuncType processValPtr = processVal;
   fwd(processValPtr);
+
+  // fix: cast
+  // fwd(static_cast<ProcessFuncType>(work));
 }
 
 
