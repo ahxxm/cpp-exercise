@@ -9,6 +9,12 @@
 
 
 // 1. Brace initializer
+
+// f takes a function:
+// void f(int (*)(int)) {}
+// simpler syntax:
+void f(int (int)) {}
+
 void f(const std::vector<int> &) {}
 void f(int) {}
 
@@ -70,10 +76,7 @@ int processVal(int, int) {
   return 42;
 }
 
-// f takes a function:
-// void f(int (*)(int)) {}
-// simpler syntax:
-void f(int (int)) {}
+
 
 // template
 template<typename T>
@@ -92,6 +95,11 @@ void overload_name_fail() {
 
   // fail on template: too many functions
   // fwd(work);
+
+  // fix: specify the one to be used
+  using ProcessFuncType = int(*)(int);
+  ProcessFuncType processValPtr = processVal;
+  fwd(processValPtr);
 }
 
 
