@@ -42,6 +42,9 @@ public:
   static const int MinVals = 28;
 };
 
+// fix: define
+const int Widget::MinVals;
+
 void static_const_fail() {
   f(Widget::MinVals);
 
@@ -53,6 +56,9 @@ void static_const_fail() {
   // note: not all compiler require it to be defined.
 
   // fwd(Widget::MinVals);
+
+  // fix:
+  fwd(Widget::MinVals);
 }
 
 
