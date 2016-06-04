@@ -6,22 +6,31 @@
 // goal/perfect: second function receive the same object
 
 // Failures
-template<typename... T>
-void fwd(T&&... params) {
-  f(std::forward<T>(params)...);
-}
+
 
 
 // Brace initializer
 void f(const std::vector<int> &) {}
 
+template<typename... Ts>
+void fwd(Ts&&... params){
+  f(std::forward<Ts>(params)...);
+}
+
 void brace_fail() {
   // direct: converts to std::vector implicitly
   f({1, 2, 3});
 
-  // forward fail: fwd **deduce** T to be initializer_list
-  // fwd({1, 2, 3})
+  // fwd({1, 2, 3});
+  // forward fail: {} is not declared as initializer_list
+  // , compiler is forbidden to deduced it.
+
+  // fix:
+  auto il = {1, 2, 3};
+  fwd(il);
 }
+
+// 0/NULL as nullptr
 
 
 
