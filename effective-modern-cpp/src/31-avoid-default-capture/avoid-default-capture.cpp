@@ -1,4 +1,6 @@
+#include <functional>
 #include <iostream>
+#include <vector>
 #include "gtest/gtest.h"
 
 // lambda expression: the source code
@@ -15,8 +17,24 @@ void copy() {
 }
 
 
+// default capture mode: by reference
+// can lead to dangling references
+using Container = std::vector<std::function<bool(int)>>;
+Container filters;
+
+void dangle_ref() {
+  // SUPPOSE get local i dynamically
+  // i=calc();
+  auto i = 42;
+
+  // emplace_back a LOCAL value, dangling i
+  filters.emplace_back([ & ](int value) {return value % i == 0;});
+}
+
+
 TEST(AvoidDefaultCaptureTest, SomeTest) {
-  EXPECT_EQ(1, 1);
+  copy();
+  dangle_ref();
 }
 
 int main(int argc, char *argv[]) {
