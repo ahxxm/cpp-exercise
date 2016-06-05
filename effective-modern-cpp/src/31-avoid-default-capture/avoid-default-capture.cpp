@@ -31,6 +31,8 @@ void dangle_ref() {
   // filters.emplace_back([ & ](int value) {return value % i == 0;});
 
   // FIX: explicitly capture value
+  // this captures a pointer by value, but DOES NOT
+  // prevent this pointer to be deleted.
   filters.emplace_back([ = ](int value) {return value % i == 0;});
 }
 
