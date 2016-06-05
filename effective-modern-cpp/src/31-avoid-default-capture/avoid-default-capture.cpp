@@ -28,7 +28,10 @@ void dangle_ref() {
   auto i = 42;
 
   // emplace_back a LOCAL value, dangling i
-  filters.emplace_back([ & ](int value) {return value % i == 0;});
+  // filters.emplace_back([ & ](int value) {return value % i == 0;});
+
+  // FIX: explicitly capture value
+  filters.emplace_back([ = ](int value) {return value % i == 0;});
 }
 
 
