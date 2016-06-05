@@ -1,3 +1,4 @@
+#include <functional>
 #include <memory>
 #include <utility>
 #include "gtest/gtest.h"
@@ -6,9 +7,7 @@
 // object into clojure
 // C++14 does
 
-class Widget {
-
-};
+class Widget {};
 
 void init_capture() {
   auto pw = std::make_shared<Widget>();
@@ -17,6 +16,12 @@ void init_capture() {
   // pw: scope in clojure class
   // std::move(pw): scope as the same of lambda expression
   // auto func = [pw = std::move(pw)]() {return 42;};
+
+  // emulation in C++11
+  int i = 42;
+  auto func = std::bind([](int &) mutable {}, std::move(i));
+  func();
+
 }
 
 
