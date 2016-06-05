@@ -2,7 +2,8 @@
 
 
 // reason: lambdas are more readable
-
+// bind param will be evaluated and stored in bind object,
+// so a nested function might be needed.
 
 
 TEST(PreferLambdaTest, SomeTest) {
