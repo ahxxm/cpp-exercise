@@ -7,14 +7,14 @@ int doAsyncWork() {return 42;}
 
 void run() {
   // thread-based approach
-  std::thread t(doAsyncWork);
+  // std::thread t(doAsyncWork);
 
   // task-based, avoid:
   // thread exhaustion
   // oversubscription
   // load balancing
   auto future = std::async(doAsyncWork);
-
+  std::cout << future.get() << std::endl;
 }
 
 TEST(PreferTaskTest, SomeTest) {
