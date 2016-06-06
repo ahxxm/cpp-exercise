@@ -5,6 +5,8 @@
 // std::launch::async - must run asynchronously
 // std::launch::deferred - may run when get() or wait() called on future object
 
+// default policy is mixed, so no way to predict behavior.
+
 TEST(LaunchAsyncTest, SomeTest) {
   EXPECT_EQ(1, 1);
 }
