@@ -39,6 +39,31 @@ bool doWork(std::function<bool(int)> filter, int maxVal = tenM) {
   return true;
 }
 
+// RAII: resource acquisition is initialization
+class ThreadRAII {
+public:
+  enum class DtorAction {join, detach};
+
+  ThreadRAII(std::thread &&t, DtorAction a): action(a), t(std::move(t)) {};
+
+  ~ThreadRAII() {
+    if (t.joinable()) {
+      if (action == DtorAction::join) {
+        t.join();
+      } else {
+        t.detach();
+      }
+    }
+
+  }
+
+  std::thread &get() {return t;};
+
+private:
+  DtorAction action;
+  std::thread t;
+};
+
 
 TEST(ThreadUnjoinableTest, SomeTest) {
   EXPECT_EQ(1, 1);
