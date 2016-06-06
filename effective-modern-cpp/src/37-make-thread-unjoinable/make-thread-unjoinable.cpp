@@ -47,6 +47,8 @@ public:
   ThreadRAII(std::thread &&t, DtorAction a): action(a), t(std::move(t)) {};
 
   ~ThreadRAII() {
+    // no race condition between joinable() and join()
+    // because it's in destructor, no other thread should be make member function calls to t
     if (t.joinable()) {
       if (action == DtorAction::join) {
         t.join();
