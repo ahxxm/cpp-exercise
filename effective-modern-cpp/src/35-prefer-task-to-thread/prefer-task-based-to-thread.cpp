@@ -9,7 +9,10 @@ void run() {
   // thread-based approach
   std::thread t(doAsyncWork);
 
-  // task-based
+  // task-based, avoid:
+  // thread exhaustion
+  // oversubscription
+  // load balancing
   auto future = std::async(doAsyncWork);
 
 }
