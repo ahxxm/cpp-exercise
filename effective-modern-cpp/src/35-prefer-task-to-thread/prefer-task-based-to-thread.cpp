@@ -7,7 +7,8 @@ int doAsyncWork() {return 42;}
 
 void run() {
   // thread-based approach
-  // std::thread t(doAsyncWork);
+  std::thread t(doAsyncWork);
+  t.join();
 
   // task-based, avoid:
   // thread exhaustion
