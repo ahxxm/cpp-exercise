@@ -25,8 +25,22 @@ void check_future() {
   }
 }
 
+// wrap assurance of asynchronous
+template<typename F, typename... Ts>
+inline std::future<typename std::result_of<F(Ts...)>::type >
+reallyAsync(F &&f, Ts &&... params) {
+  return std::async(std::launch::async,
+                    std::forward<F>(f),
+                    std::forward<Ts>(params)...);
+}
+
+
 TEST(LaunchAsyncTest, SomeTest) {
   check_future();
+
+  auto future = reallyAsync(f);
+  std::cout << future.get() << std::endl;
+
 }
 
 int main(int argc, char *argv[]) {
