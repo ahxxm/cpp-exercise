@@ -1,3 +1,4 @@
+#include <future>
 #include <iostream>
 #include <string>
 #include <thread>
@@ -57,8 +58,42 @@ void c()
 }
 
 
+
+// Requires superfluous mutex, contriants on relative progress
+// of detect/react, verify condvar.
+// Flag avoid this by heavy resource usage: polling.
+// std::promise dodges this, but use heap for shared states,
+// can be only used for one-shot.
+std::promise<void> p;
+
+void detect() {
+
+  auto sf = p.get_future().share();
+  std::vector<std::thread> vt;
+
+  for (int i = 0; i < 42; ++i) {
+    // wait on
+    // local copy of shared future
+    vt.emplace_back([sf] {
+        sf.wait();
+        // react()
+      });
+  }
+
+
+  // unsuspend all threads
+  p.set_value();
+
+  for (auto &t: vt) {
+    t.join();
+  }
+
+}
+
+
 TEST(VoidFutureTest, SomeTest) {
   c();
+  detect();
 }
 
 int main(int argc, char *argv[]) {
