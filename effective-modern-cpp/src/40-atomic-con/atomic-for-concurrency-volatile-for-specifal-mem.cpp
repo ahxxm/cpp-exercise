@@ -16,6 +16,11 @@ void atom() {
   std::cout << ai << std::endl;
   ++ai;
   --ai;
+
+  // atomic object can't be copied, for good reason:
+  // in order to be atomic, compiler needs to read ai
+  // and write i, both are atomic, failed.
+  // auto i = ai;
 }
 
 void vol() {
