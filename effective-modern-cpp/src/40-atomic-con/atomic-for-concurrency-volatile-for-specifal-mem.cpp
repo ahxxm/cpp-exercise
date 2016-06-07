@@ -4,15 +4,18 @@
 
 void atom() {
   // instantiation is guaranteed to to atomic
+
   std::atomic<int> ai(0);
 
-  // all operation are atomi
+  // all operation are atomic
   ai = 10;
+
+  // LIMITED to read operation, between read and <<
+  // the value could be changed.
+  // cout uses pass-by-value, no affect though.
   std::cout << ai << std::endl;
   ++ai;
   --ai;
-
-
 }
 
 TEST(AtomicVolatileTest, SomeTest) {
