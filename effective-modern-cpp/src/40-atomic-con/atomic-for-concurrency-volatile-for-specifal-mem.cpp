@@ -27,6 +27,19 @@ void vol() {
   --vi;
 }
 
+void sequence() {
+
+  // default atomic sequence consistency:
+  // no code precedes a write of std::atomic may
+  // be executed before it
+  std::atomic<bool> flag(false);
+  auto i = 42;
+  flag = true;
+
+  // i is assured to be 42
+  std::cout << i << std::endl;
+}
+
 
 TEST(AtomicVolatileTest, SomeTest) {
   atom();
