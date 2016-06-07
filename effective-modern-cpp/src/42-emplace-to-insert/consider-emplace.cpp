@@ -6,12 +6,18 @@ void push() {
   std::vector<std::string> vs;
 
   // theated as: vs.push_back(std::string("aa"))
-  vs.push_back("aa");
+  // vs.push_back("aa");
 
   // total: 2 constructor, 1 destructor
   // - std::string tmp {"aa"};
   // - rvalue tmp passed to push_back, another construction
   // - destroy tmp
+
+  // correct function to use:
+  // it uses perfect forwarding.
+  // push_back takes **object**, emplace_back takes **constructor args**.
+  vs.emplace_back("aa");
+
 }
 
 TEST(EmplaceTest, SomeTest) {
