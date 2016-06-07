@@ -29,7 +29,9 @@ public:
   */
 
   // solution: pass by value
-  // efficiency in C++11: rvalue name will be move constructed
+  // efficiency in C++11: rvalue name will be move constructed.
+  // limit: move-only objects, cheap operation, only when param
+  // is finally to be copied.
   void addName(std::string name) {
     // move is safe: final use, new copied value.
     names.push_back(std::move(name));
