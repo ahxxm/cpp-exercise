@@ -15,8 +15,20 @@ public:
   // move rval
   void addName(std::string &&name) {
     names.push_back(std::move(name));
-    }
+  }
   */
+
+  // template: too heavy
+  // might yield several functions to convert
+  // objects to std::string
+  /*
+  template<typename T>
+  void addName(T &&name) {
+    names.push_back(std::forward<T>(name));
+  }
+  */
+
+
 
 private:
   std::vector<std::string> names;
