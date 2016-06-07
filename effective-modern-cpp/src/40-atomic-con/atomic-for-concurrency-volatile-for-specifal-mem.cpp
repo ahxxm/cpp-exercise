@@ -25,6 +25,14 @@ void vol() {
   std::cout << vi << std::endl;
   ++vi;
   --vi;
+
+  // volatile is used to tell compiler
+  // special memory is used, usually memory-mapped I/O:
+  // display, printer..
+  auto y = vi;
+  y = vi;
+  std::cout << &y<< std::endl;
+
 }
 
 void sequence() {
