@@ -18,8 +18,19 @@ void atom() {
   --ai;
 }
 
+void vol() {
+  // volatile does not guarantee anything
+  volatile int vi {1};
+  vi = 10;
+  std::cout << vi << std::endl;
+  ++vi;
+  --vi;
+}
+
+
 TEST(AtomicVolatileTest, SomeTest) {
   atom();
+  vol();
 }
 
 int main(int argc, char *argv[]) {
