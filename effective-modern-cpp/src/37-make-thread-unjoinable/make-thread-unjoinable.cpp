@@ -15,9 +15,8 @@
 // - implicit join: lead to performance issue that is hard to track
 // - implicit detach: still changing variables
 
-// FIXME: c++14
-constexpr auto tenM = 10000000;
-// constexpr auto teM = 10'000'000;
+// constexpr auto tenM = 10000000;
+constexpr auto tenM = 10'000'000;
 
 
 bool doWork(std::function<bool(int)> filter, int maxVal = tenM) {
