@@ -26,7 +26,6 @@ void check_future() {
 }
 
 // wrap assurance of asynchronous
-// FIXME: C++14 replace return type with auto
 template<typename F, typename... Ts>
 // inline std::future<typename std::result_of<F(Ts...)>::type >
 inline auto
