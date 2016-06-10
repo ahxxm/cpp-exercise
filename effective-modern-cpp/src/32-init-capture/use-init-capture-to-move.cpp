@@ -15,13 +15,13 @@ void init_capture() {
   // only in C++14
   // pw: scope in clojure class
   // std::move(pw): scope as the same of lambda expression
-  // auto func = [pw = std::move(pw)]() {return 42;};
+  auto func = [pw = std::move(pw)]() {return 42;};
 
   // emulation in C++11:
   // move construct an object into bind,
   // pass that object to lambda by reference
-  int i = 42;
-  auto func = std::bind([](int &) mutable {}, std::move(i));
+  // int i = 42;
+  // auto func = std::bind([](int &) mutable {}, std::move(i));
   func();
 
 }
