@@ -3,16 +3,16 @@
 // C++14: Generic lambdas that use auto
 
 template<typename T>
-void func(T) {}
+int func(T) {return 42;}
 
 
-// auto f = [](auto x) {return func(x);};
+auto f = [](auto x) {return func(x);};
 
 // Usage:
 // auto f = [](auto &&... params) {return func(std::forward<decltype(params)>(params)...)};
 
 TEST(DecltypeForwardTest, SomeTest) {
-  EXPECT_EQ(1, 1);
+  EXPECT_EQ(f(2), 42);
 }
 
 int main(int argc, char *argv[]) {
