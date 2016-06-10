@@ -26,9 +26,9 @@ void check_future() {
 }
 
 // wrap assurance of asynchronous
-// FIXME: C++14 replace return type with auto
 template<typename F, typename... Ts>
-inline std::future<typename std::result_of<F(Ts...)>::type >
+// inline std::future<typename std::result_of<F(Ts...)>::type >
+inline auto
 reallyAsync(F &&f, Ts &&... params) {
   return std::async(std::launch::async,
                     std::forward<F>(f),

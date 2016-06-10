@@ -20,11 +20,10 @@ void prefer() {
 
 
 
-// FIXME: try this
 // C++14's std::remove_const_t
 // same for: remove_reference_t, add_lvalue_reference_t
 template<class T>
-using remove_const_t = typename std::remove_const<T>::type;
+using remove_const_t = typename std::remove_const_t<T>;
 
 
 
