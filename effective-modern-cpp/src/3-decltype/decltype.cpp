@@ -17,7 +17,8 @@ void decl() {
 
 // trail type is not required in C++14
 template<typename Container, typename Index>
-auto authAndAccess(Container &&c, Index i)->decltype(std::forward<Container>(c)[i]) {
+// auto authAndAccess(Container &&c, Index i)->decltype(std::forward<Container>(c)[i]) {
+auto authAndAccess(Container &&c, Index i) {
   // authenticate();
   // FIXME: forward in item 25
   return std::forward<Container>(c)[i];
