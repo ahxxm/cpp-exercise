@@ -4,11 +4,10 @@
 #include <vector>
 
 
-
 void decl() {
   int w = 2;
-  std::cout << &w << std::endl;
-  // decltype(auto) k = w; // c++14 extension
+  decltype(auto) k = w; // c++14 extension
+  std::cout << &k << std::endl;
 
   //  (w) <- expression yields lvalue
   // decltype((w)) <- int&
@@ -30,8 +29,6 @@ TEST(MoreClassExerciseTest, SomeTest) {
   std::vector<int> ve = {1, 2, 3, 4};
   auto k = authAndAccess(ve, 1);
   EXPECT_EQ(k, 2);
-
-
 }
 
 int main(int argc, char *argv[]) {
