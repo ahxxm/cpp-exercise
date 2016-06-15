@@ -1,15 +1,15 @@
 #include <vector>
 #include "gtest/gtest.h"
 
-template<typename T >
-static void swap(std::vector<T> &elems, const int i, const int j) {
-  T temp = elems[i];
+template<typename T>
+static void swap(T &elems, const int i, const int j) {
+  auto temp = elems[i];
   elems[i] = elems[j];
   elems[j] = temp;
 }
 
 template<typename T>
-auto insertSort(std::vector<T> elems) {
+auto insertSort(T elems) {
   for(int i = 0;i < static_cast<int>(elems.size() - 1); i++) {
     for(int j = i + 1; j > 0 && (elems[j] < elems[j - 1]); j--) {
       swap(elems, j - 1, j);
