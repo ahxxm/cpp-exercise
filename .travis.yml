@@ -16,10 +16,10 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.8
+            - llvm-toolchain-precise-3.9
           packages:
-            - clang-3.8
-      env: COMPILER=clang-3.8 CCOMPILER=clang++-3.8 GCOV=llvm-cov-3.8 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
+            - clang-3.9
+      env: COMPILER=clang-3.9 CCOMPILER=clang++-3.9 GCOV=llvm-cov-3.9 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
 before_install:
   - sudo apt-get update && sudo apt-get install -y libboost-all-dev
   - pip install --user cpp-coveralls cpplint
