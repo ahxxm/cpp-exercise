@@ -11,6 +11,14 @@ matrix:
           packages:
             - g++-5
       env: COMPILER=gcc-5 CCOMPILER=g++-5
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+      env: COMPILER=gcc-6 CCOMPILER=g++-6
     - compiler: clang
       addons:
         apt:
