@@ -24,7 +24,6 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.9
           packages:
             - clang-3.9
       env: COMPILER=clang-3.9 CCOMPILER=clang++-3.9 GCOV=llvm-cov-3.9 CMAKE_FLAGS="$CMAKE_FLAGS -DUSE_GCOV=ON"
