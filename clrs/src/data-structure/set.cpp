@@ -1,8 +1,8 @@
 #include "gtest/gtest.h"
 
+// TODO: search, insert, del, min, max, predecessor/successor(ordered set),
 
-
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(SetTest, SomeTest) {
   EXPECT_EQ(1, 1);
 }
 
