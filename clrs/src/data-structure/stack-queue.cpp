@@ -1,8 +1,11 @@
 #include "gtest/gtest.h"
 
+// TODO:
+// stack: push, pop, top
+// queue: enqueue, dequeue
 
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(StackQueueTest, SomeTest) {
   EXPECT_EQ(1, 1);
 }
 
