@@ -1,8 +1,9 @@
 #include "gtest/gtest.h"
 
+// TODO: linked list: insert, delete,
+// TODO: single/double linked list
 
-
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(LinkedListTest, SomeTest) {
   EXPECT_EQ(1, 1);
 }
 
