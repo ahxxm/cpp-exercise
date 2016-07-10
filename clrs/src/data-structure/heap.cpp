@@ -1,8 +1,8 @@
 #include "gtest/gtest.h"
 
+// TODO: ctor, push, pop, sort, merge
 
-
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(HeapTest, SomeTest) {
   EXPECT_EQ(1, 1);
 }
 
