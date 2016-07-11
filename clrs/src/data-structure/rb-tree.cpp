@@ -1,8 +1,11 @@
 #include "gtest/gtest.h"
 
+// TODO: ctor, insert, insertfix, left/right rotate, del node, delfix,
+// successor/predesessor, search
+// TODO: display?
 
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(RBTreeTest, SomeTest) {
   EXPECT_EQ(1, 1);
 }
 
