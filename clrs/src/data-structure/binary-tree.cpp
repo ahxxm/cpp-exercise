@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-// TODO: build, insert, del, search, min, max, prede/suc cessor
+// TODO: build, insert, del, search, min, max, prede/suc cessor, size, depth, mirror
 
 TEST(BinarySearchTreeTest, SomeTest) {
   EXPECT_EQ(1, 1);
