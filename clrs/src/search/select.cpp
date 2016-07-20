@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 // TODO: O(n) (expected) linear time median selection impl
-
+// recursive and iterative
 
 TEST(SelectTest, SomeTest) {
   EXPECT_EQ(1, 1);
