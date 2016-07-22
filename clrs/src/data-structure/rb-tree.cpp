@@ -3,6 +3,7 @@
 // TODO: ctor, insert, insertfix, left/right rotate, del node, delfix,
 // successor/predesessor, search, min/max, black-height(node)
 // TODO: display?
+// TODO: chap problems and exercises
 
 
 TEST(RBTreeTest, SomeTest) {
