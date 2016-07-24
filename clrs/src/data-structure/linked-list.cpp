@@ -1,10 +1,131 @@
+#include <initializer_list>
+#include <iostream>
+
 #include "gtest/gtest.h"
 
-// TODO: linked list: insert, delete,
-// TODO: single/double linked list
+// TODO: generic type, std::move, single linked
+
+struct Node {
+  int value;
+  Node *prev = nullptr;
+  Node *next = nullptr;
+
+  Node(const int i) {
+    value = i;
+  }
+
+};
+
+// Double-linked list: hides Node in interface
+class LinkedList {
+public:
+  // constructor
+  LinkedList() {
+    root = nullptr;
+    last = nullptr;
+  };
+
+  LinkedList(const int &n) {
+    root = new Node(n);
+    last = root;
+  };
+
+  // TODO: use of push before auto deduction
+  LinkedList(const std::initializer_list<int> &) {
+
+  };
+
+  // TODO: release resources
+  ~LinkedList() {
+
+  };
+
+  int length() {
+    return size;
+  }
+
+  auto push_back(const int &i) {
+    auto node = new Node(i);
+    if (size == 0) {
+      size += 1;
+      root = node;
+      last = node;
+      return *this;
+    }
+
+    // else make node last, link it with
+    // previous last
+    last->next = node;
+    node->prev = last;
+    last = node;
+    size += 1;
+    return *this;
+  };
+
+  auto pop() {
+    if (size == 0) {
+      return -1;
+    }
+
+    auto k = last->value;
+    last = last->prev;
+    size -= 1;
+
+    // FIXME: dangling pointer?
+    if (last) {
+      // in case root is pop-ed,
+      // then last is already nullptr
+      last->next = nullptr;
+    }
+
+    return k;
+  };
+
+  // TODO: work with insert/del and size
+  auto search(const int &) {
+    return nullptr;
+  }
+
+  // TODO:
+  bool is_circular() {
+    return false;
+  };
+
+  bool is_empty() {
+    return size == 0;
+  }
+
+  // TODO:
+  void display() {
+
+  };
+
+private:
+  // 1st/last element
+  Node *root;
+  Node *last;
+
+  int size = 0;
+};
+
 
 TEST(LinkedListTest, SomeTest) {
-  EXPECT_EQ(1, 1);
+  auto a = LinkedList();
+  auto z = a.pop();
+  EXPECT_EQ(z, -1);
+
+  a.push_back(4);
+  EXPECT_EQ(a.length(), 1);
+
+  auto b = a.pop();
+  EXPECT_EQ(b, 4);
+  EXPECT_EQ(a.length(), 0);
+
+  // a.display();
+
+  // auto b = LinkedList( {1, 2, 3, 4});
+  // std::cout << &b << std::endl;
+
 }
 
 int main(int argc, char *argv[]) {
