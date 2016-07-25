@@ -34,10 +34,8 @@ public:
 
   LinkedList(const std::initializer_list<int> &lst);
 
-  // TODO: release resources
-  ~LinkedList() {
-
-  };
+  // TODO: delete all (new Node())
+  ~LinkedList() = default;
 
   int length() {
     return size;
@@ -93,14 +91,9 @@ public:
   }
 
   // TODO: work with insert/del and size
-  auto search(const int &) {
-    return nullptr;
-  }
-
-  // TODO:
-  bool is_circular() {
-    return false;
-  };
+  // TODO: circular detection
+  auto search(const int &) = delete;
+  bool is_circular();
 
   bool is_empty() {
     return size == 0;
