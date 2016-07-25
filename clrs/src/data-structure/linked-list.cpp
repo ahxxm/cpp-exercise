@@ -95,9 +95,14 @@ public:
     return size == 0;
   }
 
-  // TODO:
   void display() {
+    auto iter = root;
+    while(iter) {
+      std::cout << iter->value << " ";
+      iter = iter->next;
+    };
 
+    std::cout << std::endl;
   };
 
 private:
@@ -113,15 +118,18 @@ TEST(LinkedListTest, SomeTest) {
   auto a = LinkedList();
   auto z = a.pop();
   EXPECT_EQ(z, -1);
+  EXPECT_EQ(a.is_empty(), true);
 
   a.push_back(4);
-  EXPECT_EQ(a.length(), 1);
+  a.push_back(4);
+  EXPECT_EQ(a.length(), 2);
+  EXPECT_EQ(a.is_empty(), false);
+  a.display();
 
   auto b = a.pop();
   EXPECT_EQ(b, 4);
-  EXPECT_EQ(a.length(), 0);
+  EXPECT_EQ(a.length(), 1);
 
-  // a.display();
 
   // auto b = LinkedList( {1, 2, 3, 4});
   // std::cout << &b << std::endl;
