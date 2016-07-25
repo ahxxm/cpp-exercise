@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 
+// TODO: stl_set uses RBTree as backend
 // TODO: search, insert, del, min, max, predecessor/successor(ordered set),
 
 TEST(SetTest, SomeTest) {
