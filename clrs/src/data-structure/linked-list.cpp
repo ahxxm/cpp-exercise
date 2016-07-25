@@ -83,6 +83,18 @@ public:
     return k;
   };
 
+  // can be used as dequeue
+  auto pop_first() {
+    if (size == 0) {
+      return -1;
+    }
+
+    auto k = root->value;
+    root = root->next;
+    size -= 1;
+    return k;
+  }
+
   // TODO: work with insert/del and size
   auto search(const int &) {
     return nullptr;
@@ -134,6 +146,11 @@ TEST(LinkedListTest, SomeTest) {
 
 
   auto c = LinkedList(3);
+  EXPECT_EQ(c.length(), 1);
+  c.push_back(2);
+  EXPECT_EQ(c.length(), 2);
+  auto d = c.pop_first();
+  EXPECT_EQ(d, 3);
   EXPECT_EQ(c.length(), 1);
 
   // auto b = LinkedList( {1, 2, 3, 4});
