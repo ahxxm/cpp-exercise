@@ -17,6 +17,7 @@ struct Node {
 };
 
 // Double-linked list: hides Node in interface
+// can be used as stack/queue
 class LinkedList {
 public:
   // constructor
@@ -28,6 +29,7 @@ public:
   LinkedList(const int &n) {
     root = new Node(n);
     last = root;
+    size = 1;
   };
 
   // TODO: use of push before auto deduction
@@ -130,6 +132,9 @@ TEST(LinkedListTest, SomeTest) {
   EXPECT_EQ(b, 4);
   EXPECT_EQ(a.length(), 1);
 
+
+  auto c = LinkedList(3);
+  EXPECT_EQ(c.length(), 1);
 
   // auto b = LinkedList( {1, 2, 3, 4});
   // std::cout << &b << std::endl;
