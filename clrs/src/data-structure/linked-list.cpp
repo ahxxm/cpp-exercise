@@ -32,10 +32,7 @@ public:
     size = 1;
   };
 
-  // TODO: use of push before auto deduction
-  LinkedList(const std::initializer_list<int> &) {
-
-  };
+  LinkedList(const std::initializer_list<int> &lst);
 
   // TODO: release resources
   ~LinkedList() {
@@ -127,6 +124,13 @@ private:
   int size = 0;
 };
 
+LinkedList::LinkedList(const std::initializer_list<int> &lst) {
+  for (const auto v: lst) {
+    this->push_back(v);
+  }
+};
+
+
 
 TEST(LinkedListTest, SomeTest) {
   auto a = LinkedList();
@@ -153,8 +157,11 @@ TEST(LinkedListTest, SomeTest) {
   EXPECT_EQ(d, 3);
   EXPECT_EQ(c.length(), 1);
 
-  // auto b = LinkedList( {1, 2, 3, 4});
-  // std::cout << &b << std::endl;
+  auto e = LinkedList({1, 2, 3, 4});
+  EXPECT_EQ(e.length(), 4);
+  auto f = e.pop_first();
+  EXPECT_EQ(f, 1);
+  EXPECT_EQ(e.length(), 3);
 
 }
 
