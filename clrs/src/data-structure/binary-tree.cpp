@@ -3,7 +3,7 @@
 #include <stack>
 #include "gtest/gtest.h"
 
-// TODO: build, insert, del, search, min, max, prede/suc cessor, size, depth, mirror
+// TODO: build, del, prede/suc cessor, depth, mirror
 // AVL tree/treap
 // TODO: balanced binary tree?
 
@@ -62,7 +62,6 @@ public:
         iter = iter->right;
       }
     }
-
     return iter;
   }
 
@@ -80,6 +79,26 @@ public:
   void post_order() {
     post_order(root);
     std::cout << std::endl;
+  }
+
+  T min() {
+    auto iter = root;
+    T result;
+    while(iter) {
+      result = iter->value;
+      iter = iter->left;
+    }
+    return result;
+  }
+
+  T max() {
+    auto iter = root;
+    T result;
+    while(iter) {
+      result = iter->value;
+      iter = iter->right;
+    }
+    return result;
   }
 
   // TODO:
@@ -215,6 +234,10 @@ TEST(BinarySearchTreeTest, SomeTest) {
   a.pre_order();
   a.in_order();
   a.post_order();
+
+
+  EXPECT_EQ(a.min(), 0);
+  EXPECT_EQ(a.max(), 6);
 
 }
 
