@@ -5,7 +5,7 @@
 
 // TODO: build, del, prede/suc cessor, depth, mirror
 // AVL tree/treap
-// TODO: balanced binary tree?
+// TODO: balanced binary tree? Day-Stout-Warren algorithm https://github.com/DChaushev/Advanced-Data-Structures
 
 
 template <typename T>
@@ -196,9 +196,6 @@ private:
         }
       }
     }
-
-
-
   }
 
 };
