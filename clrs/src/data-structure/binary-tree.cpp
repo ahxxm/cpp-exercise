@@ -23,7 +23,6 @@ struct Node {
 
 };
 
-
 template <typename T>
 class BinaryTree {
 public:
@@ -137,27 +136,21 @@ private:
     }
   }
 
-  // recursive pre_order
-  /*
-  void pre_order(node_t *node) {
-    if(!node) {return;}
-    std::cout << node->value << " ";
-    pre_order(node->left);
-    pre_order(node->right);
-  }
-  */
   // iterative
   void pre_order(node_t *node) {
+    if (!node) {return;}
     std::stack<node_t *> s;
-    while(!s.empty() || node) {
-      if(node) {
-        std::cout << node->value << " ";
-        s.push(node);
-        node = node->left;
-      } else {
-        node = s.top();
-        s.pop();
-        node = node->right;
+    s.push(node);
+
+    while(!s.empty()) {
+      node = s.top();
+      s.pop();
+      std::cout << node->value << " ";
+      if(node->right) {
+        s.push(node->right);
+      }
+      if(node->left) {
+        s.push(node->left);
       }
     }
   }
