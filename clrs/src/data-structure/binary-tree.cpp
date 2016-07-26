@@ -119,11 +119,28 @@ private:
   }
 
   // recursive pre_order
+  /*
   void pre_order(node_t *node) {
     if(!node) {return;}
     std::cout << node->value << " ";
     pre_order(node->left);
     pre_order(node->right);
+  }
+  */
+  // iterative
+  void pre_order(node_t *node) {
+    std::stack<node_t *> s;
+    while(!s.empty() || node) {
+      if(node) {
+        std::cout << node->value << " ";
+        s.push(node);
+        node = node->left;
+      } else {
+        node = s.top();
+        s.pop();
+        node = node->right;
+      }
+    }
   }
 
   // iterative in_order using std::stack
