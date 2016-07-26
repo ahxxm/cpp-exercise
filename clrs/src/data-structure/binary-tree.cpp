@@ -14,7 +14,11 @@ struct Node {
   Node<T> *right;
   Node<T> *parent;
 
-  Node(T val): value(val){};
+  Node(T val): value(val){
+    left = nullptr;
+    right = nullptr;
+    parent = nullptr;
+  };
 
 };
 
@@ -26,20 +30,26 @@ public:
 
   // constructor
   // TODO: build from std::vector<T>, or first/last iterator to be more generic?
+  BinaryTree(): root(nullptr) {}
+
+  // TODO: destructor release all ptr from new
 
   // interface
-  void insert(T val) {
-    insert(root, nullptr, val, 0);
+  auto insert(T val) {
+    if (!root) {
+      root = insert(root, nullptr, val, 0);
+      return root;
+    }
+
+    auto node = insert(root, nullptr, val, 0);
+    return node;
   };
 
   int node_count() {return size;}
   bool is_empty() {return size == 0;}
 
-  // FIXME: test
   node_t *search(T val) {
-    std::cout << root->value << std::endl;
     auto iter = root;
-    std::cout << iter->value << std::endl;
     while(iter) {
       if (iter->value == val) {
         break;
@@ -55,11 +65,6 @@ public:
     return iter;
   }
 
-
-  void postorder() {
-    postorder(root, 0);
-  }
-
   // TODO:
   void pre_order(); // pre/in/post order traversal, test
   void balance(); // balance the whole tree
@@ -71,46 +76,30 @@ private:
   int size = 0;
   node_t *root;
 
-  void insert(node_t *node, node_t *parent, T val, int left = 0) {
+  auto insert(node_t *node, node_t *parent, T val, int left = 0) {
     // insert below this parent
     // actual insert
     if (!node) {
-      node = new node_t(val);
-      node->left = nullptr;
-      node->right = nullptr;
+      auto t = new node_t(val);
+      t->left = nullptr;
+      t->right = nullptr;
       size += 1;
 
-      if(!parent) {return;}
+      if(!parent) {return t;}
+      t->parent = parent;
       if (left) {
-        parent->left = node;
+        parent->left = t;
       } else {
-        parent->right = node;
+        parent->right = t;
       }
-      return;
+      return t;
     }
 
     // find position
     if (val < node->value) {
-      insert(node->left, node, val, 1);
+      return insert(node->left, node, val, 1);
     } else {
-      insert(node->right, node, val, 0);
-    }
-  }
-
-  void postorder(node_t *p, int indent = 0)
-  {
-    if(p) {
-      if(p->left) {
-        postorder(p->left, indent + 4);
-      }
-      if(p->right) {
-        postorder(p->right, indent + 4);
-      }
-
-      if(indent) {
-        std::cout << std::setw(indent) << ' ';
-      }
-      std::cout << p->value << "\n ";
+      return insert(node->right, node, val, 0);
     }
   }
 
@@ -125,11 +114,24 @@ TEST(BinarySearchTreeTest, SomeTest) {
   a.insert(5);
   a.insert(4);
   EXPECT_EQ(a.node_count(), 5);
+  // a.print();
+
+  //    3
+  //  1   5
+  //   2 4
+
+  auto b = a.search(5);
+  EXPECT_EQ(b->value, 5);
+  EXPECT_EQ(b->parent->value, 3);
+  EXPECT_EQ(b->left->value, 4);
+
+  auto c = a.search(1);
+  EXPECT_EQ(c->value, 1);
+  EXPECT_EQ(c->parent->value, 3);
+  EXPECT_EQ(c->right->value, 2);
 
   // a.postorder();
-  // auto b = a.search(5);
-  // EXPECT_EQ(b->value, 5);
-  // EXPECT_EQ(b->left->value, 4);
+
 }
 
 int main(int argc, char *argv[]) {
