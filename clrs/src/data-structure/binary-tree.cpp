@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <stack>
 #include "gtest/gtest.h"
 
 // TODO: build, insert, del, search, min, max, prede/suc cessor, size, depth, mirror
@@ -65,8 +66,19 @@ public:
     return iter;
   }
 
+  // pre/in/post order traversal
+  void pre_order() {
+    pre_order(root);
+    std::cout << std::endl;
+  };
+
+  void in_order() {
+    in_order(root);
+    std::cout << std::endl;
+  };
+
+
   // TODO:
-  void pre_order(); // pre/in/post order traversal, test
   void balance(); // balance the whole tree
   void print();
   // int height(); // impl after balance?
@@ -103,6 +115,30 @@ private:
     }
   }
 
+  // recursive pre_order
+  void pre_order(node_t *node) {
+    if(!node) {return;}
+    std::cout << node->value << " ";
+    pre_order(node->left);
+    pre_order(node->right);
+  }
+
+  // iterative in_order using std::stack
+  void in_order(node_t *node) {
+    std::stack<node_t *> s;
+    while(!s.empty() || node) {
+      if(node) {
+        s.push(node);
+        node = node->left;
+      } else {
+        node = s.top();
+        std::cout << node->value << " ";
+        s.pop();
+        node = node->right;
+      }
+    }
+  }
+
 };
 
 
@@ -113,22 +149,29 @@ TEST(BinarySearchTreeTest, SomeTest) {
   a.insert(2);
   a.insert(5);
   a.insert(4);
-  EXPECT_EQ(a.node_count(), 5);
+  a.insert(6);
+  a.insert(0);
+  EXPECT_EQ(a.node_count(), 7);
   // a.print();
 
   //    3
   //  1   5
-  //   2 4
+  // 0 2 4 6
 
   auto b = a.search(5);
   EXPECT_EQ(b->value, 5);
   EXPECT_EQ(b->parent->value, 3);
   EXPECT_EQ(b->left->value, 4);
+  EXPECT_EQ(b->right->value, 6);
 
   auto c = a.search(1);
   EXPECT_EQ(c->value, 1);
   EXPECT_EQ(c->parent->value, 3);
+  EXPECT_EQ(c->left->value, 0);
   EXPECT_EQ(c->right->value, 2);
+
+  a.pre_order();
+  a.in_order();
 
   // a.postorder();
 
