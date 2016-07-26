@@ -77,10 +77,13 @@ public:
     std::cout << std::endl;
   };
 
+  void post_order() {
+    post_order(root);
+    std::cout << std::endl;
+  }
 
   // TODO:
   void balance(); // balance the whole tree
-  void print();
   // int height(); // impl after balance?
   // void rotate_left(); // and right
 
@@ -139,6 +142,29 @@ private:
     }
   }
 
+  void post_order(node_t *node) {
+    std::stack<node_t *> s;
+    node_t *last_visited;
+    while(!s.empty() || node) {
+      if(node) {
+        s.push(node);
+        node = node->left;
+      } else {
+        auto top = s.top();
+        if(top->right && last_visited != top->right) {
+          node = top->right;
+        } else {
+          std::cout << top->value << " ";
+          last_visited = top;
+          s.pop();
+        }
+      }
+    }
+
+
+
+  }
+
 };
 
 
@@ -152,7 +178,6 @@ TEST(BinarySearchTreeTest, SomeTest) {
   a.insert(6);
   a.insert(0);
   EXPECT_EQ(a.node_count(), 7);
-  // a.print();
 
   //    3
   //  1   5
@@ -172,8 +197,7 @@ TEST(BinarySearchTreeTest, SomeTest) {
 
   a.pre_order();
   a.in_order();
-
-  // a.postorder();
+  a.post_order();
 
 }
 
