@@ -80,25 +80,43 @@ public:
     std::cout << std::endl;
   }
 
-  T min() {
-    auto iter = root;
-    T result;
-    while(iter) {
-      result = iter->value;
-      iter = iter->left;
+  // successor and predecessor
+  node_t *successor(node_t *node) {
+    if(!node) {return nullptr;}
+    if(node->right) {
+      // FIXME: get pointer directly
+      auto min_p = search(min(node->right));
+      return min_p;
     }
-    return result;
+
+    node_t *p = node->parent;
+    while(p && node != p->left) {
+      node = p;
+      p = node->parent;
+    }
+    return p;
   }
 
-  T max() {
-    auto iter = root;
-    T result;
-    while(iter) {
-      result = iter->value;
-      iter = iter->right;
+  node_t *predecessor(node_t *node) {
+    if(!node) {return nullptr;}
+    if(node->left) {
+      // FIXME: get pointer directly
+      auto max_p = search(max(node->left));
+      return max_p;
     }
-    return result;
+
+    node_t *p = node->parent;
+    while(p && node != p->right) {
+      node = p;
+      p = node->parent;
+    }
+    return p;
   }
+
+
+  T min() {return min(root);}
+  T max() {return max(root);}
+
 
   // TODO:
   void balance(); // balance the whole tree
@@ -108,6 +126,24 @@ public:
 private:
   int size = 0;
   node_t *root;
+
+  T min(node_t *iter) {
+    T result;
+    while(iter) {
+      result = iter->value;
+      iter = iter->left;
+    }
+    return result;
+  }
+
+  T max(node_t *iter) {
+    T result;
+    while(iter) {
+      result = iter->value;
+      iter = iter->right;
+    }
+    return result;
+  }
 
   auto insert(node_t *node, node_t *parent, T val, int left = 0) {
     // insert below this parent
@@ -214,12 +250,16 @@ TEST(BinarySearchTreeTest, SomeTest) {
   EXPECT_EQ(b->parent->value, 3);
   EXPECT_EQ(b->left->value, 4);
   EXPECT_EQ(b->right->value, 6);
+  EXPECT_EQ(a.successor(b)->value, 6);
+  EXPECT_EQ(a.predecessor(b)->value, 4);
 
   auto c = a.search(1);
   EXPECT_EQ(c->value, 1);
   EXPECT_EQ(c->parent->value, 3);
   EXPECT_EQ(c->left->value, 0);
   EXPECT_EQ(c->right->value, 2);
+  EXPECT_EQ(a.successor(c)->value, 2);
+  EXPECT_EQ(a.predecessor(c)->value, 0);
 
   a.pre_order();
   a.in_order();
