@@ -84,9 +84,7 @@ public:
   node_t *successor(node_t *node) {
     if(!node) {return nullptr;}
     if(node->right) {
-      // FIXME: get pointer directly
-      auto min_p = search(min(node->right));
-      return min_p;
+      return min(node->right);
     }
 
     node_t *p = node->parent;
@@ -100,9 +98,7 @@ public:
   node_t *predecessor(node_t *node) {
     if(!node) {return nullptr;}
     if(node->left) {
-      // FIXME: get pointer directly
-      auto max_p = search(max(node->left));
-      return max_p;
+      return max(node->left);
     }
 
     node_t *p = node->parent;
@@ -114,8 +110,8 @@ public:
   }
 
 
-  T min() {return min(root);}
-  T max() {return max(root);}
+  auto min() {return min(root);}
+  auto max() {return max(root);}
 
 
   // TODO:
@@ -127,19 +123,19 @@ private:
   int size = 0;
   node_t *root;
 
-  T min(node_t *iter) {
-    T result;
+  node_t *min(node_t *iter) {
+    node_t *result;
     while(iter) {
-      result = iter->value;
+      result = iter;
       iter = iter->left;
     }
     return result;
   }
 
-  T max(node_t *iter) {
-    T result;
+  node_t *max(node_t *iter) {
+    node_t *result;
     while(iter) {
-      result = iter->value;
+      result = iter;
       iter = iter->right;
     }
     return result;
@@ -266,8 +262,8 @@ TEST(BinarySearchTreeTest, SomeTest) {
   a.post_order();
 
 
-  EXPECT_EQ(a.min(), 0);
-  EXPECT_EQ(a.max(), 6);
+  EXPECT_EQ(a.min()->value, 0);
+  EXPECT_EQ(a.max()->value, 6);
 
 }
 
