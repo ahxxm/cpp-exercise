@@ -1,8 +1,6 @@
 #include <memory>
 #include "gtest/gtest.h"
 
-// TODO: ctor
-// successor/predesessor
 // TODO: display?
 // TODO: chap problems and exercises
 
