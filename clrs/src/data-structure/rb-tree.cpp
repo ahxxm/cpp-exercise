@@ -66,18 +66,23 @@ public:
   typedef T* pointer;
   using node_p = Node<T>*;
 
+  // TODO: protected for inherit class
+
   void insert();
-  void insertfix();
   void del(node_p node);
-  void delfix();
-  void left_rotate(node_p parent);
-  void right_rotate(node_p parent);
   int black_height(node_p node);
   node_p search(T val);
+
+  void check();
 
 private:
   node_p root;
   int size;
+
+  void insertfix();
+  void delfix();
+  void left_rotate(node_p parent);
+  void right_rotate(node_p parent);
 };
 
 
