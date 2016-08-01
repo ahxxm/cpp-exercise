@@ -91,6 +91,7 @@ public:
   }
 
   void insert(int val) {
+    // pair: correct_pos, parent
     std::pair<link, node_p> position;
     position = get_insert_position(val);
     if(!position.first) {
@@ -144,24 +145,25 @@ private:
   }
 
   std::pair<link, node_p> get_insert_position(int val) {
-    auto where = make_link(root);
-    node_p origin = nullptr;
+    // insert_pos is a pointer to correct nullptr
+    // **insert_pos == nullptr(either node->left or right)
 
-    while(deref_link(where)) {
-      origin = deref_link(where);
-      if(val < origin->value) {
-        where = make_link(origin->left);
+    // origin is its parent
+    link insert_pos = make_link(root);
+    node_p parent = nullptr;
+
+    while(deref_link(insert_pos)) {
+      // keep parent then make_link
+      parent = deref_link(insert_pos);
+      if(val < parent->value) {
+        insert_pos = make_link(parent->left);
       } else {
-        if (val > origin->value) {
-          where = make_link(origin->right);
-        } else {
-          where = nullptr;
-          break;
-        }
+        insert_pos = make_link(parent->right);
       }
     }
 
-    return std::make_pair(where, origin);
+    return std::make_pair(insert_pos, parent);
+
   }
 
   node_p sib(node_p node) {
@@ -223,7 +225,6 @@ private:
     // counter-clockwise
     // make parent a left child, make its origin right child parent
     auto node = deref_link(parent);
-    if(!node) {return;}
     auto right = node->right;
     auto rleft = right->left;
 
@@ -231,6 +232,7 @@ private:
     right->parent = node->parent;
     right->left = node;
     node->parent = right;
+    node->right = nullptr;
 
     if(rleft) {
       rleft->parent = node;
@@ -240,7 +242,6 @@ private:
   void right_rotate(link parent) {
     // mirror to left rotate
     auto node = deref_link(parent);
-    if(!node) {return;}
     auto left = node->left;
     auto lright = left->right;
 
@@ -248,6 +249,7 @@ private:
     left->parent = node->parent;
     left->right = node;
     node->parent = left;
+    node->left = nullptr;
 
     if(lright) {
       lright->parent = node;
@@ -322,10 +324,8 @@ private:
 
 
 void test_insert(RBTree &tree) {
-  for (int i = 0;i < 500; ++i) {
+  for (int i = 0;i < 10; ++i) {
     int a = std::rand() % 10000;
-    std::cout << a << std::endl;
-
     tree.insert(a);
     tree.check();
   }
