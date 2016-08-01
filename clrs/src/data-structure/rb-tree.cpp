@@ -182,15 +182,15 @@ private:
     // make parent a left child, make its origin right child parent
     auto node = deref_link(parent);
     auto right = node->right;
-    if(!right) {return;}
+    auto rleft = right->left;
 
     set_link(parent, right);
     right->parent = node->parent;
     right->left = node;
     node->parent = right;
 
-    if(right->left) {
-      right->left->parent = node;
+    if(rleft) {
+      rleft->parent = node;
     }
   }
 
@@ -198,15 +198,15 @@ private:
     // mirror to left rotate
     auto node = deref_link(parent);
     auto left = node->left;
-    if(!left) {return;}
+    auto lright = left->right;
 
     set_link(parent, left);
     left->parent = node->parent;
     left->right = node;
     node->parent = left;
 
-    if(left->right) {
-      left->right->parent = node;
+    if(lright) {
+      lright->parent = node;
     }
   }
 
