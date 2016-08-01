@@ -65,6 +65,7 @@ struct Node {
 class RBTree {
 public:
   using node_p = Node*;
+  using link = node_p*;
 
   // TODO: protected for inherit class
 
@@ -106,7 +107,7 @@ public:
     // 1. nodes are red or black
     // 2. root black
     if(node_color(root) == red) {
-      // TODO: throw
+      assert(1 == 0);
     }
 
     check(root);
@@ -156,9 +157,23 @@ private:
 
     // now node is black, height is left/right height + 1(self)
     ++left_height;
-
     return left_height;
+  }
 
+  // link is node**
+  link make_link(node_p &node) {return &node;}
+  node_p deref_link(link __link) {return *__link;}
+  void set_link(link __link, node_p node) {*__link = node;}
+  node_p get_link_parent_node(link __link) {return deref_link(__link)->parent;}
+  link get_link(node_p node) {
+    node_p parent = node->parent;
+    if(!parent) {
+      return make_link(root);
+    }
+    if(parent->left == node) {
+      return make_link(parent->left);
+    }
+    return make_link(parent->right);
   }
 
   void insertfix();
