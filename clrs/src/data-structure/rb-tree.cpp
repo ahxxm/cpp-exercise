@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <cassert>
 #include <memory>
+#include <utility>
 #include "gtest/gtest.h"
 
 // TODO: display?
@@ -77,7 +78,7 @@ public:
 
   ~RBTree() {
     // iteratively delete, then set root to null
-    delete_node(root);
+    clean(root);
     root = nullptr;
   }
 
@@ -97,11 +98,25 @@ public:
     return iter;
   }
 
-  void insert(int val);
-  void del(node_p node);
-  void del(int val);
-  int black_height(node_p node);
+  void insert(int val) {
+    auto position = get_insert_position(val);
+    if(!position.first) {
+      return;
+    }
 
+    // new node
+    node_p node = new Node(val);
+    node->color = red;
+    node->left = nullptr;
+    node->right = nullptr;
+    node->parent = position.second;
+
+    // set to position
+    set_link(position.first, node);
+
+    // fix color..
+    insertfix(node);
+  }
 
   void check() {
     // 1. nodes are red or black
@@ -113,14 +128,19 @@ public:
     check(root);
   };
 
+  void del(node_p node);
+  void del(int val);
+  int black_height(node_p node);
+
 private:
   node_p root;
   int size;
 
-  void delete_node(node_p node) {
+  void clean(node_p node) {
+    // helper for root(only)
     if(node) {
-      delete_node(node->left);
-      delete_node(node->right);
+      clean(node->left);
+      clean(node->right);
       delete node;
     }
   }
@@ -130,6 +150,25 @@ private:
       return node->color;
     }
     return black;
+  }
+
+  std::pair<link, node_p> get_insert_position(int val) {
+    auto where = make_link(root);
+    node_p origin = nullptr;
+
+    while(deref_link(where)) {
+      origin = deref_link(where);
+      if(val < origin->value) {
+        where = make_link(origin->left);
+      } else if(val > origin->value) {
+        where = make_link(origin->right);
+      } else {
+        where = nullptr;
+        break;
+      }
+    }
+
+    return std::make_pair(where, origin);
   }
 
   int check(node_p node) {
@@ -210,7 +249,29 @@ private:
     }
   }
 
-  void insertfix();
+  // fix color
+  void insertfix(node_p node) {
+    // case 1: new tree
+    if(!node->parent) {
+      node->color = black;
+      return;
+    }
+
+    // case 2: parent black
+    if(node->parent->color == black) {
+      return;
+    }
+
+    // otherwise, make parent black, then rebalance
+    // on upwards
+    node->parent->color = black;
+    insertfix_cases(node->parent);
+  }
+
+  void insertfix_cases(node_p node) {
+
+  };
+
   void delfix();
 
 };
