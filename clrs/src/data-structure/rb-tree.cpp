@@ -176,10 +176,43 @@ private:
     return make_link(parent->right);
   }
 
+  // rotate
+  void left_rotate(link parent) {
+    // counter-clockwise
+    // make parent a left child, make its origin right child parent
+    auto node = deref_link(parent);
+    auto right = node->right;
+    if(!right) {return;}
+
+    set_link(parent, right);
+    right->parent = node->parent;
+    right->left = node;
+    node->parent = right;
+
+    if(right->left) {
+      right->left->parent = node;
+    }
+  }
+
+  void right_rotate(link parent) {
+    // mirror to left rotate
+    auto node = deref_link(parent);
+    auto left = node->left;
+    if(!left) {return;}
+
+    set_link(parent, left);
+    left->parent = node->parent;
+    left->right = node;
+    node->parent = left;
+
+    if(left->right) {
+      left->right->parent = node;
+    }
+  }
+
   void insertfix();
   void delfix();
-  void left_rotate(node_p parent);
-  void right_rotate(node_p parent);
+
 };
 
 
