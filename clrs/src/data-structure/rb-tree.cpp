@@ -4,6 +4,8 @@
 #include <utility>
 #include "gtest/gtest.h"
 
+#include <iostream>
+
 // TODO: display?
 // TODO: chap problems and exercises
 
@@ -52,14 +54,6 @@ struct Node {
       return grandparent->left;
     }
   }
-
-  Node(int val) {
-    left = nullptr;
-    right = nullptr;
-    parent = nullptr;
-    value = val;
-    color = black;
-  }
 };
 
 
@@ -72,14 +66,12 @@ public:
 
   // constructor
   // default: make root black
-  RBTree() {
-    root->color = black;
-  }
+  RBTree(): root(nullptr) {};
 
   ~RBTree() {
     // iteratively delete, then set root to null
-    clean(root);
-    root = nullptr;
+    // clean(root);
+    // root = nullptr;
   }
 
   node_p search(const int &val) {
@@ -99,13 +91,15 @@ public:
   }
 
   void insert(int val) {
-    auto position = get_insert_position(val);
+    std::pair<link, node_p> position;
+    position = get_insert_position(val);
     if(!position.first) {
       return;
     }
 
     // new node
-    node_p node = new Node(val);
+    node_p node = new Node;
+    node->value = val;
     node->color = red;
     node->left = nullptr;
     node->right = nullptr;
@@ -130,7 +124,6 @@ public:
 
   void del(node_p node);
   void del(int val);
-  int black_height(node_p node);
 
 private:
   node_p root;
@@ -146,10 +139,8 @@ private:
   }
 
   bool node_color(node_p node) {
-    if(node) {
-      return node->color;
-    }
-    return black;
+    if(!node) {return black;}
+    return node->color;
   }
 
   std::pair<link, node_p> get_insert_position(int val) {
@@ -160,28 +151,47 @@ private:
       origin = deref_link(where);
       if(val < origin->value) {
         where = make_link(origin->left);
-      } else if(val > origin->value) {
-        where = make_link(origin->right);
       } else {
-        where = nullptr;
-        break;
+        if (val > origin->value) {
+          where = make_link(origin->right);
+        } else {
+          where = nullptr;
+          break;
+        }
       }
     }
 
     return std::make_pair(where, origin);
   }
 
+  node_p sib(node_p node) {
+    auto parent = node->parent;
+    auto si = parent->left;
+    if(si == node) {si = parent->right;}
+    return si;
+  }
+
   int check(node_p node) {
     // returns black height
+    // null leaft has 1
     if(!node) {return 1;}
 
     // 3. leaf are black(by design?)
+    node_p left = node->left;
+    node_p right = node->right;
+
+    // 5. black height is same from node to every leaft node
+    int left_height = check(left);
+    int right_height = check(right);
+    assert(left_height == right_height);
+
     // 4. no consecutive red node
-    auto left = node->left;
-    auto right = node->right;
-    if(node->color == red) {
-      assert(left->color == black);
-      assert(right->color == black);
+    if(node_color(node) == red) {
+      assert(node_color(left) == black);
+      assert(node_color(right) == black);
+    } else {
+      // now node is black, height is left/right height + 1(self)
+      ++left_height;
     }
 
     // make sure parent/child pair is correct
@@ -189,13 +199,6 @@ private:
       assert(1 == 0);
     }
 
-    // 5. black height is same from node to every leaft node
-    int left_height = check(left);
-    int right_height = check(right);
-    assert(left_height == right_height);
-
-    // now node is black, height is left/right height + 1(self)
-    ++left_height;
     return left_height;
   }
 
@@ -220,6 +223,7 @@ private:
     // counter-clockwise
     // make parent a left child, make its origin right child parent
     auto node = deref_link(parent);
+    if(!node) {return;}
     auto right = node->right;
     auto rleft = right->left;
 
@@ -236,6 +240,7 @@ private:
   void right_rotate(link parent) {
     // mirror to left rotate
     auto node = deref_link(parent);
+    if(!node) {return;}
     auto left = node->left;
     auto lright = left->right;
 
@@ -266,9 +271,48 @@ private:
     // on upwards
     node->parent->color = black;
     insertfix_cases(node->parent);
+    root->color = black;
   }
 
   void insertfix_cases(node_p node) {
+    auto parent = node->parent;
+    auto si = sib(node);
+    // complex case 1: sib is red
+    // parent && sib both are previously red, grandpa must be black
+    // sib can't have child(black height is 1)
+    if(node_color(si) == red) {
+      si->color = black;
+      parent->color = red;
+
+      // parent's parent is also red, recursively fix it
+      if(node_color(parent->parent) == red) {
+        parent->parent->color = black;
+        insertfix_cases(parent->parent);
+      }
+    }
+
+    // complex case 2: sib is nullptr
+    // black height is also 1
+    // set node to parent, set previous parent red
+    else {
+      parent->color = red;
+      if(node == parent->left) {
+        if(node_color(node->right) == red) {
+          node->color = red;
+          node->right->color = black;
+          left_rotate(make_link(parent->left));
+        }
+        right_rotate(get_link(parent));
+      } else {
+        if(node_color(node->left) == red) {
+          node->color = red;
+          node->left->color = black;
+          right_rotate(make_link(parent->right));
+        }
+        left_rotate(get_link(parent));
+      }
+
+    }
 
   };
 
@@ -280,11 +324,14 @@ private:
 void test_insert(RBTree &tree) {
   for (int i = 0;i < 500; ++i) {
     int a = std::rand() % 10000;
+    std::cout << a << std::endl;
+
     tree.insert(a);
     tree.check();
   }
 }
 
+/*
 void test_delete(RBTree &tree) {
   for (int i = 0;i < 600; ++i) {
     auto tmp = rand();
@@ -292,16 +339,20 @@ void test_delete(RBTree &tree) {
     tree.check();
   }
 
-}
+  }
+*/
 
 TEST(RBTreeTest, SomeTest) {
   auto a = RBTree();
   test_insert(a);
-  test_delete(a);
+  // test_delete(a);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   int ret = RUN_ALL_TESTS();
   return ret;
+  // auto a = RBTree();
+  // test_insert(a);
+  // return 0;
 }
