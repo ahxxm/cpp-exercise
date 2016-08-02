@@ -63,6 +63,30 @@ auto lright_most(node_p node) {
 }
 
 
+void print(Node *p, int start) {
+  // node print in "value, R/B" form
+  // left most node is root
+  // node value descendingly ordered from top to bottom
+  if(!p) {return;}
+  start++;
+  if (p->right)
+    {
+      print(p->right, start);
+    }
+  for (int i = 0; i <= start; i++)
+    {
+      std::cout << "    ";
+    }
+  char color = 'B';
+  if(p && p->color == red) {color = 'R';}
+  std::cout << p->value << "," << color << std::endl;
+  if (p->left)
+    {
+      print(p->left, start);
+    }
+}
+
+
 class RBTree {
 public:
   using link = node_p*;
@@ -134,7 +158,7 @@ public:
     if(!k) {return;}
 
     // otherwise
-    auto node = del(k);
+    auto node = swap_and_return_remove(k);
 
     // fix
     delfix(node);
@@ -345,7 +369,7 @@ private:
   };
 
 
-  node_p del(node_p node) {
+  node_p swap_and_return_remove(node_p node) {
     // case 1: swap node with left-most-of-right,
     // return to-delete-node
     node_p result = nullptr;
@@ -393,42 +417,137 @@ private:
     // because parent does not know node now: one child + one nullptr.
     node_p si = node->parent->left;
     if(!si) {si = node->parent->right;}
+    std::cout << "del fix cases sib " << si->value << std::endl;
+
     delfixcases(si);
   }
 
-  void delfixcases(node_p node) {
-    // parent, sib, sib's child make 9 color combinations together.
+  void delfix_redparent(node_p si) {
+    // case 6-9: parent red
+    // copy func pointer and others
+    typedef void (RBTree::*rot_func)(link);
+    rot_func rleft = &RBTree::left_rotate;
+    rot_func rright = &RBTree::right_rotate;
+    node_p si_l = si->left;
+    node_p si_r = si->right;
+    if(si == si->parent->left) {
+      std::swap(rleft, rright);
+      std::swap(si_l, si_r);
+    }
+    auto parent = si->parent;
 
+    // parent red, sib black
+    // case 6: both child black
+    if (node_color(si_l) == black && node_color(si_r) == black) {
+      std::cout << "case 6" << std::endl;
+      (this->*rleft)(get_link(parent));
+    }
+
+    // 7: left red, right black
+    else if (node_color(si_l) == red && node_color(si_r) == black) {
+      std::cout << "case 7" << std::endl;
+      parent->color = black;
+      (this->*rright)(get_link(si));
+      (this->*rleft)(get_link(parent));
+    }
+
+    // 8: left black, right red
+    else if (node_color(si_l) == black && node_color(si_r) == red) {
+      std::cout << "case 8" << std::endl;
+      (this->*rleft)(get_link(parent));
+    }
+
+    // 9: both red
+    else if (node_color(si_l) == red && node_color(si_r) == red) {
+      std::cout << "case 9" << std::endl;
+      parent->color = black;
+      (this->*rright)(get_link(si));
+      (this->*rleft)(get_link(parent));
+    }
+
+  }
+
+  void delfixcases(node_p si) {
+    // parent, sib, sib's child make 9 color combinations together.
+    // (assuming node to delete is a left child)
+
+    // rotate func pointer that takes link as input
+    typedef void (RBTree::*rot_func)(link);
+    rot_func rleft = &RBTree::left_rotate;
+    rot_func rright = &RBTree::right_rotate;
+
+    node_p si_l = si->left;
+    node_p si_r = si->right;
+
+    // if sib is left, make them right.
+    if(si == si->parent->left) {
+      std::swap(rleft, rright);
+      std::swap(si_l, si_r);
+    }
+
+    auto parent = si->parent;
+
+    // Cases
+    // 1-5: parent black
+    std::cout << "current tree" << std::endl;
+    print(root, 0);
+    std::cout << std::endl;
+
+
+    std::cout << "fix sib: " << si->value << std::endl;
+
+    if(node_color(parent) == black) {
+
+      // 1-4: sib black
+      if(node_color(si) == black) {
+
+        // 1: child both black
+        if(node_color(si_l) == black && node_color(si_r) == black) {
+          std::cout << "case 1" << std::endl;
+          si->color = red;
+          if(parent->parent) {delfixcases(sib(parent));}
+        }
+        // 2: left red, right black
+        if(node_color(si_l) == red && node_color(si_r) == black) {
+          std::cout << "case 2" << std::endl;
+          si_l->color = black;
+          (this->*rright)(get_link(si));
+          (this->*rleft)(get_link(parent));
+        }
+        // 3: left black, right red
+        if(node_color(si_l) == black && node_color(si_r) == red) {
+          std::cout << "case 3" << std::endl;
+          si_r->color = black;
+          (this->*rleft)(get_link(parent));
+        }
+        // 4: both red
+        if(node_color(si_l) == red && node_color(si_r) == red) {
+          std::cout << "case 4" << std::endl;
+          si_l->color = black;
+          (this->*rright)(get_link(si));
+          (this->*rleft)(get_link(parent));
+        }
+      }
+      // 5: sib red
+      else {
+        std::cout << "case 5" << std::endl;
+        parent->color = red;
+        si->color = black;
+        (this->*rleft)(get_link(parent));
+        delfix_redparent(si_l);
+      }
+    }
+
+    // 6-9: parent red
+    else {delfix_redparent(si);}
   }
 };
 
-void print(Node *p, int start) {
-  // node print in "value, R/B" form
-  // left most node is root
-  // node value descendingly ordered from top to bottom
-  start++;
-  if (p->right)
-    {
-      print(p->right, start);
-    }
-  for (int i = 0; i <= start; i++)
-    {
-      std::cout << "    ";
-    }
-  char color = 'B';
-  if(p && p->color == red) {color = 'R';}
-  std::cout << p->value << "," << color << std::endl;
-  if (p->left)
-    {
-      print(p->left, start);
-    }
-}
-
-
 
 void test_insert(RBTree &tree) {
-  for (int i = 0;i < 50; ++i) {
-    int a = std::rand() % 100;
+  // for (int i = 0;i < 10; ++i) {
+  // int a = std::rand() % 21;
+  for(int a: {1, 2, 3, 4, 5, 6, 7}) {
     tree.insert(a);
     // print(tree.getRoot(), 0);
     tree.check();
@@ -438,12 +557,19 @@ void test_insert(RBTree &tree) {
 
 
 void test_delete(RBTree &tree) {
-  for (int i = 0;i < 50; ++i) {
-    auto tmp = rand() % 100;
-    tree.del(tmp);
+  // for (int i = 0;i < 10; ++i) {
+  std::cout << "tree origin" << std::endl;
+  print(tree.getRoot(), 0);
+  std::cout << std::endl;
+
+  for(int tmp: {1, 2, 3, 4, 5, 6, 7}) {
+    // auto tmp = rand() % 21;
     std::cout << "delete " << tmp << std::endl;
+    tree.del(tmp);
     print(tree.getRoot(), 0);
     tree.check();
+    std::cout << std::endl;
+
   }
 }
 
