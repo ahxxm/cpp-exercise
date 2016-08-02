@@ -239,9 +239,11 @@ private:
 
     set_link(parent, right);
     right->parent = node->parent;
+
+    node->right = right->left;
     right->left = node;
     node->parent = right;
-    node->right = nullptr;
+
 
     if(rleft) {
       rleft->parent = node;
@@ -256,9 +258,10 @@ private:
 
     set_link(parent, left);
     left->parent = node->parent;
+
+    node->left = left->right;
     left->right = node;
     node->parent = left;
-    node->left = nullptr;
 
     if(lright) {
       lright->parent = node;
@@ -359,12 +362,13 @@ void print(Node *p, int start)
 
 
 void test_insert(RBTree &tree) {
-  // for (int i = 0;i < 100; ++i) {
-  // int a = std::rand() % 10000;
-  for (auto a: {1, 2, 3, 4, 5, 6, 7, 8}) {
+  for (int i = 0;i < 1000; ++i) {
+    int a = std::rand() % 10000;
     tree.insert(a);
     std::cout << a << std::endl;
-    print(tree.getRoot(), 0);
+    std::cout << std::endl;
+
+    // print(tree.getRoot(), 0);
     tree.check();
 
   }
