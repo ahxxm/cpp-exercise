@@ -6,7 +6,6 @@
 
 #include <iostream>
 
-// TODO: display?
 // TODO: chap problems and exercises
 
 // color for tree
@@ -70,8 +69,8 @@ public:
 
   ~RBTree() {
     // iteratively delete, then set root to null
-    // clean(root);
-    // root = nullptr;
+    clean(root);
+    root = nullptr;
   }
 
   node_p search(const int &val) {
@@ -292,12 +291,9 @@ private:
     auto parent = node->parent;
     auto si = sib(node);
     // complex case 1: sib is red
-    // parent && sib both are previously red, grandpa must be black
-    // sib can't have child(black height is 1)
     if(node_color(si) == red) {
       si->color = black;
       parent->color = red;
-
       // parent's parent is also red, recursively fix it
       if(node_color(parent->parent) == red) {
         parent->parent->color = black;
@@ -305,15 +301,8 @@ private:
       }
     }
 
-    // complex case 2: sib is nullptr
-    // black height is also 1
-    // set node to parent, set previous parent red
+    // complex case 2: sib is black
     else {
-      std::cout << "fixing insert case 2 on node "
-                << node->value
-                << ", parent value "
-                << parent->value << std::endl;
-
       parent->color = red;
       if(node == parent->left) {
         if(node_color(node->right) == red) {
@@ -330,7 +319,6 @@ private:
         }
         left_rotate(get_link(parent));
       }
-
     }
 
   };
@@ -339,8 +327,10 @@ private:
 
 };
 
-void print(Node *p, int start)
-{
+void print(Node *p, int start) {
+  // node print in "value, R/B" form
+  // left most node is root
+  // node value descendingly ordered from top to bottom
   start++;
   if (p->right)
     {
@@ -365,9 +355,6 @@ void test_insert(RBTree &tree) {
   for (int i = 0;i < 1000; ++i) {
     int a = std::rand() % 10000;
     tree.insert(a);
-    std::cout << a << std::endl;
-    std::cout << std::endl;
-
     // print(tree.getRoot(), 0);
     tree.check();
 
@@ -396,7 +383,4 @@ int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   int ret = RUN_ALL_TESTS();
   return ret;
-  // auto a = RBTree();
-  // test_insert(a);
-  // return 0;
 }
