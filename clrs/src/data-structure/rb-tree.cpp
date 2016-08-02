@@ -12,26 +12,15 @@
 #define black true
 #define red false
 
+struct Node;
+typedef Node* node_p;
+
 struct Node {
   int value;
   bool color;
-
-  typedef Node* node_p;
   node_p left, right, parent;
 
-  auto min(node_p node) {
-    while(node->left) {
-      node = node->left;
-    }
-    return node;
-  }
 
-  auto max(node_p node) {
-    while(node->right) {
-      node = node->right;
-    }
-    return node;
-  }
 
   auto grandp() {
     auto p = this->parent;
@@ -56,9 +45,26 @@ struct Node {
 };
 
 
+// return left-most/right-most,
+// could return origin
+auto rleft_most(node_p node) {
+  // the smallest node that value greater than `node`
+  while(node->left) {
+    node = node->left;
+  }
+  return node;
+}
+
+auto lright_most(node_p node) {
+  while(node->right) {
+    node = node->right;
+  }
+  return node;
+}
+
+
 class RBTree {
 public:
-  using node_p = Node*;
   using link = node_p*;
 
   // TODO: protected for inherit class
@@ -73,7 +79,7 @@ public:
     root = nullptr;
   }
 
-  node_p search(const int &val) {
+  node_p search(const int val) {
     auto iter = root;
     while(iter) {
       if(iter->value == val) {
@@ -122,9 +128,20 @@ public:
     check(root);
   };
 
-  void del(node_p node);
-  void del(int val);
+  void del(const int val) {
+    // not found
+    auto k = search(val);
+    if(!k) {return;}
 
+    // otherwise
+    auto node = del(k);
+
+    // fix
+    delfix(node);
+
+    // clean memory
+    delete node;
+  }
 
   // debug method for print tree
   auto getRoot() {
@@ -212,7 +229,11 @@ private:
     return left_height;
   }
 
-  // link is node**
+  // link is node**, pointer is sometimes copied while passing by value,
+  // this restores origin pointer address.
+  // TODO: rename
+  // make_link/get_link: pointer to node_p in tree
+  // set_link: replace node_p in tree with new pointer
   link make_link(node_p &node) {return &node;}
   node_p deref_link(link __link) {return *__link;}
   void set_link(link __link, node_p node) {*__link = node;}
@@ -323,8 +344,62 @@ private:
 
   };
 
-  void delfix();
 
+  node_p del(node_p node) {
+    // case 1: swap node with left-most-of-right,
+    // return to-delete-node
+    node_p result = nullptr;
+    if(node->left && node->right) {
+      result = rleft_most(node);
+      std::swap(result->value, node->value);
+      node = result;
+      result = nullptr;
+    }
+
+    // case 2: only 1 child, swap and reset parent
+    if(node->left) {
+      result = node->left;
+    } else if (node->right){
+      result = node->right;
+    }
+
+    set_link(get_link(node), result);
+    if(result) {
+      result->parent = node->parent;
+    }
+
+    return node;
+  }
+
+  void delfix(node_p node) {
+    // node has pointer to parent, but parent has no pointer to node
+
+    // red node does not affect black height
+    if(node_color(node) == red) {return;}
+
+    // black node's child, set to black to keep black height
+    // (node can only have 1 child here, because rleft_most())
+    if(node->left || node->right) {
+      if(node->left) {node->left->color = black;}
+      if(node->right) {node->right->color = black;}
+    }
+
+    // root has to parent
+    if(!node->parent) {return;}
+
+    // otherwise, we delete a black node that have no child,
+    // to fix we need to jump up.
+    // it's sib must exist to keep balance, sib() can't be used
+    // because parent does not know node now: one child + one nullptr.
+    node_p si = node->parent->left;
+    if(!si) {si = node->parent->right;}
+    delfixcases(si);
+  }
+
+  void delfixcases(node_p node) {
+    // parent, sib, sib's child make 9 color combinations together.
+
+  }
 };
 
 void print(Node *p, int start) {
@@ -352,8 +427,8 @@ void print(Node *p, int start) {
 
 
 void test_insert(RBTree &tree) {
-  for (int i = 0;i < 1000; ++i) {
-    int a = std::rand() % 10000;
+  for (int i = 0;i < 50; ++i) {
+    int a = std::rand() % 100;
     tree.insert(a);
     // print(tree.getRoot(), 0);
     tree.check();
@@ -361,22 +436,22 @@ void test_insert(RBTree &tree) {
   }
 }
 
-/*
+
 void test_delete(RBTree &tree) {
-  for (int i = 0;i < 600; ++i) {
-    auto tmp = rand();
+  for (int i = 0;i < 50; ++i) {
+    auto tmp = rand() % 100;
     tree.del(tmp);
+    std::cout << "delete " << tmp << std::endl;
+    print(tree.getRoot(), 0);
     tree.check();
   }
-
-  }
-*/
+}
 
 
 TEST(RBTreeTest, SomeTest) {
   auto a = RBTree();
   test_insert(a);
-  // test_delete(a);
+  test_delete(a);
 }
 
 int main(int argc, char **argv) {
