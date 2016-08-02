@@ -126,6 +126,12 @@ public:
   void del(node_p node);
   void del(int val);
 
+
+  // debug method for print tree
+  auto getRoot() {
+    return root;
+  }
+
 private:
   node_p root;
   int size;
@@ -185,7 +191,10 @@ private:
     // 5. black height is same from node to every leaft node
     int left_height = check(left);
     int right_height = check(right);
-    assert(left_height == right_height);
+    if(left_height != right_height) {
+      std::cout << "node " << node->value << " is not balanced." << std::endl;
+      assert(left_height == right_height);
+    }
 
     // 4. no consecutive red node
     if(node_color(node) == red) {
@@ -297,6 +306,11 @@ private:
     // black height is also 1
     // set node to parent, set previous parent red
     else {
+      std::cout << "fixing insert case 2 on node "
+                << node->value
+                << ", parent value "
+                << parent->value << std::endl;
+
       parent->color = red;
       if(node == parent->left) {
         if(node_color(node->right) == red) {
@@ -322,12 +336,37 @@ private:
 
 };
 
+void print(Node *p, int start)
+{
+  start++;
+  if (p->right)
+    {
+      print(p->right, start);
+    }
+  for (int i = 0; i <= start; i++)
+    {
+      std::cout << "    ";
+    }
+  char color = 'B';
+  if(p && p->color == red) {color = 'R';}
+  std::cout << p->value << "," << color << std::endl;
+  if (p->left)
+    {
+      print(p->left, start);
+    }
+}
+
+
 
 void test_insert(RBTree &tree) {
-  for (int i = 0;i < 10; ++i) {
-    int a = std::rand() % 10000;
+  // for (int i = 0;i < 100; ++i) {
+  // int a = std::rand() % 10000;
+  for (auto a: {1, 2, 3, 4, 5, 6, 7, 8}) {
     tree.insert(a);
+    std::cout << a << std::endl;
+    print(tree.getRoot(), 0);
     tree.check();
+
   }
 }
 
@@ -341,6 +380,7 @@ void test_delete(RBTree &tree) {
 
   }
 */
+
 
 TEST(RBTreeTest, SomeTest) {
   auto a = RBTree();
