@@ -406,6 +406,7 @@ private:
     if(node->left || node->right) {
       if(node->left) {node->left->color = black;}
       if(node->right) {node->right->color = black;}
+      return;
     }
 
     // root has to parent
@@ -417,7 +418,6 @@ private:
     // because parent does not know node now: one child + one nullptr.
     node_p si = node->parent->left;
     if(!si) {si = node->parent->right;}
-    std::cout << "del " << node->value<< ", fix cases sib " << si->value << std::endl;
 
     delfixcases(si);
   }
@@ -436,18 +436,14 @@ private:
     }
     auto parent = si->parent;
 
-    std::cout << "fix red parent, sib: " << si->value << std::endl;
-
     // parent red, sib black
     // case 6: both child black
     if (node_color(si_l) == black && node_color(si_r) == black) {
-      std::cout << "case 6" << std::endl;
       (this->*rleft)(get_link(parent));
     }
 
     // 7: left red, right black
     else if (node_color(si_l) == red && node_color(si_r) == black) {
-      std::cout << "case 7" << std::endl;
       parent->color = black;
       (this->*rright)(get_link(si));
       (this->*rleft)(get_link(parent));
@@ -455,13 +451,11 @@ private:
 
     // 8: left black, right red
     else if (node_color(si_l) == black && node_color(si_r) == red) {
-      std::cout << "case 8" << std::endl;
       (this->*rleft)(get_link(parent));
     }
 
     // 9: both red
     else if (node_color(si_l) == red && node_color(si_r) == red) {
-      std::cout << "case 9" << std::endl;
       parent->color = black;
       (this->*rright)(get_link(si));
       (this->*rleft)(get_link(parent));
@@ -488,9 +482,6 @@ private:
     }
 
     auto parent = si->parent;
-    std::cout << "fix sib cases, sib: " << si->value << std::endl;
-    std::cout << "before fix" << std::endl;
-    print(root, 0);
 
     // Cases
     // 1-5: parent black
@@ -501,27 +492,23 @@ private:
 
         // 1: child both black
         if(node_color(si_l) == black && node_color(si_r) == black) {
-          std::cout << "case 1" << std::endl;
           si->color = red;
           if(parent->parent) {delfixcases(sib(parent));}
         }
         // 2: left red, right black
         else if(node_color(si_l) == red && node_color(si_r) == black) {
-          std::cout << "case 2" << std::endl;
           si_l->color = black;
           (this->*rright)(get_link(si));
           (this->*rleft)(get_link(parent));
         }
         // 3: left black, right red
         else if(node_color(si_l) == black && node_color(si_r) == red) {
-          std::cout << "case 3" << std::endl;
           si_r->color = black;
           (this->*rleft)(get_link(parent));
         }
         // 4: both red
         // else if(node_color(si_l) == red && node_color(si_r) == red) {
         else {
-          std::cout << "case 4" << std::endl;
           si_l->color = black;
           (this->*rright)(get_link(si));
           (this->*rleft)(get_link(parent));
@@ -529,7 +516,6 @@ private:
       }
       // 5: sib red
       else {
-        std::cout << "case 5" << std::endl;
         parent->color = red;
         si->color = black;
         (this->*rleft)(get_link(parent));
@@ -539,21 +525,14 @@ private:
 
     // 6-9: parent red
     else {delfix_redparent(si);}
-
-    std::cout << "after fix" << std::endl;
-    print(root, 0);
-    std::cout << std::endl;
-
   }
 };
 
 
 void test_insert(RBTree &tree) {
-  // for (int i = 0;i < 10; ++i) {
-  // int a = std::rand() % 21;
-  for(int a: {1, 2, 3, 4, 5, 6, 7, 8}) {
+  for (int i = 0;i < 1000; ++i) {
+   int a = std::rand() % 400;
     tree.insert(a);
-    // print(tree.getRoot(), 0);
     tree.check();
 
   }
@@ -561,19 +540,10 @@ void test_insert(RBTree &tree) {
 
 
 void test_delete(RBTree &tree) {
-  // for (int i = 0;i < 10; ++i) {
-  std::cout << "tree origin" << std::endl;
-  print(tree.getRoot(), 0);
-  std::cout << std::endl;
-
-  for(int tmp: {1, 2, 3, 4, 5, 6, 7}) {
-    // auto tmp = rand() % 21;
-    std::cout << "delete " << tmp << std::endl;
+  for (int i = 0;i < 1000; ++i) {
+    auto tmp = rand() % 400;
     tree.del(tmp);
-    print(tree.getRoot(), 0);
     tree.check();
-    std::cout << std::endl;
-
   }
 }
 
