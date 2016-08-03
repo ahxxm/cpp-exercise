@@ -530,8 +530,8 @@ private:
 
 
 void test_insert(RBTree &tree) {
-  for (int i = 0;i < 10000; ++i) {
-   int a = std::rand() % 3172;
+  for (int i = 0;i < 1000; ++i) {
+   int a = std::rand() % 400;
     tree.insert(a);
     tree.check();
 
@@ -540,8 +540,8 @@ void test_insert(RBTree &tree) {
 
 
 void test_delete(RBTree &tree) {
-  for (int i = 0;i < 10000; ++i) {
-    auto tmp = rand() % 3172;
+  for (int i = 0;i < 1000; ++i) {
+    auto tmp = rand() % 400;
     tree.del(tmp);
     tree.check();
   }
