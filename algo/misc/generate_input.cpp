@@ -4,20 +4,6 @@
 #include <string>
 #include <ctime>
 
-
-// int main(int argc, char *argv[]) {
-  // TODO: read int from input
-  // if (argc != 3) {
-  //   std::cout << "Usage: ./generate_input maximum_number line_count" << std::endl;
-  //   return 0;
-  // } else {
-  //   std::string a = *++argv;
-  //   std::string b = *++argv;
-  //   std::cout << a << std::endl;
-  //   std::cout << b << std::endl;
-  // };
-
-
 int main(void) {
   // current time as seed
   std::srand(std::time(0));
