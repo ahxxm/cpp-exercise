@@ -3,7 +3,6 @@
 
 #include "gtest/gtest.h"
 
-// TODO: generic type, std::move, single linked
 
 struct Node {
   int value;
@@ -34,8 +33,17 @@ public:
 
   LinkedList(const std::initializer_list<int> &lst);
 
-  // TODO: delete all (new Node())
-  ~LinkedList() = default;
+  ~LinkedList() {
+    del(root);
+    root = nullptr;
+    last = nullptr;
+  }
+
+  void del(Node *node) {
+    if(node) {
+      del(node->next);
+    }
+  }
 
   int length() {
     return size;

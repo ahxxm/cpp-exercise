@@ -3,9 +3,9 @@
 #include <stack>
 #include "gtest/gtest.h"
 
-// TODO: build, del, prede/suc cessor, depth, mirror
-// AVL tree/treap
-// TODO: balanced binary tree? Day-Stout-Warren algorithm https://github.com/DChaushev/Advanced-Data-Structures
+// TODO: mirror
+// rotate and remove are implemented in rb-tree
+// TODO: Day-Stout-Warren algorithm https://github.com/DChaushev/Advanced-Data-Structures
 
 
 template <typename T>
@@ -29,10 +29,13 @@ public:
   using node_t = Node <T>;
 
   // constructor
-  // TODO: build from std::vector<T>, or first/last iterator to be more generic?
   BinaryTree(): root(nullptr) {}
 
   // TODO: destructor release all ptr from new
+  ~BinaryTree() {
+    del(root);
+    root = nullptr;
+  }
 
   // interface
   auto insert(T val) {
@@ -113,15 +116,17 @@ public:
   auto min() {return min(root);}
   auto max() {return max(root);}
 
-
-  // TODO:
-  void balance(); // balance the whole tree
-  // int height(); // impl after balance?
-  // void rotate_left(); // and right
-
 private:
   int size = 0;
   node_t *root;
+
+  void del(node_t *node) {
+    if(node) {
+      del(node->left);
+      del(node->right);
+    }
+    delete node;
+  }
 
   node_t *min(node_t *iter) {
     node_t *result;
