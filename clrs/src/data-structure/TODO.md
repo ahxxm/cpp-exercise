@@ -4,7 +4,7 @@ Some data structure..
 
 - [ ] B tree
 
-- [ ] fibonacci tree
+- [ ] fibonacci heap
 
 - [ ] hash table(hash-table.cpp)
 
