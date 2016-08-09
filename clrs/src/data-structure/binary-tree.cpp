@@ -5,7 +5,6 @@
 
 // TODO: mirror
 // rotate and remove are implemented in rb-tree
-// TODO: Day-Stout-Warren algorithm https://github.com/DChaushev/Advanced-Data-Structures
 
 
 template <typename T>
