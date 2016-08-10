@@ -6,8 +6,6 @@ Some data structure..
 
 - [ ] fibonacci heap
 
-- [ ] hash table(hash-table.cpp)
-
 - [ ] dynamic tree
 
 - [ ] van emde boas tree
