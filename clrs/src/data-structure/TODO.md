@@ -10,8 +10,6 @@ Some data structure..
 
 - [ ] van emde boas tree
 
-- [ ] treap
-
 - [ ] AVL tree
 
 - [ ] Day Stout Warrent algorithm
