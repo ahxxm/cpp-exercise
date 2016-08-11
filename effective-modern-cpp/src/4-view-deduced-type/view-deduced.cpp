@@ -1,6 +1,6 @@
 #include <iostream>
 #include "gtest/gtest.h"
-#include <boost/type_index.hpp>
+// #include <boost/type_index.hpp>
 // FIXME: fix this on travis?
 
 // Get deduced info during: edit, compile, runtime
@@ -27,8 +27,9 @@ void f(const T &param) {
   std::cout << typeid(T).name() << std::endl;
   std::cout << typeid(param).name() << std::endl;
 
+  // FIXME:
   // with_cvr: const, volatile, ref
-  std::cout << boost::typeindex::type_id_with_cvr<T>().pretty_name() << std::endl;
+  // std::cout << boost::typeindex::type_id_with_cvr<T>().pretty_name() << std::endl;
 
 };
 
