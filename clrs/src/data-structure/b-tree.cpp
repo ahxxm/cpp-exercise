@@ -1,3 +1,4 @@
+#include <iostream>
 #include <cstdlib>
 #include <utility>
 #include <vector>
@@ -24,26 +25,12 @@
 
 
 struct Node;
-struct Key;
-using key_p = Key*;
 using node_p = Node*;
-
-struct Key {
-  int value;
-  key_p next, prev;
-
-  Key(int val) {
-    value = std::move(val);
-    next = nullptr;
-    prev = nullptr;
-  }
-};
-
 
 struct Node {
   // Node holds keys/childs as a vector
   // manage by index
-  std::vector<key_p> keys;
+  std::vector<int> keys;
   std::vector<node_p> childs;
 
   // to be compared with degree
@@ -79,19 +66,33 @@ public:
     return count;
   }
 
-  key_p search(int val) {
+  int *search(int val) {
     return search(root, val);
   };
 
-  void check() {
+  void insert(int val) {
+    // root is always initialized in ctor
+    auto iter = root;
+    if(iter->size < 2 * degree - 1) {
+      insert_non_full(iter, val);
+      return;
+    }
 
+    // else create new root r
+    auto r = new Node();
+    root = r;
+    r->leaf = false;
+    r->size = 0;
+    r->childs.emplace_back(iter);
+    split_child(r, 0);
+    insert_non_full(r, val);
+  };
 
-  }
 
   // TODO:
-  ~BTree() = default;
+  void check() {};
 
-  void insert(int val);
+  ~BTree() = default;
   void del(int val);
 
 
@@ -105,24 +106,51 @@ private:
     count += 1;
   }
 
-  // TODO:
-  void check(node_p node) {
-    if(!node) {return ;}
+  void insert_non_full(node_p node, int val) {
+    // backwardly compare
+    auto i = node->size - 1;
+    if(node->leaf) {
+      // insert a immediately-replaced-value for new key
+      node->keys.emplace_back(-1);
+      while(i >= 0 && val < node->keys[i]) {
+        node->keys[i + 1] = node->keys[i];
+        --i;
+      }
+
+      if(node->keys.empty()) {
+        node->keys.emplace_back(val);
+      } else {
+        node->keys[i + 1] = val;
+      }
+      node->size += 1;
+      return;
+    }
+
+    // else not leaf
+    while(i >= 0 && val < node->keys[i]) {
+      --i;
+    }
+
+    // see if child full, needs split
+    if(node->childs[i + 1] && node->childs[i + 1]->size == 2 * degree - 1) {
+      split_child(node, i + 1);
+
+      // after split, check which i have mid key
+      if(node->keys[i + 1] < val) {++i;}
+    }
+    insert_non_full(node->childs[i + 1], val);
   }
 
-
-
-  key_p search(node_p node, int val) {
-
+  int *search(node_p node, int val) {
     // search for child(might have val)
     int index = 0;
-    while(index <= node->size && val > node->keys[index]->value) {
+    while(index <= node->size && val > node->keys[index]) {
       index += 1;
     }
 
     // in case key->value == val, or reach leaf but no result
-    if(index <= node->size && val == node->keys[index]->value) {
-      return node->keys[index];
+    if(index <= node->size && val == node->keys[index]) {
+      return &node->keys[index];
     } else if (node->leaf) {
       return nullptr;
     }
@@ -147,18 +175,30 @@ private:
     sib->size = degree - 1;
 
     // move keys to sib
+    sib->keys = {std::make_move_iterator(child->keys.begin() + degree),
+                 std::make_move_iterator(child->keys.end())};
+    child->keys.erase(child->keys.begin() + degree, child->keys.end());
+
+    /*
     for(int i = 0; i < degree; ++i) {
       auto offset = i + degree;
       sib->keys.emplace_back(child->keys[offset]);
-    }
+      }
+    */
 
     // if child is not leaf, it has childs, copy
     // right half(d-1) to new node, set left half's size.
     if(!child->leaf) {
+      sib->childs = {std::make_move_iterator(child->childs.begin() + degree),
+                     std::make_move_iterator(child->childs.end())};
+      child->childs.erase(child->childs.begin() + degree, child->childs.end());
+
+      /*
       for(int i = 0; i < degree; ++i) {
         auto offset = i + degree;
         sib->childs.emplace_back(child->childs[offset]);
-      }
+        }
+      */
     }
     child->size = degree - 1;
 
@@ -167,10 +207,6 @@ private:
     // child->keys will shrink to size of degree-1
     node->childs.insert(node->childs.begin() + i + 1, sib);
     node->keys.insert(node->keys.begin() + i, child->keys[degree - 1]);
-
-    // TODO: remaining values in child->keys
-    // TODO: assert key value >
-
     node->size += 1;
 
     // disk write for node, child and sib
@@ -179,10 +215,14 @@ private:
     disk();
   }
 
+  // TODO:
+  void check(node_p node) {
+    if(!node) {return ;}
+  }
+
 };
 
 
-/*
 void test_insert(BTree &tree) {
   for (int i = 0;i < 1000; ++i) {
     auto tmp = std::rand() % 400;
@@ -190,13 +230,11 @@ void test_insert(BTree &tree) {
     tree.check();
   }
 }
-*/
 
 
 TEST(BTreeTest, SomeTest) {
-  // auto tree = BTree();
-  // test_insert(tree);
-  EXPECT_TRUE(true);
+  auto tree = BTree();
+  test_insert(tree);
 }
 
 int main(int argc, char *argv[]) {
