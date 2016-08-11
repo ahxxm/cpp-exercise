@@ -1,12 +1,11 @@
 #include <iostream>
+#include <cassert>
 #include <cstdlib>
 #include <utility>
 #include <vector>
 #include "gtest/gtest.h"
 
-// TODO: define degree first.. confusing
 
-// B-tree of order 4 is a 2-3-4 tree, or 2-4 tree
 // For a B-tree of degree(D), each non-root node contains
 // (D-1) to (2D-1) keys, including D-1 and 2D-1:
 //   D >= 2
@@ -33,8 +32,7 @@ struct Node {
   std::vector<int> keys;
   std::vector<node_p> childs;
 
-  // to be compared with degree
-  // TODO: generate from keys.size()?
+  // should be equal to keys.size()
   int size;
 
   // leaf: does not have child
@@ -89,8 +87,7 @@ public:
   };
 
 
-  // TODO:
-  void check() {};
+  void check() {check(root);};
 
   ~BTree() = default;
   void del(int val);
@@ -177,7 +174,7 @@ private:
     // move keys to sib
     sib->keys = {std::make_move_iterator(child->keys.begin() + degree),
                  std::make_move_iterator(child->keys.end())};
-    child->keys.erase(child->keys.begin() + degree, child->keys.end());
+    child->keys.erase(child->keys.begin() + degree - 1, child->keys.end());
 
     /*
     for(int i = 0; i < degree; ++i) {
@@ -215,17 +212,64 @@ private:
     disk();
   }
 
-  // TODO:
+
+  void check_keys(std::vector<int> keys) {
+
+    // print whole keys
+    std::cout << "keys: " << std::endl;
+    for(auto i: keys) {
+      std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    // actual check
+    if(keys.size() <= 1) {return;}
+
+    auto tmp = keys[0];
+    int len = keys.size();
+    for (int i = 1; i < len; ++i) {
+      if(tmp > keys[i]) {
+        std::cout << "keys unordered error: " << tmp << " > " << keys[i] << std::endl;
+      }
+      assert(tmp <= keys[i]);
+
+      tmp = keys[i];
+    }
+  }
+
   void check(node_p node) {
     if(!node) {return ;}
+
+    // FIXME:
+    // childs 1 more than keys(left/right child)
+    // assert(node->keys.size() + 1 == node->childs.size());
+
+    // keys should be ordered, note that non-null nodes have at least 1 key
+    check_keys(node->keys);
+
+    // all non-root node follow degree: d-1 <= size(key.size()) <= 2d -1
+    if(node != root) {
+      assert(static_cast<unsigned long>(degree - 1) <= node->keys.size() &&
+             static_cast<unsigned long>(2 * degree - 1) >= node->keys.size());
+    }
+
+    assert(node->size == static_cast<int>(node->keys.size()));
+
+    // leaf node has no childs,
+    if(node->leaf) {
+      assert(node->childs.size() == 0);
+    } else {
+      assert(node->childs.size() != 0);
+      for(auto c: node->childs) {check(c);}
+    }
   }
 
 };
 
 
 void test_insert(BTree &tree) {
-  for (int i = 0;i < 1000; ++i) {
-    auto tmp = std::rand() % 400;
+  for (int i = 0;i < 40; ++i) {
+    auto tmp = std::rand() % 2345;
     tree.insert(tmp);
     tree.check();
   }
@@ -233,7 +277,7 @@ void test_insert(BTree &tree) {
 
 
 TEST(BTreeTest, SomeTest) {
-  auto tree = BTree();
+  auto tree = BTree(5);
   test_insert(tree);
 }
 
