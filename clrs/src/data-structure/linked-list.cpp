@@ -97,7 +97,6 @@ public:
     return k;
   }
 
-  // TODO: work with insert/del and size
   // TODO: circular detection
   auto search(const int &) = delete;
   bool is_circular();

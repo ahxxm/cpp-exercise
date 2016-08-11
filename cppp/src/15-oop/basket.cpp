@@ -57,7 +57,6 @@ private:
   };
 
 
-  // TODO: read red black tree...
   // multiset use rb_tree as internal data structure...
   // template<
   // class Key,
