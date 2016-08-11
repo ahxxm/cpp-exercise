@@ -33,6 +33,7 @@ struct Node {
   std::vector<node_p> childs;
 
   // should be equal to keys.size()
+  // keep it separate for accounting
   int size;
 
   // leaf: does not have child
@@ -176,26 +177,12 @@ private:
                  std::make_move_iterator(child->keys.end())};
     child->keys.erase(child->keys.begin() + degree - 1, child->keys.end());
 
-    /*
-    for(int i = 0; i < degree; ++i) {
-      auto offset = i + degree;
-      sib->keys.emplace_back(child->keys[offset]);
-      }
-    */
-
     // if child is not leaf, it has childs, copy
     // right half(d-1) to new node, set left half's size.
     if(!child->leaf) {
       sib->childs = {std::make_move_iterator(child->childs.begin() + degree),
                      std::make_move_iterator(child->childs.end())};
       child->childs.erase(child->childs.begin() + degree, child->childs.end());
-
-      /*
-      for(int i = 0; i < degree; ++i) {
-        auto offset = i + degree;
-        sib->childs.emplace_back(child->childs[offset]);
-        }
-      */
     }
     child->size = degree - 1;
 
