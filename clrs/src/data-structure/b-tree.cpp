@@ -240,10 +240,6 @@ private:
   void check(node_p node) {
     if(!node) {return ;}
 
-    // FIXME:
-    // childs 1 more than keys(left/right child)
-    // assert(node->keys.size() + 1 == node->childs.size());
-
     // keys should be ordered, note that non-null nodes have at least 1 key
     check_keys(node->keys);
 
@@ -259,7 +255,8 @@ private:
     if(node->leaf) {
       assert(node->childs.size() == 0);
     } else {
-      assert(node->childs.size() != 0);
+      // childs 1 more than keys(left/right child), if not leaf
+      assert(node->keys.size() + 1 == node->childs.size());
       for(auto c: node->childs) {check(c);}
     }
   }
