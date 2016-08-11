@@ -50,9 +50,8 @@ std::ostream &errorMsg(std::ostream &os, const Args&... rest) {
 }
 
 TEST(ArgPackTest, SomeTest) {
-  // FIXME: false positive?
   // https://travis-ci.org/ahxxm/cpp-exercise/jobs/133674302
-  foo(1, 2, 3, "four", 4);
+  // foo(1, 2, 3, "four", 4); rest are not used
   std::cout << std::endl;
 
   print(std::cout, 1, 2, 3, "42");
