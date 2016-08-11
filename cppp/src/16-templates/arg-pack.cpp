@@ -7,6 +7,9 @@
 
 template <typename T, typename... Args>
 void foo(const T &, const Args&... rest) {
+  // debug info
+  std::cout << __PRETTY_FUNCTION__ << std::endl;
+
   // number of type params
   std::cout << sizeof...(Args) << std::endl;
 
@@ -14,12 +17,10 @@ void foo(const T &, const Args&... rest) {
   std::cout << sizeof...(rest) << std::endl;
 }
 
-
 template <typename T>
 std::ostream &print(std::ostream &os, const T &t) {
   return os << t;
 }
-
 
 
 template <typename T, typename... Args>
@@ -31,7 +32,6 @@ std::ostream &print(std::ostream &os, const T &t, const Args&... rest) {
   // ... until match print above
   return print(os, rest...);
 }
-
 
 
 // unpack
@@ -52,7 +52,9 @@ std::ostream &errorMsg(std::ostream &os, const Args&... rest) {
 TEST(ArgPackTest, SomeTest) {
   // FIXME: false positive?
   // https://travis-ci.org/ahxxm/cpp-exercise/jobs/133674302
-  // foo(1, 2, 3, "jar");
+  foo(1, 2, 3, "four", 4);
+  std::cout << std::endl;
+
   print(std::cout, 1, 2, 3, "42");
   std::cout << std::endl;
 

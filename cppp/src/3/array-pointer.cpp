@@ -22,8 +22,8 @@ int main(void) {
   ia3[5] = 10;
 
   // begin/end are std method..
-  int *ia_begin = std::begin(ia), *ia_end = std::end(ia);
-  // FIXME
+  auto ia_begin = std::begin(ia);
+  auto ia_end = std::end(ia);
   while (ia_begin != ia_end && *ia_begin >= 0) {
     std::cout << *(++ia_begin) << std::endl;
     ++ia_begin;

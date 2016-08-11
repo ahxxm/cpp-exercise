@@ -30,6 +30,7 @@ bool doWork(std::function<bool(int)> filter, int maxVal = tenM) {
     });
 
   // opaque_pthread_t *
+  // "enable realtime scheduling of C++ threads on a POSIX system"
   auto nh = t.native_handle();
   std::cout << &nh << std::endl;
 

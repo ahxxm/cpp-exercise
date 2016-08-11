@@ -17,7 +17,6 @@ class Stock: public Investment {
 public:
   Stock() = default;
   Stock(const std::string &&) {};
-  // FIXME: what if want it to be constexpr
   int price() override final {return 42;};
 };
 class Bond: public Investment {};

@@ -1,18 +1,26 @@
+#include <iostream>
 #include "gtest/gtest.h"
 
 // apply move/forward on the last time used
 // move ctor more efficient
-// FIXME: usage?
 
 // RVO: return value optimization // FIXME:
 
+struct C {
+  C() = default;
+  C(const C&) {std::cout << "copied!" << std::endl;}
+};
 
-TEST(MoveForwardTest, SomeTest) {
-  EXPECT_EQ(1, 1);
+auto f() {
+  return C();
 }
 
-int main(int argc, char *argv[]) {
-  ::testing::InitGoogleTest(&argc, argv);
-  int ret = RUN_ALL_TESTS();
-  return ret;
+int main(void) {
+  std::cout << "start" << std::endl;
+  auto obj = f();
+
+  // copy may be made 0 1 2 times, depends on compiler
+  std::cout << &obj << std::endl;
+
+  return 0;
 }

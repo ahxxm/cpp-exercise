@@ -76,7 +76,6 @@ public:
     last = last->prev;
     size -= 1;
 
-    // FIXME: dangling pointer?
     if (last) {
       // in case root is pop-ed,
       // then last is already nullptr
