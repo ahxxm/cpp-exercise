@@ -16,8 +16,6 @@ void prefer() {
 // using alias can be templatized
 // template<typename T>
 // using MyAllocator = std::list<T, MyAlloc<T>> ;
-// FIXME: implement custom allocator MyAlloc
-
 
 
 // C++14's std::remove_const_t
