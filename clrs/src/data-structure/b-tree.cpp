@@ -48,6 +48,9 @@ struct Node {
 
 class BTree {
 public:
+  // search result, if no result then <nullptr, -1>
+  using result_t = std::pair<node_p, int>;
+
   // by default a 2-3 tree
   BTree() {
     root = new Node();
@@ -65,7 +68,7 @@ public:
     return count;
   }
 
-  int *search(int val) {
+  auto search(int val) {
     return search(root, val);
   };
 
@@ -90,8 +93,11 @@ public:
 
   void check() {check(root);};
 
-  ~BTree() = default;
   void del(int val);
+
+  // TODO:
+  ~BTree() = default;
+
 
 
 private:
@@ -139,7 +145,7 @@ private:
     insert_non_full(node->childs[i + 1], val);
   }
 
-  int *search(node_p node, int val) {
+  result_t search(node_p node, int val) {
     // search for child(might have val)
     int index = 0;
     while(index <= node->size && val > node->keys[index]) {
@@ -148,9 +154,9 @@ private:
 
     // in case key->value == val, or reach leaf but no result
     if(index <= node->size && val == node->keys[index]) {
-      return &node->keys[index];
+      return std::make_pair(node, index);
     } else if (node->leaf) {
-      return nullptr;
+      return std::make_pair(nullptr, -1);
     }
 
     // else dive in next level
@@ -201,15 +207,6 @@ private:
 
 
   void check_keys(std::vector<int> keys) {
-
-    // print whole keys
-    std::cout << "keys: " << std::endl;
-    for(auto i: keys) {
-      std::cout << i << " ";
-    }
-    std::cout << std::endl;
-
-    // actual check
     if(keys.size() <= 1) {return;}
 
     auto tmp = keys[0];
@@ -259,10 +256,27 @@ void test_insert(BTree &tree) {
   }
 }
 
+void test_delete(BTree &tree) {
+  for (int i = 0;i < 40; ++i) {
+    // auto tmp = std::rand() % 2345;
+    // tree.del(tmp);
+    tree.check();
+  }
+}
+
 
 TEST(BTreeTest, SomeTest) {
   auto tree = BTree(5);
   test_insert(tree);
+  std::cout << tree.disk_operation() << std::endl;
+
+  // test_delete(tree);
+  // std::cout << tree.disk_operation() << std::endl;
+
+
+  auto r = tree.search(-10);
+  EXPECT_FALSE(r.first);
+  EXPECT_EQ(r.second, -1);
 }
 
 int main(int argc, char *argv[]) {
