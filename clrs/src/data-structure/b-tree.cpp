@@ -75,6 +75,8 @@ public:
   void insert(int val) {
     // root is always initialized in ctor
     auto iter = root;
+    std::cout << "insert: " << val<< std::endl;
+
     if(iter->size < 2 * degree - 1) {
       insert_non_full(iter, val);
       return;
@@ -93,7 +95,23 @@ public:
 
   void check() {check(root);};
 
-  void del(int val);
+  void del(int val) {
+    std::cout << "del: " << val << std::endl;
+
+    auto search_r = search(val);
+    if ((!search_r.first) || search_r.second == -1) {return;}
+
+    // if leaf just delete this key
+    auto node = search_r.first;
+    auto i = search_r.second;
+    if(node->leaf) {
+      node->keys.erase(node->keys.begin() + i);
+      node->size -= 1;
+      // FIXME: fix when node needs combination!
+      return;
+    }
+
+  };
 
   // TODO:
   ~BTree() = default;
@@ -148,7 +166,7 @@ private:
   result_t search(node_p node, int val) {
     // search for child(might have val)
     int index = 0;
-    while(index <= node->size && val > node->keys[index]) {
+    while(index <= node->size && index < static_cast<int>(node->keys.size()) && val > node->keys[index]) {
       index += 1;
     }
 
@@ -257,9 +275,9 @@ void test_insert(BTree &tree) {
 }
 
 void test_delete(BTree &tree) {
-  for (int i = 0;i < 40; ++i) {
-    // auto tmp = std::rand() % 2345;
-    // tree.del(tmp);
+  for (int i = 0;i < 400; ++i) {
+    auto tmp = std::rand() % 2345;
+    tree.del(tmp);
     tree.check();
   }
 }
@@ -270,9 +288,8 @@ TEST(BTreeTest, SomeTest) {
   test_insert(tree);
   std::cout << tree.disk_operation() << std::endl;
 
-  // test_delete(tree);
-  // std::cout << tree.disk_operation() << std::endl;
-
+  test_delete(tree);
+  std::cout << tree.disk_operation() << std::endl;
 
   auto r = tree.search(-10);
   EXPECT_FALSE(r.first);
