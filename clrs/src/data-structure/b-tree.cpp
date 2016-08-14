@@ -20,7 +20,8 @@
 
 //   Increase height only by split root.
 
-//   Delete key from node of D is ...? TODO
+//   Delete key from node of D is ...?
+//   https://github.com/algorithm-ninja/cpp-btree/blob/master/btree.h#L1861
 
 
 struct Node;
