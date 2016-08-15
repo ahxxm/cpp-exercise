@@ -7,6 +7,8 @@
 // reasonable deduction
 template<typename T>
 void f1(T& param) {
+  std::cout << __PRETTY_FUNCTION__ << std::endl;
+
   std::cout << &param << std::endl;
 };
 
@@ -41,10 +43,13 @@ void case1() {
 
 
 // Case 2: universal ref &&
-// - lvalue: T and paramType are &, collapse(?) // FIXME:
+// - lvalue: T and paramType are &, collapse
 // - rvalue: normal rules
 template<typename T>
 void f2(T &&param) {
+  // debug info, consistent with comments below
+  std::cout << __PRETTY_FUNCTION__ << std::endl;
+
   std::cout << &param << std::endl;
 };
 
@@ -103,10 +108,8 @@ void decay() {
   // void (*)(int, double);
   f3(some_func);
 
-  // T& prevents decay.
-
-  // T is char[size] ... ! FIXME: verify this
-  // this enables to get array size.
+  // T& prevents decay, this enables to get array size.
+  // in this case T is char const[5](includes ending char)
   f1(name);
 
   // T: void (&)(int, double)

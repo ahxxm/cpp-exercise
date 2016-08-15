@@ -45,15 +45,24 @@ void avoid_raw() {
   // std::cout << &spw2 << std::endl;
 };
 
-void enable_share() {
-  // FIXME: std::enable_shared_from_this
-}
+
+struct Shared: std::enable_shared_from_this<Shared> {
+  auto getptr() {
+    std::cout << __PRETTY_FUNCTION__ << std::endl;
+    return shared_from_this();
+  }
+};
 
 
 TEST(SharedPtrTest, SomeTest) {
   dif_deleter();
   avoid_raw();
-  enable_share();
+
+  std::shared_ptr<Shared> a (new Shared);
+  auto b = a->getptr();
+
+  // a and b
+  EXPECT_EQ(b.use_count(), 2);
 }
 
 int main(int argc, char *argv[]) {

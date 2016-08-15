@@ -25,7 +25,6 @@ public:
 
   };
 
-  // TODO: handle different format
   explicit BasicDate(const std::string &) {
 
   }

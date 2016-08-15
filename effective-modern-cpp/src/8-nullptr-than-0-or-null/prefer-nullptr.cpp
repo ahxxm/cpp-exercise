@@ -18,7 +18,7 @@ void ff() {
 
   // nullptr does not have integral type
   // no pointer type either, but "think of it as a pointer of all types"
-  // std::nullptr_t FIXME: "wonderful circular definition"
+  // std::nullptr_t  "wonderful circular definition"
   f(nullptr);
 }
 

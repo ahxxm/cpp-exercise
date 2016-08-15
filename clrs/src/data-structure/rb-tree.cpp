@@ -255,7 +255,7 @@ private:
 
   // link is node**, pointer is sometimes copied while passing by value,
   // this restores origin pointer address.
-  // TODO: rename
+
   // make_link/get_link: pointer to node_p in tree
   // set_link: replace node_p in tree with new pointer
   link make_link(node_p &node) {return &node;}

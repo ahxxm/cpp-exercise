@@ -30,7 +30,6 @@ public:
   // constructor
   BinaryTree(): root(nullptr) {}
 
-  // TODO: destructor release all ptr from new
   ~BinaryTree() {
     del(root);
     root = nullptr;

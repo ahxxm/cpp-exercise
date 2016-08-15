@@ -15,7 +15,6 @@ int auto1() {
 }
 
 void auto2() {
-  // FIXME: test these
   auto x = 2;
   const auto cx = x;
 

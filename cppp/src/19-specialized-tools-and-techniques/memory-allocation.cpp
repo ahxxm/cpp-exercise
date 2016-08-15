@@ -26,9 +26,9 @@ class Foo {
     if (void *mem = malloc(size)) {
       return mem;
     } else {
-      // FIXME:
-      return nullptr;
+      // "throw will always call terminate()"
       // throw std::bad_alloc();
+      return nullptr;
     };
   };
 

@@ -6,7 +6,6 @@
 
 // "Uniform initialization", braced because can be used everywhere
 // uncopyable object's can't use = initialization
-// FIXME: like std::atomic but what's that
 
 void prevent_implicit_conversion() {
   double a = 0.0, b = 0.0, c = 0.0;
