@@ -1,6 +1,8 @@
 #include <iostream>
 #include <memory>
 #include <stack>
+#include <queue>
+#include <vector>
 #include "gtest/gtest.h"
 
 // TODO: mirror
@@ -113,6 +115,25 @@ public:
 
   auto min() {return min(root);}
   auto max() {return max(root);}
+
+  auto bfs() {
+    std::vector<T> result;
+    std::queue<node_t *> q;
+
+    auto iter = root;
+    if(!iter) {return result;}
+
+    q.push(iter);
+    while(!q.empty()) {
+      auto tmp = q.front();
+      q.pop();
+      result.emplace_back(tmp->value);
+      if(tmp->left) {q.push(tmp->left);}
+      if(tmp->right) {q.push(tmp->right);}
+    }
+
+    return result;
+  }
 
 private:
   int size = 0;
@@ -229,6 +250,7 @@ private:
 };
 
 
+
 TEST(BinarySearchTreeTest, SomeTest) {
   auto a = BinaryTree<int>();
   a.insert(3);
@@ -268,6 +290,11 @@ TEST(BinarySearchTreeTest, SomeTest) {
   EXPECT_EQ(a.min()->value, 0);
   EXPECT_EQ(a.max()->value, 6);
 
+  // BFS
+  auto fs = a.bfs();
+  EXPECT_EQ(fs[2], 5);
+  EXPECT_EQ(fs[5], 4);
+  EXPECT_EQ(static_cast<int>(fs.size()), 7);
 }
 
 int main(int argc, char *argv[]) {
