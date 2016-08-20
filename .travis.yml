@@ -2,9 +2,9 @@ language: cpp
 dist: trusty
 sudo: required
 env:
-  - COMPILER=gcc-5 CCOMPILER=g++-5
-  - COMPILER=gcc-6 CCOMPILER=g++-6
-  - COMPILER=clang-3.9 CCOMPILER=clang++-3.9
+  - COMPILER=gcc-5 CCOMPILER=g++-5 BOOST_VER=1.59.0
+  - COMPILER=gcc-6 CCOMPILER=g++-6 BOOST_VER=1.59.0
+  - COMPILER=clang-3.9 CCOMPILER=clang++-3.9 BOOST_VER=1.59.0
 before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
@@ -13,9 +13,14 @@ before_install:
   - sudo apt-get install -y libboost-all-dev gcc-5 g++-5 gcc-6 g++-6 clang-3.9
   - sudo pip install -U pip && pip install --user cpp-coveralls cpplint
 install:
+  - export BOOST_VERSION=${BOOST_VER//./_} && export BOOST_ROOT=${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_}
+  - travis_wait ./install-boost.sh
   - mkdir build && cd build && cmake -DCMAKE_C_COMPILER=$COMPILER -DCMAKE_CXX_COMPILER=$CCOMPILER .. && make -j8 && make test ARGS="-VV"
 script:
   - cpplint --linelength=120 --extensions=hpp,cpp --output=emacs --recursive --counting=detailed --filter=-legal/copyright,-whitespace/blank_line,-build/namespaces,-whitespace/indent,-readability/braces,-build/c++11,-runtime/references,-runtime/indentation_namespace,-runtime/int,-build/include_subdir ./ || echo "0"
+cache:
+  directories:
+    - "${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_}"
 notifications:
   slack:
     secure: jJM62Z4tppIg7qSdnXO1X0fWfWmZBRfKififFUew+CXyy/LI/cPOhC+zxCbH5kF9jXJhCc6SltYIO29rTnciBOF6nIMjL4ZY/n9xJsR/RQylOq9nxDrqPgKoN4lExuDqAvFq8ZM/+4GKKOlbSXm5IBDlT2HvNae6+Nv8lx22Vzm1SPNmy40PGsfEpd41/sFJQRMPGCjT6y2iXYya2uPYB8xW73uHn36X4SO0tIswn1R/H36qU1znRpAQCzAbeFaaaBf4o8WsbY7fKs4lPSUZZT5Z9O0TY0M7qpSwLDWsCOcwuheGaYnzdTLti2cb0aLuF7LEEt37m0k+QjVz+UjKeEkTKKcvF/GOen5RjG/Ti4OlAfD/mHUHXtBW4x5cHo74upFuBKz229jqZ+QYGFiyeajikdQ4xRsviRpUXENmAEDRdmmcOcFuXKQcUgiL7F6mExfIQMkrPjnVPtN1ZlOb+I4ikZoK6IitWRq5HvR2e8gUMs1uKHq1ZBf+0RIb72ZKnI74DKiA7bKARMrlciZz3Yjxd55oNP5di1cSPFd5YrJSLGW2ckxJVy1A4wF1RmtmwWjLTUtPEFZHGIZ+mOhNk0nj8V9s24hsGYCe1cu0y/NdT6gZSwYX7bd6KLO/7qM9S8QGGmxcwpW2+i3QAnOHXsGiiMYV0CZ9FTwfQxIcfYU=
