@@ -30,6 +30,8 @@ message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
 message(STATUS "Boost_VERSION: ${Boost_VERSION}")
 include_directories(${Boost_INCLUDE_DIRS})
+# Always use multi-threaded Boost libraries.
+set(Boost_USE_MULTI_THREADED ON)
 
 # Use C++11 standard
 set(CMAKE_CXX_STANDARD 14)
