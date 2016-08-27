@@ -25,7 +25,7 @@ ExternalProject_Get_Property(gtest source_dir binary_dir)
 
 
 # Boost
-find_package(Boost 1.47 COMPONENTS system filesystem unit_test_framework REQUIRED)
+find_package(Boost 1.58 COMPONENTS system filesystem unit_test_framework REQUIRED)
 message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
 message(STATUS "Boost_VERSION: ${Boost_VERSION}")
