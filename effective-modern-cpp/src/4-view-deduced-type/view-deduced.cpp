@@ -1,7 +1,6 @@
 #include <iostream>
 #include "gtest/gtest.h"
-// #include <boost/type_index.hpp>
-// FIXME: fix this on travis?
+#include <boost/type_index.hpp>
 
 // Get deduced info during: edit, compile, runtime
 
@@ -18,7 +17,7 @@ void view() {
   // TypeDisplayer<decltype(a)> aType;
   std::cout << &a << std::endl;
 
-};
+}
 
 // print in function template
 template<typename T>
@@ -27,11 +26,9 @@ void f(const T &param) {
   std::cout << typeid(T).name() << std::endl;
   std::cout << typeid(param).name() << std::endl;
 
-  // FIXME:
   // with_cvr: const, volatile, ref
-  // std::cout << boost::typeindex::type_id_with_cvr<T>().pretty_name() << std::endl;
-
-};
+  std::cout << boost::typeindex::type_id_with_cvr<T>().pretty_name() << std::endl;
+}
 
 
 void print() {
@@ -53,7 +50,7 @@ void print() {
   TypeDisplayer<int> i;
   f(&i);
 
-};
+}
 
 
 TEST(ViewDeduced, SomeTest) {
