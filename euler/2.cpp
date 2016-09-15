@@ -24,7 +24,7 @@ int solve() {
   return sum;
 }
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(EvenFibonacciTest, SomeTest) {
   EXPECT_EQ(solve(), 4613732);
 }
 
