@@ -10,7 +10,7 @@
   Calculate the maximum value of F(0), F(1), ..., F(n-1).
 
   Note:
-  n is guaranteed to be less than 105.
+  n is guaranteed to be less than 10^5.
 
   Example:
 
@@ -24,22 +24,48 @@
   So the maximum value of F(0), F(1), F(2), F(3) is F(3) = 26.
  */
 
+#define DEBUG true
+#ifdef DEBUG
+#include <cassert>
+#endif
 
 class Solution {
 public:
 
-  int calculate(const std::vector<int> &v, int r) {
-    // TODO: calculate and assign to max
-    return -1;
+  int calculate(const std::vector<int> &v, int r, const int s) {
+    // offset: rotate count
+    // s: vector size
+#ifdef DEBUG
+    assert(s > r);
+#endif
+
+    int result = 0;
+
+    // for example rotate 1 on [4,3,2,6]
+    // part1: origin weight of 4 3 2 each added 1
+    // from [0,1,2] to [1,2,3]
+    for (int i = 0; i < s - r; ++i) {
+      auto base = i + r;
+      result += base * v[i];
+    }
+    // part2: 6
+    int k = 0;
+    for (int j = s - r;j < s; ++j) {
+      result += v[j] * k;
+      k += 1;
+    }
+
+    return result;
   }
+
 
   int maxRotateFunction(std::vector<int> &A) {
     int n = A.size();
     if(n == 0) {return 0;}
 
-    int max = -1;
+    int max = calculate(A, 0, n);
     for (int i = 0; i < n; ++i) {
-      auto sum = calculate(A, i);
+      auto sum = calculate(A, i, n);
       if(sum > max) {
         max = sum;
       }
