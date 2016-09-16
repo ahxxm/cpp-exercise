@@ -34,7 +34,8 @@ ll solve() {
 
 TEST(LargestPrimeFactorTest, SomeTest) {
   EXPECT_EQ(1, 1);
-  std::cout << solve() << std::endl;
+  // FIXME: takes too long
+  // std::cout << solve() << std::endl;
   EXPECT_FALSE(is_prime(4));
   EXPECT_TRUE(is_prime(3));
   EXPECT_TRUE(is_prime(2));
