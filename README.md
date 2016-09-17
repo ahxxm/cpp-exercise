@@ -8,3 +8,5 @@
 - `cppp`: C++ Primer 5th edition
 - `effective-modern-cpp`: Effective Modern C++
 - `clrs`: Introduction to Algorithms
+- `euler`: [Project Euler](https://projecteuler.net/archives)
+- `leetcode`: leetcode
