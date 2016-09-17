@@ -1,7 +1,5 @@
 #include "gtest/gtest.h"
 #include <cmath>
-#include <boost/multiprecision/cpp_int.hpp>
-
 
 // The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
@@ -9,7 +7,6 @@
 
 // copied from 3.cpp
 #define N 2000000
-// using ll = boost::multiprecision::cpp_int;
 using ll = long long;
 bool is_prime(ll k) {
   if(k < 2) {return false;}
