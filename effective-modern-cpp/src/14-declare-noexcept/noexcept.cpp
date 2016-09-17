@@ -8,12 +8,12 @@
 // FIXME: with C++11, "the stack is only possibly unwound before
 // program execution is terminated"
 // C++98
-void f(int) throw() {};
+void f(int) throw() {}
 // C++11
-void f(double) noexcept {};
+void f(double) noexcept {}
 
 // conditional noexcept
-void v() noexcept(noexcept(f(1)) && noexcept(f(1.0))) {};
+void v() noexcept(noexcept(f(1)) && noexcept(f(1.0))) {}
 
 
 TEST(NoexceptTest, SomeTest) {
