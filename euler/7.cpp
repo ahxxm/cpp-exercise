@@ -33,7 +33,7 @@ int solve() {
 }
 
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(KthPrimeTest, SomeTest) {
   // EXPECT_EQ(solve(), 104743);
   EXPECT_EQ(1, 1);
 }
