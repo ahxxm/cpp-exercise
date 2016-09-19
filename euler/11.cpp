@@ -29,16 +29,17 @@ std::vector<std::vector<ll>> s {
 {1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48}
 };
 
+
 #define N 20
 
 ll solve() {
   ll result = -1;
   ll tmp;
   // start point: ith row, jth column
-  for(int i = 0;i < N; ++i) {
-    for(int j = 0;j < N; ++j) {
-      if(i + 4 > N || j + 4 > N) {continue;}
-      // TODO: loop from s[3][3] to s[16][16]
+  for(int i = 3;i < 17; ++i) {
+    for(int j = 3;j < 17; ++j) {
+      // TODO: multiple in directions
+      // TODO: any elegant solution?
       tmp = s[i][j] * s[i+1][j+1] * s[i+2][j+2] * s[i+3][j+3];
       std::cout << i << ", " << j << ", result: " << tmp << std::endl;
 
