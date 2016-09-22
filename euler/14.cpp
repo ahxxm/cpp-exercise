@@ -1,4 +1,6 @@
 #include "gtest/gtest.h"
+#include <map>
+#include <vector>
 
 /*
 
@@ -19,29 +21,66 @@ NOTE: Once the chain starts the terms are allowed to go above one
 million.
 */
 
-#define N 4000000
 
-int solve() {
-  int i = 8;
-  while(i < N) {
-    std::cout << i << std::endl;
+// initial lize a vector of length N
+using ll = long long;
+ll N = 1000000;
+ll init = 0;
 
-    if(i % 3 == 1) {
-      i = (i - 1) / 3;
-    } else {
-      i *= 2;
-    }
-    if(i > 1000000) {
-      std::cout << i << std::endl;
-    }
+// index->count
+using mm = std::map<ll, ll>;
+mm length;
+
+
+ll get_with_default(mm &dict, const ll key) {
+  auto it = dict.find(key);
+  if(it == dict.end()) {return init;}
+  return it->second;
+}
+
+
+ll next(ll num) {
+  if(num % 2 == 0) {return num / 2;}
+  else {return 3 * num + 1;}
+}
+
+ll get_length(ll index) {
+  auto n = next(index + 1);
+  ll next_length = get_with_default(length, n - 1);
+
+  if(next_length != init) {
+    length[index] = next_length + 1;
+    return length[index];
+  } else {
+    // index of next is n-1
+    return get_length(n - 1) + 1;
   }
-  return i;
+}
+
+ll solve() {
+  ll num_of_max_length = 1;
+  ll index = 1;
+  ll result;
+  while(index < N) {
+    auto local_length = get_length(index);
+    if(local_length > num_of_max_length) {
+      num_of_max_length = local_length;
+      result = index + 1;
+    }
+    ++index;
+  }
+  std::cout << "Number: " << result
+            << ", length: " << num_of_max_length << std::endl;
+
+  return result;
 }
 
 TEST(LongestCollatzTest, SomeTest) {
-  std::cout << solve() << std::endl;
+  length[0] = 1;
+  ll i = 5;
+  EXPECT_EQ(get_length(i - 1), 6);
+  // std::cout << solve() << std::endl;
 
-  EXPECT_EQ(1, 1);
 }
 
 int main(int argc, char *argv[]) {
