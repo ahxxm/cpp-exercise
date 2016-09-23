@@ -378,7 +378,7 @@ private:
     // case 2: only 1 child, swap and reset parent
     if (node->left) {
       result = node->left;
-    } else if (node->right){
+    } else if (node->right) {
       result = node->right;
     }
 

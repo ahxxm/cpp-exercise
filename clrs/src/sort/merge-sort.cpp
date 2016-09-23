@@ -35,7 +35,7 @@ TT merge(const TT &a, const TT &b) {
 }
 
 void print(const TT &vec) {
-  for (auto i: vec) {
+  for (auto i : vec) {
     std::cout << i << " ";
   }
   std::cout << std::endl;

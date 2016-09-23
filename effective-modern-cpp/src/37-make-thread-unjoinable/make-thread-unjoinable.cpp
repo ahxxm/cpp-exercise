@@ -23,7 +23,7 @@ bool doWork(std::function<bool(int)> filter, int maxVal = tenM) {
   std::vector<int> goodVals;
 
   // FIXME: start threads suspended, item 39
-  std::thread t ([&filter, maxVal, &goodVals] {
+  std::thread t([&filter, maxVal, &goodVals] {
       for (auto i = 0; i <= maxVal; ++i) {
         if (filter(i)) {goodVals.push_back(i);}
       }

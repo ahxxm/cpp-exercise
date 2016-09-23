@@ -2,6 +2,8 @@
 #include <vector>
 #include <iostream>
 
+#define length 10
+
 int main(void) {
   // this prints abcdeft, bcdefg, ..., g
   // because "compiler ordinarily converts the array to a pointer..",
@@ -13,7 +15,7 @@ int main(void) {
   }
 
   // 31: 10 ints, position == value
-  const std::size_t length = 10;
+  // constexpr const std::size_t length = 10;
   int pv[length];
   for (int i = 0; i != length; i++) {
     pv[i] = i + 1;

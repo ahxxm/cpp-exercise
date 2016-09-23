@@ -18,7 +18,7 @@ ll factor_count(ll num) {
   std::set<ll> result;
 
   ll sqr = (ll)sqrt(num) + 1;
-  for (ll i = 1;i < sqr; ++i) {
+  for (ll i = 1; i < sqr; ++i) {
     if (num % i == 0) {
       result.emplace(i);
       result.emplace(num / i);

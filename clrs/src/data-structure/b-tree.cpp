@@ -274,7 +274,7 @@ private:
     } else {
       // childs 1 more than keys(left/right child), if not leaf
       assert(node->keys.size() + 1 == node->childs.size());
-      for ( auto c: node->childs ) {check(c);}
+      for (auto c : node->childs) {check(c);}
     }
   }
 

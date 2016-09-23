@@ -82,7 +82,7 @@ void detect() {
   // unsuspend all threads
   p.set_value();
 
-  for (auto &t: vt) {
+  for (auto &t : vt) {
     t.join();
   }
 

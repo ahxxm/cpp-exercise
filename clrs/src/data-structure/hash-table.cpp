@@ -8,7 +8,7 @@ static int TABLE_SIZE = 256;
 // string-int key value pair
 struct Node {
   Node() = delete;
-  Node(std::string k, int v):key(k), value(v){}
+  Node(std::string k, int v): key(k), value(v){}
 
   std::string key;
   int value;
