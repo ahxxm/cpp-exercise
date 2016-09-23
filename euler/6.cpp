@@ -7,7 +7,7 @@ using ll = long long;
 ll solve() {
   ll sum_square = 0;
   ll sum = 0;
-  for(ll i = 1;i <= N; ++i) {
+  for (ll i = 1; i <= N; ++i) {
     sum += i;
     sum_square += i * i;
   }

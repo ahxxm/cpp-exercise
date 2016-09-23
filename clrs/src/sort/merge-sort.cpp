@@ -21,12 +21,12 @@ TT merge(const TT &a, const TT &b) {
     }
   }
 
-  while(i < a.size()) {
+  while (i < a.size()) {
     result.emplace_back(a.at(i));
     i++;
   }
 
-  while(j < b.size()) {
+  while (j < b.size()) {
     result.emplace_back(b.at(j));
     j++;
   }

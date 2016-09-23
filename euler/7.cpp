@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
 #include <cmath>
+#include "gtest/gtest.h"
 
 // 10001st prime
 
@@ -7,8 +7,8 @@
 #define N 10001
 using ll = long long;
 bool is_prime(ll k) {
-  if(k < 2) {return false;}
-  if(k == 2) {return true;}
+  if (k < 2) {return false;}
+  if (k == 2) {return true;}
   ll sq = sqrt(k);
   ll tmp;
   while (sq > 1) {
@@ -23,12 +23,11 @@ bool is_prime(ll k) {
 
 int solve() {
   ll i = 1, j = 2;
-  while(i < N) {
-    if(is_prime(++j)) {
+  while (i < N) {
+    if (is_prime(++j)) {
       i += 1;
     }
   }
-
   return j;
 }
 

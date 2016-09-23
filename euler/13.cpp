@@ -122,7 +122,7 @@ struct LargeNum {
     raw = "";
   }
 
-  LargeNum(const std::string s) {
+  explicit LargeNum(const std::string s) {
     raw = s;
   }
 
@@ -145,7 +145,7 @@ struct LargeNum {
     int short_size = shorter.size();
     int shorter_index = short_size - 1;
     std::string result;
-    for (int i = longer.size();i > 0; --i) {
+    for (int i = longer.size(); i > 0; --i) {
       int shorter_digit;
       auto longer_digit = char_to_int(longer[i - 1]);
       if (shorter_index >= 0) {
@@ -185,7 +185,7 @@ struct LargeNum {
 
 void solve() {
   LargeNum k;
-  for(auto s: i) {
+  for (auto s : i) {
     k += s;
   }
   k.print();

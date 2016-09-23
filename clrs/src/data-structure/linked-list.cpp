@@ -9,7 +9,7 @@ struct Node {
   Node *prev = nullptr;
   Node *next = nullptr;
 
-  Node(const int i) {
+  explicit Node(const int i) {
     value = i;
   }
 
@@ -25,13 +25,13 @@ public:
     last = nullptr;
   };
 
-  LinkedList(const int &n) {
+  explicit LinkedList(const int &n) {
     root = new Node(n);
     last = root;
     size = 1;
   };
 
-  LinkedList(const std::initializer_list<int> &lst);
+  explicit LinkedList(const std::initializer_list<int> &lst);
 
   ~LinkedList() {
     del(root);
@@ -40,7 +40,7 @@ public:
   }
 
   void del(Node *node) {
-    if(node) {
+    if (node) {
       del(node->next);
     }
   }
@@ -107,7 +107,7 @@ public:
 
   void display() {
     auto iter = root;
-    while(iter) {
+    while (iter) {
       std::cout << iter->value << " ";
       iter = iter->next;
     };
@@ -124,7 +124,7 @@ private:
 };
 
 LinkedList::LinkedList(const std::initializer_list<int> &lst) {
-  for (const auto v: lst) {
+  for (const auto v : lst) {
     this->push_back(v);
   }
 };

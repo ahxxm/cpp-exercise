@@ -16,8 +16,10 @@ public:
 class Stock: public Investment {
 public:
   Stock() = default;
-  Stock(const std::string &&) {};
-  int price() override final {return 42;};
+  explicit Stock(const std::string &&) {};
+  // override is redundant since it's final
+  // int price() override final {return 42;};
+  int price() final {return 42;};
 };
 class Bond: public Investment {};
 class Cash: public Investment {};

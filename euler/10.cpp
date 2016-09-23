@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
 #include <cmath>
+#include "gtest/gtest.h"
 
 // The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 

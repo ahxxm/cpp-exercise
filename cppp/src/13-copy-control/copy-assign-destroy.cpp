@@ -40,7 +40,7 @@ public:
 // 5: write copy constructor for this class
 class HasPtr {
 public:
-  HasPtr(const std::string &s = std::string()): ps(new std::string(s)), i(0) {};
+  explicit HasPtr(const std::string &s = std::string()): ps(new std::string(s)), i(0) {};
 
   std::string get_ps() {
     return *ps;

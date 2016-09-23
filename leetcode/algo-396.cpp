@@ -29,7 +29,7 @@ class Solution {
 public:
   int maxRotateFunction(std::vector<int> &A) {
     int n = A.size();
-    if(n == 0) {return 0;}
+    if (n == 0) {return 0;}
 
     int sum = 0, tmp = 0;
     for (int i = 0; i < n; ++i) {
@@ -40,7 +40,7 @@ public:
     int result = tmp;
     for (int i = n - 1; i >= 0; --i) {
       tmp += sum - n * A[i];
-      if(tmp > result) {result = tmp;};
+      if (tmp > result) {result = tmp;};
     }
     return result;
   }

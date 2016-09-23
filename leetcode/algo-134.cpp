@@ -1,5 +1,6 @@
-#include "gtest/gtest.h"
 #include <vector>
+#include "gtest/gtest.h"
+
 
 /*
 
@@ -15,20 +16,20 @@ public:
     int k = gas.size();
     int left = 0;
     std::vector<int> diff(k, 0);
-    for(int i = 0;i < k; ++i) {
+    for (int i = 0; i < k; ++i) {
       diff[i] = gas[i] - cost[i];
       left += diff[i];
     }
 
     // all cost > gas
-    if(left < 0) {
+    if (left < 0) {
       return -1;
     }
 
     int sum = 0, start = 0;
-    for(int j = 0; j < k; ++j) {
+    for (int j = 0; j < k; ++j) {
       sum += diff[j];
-      if(sum < 0) {
+      if (sum < 0) {
         start = j + 1;
         sum = 0;
       }

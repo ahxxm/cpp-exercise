@@ -6,7 +6,7 @@
 // This class has no default initializer
 class NoDefault {
 public:
-  NoDefault(int i) {
+  explicit NoDefault(int i) {
     std::cout << i << " is used."<< std::endl;
     j = i;
   };

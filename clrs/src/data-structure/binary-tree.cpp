@@ -16,7 +16,7 @@ struct Node {
   Node<T> *right;
   Node<T> *parent;
 
-  Node(T val): value(val){
+  explicit Node(T val): value(val){
     left = nullptr;
     right = nullptr;
     parent = nullptr;
@@ -53,7 +53,7 @@ public:
 
   node_t *search(T val) {
     auto iter = root;
-    while(iter) {
+    while (iter) {
       if (iter->value == val) {
         break;
       }
@@ -85,13 +85,13 @@ public:
 
   // successor and predecessor
   node_t *successor(node_t *node) {
-    if(!node) {return nullptr;}
-    if(node->right) {
+    if (!node) {return nullptr;}
+    if (node->right) {
       return min(node->right);
     }
 
     node_t *p = node->parent;
-    while(p && node != p->left) {
+    while (p && node != p->left) {
       node = p;
       p = node->parent;
     }
@@ -99,13 +99,13 @@ public:
   }
 
   node_t *predecessor(node_t *node) {
-    if(!node) {return nullptr;}
-    if(node->left) {
+    if (!node) {return nullptr;}
+    if (node->left) {
       return max(node->left);
     }
 
     node_t *p = node->parent;
-    while(p && node != p->right) {
+    while (p && node != p->right) {
       node = p;
       p = node->parent;
     }
@@ -121,15 +121,15 @@ public:
     std::queue<node_t *> q;
 
     auto iter = root;
-    if(!iter) {return result;}
+    if (!iter) {return result;}
 
     q.push(iter);
-    while(!q.empty()) {
+    while (!q.empty()) {
       auto tmp = q.front();
       q.pop();
       result.emplace_back(tmp->value);
-      if(tmp->left) {q.push(tmp->left);}
-      if(tmp->right) {q.push(tmp->right);}
+      if (tmp->left) {q.push(tmp->left);}
+      if (tmp->right) {q.push(tmp->right);}
     }
 
     return result;
@@ -140,7 +140,7 @@ private:
   node_t *root;
 
   void del(node_t *node) {
-    if(node) {
+    if (node) {
       del(node->left);
       del(node->right);
     }
@@ -149,7 +149,7 @@ private:
 
   node_t *min(node_t *iter) {
     node_t *result;
-    while(iter) {
+    while (iter) {
       result = iter;
       iter = iter->left;
     }
@@ -158,7 +158,7 @@ private:
 
   node_t *max(node_t *iter) {
     node_t *result;
-    while(iter) {
+    while (iter) {
       result = iter;
       iter = iter->right;
     }
@@ -174,7 +174,7 @@ private:
       t->right = nullptr;
       size += 1;
 
-      if(!parent) {return t;}
+      if (!parent) {return t;}
       t->parent = parent;
       if (left) {
         parent->left = t;
@@ -198,14 +198,14 @@ private:
     std::stack<node_t *> s;
     s.push(node);
 
-    while(!s.empty()) {
+    while (!s.empty()) {
       node = s.top();
       s.pop();
       std::cout << node->value << " ";
-      if(node->right) {
+      if (node->right) {
         s.push(node->right);
       }
-      if(node->left) {
+      if (node->left) {
         s.push(node->left);
       }
     }
@@ -214,8 +214,8 @@ private:
   // iterative in_order using std::stack
   void in_order(node_t *node) {
     std::stack<node_t *> s;
-    while(!s.empty() || node) {
-      if(node) {
+    while (!s.empty() || node) {
+      if (node) {
         s.push(node);
         node = node->left;
       } else {
@@ -230,13 +230,13 @@ private:
   void post_order(node_t *node) {
     std::stack<node_t *> s;
     node_t *last_visited;
-    while(!s.empty() || node) {
-      if(node) {
+    while (!s.empty() || node) {
+      if (node) {
         s.push(node);
         node = node->left;
       } else {
         auto top = s.top();
-        if(top->right && last_visited != top->right) {
+        if (top->right && last_visited != top->right) {
           node = top->right;
         } else {
           std::cout << top->value << " ";

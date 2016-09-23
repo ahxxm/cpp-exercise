@@ -1,10 +1,10 @@
 #include <cstdlib>
 #include <cassert>
 #include <memory>
+#include <iostream>
 #include <utility>
 #include "gtest/gtest.h"
 
-#include <iostream>
 
 // TODO: chap problems and exercises
 
@@ -67,21 +67,18 @@ void print(Node *p, int start) {
   // node value descendingly ordered from top to bottom
   if (!p) {return;}
   start++;
-  if (p->right)
-    {
-      print(p->right, start);
-    }
-  for (int i = 0; i <= start; i++)
-    {
-      std::cout << "    ";
-    }
+  if (p->right) {
+    print(p->right, start);
+  }
+  for (int i = 0; i <= start; i++) {
+    std::cout << "    ";
+  }
   char color = 'B';
   if (p && p->color == red) {color = 'R';}
   std::cout << p->value << "," << color << std::endl;
-  if (p->left)
-    {
-      print(p->left, start);
-    }
+  if (p->left) {
+    print(p->left, start);
+  }
 }
 
 
@@ -528,17 +525,16 @@ private:
 
 
 void test_insert(RBTree &tree) {
-  for (int i = 0;i < 1000; ++i) {
+  for (int i = 0; i < 1000; ++i) {
    int a = std::rand() % 400;
     tree.insert(a);
     tree.check();
-
   }
 }
 
 
 void test_delete(RBTree &tree) {
-  for (int i = 0;i < 1000; ++i) {
+  for (int i = 0; i < 1000; ++i) {
     auto tmp = rand() % 400;
     tree.del(tmp);
     tree.check();
