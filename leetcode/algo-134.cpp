@@ -12,8 +12,6 @@
 class Solution {
 public:
   int canCompleteCircuit(std::vector<int> &gas, std::vector<int> &cost) {
-    std::cout << gas.size() << std::endl;
-
     int k = gas.size();
     int left = 0;
     std::vector<int> diff(k, 0);
@@ -44,8 +42,6 @@ public:
 TEST(GasStationTest, SomeTest) {
   std::vector<int> gas {5};
   std::vector<int> cost {4};
-  std::cout << gas.size() << std::endl;
-  std::cout << gas[0] << std::endl;
   auto a = Solution();
   std::cout << a.canCompleteCircuit(gas, cost) << std::endl;
 }
