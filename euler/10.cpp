@@ -9,8 +9,8 @@
 #define N 2000000
 using ll = long long;
 bool is_prime(ll k) {
-  if(k < 2) {return false;}
-  if(k == 2) {return true;}
+  if (k < 2) {return false;}
+  if (k == 2) {return true;}
   ll sq = sqrt(k);
   ll tmp;
   while (sq > 1) {
@@ -28,9 +28,9 @@ bool is_prime(ll k) {
 ll solve() {
   ll result = 0;
   ll i = 1;
-  while(i < N) {
+  while (i < N) {
     ++i;
-    if(is_prime(i)) {result += i;}
+    if (is_prime(i)) {result += i;}
   }
   return result;
 }

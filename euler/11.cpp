@@ -36,14 +36,14 @@ ll solve() {
   ll result = -1;
   ll tmp;
   // start point: ith row, jth column
-  for(int i = 3;i < 17; ++i) {
-    for(int j = 3;j < 17; ++j) {
+  for (int i = 3;i < 17; ++i) {
+    for (int j = 3;j < 17; ++j) {
       // TODO: multiple in directions
       // TODO: any elegant solution?
       tmp = s[i][j] * s[i+1][j+1] * s[i+2][j+2] * s[i+3][j+3];
       std::cout << i << ", " << j << ", result: " << tmp << std::endl;
 
-      if(tmp > result) {
+      if (tmp > result) {
         std::cout << "bigger" << std::endl;
         result = tmp;
       }

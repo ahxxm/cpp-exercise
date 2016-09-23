@@ -1,7 +1,7 @@
-#include "gtest/gtest.h"
 #include <algorithm>
 #include <string>
 #include <vector>
+#include "gtest/gtest.h"
 
 
 // first ten digits of the sum of the following one-hundred 50-digit numbers.
@@ -109,7 +109,7 @@ std::vector<std::string> i {
 "53503534226472524250874054075591789781264330331690"};
 
 
-int char_to_int (const char &c){
+int char_to_int(const char &c) {
   return (c - '0') % 48;
 }
 
@@ -145,10 +145,10 @@ struct LargeNum {
     int short_size = shorter.size();
     int shorter_index = short_size - 1;
     std::string result;
-    for(int i = longer.size();i > 0; --i) {
+    for (int i = longer.size();i > 0; --i) {
       int shorter_digit;
       auto longer_digit = char_to_int(longer[i - 1]);
-      if(shorter_index >= 0) {
+      if (shorter_index >= 0) {
         shorter_digit = char_to_int(shorter[shorter_index]);
         shorter_index -= 1;
       } else {
@@ -156,7 +156,7 @@ struct LargeNum {
       }
 
       int added = shorter_digit + longer_digit + carry;
-      if(added >= 10) {
+      if (added >= 10) {
         carry = 1;
         added -= 10;
       } else {
@@ -166,7 +166,7 @@ struct LargeNum {
     }
 
     // if carry remains(like 6+6)
-    if(carry == 1) {
+    if (carry == 1) {
       result.push_back('1');
     }
 

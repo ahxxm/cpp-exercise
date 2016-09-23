@@ -20,8 +20,6 @@ struct Node {
   bool color;
   node_p left, right, parent;
 
-
-
   auto grandp() {
     auto p = this->parent;
     if (p) {
@@ -36,7 +34,7 @@ struct Node {
       return grandparent;
     }
 
-    if(this->parent == grandparent->left) {
+    if (this->parent == grandparent->left) {
       return grandparent->right;
     } else {
       return grandparent->left;
@@ -49,14 +47,14 @@ struct Node {
 // could return origin
 auto rleft_most(node_p node) {
   // the smallest node that value greater than `node`
-  while(node->left) {
+  while (node->left) {
     node = node->left;
   }
   return node;
 }
 
 auto lright_most(node_p node) {
-  while(node->right) {
+  while (node->right) {
     node = node->right;
   }
   return node;
@@ -67,7 +65,7 @@ void print(Node *p, int start) {
   // node print in "value, R/B" form
   // left most node is root
   // node value descendingly ordered from top to bottom
-  if(!p) {return;}
+  if (!p) {return;}
   start++;
   if (p->right)
     {
@@ -78,7 +76,7 @@ void print(Node *p, int start) {
       std::cout << "    ";
     }
   char color = 'B';
-  if(p && p->color == red) {color = 'R';}
+  if (p && p->color == red) {color = 'R';}
   std::cout << p->value << "," << color << std::endl;
   if (p->left)
     {
@@ -105,12 +103,12 @@ public:
 
   node_p search(const int val) {
     auto iter = root;
-    while(iter) {
-      if(iter->value == val) {
+    while (iter) {
+      if (iter->value == val) {
         return iter;
       }
 
-      if(iter->value > val) {
+      if (iter->value > val) {
         iter = iter->left;
       } else {
         iter = iter->right;
@@ -123,7 +121,7 @@ public:
     // pair: correct_pos, parent
     std::pair<link, node_p> position;
     position = get_insert_position(val);
-    if(!position.first) {
+    if (!position.first) {
       return;
     }
 
@@ -145,7 +143,7 @@ public:
   void check() {
     // 1. nodes are red or black
     // 2. root black
-    if(node_color(root) == red) {
+    if (node_color(root) == red) {
       assert(1 == 0);
     }
 
@@ -155,7 +153,7 @@ public:
   void del(const int val) {
     // not found
     auto k = search(val);
-    if(!k) {return;}
+    if (!k) {return;}
 
     // otherwise
     auto node = swap_and_return_remove(k);
@@ -178,7 +176,7 @@ private:
 
   void clean(node_p node) {
     // helper for root(only)
-    if(node) {
+    if (node) {
       clean(node->left);
       clean(node->right);
       delete node;
@@ -186,7 +184,7 @@ private:
   }
 
   bool node_color(node_p node) {
-    if(!node) {return black;}
+    if (!node) {return black;}
     return node->color;
   }
 
@@ -198,10 +196,10 @@ private:
     link insert_pos = make_link(root);
     node_p parent = nullptr;
 
-    while(deref_link(insert_pos)) {
+    while (deref_link(insert_pos)) {
       // keep parent then make_link
       parent = deref_link(insert_pos);
-      if(val < parent->value) {
+      if (val < parent->value) {
         insert_pos = make_link(parent->left);
       } else {
         insert_pos = make_link(parent->right);
@@ -215,14 +213,14 @@ private:
   node_p sib(node_p node) {
     auto parent = node->parent;
     auto si = parent->left;
-    if(si == node) {si = parent->right;}
+    if (si == node) {si = parent->right;}
     return si;
   }
 
   int check(node_p node) {
     // returns black height
     // null leaft has 1
-    if(!node) {return 1;}
+    if (!node) {return 1;}
 
     // 3. leaf are black(by design?)
     node_p left = node->left;
@@ -231,13 +229,13 @@ private:
     // 5. black height is same from node to every leaft node
     int left_height = check(left);
     int right_height = check(right);
-    if(left_height != right_height) {
+    if (left_height != right_height) {
       std::cout << "node " << node->value << " is not balanced." << std::endl;
       assert(left_height == right_height);
     }
 
     // 4. no consecutive red node
-    if(node_color(node) == red) {
+    if (node_color(node) == red) {
       assert(node_color(left) == black);
       assert(node_color(right) == black);
     } else {
@@ -246,7 +244,7 @@ private:
     }
 
     // make sure parent/child pair is correct
-    if((left && left->parent != node) || (right && right->parent != node)) {
+    if ((left && left->parent != node) || (right && right->parent != node)) {
       assert(1 == 0);
     }
 
@@ -264,10 +262,10 @@ private:
   node_p get_link_parent_node(link __link) {return deref_link(__link)->parent;}
   link get_link(node_p node) {
     node_p parent = node->parent;
-    if(!parent) {
+    if (!parent) {
       return make_link(root);
     }
-    if(parent->left == node) {
+    if (parent->left == node) {
       return make_link(parent->left);
     }
     return make_link(parent->right);
@@ -289,7 +287,7 @@ private:
     node->parent = right;
 
 
-    if(rleft) {
+    if (rleft) {
       rleft->parent = node;
     }
   }
@@ -307,7 +305,7 @@ private:
     left->right = node;
     node->parent = left;
 
-    if(lright) {
+    if (lright) {
       lright->parent = node;
     }
   }
@@ -315,13 +313,13 @@ private:
   // fix color
   void insertfix(node_p node) {
     // case 1: new tree
-    if(!node->parent) {
+    if (!node->parent) {
       node->color = black;
       return;
     }
 
     // case 2: parent black
-    if(node->parent->color == black) {
+    if (node->parent->color == black) {
       return;
     }
 
@@ -336,11 +334,11 @@ private:
     auto parent = node->parent;
     auto si = sib(node);
     // complex case 1: sib is red
-    if(node_color(si) == red) {
+    if (node_color(si) == red) {
       si->color = black;
       parent->color = red;
       // parent's parent is also red, recursively fix it
-      if(node_color(parent->parent) == red) {
+      if (node_color(parent->parent) == red) {
         parent->parent->color = black;
         insertfix_cases(parent->parent);
       }
@@ -349,15 +347,15 @@ private:
     // complex case 2: sib is black
     else {
       parent->color = red;
-      if(node == parent->left) {
-        if(node_color(node->right) == red) {
+      if (node == parent->left) {
+        if (node_color(node->right) == red) {
           node->color = red;
           node->right->color = black;
           left_rotate(make_link(parent->left));
         }
         right_rotate(get_link(parent));
       } else {
-        if(node_color(node->left) == red) {
+        if (node_color(node->left) == red) {
           node->color = red;
           node->left->color = black;
           right_rotate(make_link(parent->right));
@@ -373,7 +371,7 @@ private:
     // case 1: swap node with left-most-of-right,
     // return to-delete-node
     node_p result = nullptr;
-    if(node->left && node->right) {
+    if (node->left && node->right) {
       result = rleft_most(node);
       std::swap(result->value, node->value);
       node = result;
@@ -381,14 +379,14 @@ private:
     }
 
     // case 2: only 1 child, swap and reset parent
-    if(node->left) {
+    if (node->left) {
       result = node->left;
     } else if (node->right){
       result = node->right;
     }
 
     set_link(get_link(node), result);
-    if(result) {
+    if (result) {
       result->parent = node->parent;
     }
 
@@ -399,25 +397,25 @@ private:
     // node has pointer to parent, but parent has no pointer to node
 
     // red node does not affect black height
-    if(node_color(node) == red) {return;}
+    if (node_color(node) == red) {return;}
 
     // black node's child, set to black to keep black height
     // (node can only have 1 child here, because rleft_most())
-    if(node->left || node->right) {
-      if(node->left) {node->left->color = black;}
-      if(node->right) {node->right->color = black;}
+    if (node->left || node->right) {
+      if (node->left) {node->left->color = black;}
+      if (node->right) {node->right->color = black;}
       return;
     }
 
     // root has to parent
-    if(!node->parent) {return;}
+    if (!node->parent) {return;}
 
     // otherwise, we delete a black node that have no child,
     // to fix we need to jump up.
     // it's sib must exist to keep balance, sib() can't be used
     // because parent does not know node now: one child + one nullptr.
     node_p si = node->parent->left;
-    if(!si) {si = node->parent->right;}
+    if (!si) {si = node->parent->right;}
 
     delfixcases(si);
   }
@@ -430,7 +428,7 @@ private:
     rot_func rright = &RBTree::right_rotate;
     node_p si_l = si->left;
     node_p si_r = si->right;
-    if(si == si->parent->left) {
+    if (si == si->parent->left) {
       std::swap(rleft, rright);
       std::swap(si_l, si_r);
     }
@@ -476,7 +474,7 @@ private:
     node_p si_r = si->right;
 
     // if sib is left, make them right.
-    if(si == si->parent->left) {
+    if (si == si->parent->left) {
       std::swap(rleft, rright);
       std::swap(si_l, si_r);
     }
@@ -485,24 +483,24 @@ private:
 
     // Cases
     // 1-5: parent black
-    if(node_color(parent) == black) {
+    if (node_color(parent) == black) {
 
       // 1-4: sib black
-      if(node_color(si) == black) {
+      if (node_color(si) == black) {
 
         // 1: child both black
-        if(node_color(si_l) == black && node_color(si_r) == black) {
+        if (node_color(si_l) == black && node_color(si_r) == black) {
           si->color = red;
-          if(parent->parent) {delfixcases(sib(parent));}
+          if (parent->parent) {delfixcases(sib(parent));}
         }
         // 2: left red, right black
-        else if(node_color(si_l) == red && node_color(si_r) == black) {
+        else if (node_color(si_l) == red && node_color(si_r) == black) {
           si_l->color = black;
           (this->*rright)(get_link(si));
           (this->*rleft)(get_link(parent));
         }
         // 3: left black, right red
-        else if(node_color(si_l) == black && node_color(si_r) == red) {
+        else if (node_color(si_l) == black && node_color(si_r) == red) {
           si_r->color = black;
           (this->*rleft)(get_link(parent));
         }

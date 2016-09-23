@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
 #include <map>
 #include <vector>
+#include "gtest/gtest.h"
 
 /*
 
@@ -34,13 +34,13 @@ mm length;
 
 ll get_with_default(mm &dict, const ll key) {
   auto it = dict.find(key);
-  if(it == dict.end()) {return init;}
+  if (it == dict.end()) {return init;}
   return it->second;
 }
 
 
 ll next(ll num) {
-  if(num % 2 == 0) {return num / 2;}
+  if (num % 2 == 0) {return num / 2;}
   else {return 3 * num + 1;}
 }
 
@@ -48,7 +48,7 @@ ll get_length(ll index) {
   auto n = next(index + 1);
   ll next_length = get_with_default(length, n - 1);
 
-  if(next_length != init) {
+  if (next_length != init) {
     length[index] = next_length + 1;
     return length[index];
   } else {
@@ -61,17 +61,14 @@ ll solve() {
   ll num_of_max_length = 1;
   ll index = 1;
   ll result;
-  while(index < N) {
+  while (index < N) {
     auto local_length = get_length(index);
-    if(local_length > num_of_max_length) {
+    if (local_length > num_of_max_length) {
       num_of_max_length = local_length;
       result = index + 1;
     }
     ++index;
   }
-  std::cout << "Number: " << result
-            << ", length: " << num_of_max_length << std::endl;
-
   return result;
 }
 

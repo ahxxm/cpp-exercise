@@ -17,7 +17,8 @@ install:
   - travis_wait ./install-boost.sh
   - mkdir build && cd build && cmake -DCMAKE_C_COMPILER=$COMPILER -DCMAKE_CXX_COMPILER=$CCOMPILER .. && make -j8 && make test ARGS="-VV" && cd ..
 script:
-  - cpplint --linelength=120 --extensions=hpp,cpp --output=emacs --recursive --counting=detailed --filter=-legal/copyright,-whitespace/blank_line,-build/namespaces,-whitespace/indent,-readability/braces,-build/c++11,-runtime/references,-runtime/indentation_namespace,-runtime/int,-build/include_subdir ./algo ./clrs ./effective-modern-cpp ./cppp ./euler ./leetcode || echo "0"
+  # TODO: cpplint.cfg and explain filter
+  - cpplint --linelength=120 --extensions=hpp,cpp --output=emacs --recursive --counting=detailed --filter=-legal/copyright,-whitespace/blank_line,-build/namespaces,-whitespace/indent,-readability/braces,-build/c++11,-runtime/references,-runtime/indentation_namespace,-runtime/int,-build/include_subdir,-whitespace/comments,-readability/todo ./algo ./clrs ./effective-modern-cpp ./cppp ./euler ./leetcode || echo "0"
 cache:
   directories:
     - "${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_}"
