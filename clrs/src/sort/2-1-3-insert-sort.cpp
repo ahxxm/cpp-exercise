@@ -10,8 +10,8 @@ static void swap(T &elems, const int i, const int j) {
 
 template<typename T>
 auto insertSort(T elems) {
-  for(int i = 0;i < static_cast<int>(elems.size() - 1); i++) {
-    for(int j = i + 1; j > 0 && (elems[j] < elems[j - 1]); j--) {
+  for (int i = 0; i < static_cast<int>(elems.size() - 1); i++) {
+    for (int j = i + 1; j > 0 && (elems[j] < elems[j - 1]); j--) {
       swap(elems, j - 1, j);
     }
   }

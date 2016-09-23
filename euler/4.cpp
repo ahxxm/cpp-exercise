@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
 #include <algorithm>
 #include <string>
+#include "gtest/gtest.h"
+
 
 // Largest palindrome product
 // A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
@@ -14,16 +15,16 @@ bool is_palindrome_num(const int i) {
   std::string reversed(num_string);
   std::reverse(reversed.begin(), reversed.end());
 
-  if(reversed == num_string) {return true;}
+  if (reversed == num_string) {return true;}
   return false;
 }
 
 int solve() {
   auto max = 999;
-  for (int i = 999;i > 99; --i) {
-    for (int j = 999;j > 99; --j) {
+  for (int i = 999; i > 99; --i) {
+    for (int j = 999; j > 99; --j) {
       auto k = i * j;
-      if(is_palindrome_num(k) && k > max) {
+      if (is_palindrome_num(k) && k > max) {
         max = k;
       }
     }

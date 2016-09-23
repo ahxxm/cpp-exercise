@@ -59,7 +59,7 @@ public:
     disk();
   };
 
-  BTree(int _degree) {
+  explicit BTree(int _degree) {
     root = new Node();
     degree = std::move(_degree);
     disk();
@@ -78,7 +78,7 @@ public:
     auto iter = root;
     std::cout << "insert: " << val<< std::endl;
 
-    if(iter->size < 2 * degree - 1) {
+    if (iter->size < 2 * degree - 1) {
       insert_non_full(iter, val);
       return;
     }
@@ -105,7 +105,7 @@ public:
     // 1. if leaf just delete this key
     auto node = search_r.first;
     auto i = search_r.second;
-    if(node->leaf) {
+    if (node->leaf) {
       node->keys.erase(node->keys.begin() + i);
       node->size -= 1;
       // FIXME: fix when node needs combination!
@@ -146,15 +146,15 @@ private:
   void insert_non_full(node_p node, int val) {
     // backwardly compare
     auto i = node->size - 1;
-    if(node->leaf) {
+    if (node->leaf) {
       // insert a immediately-replaced-value for new key
       node->keys.emplace_back(-1);
-      while(i >= 0 && val < node->keys[i]) {
+      while (i >= 0 && val < node->keys[i]) {
         node->keys[i + 1] = node->keys[i];
         --i;
       }
 
-      if(node->keys.empty()) {
+      if (node->keys.empty()) {
         node->keys.emplace_back(val);
       } else {
         node->keys[i + 1] = val;
@@ -164,16 +164,16 @@ private:
     }
 
     // else not leaf
-    while(i >= 0 && val < node->keys[i]) {
+    while (i >= 0 && val < node->keys[i]) {
       --i;
     }
 
     // see if child full, needs split
-    if(node->childs[i + 1] && node->childs[i + 1]->size == 2 * degree - 1) {
+    if (node->childs[i + 1] && node->childs[i + 1]->size == 2 * degree - 1) {
       split_child(node, i + 1);
 
       // after split, check which i have mid key
-      if(node->keys[i + 1] < val) {++i;}
+      if (node->keys[i + 1] < val) {++i;}
     }
     insert_non_full(node->childs[i + 1], val);
   }
@@ -181,12 +181,12 @@ private:
   result_t search(node_p node, int val) {
     // search for child(might have val)
     int index = 0;
-    while(index <= node->size && index < static_cast<int>(node->keys.size()) && val > node->keys[index]) {
+    while (index <= node->size && index < static_cast<int>(node->keys.size()) && val > node->keys[index]) {
       index += 1;
     }
 
     // in case key->value == val, or reach leaf but no result
-    if(index <= node->size && val == node->keys[index]) {
+    if (index <= node->size && val == node->keys[index]) {
       return std::make_pair(node, index);
     } else if (node->leaf) {
       return std::make_pair(nullptr, -1);
@@ -218,7 +218,7 @@ private:
 
     // if child is not leaf, it has childs, copy
     // right half(d-1) to new node, set left half's size.
-    if(!child->leaf) {
+    if (!child->leaf) {
       sib->childs = {std::make_move_iterator(child->childs.begin() + degree),
                      std::make_move_iterator(child->childs.end())};
       child->childs.erase(child->childs.begin() + degree, child->childs.end());
@@ -240,12 +240,12 @@ private:
 
 
   void check_keys(std::vector<int> keys) {
-    if(keys.size() <= 1) {return;}
+    if (keys.size() <= 1) {return;}
 
     auto tmp = keys[0];
     int len = keys.size();
     for (int i = 1; i < len; ++i) {
-      if(tmp > keys[i]) {
+      if (tmp > keys[i]) {
         std::cout << "keys unordered error: " << tmp << " > " << keys[i] << std::endl;
       }
       assert(tmp <= keys[i]);
@@ -255,13 +255,13 @@ private:
   }
 
   void check(node_p node) {
-    if(!node) {return ;}
+    if (!node) {return ;}
 
     // keys should be ordered, note that non-null nodes have at least 1 key
     check_keys(node->keys);
 
     // all non-root node follow degree: d-1 <= size(key.size()) <= 2d -1
-    if(node != root) {
+    if (node != root) {
       assert(static_cast<unsigned long>(degree - 1) <= node->keys.size() &&
              static_cast<unsigned long>(2 * degree - 1) >= node->keys.size());
     }
@@ -269,12 +269,12 @@ private:
     assert(node->size == static_cast<int>(node->keys.size()));
 
     // leaf node has no childs,
-    if(node->leaf) {
+    if (node->leaf) {
       assert(node->childs.size() == 0);
     } else {
       // childs 1 more than keys(left/right child), if not leaf
       assert(node->keys.size() + 1 == node->childs.size());
-      for(auto c: node->childs) {check(c);}
+      for (auto c : node->childs) {check(c);}
     }
   }
 
@@ -282,7 +282,7 @@ private:
 
 
 void test_insert(BTree &tree) {
-  for (int i = 0;i < 40; ++i) {
+  for (int i = 0; i < 40; ++i) {
     auto tmp = std::rand() % 2345;
     tree.insert(tmp);
     tree.check();
@@ -290,7 +290,7 @@ void test_insert(BTree &tree) {
 }
 
 void test_delete(BTree &tree) {
-  for (int i = 0;i < 400; ++i) {
+  for (int i = 0; i < 400; ++i) {
     auto tmp = std::rand() % 2345;
     tree.del(tmp);
     tree.check();

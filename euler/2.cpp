@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 
-// By considering the terms in the Fibonacci sequence whose values do not exceed four million,  find the sum of the even - valued terms.
+// By considering the terms in the Fibonacci sequence
+// whose values do not exceed four million,
+// find the sum of the even - valued terms.
 
 #define N 4000000
 
@@ -11,12 +13,12 @@ int solve() {
 
   // odd, even odd odd, even odd odd, ...
   int flag = 0;
-  while(j < N) {
+  while (j < N) {
     tmp = i + j;
     i = j;
     j = tmp;
     flag += 1;
-    if(flag == 3) {
+    if (flag == 3) {
       sum += tmp;
       flag = 0;
     }

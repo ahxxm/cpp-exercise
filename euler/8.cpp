@@ -1,7 +1,6 @@
-#include "gtest/gtest.h"
-#include <boost/algorithm/string.hpp>
-// #include <boost/multiprecision/cpp_int.hpp>
 #include <string>
+#include <boost/algorithm/string.hpp>
+#include "gtest/gtest.h"
 
 
 // Largest product in a series
@@ -12,24 +11,20 @@ std::string i = "731671765313306249192251196744265747423553491949349698352031277
 
 
 #define N 13
-// FIXME: /home/travis/g++-5-boost_1_59_0/include/boost/smart_ptr/shared_ptr.hpp:249:65: error: ‘template<class> class std::auto_ptr’ is deprecated [-Werror=deprecated-declarations]
 using ll = long long;
 
 
 ll helper(const std::string &s) noexcept {
   ll max = -1;
-  for(unsigned long i = 0;i <= s.size() - N; ++i) {
+  for (unsigned long i = 0; i <= s.size() - N; ++i) {
     ll result = 1;
-    for(int j = 0;j < N; ++j) {
+    for (int j = 0; j < N; ++j) {
       int index = i + j;
       int digit = (s[index] - '0') % 48;
       result *= digit;
     }
-    if(result > max) {max = result;}
+    if (result > max) {max = result;}
   }
-  std::cout << s << ", result: "<< max << std::endl;
-  std::cout << std::endl;
-
   return max;
 }
 
@@ -37,10 +32,10 @@ ll solve(const std::string &ss) {
   std::vector<std::string> result;
   boost::split(result, ss, boost::is_any_of("0"));
   ll max = 0;
-  for(auto k: result) {
-    if(k.size() >= N) {
+  for (auto k : result) {
+    if (k.size() >= N) {
       auto local_max = helper(k);
-      if(local_max > max) {max = local_max;}
+      if (local_max > max) {max = local_max;}
     }
   }
 

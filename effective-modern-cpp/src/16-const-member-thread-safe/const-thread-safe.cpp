@@ -15,7 +15,7 @@ public:
     // ONLY for one variable, 2 or more can cause headache
     // ++callCount;
 
-    if( !rootsAreValid ) {
+    if ( !rootsAreValid ) {
       // compute root
       rootsAreValid = true;
     }

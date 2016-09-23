@@ -81,7 +81,7 @@ public:
 
   // initialize wptr as nullptr by default..
   StrBlobPtr(): curr(0) {};
-  StrBlobPtr(StrBlob &b, std::size_t sz = 0): wptr(b.data), curr(sz) {};
+  explicit StrBlobPtr(StrBlob &b, std::size_t sz = 0): wptr(b.data), curr(sz) {};
 
 
   std::string &deref() const {

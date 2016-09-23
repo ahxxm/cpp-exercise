@@ -5,7 +5,7 @@
 class Foo {
 public:
   Foo() = default;
-  Foo(const int &j): i(new int(j)) {};
+  explicit Foo(const int &j): i(new int(j)) {};
 
   // move operator "steals" origin value
   // should assure deleting moved object be harmless

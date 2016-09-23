@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 
-// Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
+// Starting in the top left corner of a 2×2 grid,
+// and only being able to move to the right and down,
+// there are exactly 6 routes to the bottom right corner.
 
 // How many such routes are there through a 20×20 grid?
 
@@ -9,7 +11,7 @@ using ll = long long;
 
 ll solve(ll num) {
   ll result = 1;
-  for(ll i = 0;i < num; ++i) {
+  for (ll i = 0; i < num; ++i) {
     result *= (2 * num) - i;
     result /= i + 1;
   }

@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
 #include <cmath>
 #include <set>
+#include "gtest/gtest.h"
+
 
 // 7th triangle number would be 1 + 2 + 3 + 4 + 5 + 6 + 7 = 28.
 // Factors:
@@ -17,8 +18,8 @@ ll factor_count(ll num) {
   std::set<ll> result;
 
   ll sqr = (ll)sqrt(num) + 1;
-  for(ll i = 1;i < sqr; ++i) {
-    if(num % i == 0) {
+  for (ll i = 1; i < sqr; ++i) {
+    if (num % i == 0) {
       result.emplace(i);
       result.emplace(num / i);
     }
@@ -31,7 +32,7 @@ ll solve() {
   int num = 1;
   int index = 1;
   ll count = 0;
-  while(count < N) {
+  while (count < N) {
     index += 1;
     num += index;
     count = factor_count(num);

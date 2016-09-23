@@ -1,6 +1,7 @@
-#include "gtest/gtest.h"
 #include <map>
 #include <vector>
+#include "gtest/gtest.h"
+
 
 // 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 // What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20 ?
@@ -18,21 +19,21 @@ using vi = std::vector<int>;
 
 int gcd(int a, int b) {
   // make sure a>=b
-  if(b > a) {
+  if (b > a) {
     auto tmp = b;
     b = a;
     a = tmp;
   }
 
   // in case b is a's factor
-  if(a % b == 0) {return b;}
+  if (a % b == 0) {return b;}
   return gcd(b, a % b);
 }
 
 
 auto solve(const vi &v) {
   auto result = v[0] * v[1] / gcd(v[0], v[1]);
-  for (int j = 2;j < static_cast<int>(v.size()); ++j) {
+  for (int j = 2; j < static_cast<int>(v.size()); ++j) {
     result = result / gcd(result, v[j]) * v[j];
   }
 
@@ -42,7 +43,7 @@ auto solve(const vi &v) {
 
 TEST(SmallestMultipleTest, SomeTest) {
   vi k;
-  for (int i = 1;i <= N; ++i) {k.emplace_back(i);}
+  for (int i = 1; i <= N; ++i) {k.emplace_back(i);}
   std::cout << solve(k) << std::endl;
   EXPECT_EQ(static_cast<int>(k.size()), 20);
 

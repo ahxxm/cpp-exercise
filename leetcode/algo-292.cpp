@@ -26,7 +26,7 @@ using ll = long long;
 class Solution {
 public:
     bool canWinNim(int n) {
-      if(n % 4 == 0) {return false;}
+      if (n % 4 == 0) {return false;}
       return true;
     }
 };

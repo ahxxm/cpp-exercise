@@ -8,7 +8,7 @@ static int TABLE_SIZE = 256;
 // string-int key value pair
 struct Node {
   Node() = delete;
-  Node(std::string k, int v):key(k), value(v){}
+  Node(std::string k, int v): key(k), value(v){}
 
   std::string key;
   int value;
@@ -21,14 +21,14 @@ public:
   HashTable() {
     // initialize by ()
     table = new Node*[TABLE_SIZE];
-    for (int i = 0;i < TABLE_SIZE; ++i) {
+    for (int i = 0; i < TABLE_SIZE; ++i) {
       table[i] = nullptr;
     }
   }
 
   ~HashTable() {
-    for(int i = 0;i < TABLE_SIZE; ++i) {
-      if(table[i]) {delete table[i];}
+    for (int i = 0; i < TABLE_SIZE; ++i) {
+      if (table[i]) {delete table[i];}
     }
     table = nullptr;
   }
@@ -37,7 +37,7 @@ public:
     auto __hash = hash(key);
 
     // in case collision
-    while(table[__hash] && table[__hash]->key != key) {
+    while (table[__hash] && table[__hash]->key != key) {
       __hash = hash(__hash + 1);
     }
 
@@ -48,23 +48,23 @@ public:
     auto __hash = hash(key);
 
     // in case collision
-    while(table[__hash] && table[__hash]->key != key) {
+    while (table[__hash] && table[__hash]->key != key) {
       __hash = hash(__hash + 1);
     }
 
-    if(!table[__hash]) {return -1;}
+    if (!table[__hash]) {return -1;}
     return table[__hash]->value;
   }
 
   bool remove(std::string key) {
     auto __hash = hash(key);
 
-    while(table[__hash]) {
-      if(table[__hash]->key == key) {break;}
+    while (table[__hash]) {
+      if (table[__hash]->key == key) {break;}
       __hash = hash(__hash + 1);
     }
 
-    if(!table[__hash]) {return false;}
+    if (!table[__hash]) {return false;}
 
     // mark as deleted, delete will cause segfault in dtor
     table[__hash] = nullptr;
@@ -80,7 +80,7 @@ private:
   int hash(std::string k) {
     int value = 0;
     int len = k.length();
-    for(int i = 0;i < len; ++i) {
+    for (int i = 0; i < len; ++i) {
       value += k[i];
     }
     return value % TABLE_SIZE;

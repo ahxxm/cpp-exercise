@@ -24,7 +24,7 @@ void work(T) {}
 
 
 template<typename... Ts>
-void fwd(Ts&&... params){
+void fwd(Ts&&... params) {
   f(std::forward<Ts>(params)...);
 }
 

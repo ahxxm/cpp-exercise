@@ -36,6 +36,7 @@ public:
   // normal constructor..
   // 47: here `explicit` could be cumbersome when creating
   // temporary instance.
+  // FIXME: explicit causes error
   Sales_data(const std::string &s): bookNo(s) {
     std::cout << "Single bookNo constructor used." << std::endl;
 

@@ -4,17 +4,16 @@ class Foo {
 public:
   int i = 1;
   Foo() = default;
-  Foo(int);
-
+  explicit Foo(int);
 };
 
 class Bar {
 public:
   int j = 2;
   Bar() = default;
-  Bar(int);
-
+  explicit Bar(int);
 };
+
 
 // multiple inheritance
 class A: public Foo, public Bar {
@@ -23,7 +22,7 @@ public:
   A() = default;
 
   // must define its own Class(int)
-  A(int i) {k = i;};
+  explicit A(int i) {k = i;};
 private:
   int k;
 };
@@ -33,7 +32,6 @@ TEST(InheritanceTest, SomeTest) {
   A a(1);
   EXPECT_EQ(a.i, 1);
   EXPECT_EQ(a.j, 2);
-
 }
 
 int main(int argc, char *argv[]) {
