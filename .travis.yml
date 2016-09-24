@@ -15,8 +15,8 @@ before_install:
 install:
   - export BOOST_VERSION=${BOOST_VER//./_} && export BOOST_ROOT=${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_}
   - travis_wait ./install-boost.sh
-  - mkdir build && cd build && cmake -DCMAKE_C_COMPILER=$COMPILER -DCMAKE_CXX_COMPILER=$CCOMPILER .. && make -j8 && make test ARGS="-VV" && cd ..
 script:
+  - mkdir build && cd build && cmake -DCMAKE_C_COMPILER=$COMPILER -DCMAKE_CXX_COMPILER=$CCOMPILER .. && make -j8 && make test ARGS="-VV" && cd ..
   - (cpplint --output=emacs --recursive --counting=detailed  ./algo ./clrs ./effective-modern-cpp ./cppp ./euler ./leetcode 2>&1 | grep -v "Done") || echo "0"
 cache:
   directories:
