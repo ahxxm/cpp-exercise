@@ -28,10 +28,13 @@ namespace ni = ns::nested;
 
 void f() {
   // using derivative:
+  // using namespace ns::nestned;
   // lifting the namespace members into the
   // <b>nearest<b> scope that contains both
   // the namespace itself and the using directive.
-  using namespace ns::nested;
+
+  // using declaration: directly use this member on specify scope
+  using ns::nested::i;
   ++i;
   std::cout << i << std::endl;
 

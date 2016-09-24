@@ -5,7 +5,7 @@
 class Foo {
 public:
   Foo() = default;
-  explicit Foo(const int &j): i(new int(j)) {};
+  explicit Foo(const int &j): i(new int(j)) {}
 
   // move operator "steals" origin value
   // should assure deleting moved object be harmless
@@ -14,7 +14,7 @@ public:
   // because self move assignment
   Foo(Foo &&f) noexcept: i(f.i) {
     f.i = nullptr;
-  };
+  }
 
   // move assignment operator
   Foo &operator=(Foo &&f) noexcept {
@@ -27,7 +27,7 @@ public:
       f.i = nullptr;
     };
     return *this;
-  };
+  }
 
   ~Foo() {
     delete i;
@@ -35,7 +35,7 @@ public:
 
   int square() {
     return *i * *i;
-  };
+  }
 
 private:
   int *i;

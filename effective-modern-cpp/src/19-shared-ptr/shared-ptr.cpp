@@ -28,7 +28,7 @@ void dif_deleter() {
   shared_wid pw2(new Widget, customDel2);
   std::vector<shared_wid> vpw {pw1, pw2};
   std::cout << &vpw << std::endl;
-};
+}
 
 
 void avoid_raw() {
@@ -43,7 +43,7 @@ void avoid_raw() {
 
   std::cout << &spw1 << std::endl;
   // std::cout << &spw2 << std::endl;
-};
+}
 
 
 struct Shared: std::enable_shared_from_this<Shared> {

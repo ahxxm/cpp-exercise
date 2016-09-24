@@ -5,18 +5,18 @@
 #include "gtest/gtest.h"
 
 
-int adder(int &i, int &j) {
+int adder(const int &i, const int &j) {
   return i + j;
 }
 
-int (*add)(int &i, int &j) = adder;
+int (*add)(const int &i, const int &j) = adder;
 
 TEST(SignatureTest, SomeTest) {
-  std::map<std::string, int(*)(int &, int&)> binops;
-  auto mapper = std::pair<std::string, int(*)(int &, int&)> {"+", add};
+  std::map<std::string, int(*)(const int &, const int&)> binops;
+  auto mapper = std::pair<std::string, int(*)(const int &, const int&)> {"+", add};
   binops.insert(mapper);
   binops.insert({"add", add});
-  binops.insert({"add2", [](int &a, int &b) {return adder(a, b);}});
+  binops.insert({"add2", [](const int &a, const int &b) {return adder(a, b);}});
 
   // null function object to store callable objects
   // with call signature..

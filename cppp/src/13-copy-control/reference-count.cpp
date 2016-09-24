@@ -4,11 +4,11 @@
 
 class HasPtr {
 public:
-  explicit HasPtr(const std::string &s = std::string()): ps(new std::string(s)), i(0), use(new std::size_t(1)){};
+  explicit HasPtr(const std::string &s = std::string()): ps(new std::string(s)), i(0), use(new std::size_t(1)){}
 
   // copy constructor, ps/use copied from previous one,
   // and increment use.
-  HasPtr(const HasPtr &p): ps(p.ps), i(p.i), use(p.use) {++*use;};
+  HasPtr(const HasPtr &p): ps(p.ps), i(p.i), use(p.use) {++*use;}
 
   // copy-assign constructor, increment right, decrement left
   HasPtr &operator=(const HasPtr&hs) {
@@ -26,7 +26,7 @@ public:
 
   int reference_count() {
     return *use;
-  };
+  }
 
   ~HasPtr() {
     --(*use);
@@ -34,7 +34,7 @@ public:
       delete ps;
       delete use;
     }
-  };
+  }
 private:
   std::string *ps;
   int i;

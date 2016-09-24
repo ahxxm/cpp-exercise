@@ -4,21 +4,19 @@
 
 // universal ref: include type deduction
 template<typename T>
-void f(T &&) {};
+void f(T &&) {}
 
 int v1 = 1;
 auto &&v = v1;
 
 // rvalue ref: no type deduction
-void f(int &&) {};
+void f(int &&) {}
 
 int &&vv = 1;
 
 // T&& might be universal ref, <T>&& is rvalue
 template<typename T>
-void ff(std::vector<T> &&) {};
-
-
+void ff(std::vector<T> &&) {}
 
 
 TEST(RefTest, SomeTest) {
