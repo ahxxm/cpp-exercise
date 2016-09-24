@@ -5,9 +5,9 @@ using TT = std::vector<int>;
 
 TT selectSort(TT ve) {
   int min_index, tmp;
-  for (unsigned long i = 0; i < ve.size() - 1; ++i) {
+  for (uint64_t i = 0; i < ve.size() - 1; ++i) {
     min_index = i;
-    for (unsigned long j = i + 1; j < ve.size(); ++j) {
+    for (uint64_t j = i + 1; j < ve.size(); ++j) {
       // find smallest
       if (ve[j] < ve[i]) {
         min_index = j;

@@ -4,7 +4,7 @@
 // specify size:
 // - scoped ones are int
 // - unscoped ones are not determined, but will be large enough.
-enum color: unsigned long long {yellow, red, green};
+enum color: uint64_t {yellow, red, green};
 
 // unnamed, unscoped
 enum {integer = 1, floating = 2};

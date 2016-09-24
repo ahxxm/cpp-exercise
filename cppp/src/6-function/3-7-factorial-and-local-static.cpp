@@ -1,10 +1,13 @@
 #include <iostream>
 
+using ll = int64_t;
+
+
 // exercise 3
-long factorial(int num) {
-  long result = 1;
-  for (int i = num; i != 1; --i) {
-    result *= (long)i;
+ll factorial(int num) {
+  ll result = 1;
+  for (auto i = num; i != 1; --i) {
+    result *= i;
   }
   return result;
 }
@@ -19,7 +22,7 @@ size_t count_calls() {
 }
 
 int main(void) {
-  long a = factorial(3);
+  auto a = factorial(3);
   std::cout << a << std::endl;
 
   // will print 1 to 10 ....

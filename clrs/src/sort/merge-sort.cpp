@@ -10,7 +10,7 @@ TT merge(const TT &a, const TT &b) {
   TT result = {};
 
   // loop over 2 vector
-  unsigned long i = 0, j = 0;
+  uint64_t i = 0, j = 0;
   while (i < a.size() && j < b.size()) {
     if (a.at(i) <= b.at(j)) {
       result.emplace_back(a.at(i));
