@@ -11,7 +11,7 @@
 
 
 #define N 500
-using ll = long long;
+using ll = uint64_t;
 
 
 ll factor_count(ll num) {

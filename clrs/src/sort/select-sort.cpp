@@ -14,7 +14,7 @@ TT selectSort(TT ve) {
       }
 
       // exchange with vector[i]
-      if (static_cast<unsigned long>(min_index) != i) {
+      if (static_cast<uint64_t>(min_index) != i) {
         tmp = ve[i];
         ve[i] = ve[min_index];
         ve[min_index] = tmp;

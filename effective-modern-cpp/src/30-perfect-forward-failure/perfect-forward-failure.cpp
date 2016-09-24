@@ -13,7 +13,7 @@
 // f takes a function:
 // void f(int (*)(int)) {}
 // simpler syntax:
-void f(int (int)) {}
+void f(int(int)) {}
 
 void f(const std::vector<int> &) {}
 void f(int) {}

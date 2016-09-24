@@ -21,7 +21,7 @@ For example, if there are 4 stones in the heap, then you will never win the game
 1 1 1 0 1 1 1 0 1  1  1  0
  */
 
-using ll = long long;
+using ll = uint64_t;
 
 class Solution {
 public:

@@ -5,7 +5,7 @@
 
 // copied from 3.cpp
 #define N 10001
-using ll = long long;
+using ll = uint64_t;
 bool is_prime(ll k) {
   if (k < 2) {return false;}
   if (k == 2) {return true;}

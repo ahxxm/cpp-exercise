@@ -4,7 +4,7 @@
 
 class HasPtr {
 public:
-  explicit HasPtr(const std::string &s = std::string()): ps(new std::string(s)), i(0), use(new std::size_t(1)){}
+  explicit HasPtr(const std::string &s = std::string()): ps(new std::string(s)), i(0), use(new std::size_t(1)) {}
 
   // copy constructor, ps/use copied from previous one,
   // and increment use.

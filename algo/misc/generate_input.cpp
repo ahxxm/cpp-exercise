@@ -13,8 +13,8 @@ int main(void) {
             << filename
             << std::endl;
 
-  typedef unsigned long long ll;
-  ll line_count = 1000000;
+  typedef uint64_t ll;
+  ll line_count = 100000;
 
   std::ofstream out;
   out.open(filename, std::ofstream::out);
