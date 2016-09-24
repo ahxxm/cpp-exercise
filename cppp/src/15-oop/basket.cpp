@@ -8,11 +8,11 @@
 struct Quote {
   std::string isbn() {
     return isbnNo;
-  };
+  }
 
   virtual Quote* clone() const & {
     return new Quote(*this);
-  };
+  }
 
   virtual Quote* clone() && {
     return new Quote(std::move(*this));
@@ -30,7 +30,7 @@ public:
   // copy
   void add_item(const Quote& qo) {
     items.insert(std::shared_ptr<Quote>(qo.clone()));
-  };
+  }
 
   // move
   void add_item(Quote &&sale) {
@@ -42,19 +42,19 @@ public:
     for (auto iter = items.cbegin(); iter != items.cend(); iter = items.upper_bound(*iter)) {
       // upper_bound skips all elements that has same key value with iter
       sum += print_total(os, **iter, items.count(*iter));
-    };
+    }
     os << sum << std::endl;
     return sum;
   };
 
   double print_total(std::ostream &, const Quote &, int) const {
     return 0.0;
-  };
+  }
 
 private:
   static bool compare(const std::shared_ptr<Quote> &lhs, const std::shared_ptr<Quote> &rhs) {
     return lhs->isbn() < rhs->isbn();
-  };
+  }
 
 
   // multiset use rb_tree as internal data structure...

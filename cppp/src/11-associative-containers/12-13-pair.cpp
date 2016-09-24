@@ -13,7 +13,7 @@ vps convert_string_int_into_pair(const std::vector<std::string> &st, const std::
     return pa;
   }
 
-  for (unsigned long i = 0; i != st.size(); ++i) {
+  for (uint64_t i = 0; i != st.size(); ++i) {
     // 13: 3 ways define a pair
     // std::pair<std::string, int> p = {st[i], it[i]};
     // std::pair<std::string, int> p {st[i], it[i]};

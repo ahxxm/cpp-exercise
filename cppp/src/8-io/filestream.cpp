@@ -59,7 +59,7 @@ std::string read_file(std::string filename) {
 std::vector<std::string> read_files(std::vector<std::string> filenames) {
   std::vector<std::string> contents;
 
-  for (unsigned long i = 0; i != filenames.size(); ++i) {
+  for (uint64_t i = 0; i != filenames.size(); ++i) {
     std::string filename = filenames[i];
     std::string content = read_file(filename);
     contents.push_back(content);

@@ -6,7 +6,7 @@
 
 // 23: concatenate 2 string, return dynamical char[]
 char *string_concat(const std::string &st1, const std::string &st2) {
-  unsigned long size = st1.size() + st2.size();
+  uint64_t size = st1.size() + st2.size();
   char *c = new char[size];
   // FIXME: use snprintf according to cpplint
   strcpy(c, (st1 + st2).c_str());

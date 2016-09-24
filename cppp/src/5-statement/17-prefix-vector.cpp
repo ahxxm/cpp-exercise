@@ -3,12 +3,12 @@
 
 bool is_prefix_of(std::vector<int> sub, std::vector<int> main) {
   //
-  unsigned long subsize = sub.size();
+  uint64_t subsize = sub.size();
   if (subsize > main.size()) {
     return false;
   }
 
-  for (unsigned long index = 0; index != subsize; ++index) {
+  for (uint64_t index = 0; index != subsize; ++index) {
     if (sub[index] != main[index]) {
       return false;
     }

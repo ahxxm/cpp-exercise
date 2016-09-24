@@ -10,12 +10,12 @@ int compare(const T &v1, const T &v2) {
   // less makes it available to compare 2 pointers
   if (std::less<T>()(v1, v2)) {
     return -1;
-  };
+  }
 
   // T does not have to support ">" then
   if (std::less<T>()(v2, v1)) {
     return 1;
-  };
+  }
 
   return 0;
 }
@@ -24,7 +24,7 @@ int compare(const T &v1, const T &v2) {
 template<unsigned N, unsigned M>
 int compare(const char (&p1)[N], const char(&p2)[M]) {
   return strcmp(p1, p2);
-};
+}
 
 
 // 5: print array
@@ -33,7 +33,7 @@ void print(T const &a) {
   for (auto const &i : a) {
     std::cout << i << std::endl;
   }
-};
+}
 
 
 TEST(FunctionTemplateTest, SomeTest) {

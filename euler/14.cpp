@@ -23,7 +23,7 @@ million.
 
 
 // initial lize a vector of length N
-using ll = long long;
+using ll = int64_t;
 ll N = 1000000;
 ll init = 0;
 

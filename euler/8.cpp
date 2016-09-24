@@ -11,12 +11,12 @@ std::string i = "731671765313306249192251196744265747423553491949349698352031277
 
 
 #define N 13
-using ll = long long;
+using ll = int64_t;
 
 
 ll helper(const std::string &s) noexcept {
   ll max = -1;
-  for (unsigned long i = 0; i <= s.size() - N; ++i) {
+  for (uint64_t i = 0; i <= s.size() - N; ++i) {
     ll result = 1;
     for (int j = 0; j < N; ++j) {
       int index = i + j;

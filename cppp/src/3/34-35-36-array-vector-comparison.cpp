@@ -16,7 +16,7 @@ bool vector_compare(const std::vector<int> &a, const std::vector<int> &b) {
     return false;
   }
 
-  for (unsigned long i = 0; i!= a.size(); i++) {
+  for (uint64_t i = 0; i!= a.size(); i++) {
     if (a[i] != b[i]) {
       return false;
     }

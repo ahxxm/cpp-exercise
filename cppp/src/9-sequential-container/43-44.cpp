@@ -27,7 +27,7 @@ void erase_ins(std::string &st, const std::string &old, const std::string &newVa
 void rep(std::string &st, const std::string &old, const std::string &newVal) {
   auto old_size = old.size();
 
-  for (unsigned long i = 0; i <= st.size() - old_size; ++i) {
+  for (uint64_t i = 0; i <= st.size() - old_size; ++i) {
     std::string cur_string = std::string(st.begin() + i, st.begin() + i + old_size);
 
     if (cur_string == old) {

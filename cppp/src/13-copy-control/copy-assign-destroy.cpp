@@ -42,12 +42,12 @@ class HasPtr {
 public:
   explicit HasPtr(const std::string &s = std::string()): ps(new std::string(s)), i(0) {};
 
-  std::string get_ps() {
+  auto get_ps() const {
     return *ps;
   }
 
   // 22: copy constructor and copy assignment operator
-  HasPtr(HasPtr &hs) {
+  HasPtr(const HasPtr &hs) {
     ps = new std::string(hs.get_ps());
   }
 
@@ -59,8 +59,8 @@ public:
 
   // assignment operator, in case
   // ps is freed when calling function of HasPtr
-  HasPtr &operator=(HasPtr &hs) {
-    std::string ps = hs.get_ps();
+  HasPtr &operator=(const HasPtr &hs) {
+    auto ps = hs.get_ps();
     this->ps = &ps;
     i = hs.i;
     return *this;

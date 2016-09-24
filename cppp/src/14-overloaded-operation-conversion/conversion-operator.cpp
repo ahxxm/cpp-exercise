@@ -4,7 +4,7 @@
 
 class SmallInt {
 public:
-  SmallInt(int i = 0): val(i) {
+  SmallInt(const int i = 0): val(i) {
     if (i < 0 || i > 255) {
       std::cout << "Bad Small int value." << std::endl;
       val = 0;

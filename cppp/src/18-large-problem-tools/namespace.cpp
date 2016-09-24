@@ -11,14 +11,14 @@ public:
 // namespace can be defined in several parts
 // either define a new namespace or adds to an existing one
 namespace ns {
-  class Foo {
-  public:
-    int i = 42;
-  };
+class Foo {
+public:
+  int i = 42;
+};
 
-  namespace nested {
-    int i = 1;
-  }
+namespace nested {
+  int i = 1;
+}
 }
 
 // association
@@ -28,10 +28,13 @@ namespace ni = ns::nested;
 
 void f() {
   // using derivative:
+  // using namespace ns::nestned;
   // lifting the namespace members into the
   // <b>nearest<b> scope that contains both
   // the namespace itself and the using directive.
-  using namespace ns::nested;
+
+  // using declaration: directly use this member on specify scope
+  using ns::nested::i;
   ++i;
   std::cout << i << std::endl;
 
@@ -39,10 +42,10 @@ void f() {
 
 
 namespace A {
-  class C {
-    friend void f2() {};
-    friend void f(const C&) {};
-  };
+class C {
+  friend void f2() {};
+  friend void f(const C&) {};
+};
 }
 
 

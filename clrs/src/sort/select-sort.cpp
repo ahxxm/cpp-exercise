@@ -5,16 +5,16 @@ using TT = std::vector<int>;
 
 TT selectSort(TT ve) {
   int min_index, tmp;
-  for (unsigned long i = 0; i < ve.size() - 1; ++i) {
+  for (uint64_t i = 0; i < ve.size() - 1; ++i) {
     min_index = i;
-    for (unsigned long j = i + 1; j < ve.size(); ++j) {
+    for (uint64_t j = i + 1; j < ve.size(); ++j) {
       // find smallest
       if (ve[j] < ve[i]) {
         min_index = j;
       }
 
       // exchange with vector[i]
-      if (static_cast<unsigned long>(min_index) != i) {
+      if (static_cast<uint64_t>(min_index) != i) {
         tmp = ve[i];
         ve[i] = ve[min_index];
         ve[min_index] = tmp;

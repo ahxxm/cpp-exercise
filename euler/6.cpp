@@ -3,7 +3,7 @@
 // (1+2+3...+100)^2-(1^2+2^2+....100^2)
 #define N 100
 
-using ll = long long;
+using ll = int64_t;
 ll solve() {
   ll sum_square = 0;
   ll sum = 0;
