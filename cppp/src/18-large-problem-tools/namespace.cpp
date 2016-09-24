@@ -11,14 +11,14 @@ public:
 // namespace can be defined in several parts
 // either define a new namespace or adds to an existing one
 namespace ns {
-  class Foo {
-  public:
-    int i = 42;
-  };
+class Foo {
+public:
+  int i = 42;
+};
 
-  namespace nested {
-    int i = 1;
-  }
+namespace nested {
+  int i = 1;
+}
 }
 
 // association
@@ -39,10 +39,10 @@ void f() {
 
 
 namespace A {
-  class C {
-    friend void f2() {};
-    friend void f(const C&) {};
-  };
+class C {
+  friend void f2() {};
+  friend void f(const C&) {};
+};
 }
 
 
