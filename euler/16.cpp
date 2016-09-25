@@ -2,12 +2,13 @@
 #include <string>
 #include "gtest/gtest.h"
 #if defined(__clang__)
-# pragma clang diagnostic ignored "-Wunused-variable"
-# pragma clang diagnostic ignored "-Wunused-parameter"
+# pragma clang diagnostic ignored "-Werror"
 #endif
 #include <boost/multiprecision/cpp_int.hpp>
 #include <boost/lexical_cast.hpp>
 
+
+// FIXME: https://travis-ci.org/ahxxm/cpp-exercise/jobs/162587390
 
 /*
   Power digit sum
