@@ -1,20 +1,21 @@
 #include <cmath>
 #include <string>
 #include "gtest/gtest.h"
-
-/*
-  # FIXME: clang warns on boost headers..
-
+#if defined(__clang__)
+# pragma clang diagnostic ignored "-Wunused-variable"
+# pragma clang diagnostic ignored "-Wunused-parameter"
+#endif
 #include <boost/multiprecision/cpp_int.hpp>
 #include <boost/lexical_cast.hpp>
 
 
+/*
   Power digit sum
 
   2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
 
   what's sum of 2^1000?
-
+*/
 
 #define N 1000
 using ll = boost::multiprecision::int1024_t;
@@ -35,7 +36,6 @@ int solve() {
   return result;
 }
 
-*/
 
 TEST(PowerDigitSumTest, SomeTest) {
   // 1366
