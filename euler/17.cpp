@@ -49,7 +49,7 @@ int solve() {
 }
 
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(NumStringTest, SomeTest) {
   EXPECT_EQ(num_to_word_count(-1), -1);
   EXPECT_EQ(num_to_word_count(19), 8);
   EXPECT_EQ(num_to_word_count(21), 9);
