@@ -50,7 +50,7 @@ int solve() {
 }
 
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(SundayCountTest, SomeTest) {
   std::cout << solve() << std::endl;
 }
 
