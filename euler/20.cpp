@@ -1,5 +1,4 @@
 #include "gtest/gtest.h"
-/*
 #include <boost/multiprecision/cpp_int.hpp>
 #include <boost/lexical_cast.hpp>
 
@@ -19,7 +18,7 @@ int solve() {
   }
   return result;
 }
-*/
+
 
 TEST(FactorialDigitTest, SomeTest) {
   // std::cout << solve() << std::endl;
