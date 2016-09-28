@@ -41,7 +41,7 @@ int solve() {
   int days = 0;
   for (int y = 1901; y <= 2000; ++y) {
     for (int m = 1; m <= 12; ++m) {
-      if(weekday(y, m, 1) == 1) {
+      if (weekday(y, m, 1) == 1) {
         days += 1;
       }
     }

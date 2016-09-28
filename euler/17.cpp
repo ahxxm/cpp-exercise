@@ -1,13 +1,14 @@
-#include "gtest/gtest.h"
 #include <string>
 #include <vector>
+#include "gtest/gtest.h"
+
 
 // num to string
 using con = std::vector<std::string>;
 
 con digit = {"zero", "one", "two", "three",
              "four", "five", "six", "seven",
-             "eight" ,"nine" , "ten", "eleven",
+             "eight" , "nine", "ten", "eleven",
              "twelve", "thirteen", "fourteen",
              "fifteen", "sixteen", "seventeen",
              "eighteen", "nineteen"};
@@ -42,7 +43,7 @@ int num_to_word_count(int n) {
 
 int solve() {
   int result = 0;
-  for(int i = 1; i <= 1000; ++i) {
+  for (int i = 1; i <= 1000; ++i) {
     result += num_to_word_count(i);
   }
   return result;

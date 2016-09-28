@@ -59,8 +59,8 @@ int max(int a, int b) {
 
 int solve() {
   // start from line: 63,66,4
-  for(int i = ii.size() - 2; i >= 0; --i) {
-    for(int j = 0; j <= i; j++) {
+  for (int i = ii.size() - 2; i >= 0; --i) {
+    for (int j = 0; j <= i; j++) {
       ii[i][j] += max(ii[i+1][j], ii[i+1][j+1]);
     }
   }

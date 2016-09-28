@@ -7,7 +7,7 @@
 // How many such routes are there through a 20×20 grid?
 
 
-using ll = long long;
+using ll = uint64_t;
 
 ll solve(ll num) {
   ll result = 1;
