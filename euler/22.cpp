@@ -1,6 +1,13 @@
 #include <string>
 #include "gtest/gtest.h"
 
+// TODO: leave for future
+// - cpp-netlib not compatible with boost 1.61
+// - cpr introduces gtest(cmake conflict) and tests that require
+// environment variable BUILD_CPR_TESTS=OFF to disable
+
+// TODO: emacs config to detect its headers
+
 /*
 
 Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
@@ -10,10 +17,6 @@ For example, when the list is sorted into alphabetical order, COLIN, which is wo
 What is the total of all the name scores in the file?
 
 */
-
-auto download() {
-  std::string url = "https://projecteuler.net/project/resources/p022_names.txt";
-}
 
 
 TEST(NameScoreTest, SomeTest) {
