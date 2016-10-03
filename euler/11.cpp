@@ -33,19 +33,52 @@ std::vector<std::vector<ll>> s {
 
 #define N 20
 
+
+// FIXME: Args.. expansion
+ll max(const ll &a, const ll &b) {
+  return a > b ? a : b;
+}
+
 ll solve() {
-  ll result = -1;
+  // uint has no sign
+  ll result = 1;
+  ll east;
+  ll south;
+  ll se; // south_east
+  ll sw;
   ll tmp;
-  // start point: ith row, jth column
-  for (int i = 3; i < 17; ++i) {
-    for (int j = 3; j < 17; ++j) {
-      // TODO: multiple in directions
-      // TODO: any elegant solution?
-      tmp = s[i][j] * s[i+1][j+1] * s[i+2][j+2] * s[i+3][j+3];
-      std::cout << i << ", " << j << ", result: " << tmp << std::endl;
+  // r for row, c for column
+  for (int r = 0; r < N; ++r) {
+    for (int c = 0; c < N; ++c) {
+      if (c + 4 > 20) {
+        east = 0;
+      } else {
+        east = s[r][c] * s[r][c+1] * s[r][c+2] * s[r][c+3];
+      }
+
+      if (r + 4 > 20) {
+        south = 0;
+      } else {
+        south = s[r][c] * s[r+1][c] * s[r+2][c] * s[r+3][c];
+      }
+
+      if (c + 4 > 20 or r + 4 > 20) {
+        se = 0;
+      } else {
+        se = s[r][c] * s[r+1][c+1] * s[r+2][c+2] * s[r+3][c+3];
+      }
+
+      // x,y axis (-> and |): (3, 0) to (19, 16)
+      if (c - 3 >= 0 && r < 17) {
+        sw = s[r][c] * s[r+1][c-1] * s[r+2][c-2] * s[r+3][c-3];
+      }
+
+      tmp = max(east, max(south, se));
+      tmp = max(tmp, sw);
+      std::cout << r << ", " << c << ", result: " << tmp << std::endl;
 
       if (tmp > result) {
-        std::cout << "bigger" << std::endl;
+        std::cout << "bigger: " << std::endl;
         result = tmp;
       }
       std::cout << std::endl;
