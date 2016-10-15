@@ -51,7 +51,7 @@ public:
 };
 
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(SetMatrixZeroTest, SomeTest) {
   EXPECT_EQ(1, 1);
 }
 
