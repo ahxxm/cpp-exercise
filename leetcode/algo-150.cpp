@@ -48,7 +48,7 @@ public:
 };
 
 
-TEST(MoreClassExerciseTest, SomeTest) {
+TEST(EvalRPNTest, SomeTest) {
   EXPECT_EQ(std::stoi("13"), 13);
   auto a = Solution();
   vs x = {"2", "1", "+", "3", "*"};
