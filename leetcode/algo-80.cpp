@@ -10,15 +10,15 @@ using mm = std::map<int, int>;
 class Solution {
 public:
   int removeDuplicates(std::vector<int>& nums) {
-    // dups that more than 2
-    int dups = 0;
-
+    std::vector<int> result = {};
     for (auto i: nums) {
       if (fc(i) > 2) {
-        dups += 1;
+      } else {
+        result.emplace_back(i);
       }
     }
-    return nums.size() - dups;
+    nums = result;
+    return result.size();
 
   }
 private:
