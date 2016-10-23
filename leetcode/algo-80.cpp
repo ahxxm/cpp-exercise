@@ -11,7 +11,7 @@ class Solution {
 public:
   int removeDuplicates(std::vector<int>& nums) {
     std::vector<int> result = {};
-    for (auto i: nums) {
+    for (auto i : nums) {
       if (fc(i) > 2) {
       } else {
         result.emplace_back(i);
@@ -39,7 +39,7 @@ private:
 };
 
 TEST(RemoveDupsII, SomeTest) {
-  std::vector<int> i = {1,1,1,2,2,3};
+  std::vector<int> i = {1, 1, 1, 2, 2, 3};
   auto a = Solution();
   EXPECT_EQ(a.removeDuplicates(i), 5);
 }
