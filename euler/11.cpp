@@ -62,7 +62,7 @@ ll solve() {
         south = s[r][c] * s[r+1][c] * s[r+2][c] * s[r+3][c];
       }
 
-      if (c + 4 > 20 or r + 4 > 20) {
+      if (c + 4 > 20 || r + 4 > 20) {
         se = 0;
       } else {
         se = s[r][c] * s[r+1][c+1] * s[r+2][c+2] * s[r+3][c+3];
