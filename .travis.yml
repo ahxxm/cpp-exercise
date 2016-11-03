@@ -17,7 +17,7 @@ install:
   - travis_wait ./install-boost.sh
 script:
   - mkdir build && cd build && cmake -DCMAKE_C_COMPILER=$COMPILER -DCMAKE_CXX_COMPILER=$CCOMPILER .. && make -j8 && make test ARGS="-VV" && cd ..
-  - (cpplint --output=emacs --recursive --counting=detailed  ./algo ./clrs ./effective-modern-cpp ./cppp ./euler ./leetcode 2>&1 | grep -v "Done") || echo "0"
+  - (cpplint --output=emacs --recursive --counting=detailed  ./algo ./clrs ./effective-modern-cpp ./cppp 2>&1 | grep -v "Done") || echo "0"
 cache:
   directories:
     - "${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_}"
