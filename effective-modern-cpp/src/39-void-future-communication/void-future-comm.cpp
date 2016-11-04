@@ -10,11 +10,10 @@
 
 std::mutex m;
 std::condition_variable cv;
-std::string data;
 bool ready = false;
 bool processed = false;
 
-void worker_thread() {
+void worker_thread(std::string &data) {
   // Wait until main() sends data
   std::unique_lock<std::mutex> lk(m);
   cv.wait(lk, []{return ready;});
@@ -33,8 +32,9 @@ void worker_thread() {
   cv.notify_one();
 }
 
-void c() {
-  std::thread worker(worker_thread);
+void c(std::string &data) {
+  // pass by ref
+  std::thread worker(worker_thread, std::ref(data));
 
   data = "Example data";
   // send data to the worker thread
@@ -90,7 +90,8 @@ void detect() {
 
 
 TEST(VoidFutureTest, SomeTest) {
-  c();
+  std::string data;
+  c(data);
   detect();
 }
 

@@ -2,7 +2,6 @@
 #include <vector>
 #include <iostream>
 
-#define length 10
 
 int main(void) {
   // this prints abcdeft, bcdefg, ..., g
@@ -15,18 +14,19 @@ int main(void) {
   }
 
   // 31: 10 ints, position == value
-  // constexpr const std::size_t length = 10;
-  int pv[length];
-  for (int i = 0; i != length; i++) {
+  // compile time constant variable: k followed by CamelCase
+  constexpr const int kLength = 10;
+  int pv[kLength];
+  for (int i = 0; i != kLength; i++) {
     pv[i] = i + 1;
     std::cout << pv[i] << std::endl;
   }
 
   // 32: 1) copy previous pv into another array
   // 2) rewrite this using vector
-  int pv2[length];
+  int pv2[kLength];
   std::vector<int> pv3;
-  for (int i = 0; i != length; i++) {
+  for (int i = 0; i != kLength; i++) {
     pv2[i] = pv[i];
     pv3.push_back(pv[i]);
     std::cout << pv2[i] << std::endl;

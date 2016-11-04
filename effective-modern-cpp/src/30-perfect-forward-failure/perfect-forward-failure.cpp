@@ -11,9 +11,13 @@
 // 1. Brace initializer
 
 // f takes a function:
-// void f(int (*)(int)) {}
-// simpler syntax:
-void f(int(int)) {}
+void f(int (*)(int)) {}
+
+// simpler syntax(will cause lint error):
+// void f(int(int)) {}
+// =>Using deprecated casting style.
+// =>Use static_cast<int>(...) instead  [readability/casting]
+
 
 void f(const std::vector<int> &) {}
 void f(int) {}

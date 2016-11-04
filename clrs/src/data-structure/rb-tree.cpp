@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <cstdlib>
 #include <cassert>
 #include <memory>
@@ -526,7 +527,7 @@ private:
 
 void test_insert(RBTree &tree) {
   for (int i = 0; i < 1000; ++i) {
-   int a = std::rand() % 400;
+    int a = std::rand() % 400;
     tree.insert(a);
     tree.check();
   }
@@ -535,7 +536,7 @@ void test_insert(RBTree &tree) {
 
 void test_delete(RBTree &tree) {
   for (int i = 0; i < 1000; ++i) {
-    auto tmp = rand() % 400;
+    auto tmp = std::rand() % 400;
     tree.del(tmp);
     tree.check();
   }

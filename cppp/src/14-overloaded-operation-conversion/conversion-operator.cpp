@@ -4,7 +4,7 @@
 
 class SmallInt {
 public:
-  SmallInt(const int i = 0): val(i) {
+  explicit SmallInt(const int i = 0): val(i) {
     if (i < 0 || i > 255) {
       std::cout << "Bad Small int value." << std::endl;
       val = 0;
@@ -28,11 +28,15 @@ TEST(ConversionOperatorTest, SomeTest) {
   SmallInt b(255);
   EXPECT_EQ(static_cast<int>(b), 255);
 
+  // DISABLE this because `explicit` makes it a constructor,
+  // style guide suggests explicit for single param constructor.
+  // which avoids ambiguity.
+
   // implicit convert
   // does not reconstruct object
-  b = 3;
-  EXPECT_EQ(static_cast<int>(b), 3);
-  EXPECT_EQ(static_cast<int>(b + 1000), 1003);
+  // b = 3;
+  // EXPECT_EQ(static_cast<int>(b), 3);
+  // EXPECT_EQ(static_cast<int>(b + 1000), 1003);
 }
 
 int main(int argc, char *argv[]) {
