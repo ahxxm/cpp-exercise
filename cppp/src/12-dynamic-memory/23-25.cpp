@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <iostream>
 #include <iterator>
 #include <string>
@@ -8,8 +9,12 @@
 char *string_concat(const std::string &st1, const std::string &st2) {
   uint64_t size = st1.size() + st2.size();
   char *c = new char[size];
-  // FIXME: use snprintf according to cpplint
-  strcpy(c, (st1 + st2).c_str());
+
+  // snprintf is suggested to replace strcpy,
+  // although size_t includes terminating null char.
+  // strcpy(c, (st1 + st2).c_str());
+  int cx = snprintf(c, size + 1, "%s%s", st1.c_str(), st2.c_str());
+  std::cout << cx << std::endl;
   return c;
 }
 
