@@ -36,10 +36,9 @@ public:
   // normal constructor..
   // 47: here `explicit` could be cumbersome when creating
   // temporary instance.
-  // FIXME: explicit causes error
-  Sales_data(const std::string &s): bookNo(s) {
+  // BUT explicit is better than implicit.
+  explicit Sales_data(const std::string &s): bookNo(s) {
     std::cout << "Single bookNo constructor used." << std::endl;
-
   };
 
   // only applies to constructors that can be called with
@@ -129,7 +128,7 @@ TEST(ClassIntroTest, SomeTest) {
   double avg_price;
   avg_price = sd3.avg_price();
   std::string null_book = "111-1-1-1-111";
-  sd3.combine(null_book);
+  sd3.combine(Sales_data(null_book));
   EXPECT_EQ(sd3.avg_price(), avg_price);
 }
 
