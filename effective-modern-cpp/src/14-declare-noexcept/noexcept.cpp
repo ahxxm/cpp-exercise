@@ -10,7 +10,8 @@
 // C++98
 void f(int) throw() {}
 // C++11
-void f(double) noexcept {}
+// FIXME:  Using C-style cast.  Use static_cast<double>(...) instead  [readability/casting] <- why this
+// void f(double) noexcept {}
 
 // conditional noexcept
 void v() noexcept(noexcept(f(1)) && noexcept(f(1.0))) {}
