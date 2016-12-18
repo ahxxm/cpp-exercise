@@ -4,7 +4,7 @@
 // apply move/forward on the last time used
 // move ctor more efficient
 
-// RVO: return value optimization // FIXME:
+// RVO: return value optimization
 
 struct C {
   C() = default;
