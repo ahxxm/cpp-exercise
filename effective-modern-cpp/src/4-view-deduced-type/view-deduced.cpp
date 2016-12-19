@@ -46,7 +46,6 @@ void print() {
   // P13TypeDisplayerIiE
   // P: pointer
   // 13: length of "TypeDisplayer"
-  // FIXME: I? E?
   TypeDisplayer<int> i;
   f(&i);
 
