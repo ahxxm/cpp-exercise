@@ -1,7 +1,6 @@
 ## TODO
 
 Some data structure..
-
 - [ ] B tree(b-tree.cpp)
 
 - [ ] fibonacci heap
@@ -16,7 +15,7 @@ Some data structure..
 
 - [ ] Radix tree
 
-- [ ] stl_set use RBTree as backend(set.cpp)
+- [ ] stl_set use RBTree as backend(`set.cpp`)
 
 ## References
 
