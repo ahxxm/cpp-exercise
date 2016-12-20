@@ -1,7 +1,6 @@
 #include "gtest/gtest.h"
 
 // TODO: stl_set uses RBTree as backend
-// TODO: search, insert, del, min, max, predecessor/successor(ordered set),
 
 template<typename T>
 class set {
@@ -18,7 +17,10 @@ public:
   // const_iterator find(const key_type &) const;
   // size_type count(const key_type &) const;
   // size_type count(const key_type &);
-  // insert
+  // insert/emplace, TODO: difference?
+  // del
+  // min
+  // max
 
 
   // public data members
