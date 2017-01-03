@@ -36,14 +36,15 @@ void allocator_construct_method() {
   std::allocator<int> alloc;
 
   // allocate twice size
-  auto p = alloc.allocate(vi.size() * 2);
+  auto twice = vi.size() * 2;
+  auto p = alloc.allocate(twice);
 
   // copy vi into first half
   auto q = std::uninitialized_copy(vi.begin(), vi.end(), p);
 
   // remaining half to initialize with value 42
   std::uninitialized_fill_n(q, vi.size(), 42);
-
+  alloc.deallocate(p, twice);
 }
 
 
