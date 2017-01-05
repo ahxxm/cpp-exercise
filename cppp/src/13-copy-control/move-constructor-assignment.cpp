@@ -12,9 +12,7 @@ public:
 
   // also crutial that not free left-hand resources before using right-hand one,
   // because self move assignment
-  Foo(Foo &&f) noexcept: i(f.i) {
-    f.i = nullptr;
-  }
+  Foo(Foo &&f) noexcept: i(f.i){}
 
   // move assignment operator
   Foo &operator=(Foo &&f) noexcept {
