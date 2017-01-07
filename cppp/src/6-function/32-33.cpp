@@ -24,6 +24,8 @@ int get_main() {
 }
 
 // 33: recursively print vector content
+// remove due to heap-buffer-overflow report by santinizer
+/*
 void loop_pointer_and_print(std::vector<int>::iterator &vec_ptr) {
   if (*vec_ptr) {
     std::cout << *vec_ptr << std::endl;
@@ -35,11 +37,12 @@ void loop_pointer_and_print(std::vector<int>::iterator &vec_ptr) {
 }
 
 void recursively_print_vector(std::vector<int> &vec) {
-  decltype(std::begin(vec)) begin = vec.begin();
+  auto begin = vec.begin();
   if (begin != vec.end()) {
     loop_pointer_and_print(begin);
   };
 }
+*/
 
 TEST(VectorBasicTest, VB) {
   EXPECT_EQ(get_main(), EXIT_SUCCESS);
@@ -51,7 +54,6 @@ int main(int argc, char *argv[]) {
     va.push_back(i);
   }
 
-  recursively_print_vector(va);
   ::testing::InitGoogleTest(&argc, argv);
   int ret = RUN_ALL_TESTS();
   return ret;
