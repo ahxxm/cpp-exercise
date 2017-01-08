@@ -37,6 +37,9 @@ TEST(RTTITest, SomeTest) {
   std::cout << typeid(i).name() << std::endl;
   std::cout << typeid(i).hash_code() << std::endl;
 
+  delete i;
+  delete j;
+
 }
 
 int main(int argc, char *argv[]) {
