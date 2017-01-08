@@ -27,10 +27,13 @@ public:
   }
 
   ~HashTable() {
+    // free pointers and table
     for (int i = 0; i < TABLE_SIZE; ++i) {
-      if (table[i]) {delete table[i];}
+      if (table[i]) {
+        delete table[i];
+      }
     }
-    table = nullptr;
+    delete []table;
   }
 
   void set(std::string key, int value) {
@@ -66,7 +69,8 @@ public:
 
     if (!table[__hash]) {return false;}
 
-    // mark as deleted, delete will cause segfault in dtor
+    // mark as deleted
+    delete table[__hash];
     table[__hash] = nullptr;
     return true;
   }
@@ -98,8 +102,8 @@ TEST(HashTableTest, SomeTest) {
 
   // set
   a.set("java", 1);
-  a.set("yay", 2);
   a.set("yayyyy", 2);
+  a.set("yay", 2);
 
   // search
   EXPECT_EQ(a.search("yay"), 2);
