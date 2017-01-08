@@ -47,7 +47,7 @@ struct Node {
 
   ~Node() {
     for (auto p: childs) {
-      p->~Node();
+      delete p;
     }
   }
 };
@@ -72,7 +72,7 @@ public:
   }
 
   ~BTree() {
-    root->~Node();
+    delete root;
   };
 
   auto disk_operation() {
