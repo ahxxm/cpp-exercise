@@ -10,13 +10,13 @@ int bs(const std::vector<T>&vec, const T &num) {
   // vec should be a sorted container
   // which supports O(1) subscript access
   int low = 0, high = vec.size(), not_found = -1;
-  auto mid = (low + high) / 2;
+  auto mid = low + (high - low) / 2;
 
   if (vec[0] == num) {
     return 0;
   }
 
-  if (vec[high] == num) {
+  if (vec[high - 1] == num) {
     return high;
   }
 

@@ -35,13 +35,14 @@ public:
 
   ~LinkedList() {
     del(root);
-    root = nullptr;
-    last = nullptr;
   }
 
   void del(Node *node) {
     if (node) {
-      del(node->next);
+      if (node->next) {
+        del(node->next);
+      }
+      delete node;
     }
   }
 
@@ -49,7 +50,7 @@ public:
     return size;
   }
 
-  auto push_back(const int &i) {
+  LinkedList &push_back(const int &i) {
     auto node = new Node(i);
     if (size == 0) {
       size += 1;
@@ -79,6 +80,7 @@ public:
     if (last) {
       // in case root is pop-ed,
       // then last is already nullptr
+      delete last->next;
       last->next = nullptr;
     }
 
@@ -93,6 +95,8 @@ public:
 
     auto k = root->value;
     root = root->next;
+    delete root->prev;
+    root->prev = nullptr;
     size -= 1;
     return k;
   }

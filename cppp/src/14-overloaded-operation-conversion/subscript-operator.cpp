@@ -4,9 +4,9 @@
 
 // must be a member function
 struct Foo {
-  std::string &operator[](std::size_t) {
-    auto b = new std::string("42");
-    return *b;
+  std::string operator[](std::size_t) {
+    std::string b = "42";
+    return b;
   }
 };
 

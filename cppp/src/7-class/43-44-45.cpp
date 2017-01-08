@@ -6,12 +6,12 @@
 // This class has no default initializer
 class NoDefault {
 public:
+  int j;
+
   explicit NoDefault(int i) {
     std::cout << i << " is used."<< std::endl;
     j = i;
   };
-
-  int j = 100;
 };
 
 
@@ -26,6 +26,14 @@ public:
   int getJ() {
     return obj->j;
   };
+
+  // copy constructor
+  explicit C(const C &cc) {
+    obj = new NoDefault(cc.obj->j);
+  }
+
+  ~C() {delete obj;}
+
 private:
   NoDefault *obj;
 };

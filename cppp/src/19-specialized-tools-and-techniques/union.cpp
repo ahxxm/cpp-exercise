@@ -26,6 +26,7 @@ void union_test() {
   std::cout << last_token.ival << std::endl;
   pt->dval = 42.0;
 
+  delete pt;
 };
 
 

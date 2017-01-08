@@ -30,18 +30,22 @@ private:
 class BinStrTree {
 public:
   BinStrTree(): root(new TreeNode()){};
+
+  // copy constructor
   BinStrTree(const BinStrTree &bt) {
-    TreeNode node = *bt.root;
-    root = &node;
+    auto node = new TreeNode(*bt.root);
+    root = node;
   };
 
+  // copy assign(let root value equals to bt's)
   BinStrTree &operator=(const BinStrTree &bt) {
-    TreeNode node = *bt.root;
-    root = &node;
+    *root = *bt.root;
     return *this;
   };
 
-  ~BinStrTree() {};
+  ~BinStrTree() {
+    delete root;
+  };
 private:
   TreeNode *root;
 };

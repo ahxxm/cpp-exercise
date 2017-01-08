@@ -44,6 +44,12 @@ struct Node {
     size = 0;
     leaf = true;
   }
+
+  ~Node() {
+    for (auto p: childs) {
+      delete p;
+    }
+  }
 };
 
 
@@ -64,6 +70,10 @@ public:
     degree = std::move(_degree);
     disk();
   }
+
+  ~BTree() {
+    delete root;
+  };
 
   auto disk_operation() {
     return count;
@@ -127,9 +137,6 @@ public:
     // 3.
 
   };
-
-  // TODO:
-  ~BTree() = default;
 
 
 
