@@ -5,19 +5,19 @@
 #include "gtest/gtest.h"
 
 
-// 23: concatenate 2 string, return dynamical char[]
-const char *string_concat(const std::string &st1, const std::string &st2) {
+// 23: concatenate 2 string
+// use stringstream instead of (return dynamical char[])
+auto string_concat(const std::string &st1, const std::string &st2) {
   std::stringstream stream;
   stream << st1 << st2;
-  return stream.str().c_str();
+  return stream.str();
 }
 
 TEST(DynamicTest, SomeTest) {
   std::string st1 = "ja";
   std::string st2 = "va";
 
-  auto *j = string_concat(st1, st2);
-  std::string j_str(j);
+  auto j_str = string_concat(st1, st2);
   std::cout << j_str << std::endl;
 
   EXPECT_EQ(j_str, "java");

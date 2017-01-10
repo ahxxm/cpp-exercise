@@ -42,6 +42,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 # enable sanitizer
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address,leak,undefined -fno-omit-frame-pointer")
 
+# gcc on CI does not use gold linker..
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fuse-ld=gold")
+endif()
+
 # CMakeLists.txt in subdirectories
 add_subdirectory(cppp)
 add_subdirectory(algo)
