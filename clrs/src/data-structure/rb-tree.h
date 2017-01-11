@@ -93,7 +93,9 @@ public:
 
   // constructor
   // default: make root black
-  RBTree(): root(nullptr) {};
+  RBTree(): root(nullptr) {
+    size = 0;
+  }
 
   ~RBTree() {
     // iteratively delete, then set root to null
@@ -136,8 +138,9 @@ public:
     // set to position
     set_link(position.first, node);
 
-    // fix color..
+    // fix color, size accounting
     insertfix(node);
+    size += 1;
   }
 
   void check() {
@@ -161,8 +164,13 @@ public:
     // fix
     delfix(node);
 
-    // clean memory
+    // clean memory, size accounting
     delete node;
+    size += 1;
+  }
+
+  int getSize() {
+    return size;
   }
 
   // debug method for print tree
