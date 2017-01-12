@@ -1,18 +1,23 @@
+#include "rb-tree.h"
 #include "gtest/gtest.h"
 
-// TODO: stl_set uses RBTree as backend
-
-template<typename T>
 class set {
 public:
   // construct/copy/destruct
-  set();
-  set(const set &);
+  set(): ImplTree() {}
 
   // public member functions
-  bool empty() const;
-  std::size_t size() const;
+  bool empty() {
+    return ImplTree.getSize() == 0;
+  };
 
+  std::size_t size() {
+    return ImplTree.getSize();
+  };
+
+  // TODO:
+  set(const set &) = delete;
+  set &operator=(std::initializer_list<int>) = delete;
   // emplace
   // const_iterator find(const key_type &) const;
   // size_type count(const key_type &) const;
@@ -24,7 +29,9 @@ public:
 
 
   // public data members
-  const T& x;
+private:
+  using rep_type = RBTree;
+  rep_type ImplTree;
 };
 
 
