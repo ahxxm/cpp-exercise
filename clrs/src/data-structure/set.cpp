@@ -21,7 +21,7 @@ public:
     return false;
   }
 
-  bool emplace(int i) {
+  bool add(int i) {
     auto node_p = ImplTree.search(i);
     if (node_p) {return false;}
     ImplTree.insert(i);
@@ -33,7 +33,6 @@ public:
   // const_iterator find(const key_type &) const;
   // size_type count(const key_type &) const;
   // size_type count(const key_type &);
-  // insert/emplace, TODO: difference?
   // del
   // min
   // max
@@ -51,15 +50,15 @@ private:
 TEST(SetTest, SomeTest) {
   auto s = set();
   EXPECT_EQ(s.size(), 0);
-  s.emplace(1);
+  s.add(1);
   EXPECT_EQ(s.size(), 1);
   EXPECT_EQ(s.find(1), true);
   EXPECT_EQ(s.find(2), false);
 
-  s.emplace(1);
+  s.add(1);
   EXPECT_EQ(s.size(), 1);
   EXPECT_EQ(s.find(1), true);
-  s.emplace(2);
+  s.add(2);
   EXPECT_EQ(s.size(), 2);
   EXPECT_EQ(s.find(2), true);
 }
