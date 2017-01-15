@@ -32,12 +32,6 @@ public:
     return ImplTree.del(i);
   }
 
-  // TODO:
-  // set &operator=(std::initializer_list<int>) = delete;
-  // min
-  // max
-
-
 private:
   RBTree ImplTree;
 };
