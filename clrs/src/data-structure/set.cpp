@@ -28,20 +28,18 @@ public:
     return true;
   }
 
+  bool del(int i) {
+    return ImplTree.del(i);
+  }
+
   // TODO:
   // set &operator=(std::initializer_list<int>) = delete;
-  // const_iterator find(const key_type &) const;
-  // size_type count(const key_type &) const;
-  // size_type count(const key_type &);
-  // del
   // min
   // max
 
 
-  // public data members
 private:
-  using rep_type = RBTree;
-  rep_type ImplTree;
+  RBTree ImplTree;
 };
 
 

@@ -153,10 +153,10 @@ public:
     check(root);
   };
 
-  void del(const int val) {
+  bool del(const int val) {
     // not found
     auto k = search(val);
-    if (!k) {return;}
+    if (!k) {return false;}
 
     // otherwise
     auto node = swap_and_return_remove(k);
@@ -167,6 +167,7 @@ public:
     // clean memory, size accounting
     delete node;
     size += 1;
+    return true;
   }
 
   int getSize() {
