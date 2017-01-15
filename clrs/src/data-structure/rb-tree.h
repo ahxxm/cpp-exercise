@@ -166,7 +166,7 @@ public:
 
     // clean memory, size accounting
     delete node;
-    size += 1;
+    size -= 1;
     return true;
   }
 

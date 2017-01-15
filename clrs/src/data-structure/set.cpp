@@ -59,6 +59,14 @@ TEST(SetTest, SomeTest) {
   s.add(2);
   EXPECT_EQ(s.size(), 2);
   EXPECT_EQ(s.find(2), true);
+
+  auto rst = s.del(2);
+  EXPECT_EQ(rst, true);
+  EXPECT_EQ(s.size(), 1);
+
+  auto rst_2 = s.del(3);
+  EXPECT_EQ(rst_2, false);
+  EXPECT_EQ(s.size(), 1);
 }
 
 int main(int argc, char *argv[]) {
