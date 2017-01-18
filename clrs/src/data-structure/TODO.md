@@ -1,8 +1,6 @@
 ## TODO
 
 Some data structure..
-- [ ] B tree(b-tree.cpp)
-
 - [ ] fibonacci heap
 
 - [ ] dynamic tree
@@ -11,11 +9,7 @@ Some data structure..
 
 - [ ] Splay tree
 
-- [ ] hash map
-
 - [ ] Radix tree
-
-- [ ] stl_set use RBTree as backend(`set.cpp`)
 
 ## References
 
