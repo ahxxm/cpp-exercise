@@ -1,6 +1,8 @@
 ## TODO
 
 Some data structure..
+- [ ] B-tree: unfinished
+
 - [ ] fibonacci heap
 
 - [ ] dynamic tree
