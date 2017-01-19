@@ -1,8 +1,6 @@
 #include <vector>
 #include "gtest/gtest.h"
 
-// TODO: modify to count inversion
-
 using TT = std::vector<int>;
 
 TT merge(const TT &a, const TT &b) {

@@ -5,9 +5,6 @@
 #include <vector>
 #include "gtest/gtest.h"
 
-// TODO: mirror
-// rotate and remove are implemented in rb-tree
-
 
 template <typename T>
 struct Node {
