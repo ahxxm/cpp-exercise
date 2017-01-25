@@ -46,7 +46,7 @@ struct Node {
   }
 
   ~Node() {
-    for (auto p: childs) {
+    for (auto p : childs) {
       delete p;
     }
   }

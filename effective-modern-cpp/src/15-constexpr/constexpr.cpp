@@ -14,7 +14,9 @@
 
 // for member function like
 // constexpr void f() const;
-// const: A const member function is a member function that guarantees it will not modify the object or call any non-const member functions
+// const: A const member function is a member function that
+// guarantees it will not modify the object
+// or call any non-const member functions
 
 constexpr int f() {return 42;}
 

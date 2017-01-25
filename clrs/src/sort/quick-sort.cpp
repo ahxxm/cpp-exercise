@@ -5,16 +5,16 @@
 int partition(int *arr, const int left, const int right) {
   const int mid = left + (right - left) / 2;
   const int pivot = arr[mid];
-  std::swap(arr[mid],arr[left]);
+  std::swap(arr[mid], arr[left]);
 
   auto i = left + 1;
   auto j = right;
   while (i <= j) {
-    while(i <= j && arr[i] <= pivot) {
+    while (i <= j && arr[i] <= pivot) {
       ++i;
     }
 
-    while(i <= j && arr[j] > pivot) {
+    while (i <= j && arr[j] > pivot) {
       --j;
     }
 
@@ -22,11 +22,11 @@ int partition(int *arr, const int left, const int right) {
       std::swap(arr[i], arr[j]);
     }
   }
-  std::swap(arr[i - 1],arr[left]);
+  std::swap(arr[i - 1], arr[left]);
   return i - 1;
 }
 
-void quicksort(int *arr, const int left, const int right){
+void quicksort(int *arr, const int left, const int right) {
   if (left >= right) {
     return;
   }
