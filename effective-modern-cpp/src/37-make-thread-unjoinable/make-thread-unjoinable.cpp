@@ -19,10 +19,13 @@
 constexpr auto tenM = 10'000'000;
 
 
+bool fil(int i) {
+  return i % 2 == 0;
+}
+
 bool doWork(std::function<bool(int)> filter, int maxVal = tenM) {
   std::vector<int> goodVals;
 
-  // FIXME: start threads suspended, item 39
   std::thread t([&filter, maxVal, &goodVals] {
       for (auto i = 0; i <= maxVal; ++i) {
         if (filter(i)) {goodVals.push_back(i);}
@@ -34,16 +37,16 @@ bool doWork(std::function<bool(int)> filter, int maxVal = tenM) {
   auto nh = t.native_handle();
   std::cout << &nh << std::endl;
 
-  // nh.aa();
-
+  if (t.joinable()) {
+      t.join();
+  }
   return true;
 }
 
 // RAII: resource acquisition is initialization
+enum class DtorAction {join, detach};
 class ThreadRAII {
 public:
-  enum class DtorAction {join, detach};
-
   ThreadRAII(std::thread &&t, DtorAction a): action(a), t(std::move(t)) {};
 
   ~ThreadRAII() {
@@ -68,7 +71,8 @@ private:
 
 
 TEST(ThreadUnjoinableTest, SomeTest) {
-  EXPECT_EQ(1, 1);
+  ThreadRAII(std::thread(), DtorAction::join);
+  doWork(fil, 100);
 }
 
 int main(int argc, char *argv[]) {

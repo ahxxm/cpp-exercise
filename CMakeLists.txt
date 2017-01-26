@@ -42,9 +42,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 # enable sanitizer
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address,leak,undefined -fno-omit-frame-pointer")
 
-# gcc on CI does not use gold linker..
+# enable profiler for gprof, and force to use gold linker
+# Usage:
+#   ./bin; gprof bin gmon.out;
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fuse-ld=gold")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fuse-ld=gold -pg")
 endif()
 
 # CMakeLists.txt in subdirectories
