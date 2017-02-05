@@ -106,11 +106,9 @@ public:
 
   void check() {check(root);};
 
-  void del(int val) {
-    std::cout << "del: " << val << std::endl;
-
+  bool del(int val) {
     auto search_r = search(val);
-    if ((!search_r.first) || search_r.second == -1) {return;}
+    if ((!search_r.first) || search_r.second == -1) {return false;}
 
     // 1. if leaf just delete this key
     auto node = search_r.first;
@@ -119,7 +117,9 @@ public:
       node->keys.erase(node->keys.begin() + i);
       node->size -= 1;
       // FIXME: fix when node needs combination!
-      return;
+      return true;
+    } else {
+
     }
 
     // TODO:
@@ -136,6 +136,7 @@ public:
 
     // 3.
 
+    return true;
   };
 
 
@@ -310,8 +311,8 @@ TEST(BTreeTest, SomeTest) {
   test_insert(tree);
   std::cout << tree.disk_operation() << std::endl;
 
-  // test_delete(tree);
-  // std::cout << tree.disk_operation() << std::endl;
+  test_delete(tree);
+  std::cout << tree.disk_operation() << std::endl;
 
   auto r = tree.search(-10);
   EXPECT_FALSE(r.first);
