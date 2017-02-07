@@ -161,12 +161,7 @@ private:
         node->keys[i + 1] = node->keys[i];
         --i;
       }
-
-      if (node->keys.empty()) {
-        node->keys.emplace_back(val);
-      } else {
-        node->keys[i + 1] = val;
-      }
+      node->keys[i + 1] = val;
       node->size += 1;
       return;
     }
