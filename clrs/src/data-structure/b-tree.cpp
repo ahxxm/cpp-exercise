@@ -170,15 +170,16 @@ private:
     while (i >= 0 && val < node->keys[i]) {
       --i;
     }
+    ++i;
 
     // see if child full, needs split
-    if (node->childs[i + 1] && node->childs[i + 1]->size == 2 * degree - 1) {
-      split_child(node, i + 1);
+    if (node->childs[i] && node->childs[i]->size == 2 * degree - 1) {
+      split_child(node, i);
 
       // after split, check which i have mid key
-      if (node->keys[i + 1] < val) {++i;}
+      if (node->keys[i] < val) {++i;}
     }
-    insert_non_full(node->childs[i + 1], val);
+    insert_non_full(node->childs[i], val);
   }
 
   result_t search(node_p node, int val) {
