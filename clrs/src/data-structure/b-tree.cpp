@@ -286,7 +286,7 @@ private:
 
 
 void test_insert(BTree &tree) {
-  for (int i = 0; i < 40; ++i) {
+  for (int i = 0; i < 1000; ++i) {
     auto tmp = std::rand() % 2345;
     tree.insert(tmp);
     tree.check();
