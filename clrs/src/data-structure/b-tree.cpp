@@ -45,6 +45,11 @@ struct Node {
     leaf = true;
   }
 
+  explicit Node(bool l) {
+    size = 0;
+    leaf = l;
+  }
+
   ~Node() {
     for (auto p : childs) {
       delete p;
