@@ -116,6 +116,8 @@ public:
 
     auto node_p = search_r.first;
     auto i = search_r.second;
+    assert(*(node_p->keys.begin() + i) == val);
+
     // 3. root node
     if (node_p == root) {
       return true;
@@ -124,10 +126,14 @@ public:
 
     // 1. if leaf just delete this key
     if (node_p->leaf) {
-      node_p->keys.erase(node_p->keys.begin() + i);
-      node_p->size -= 1;
+      // node_p->keys.erase(node_p->keys.begin() + i);
+      // node_p->size -= 1;
+      assert(node_p->childs.size() == 0);
+      assert(node_p->keys.size() > 0);
       return true;
     } else {
+      /*
+
       // 2. else for internal node x and key k
       auto left_child = node_p->childs[i];
       if (left_child->size >= degree) {
@@ -142,11 +148,21 @@ public:
 
         // - replace k by k'.
         node_p->keys[i] = pre_val;
-      } else {
-        if (1) {
-          // 2b: if child z follows(right to)k has >= t keys,
-          // find successor k', recusively delete k', replace k by k'.
 
+      } else {
+
+        auto right_child = node_p->childs[i + 1];
+
+        // 2b: if child z follows(right to)k has >= t keys,
+        if (right_child->size >= degree) {
+          // find successor k',
+          // recusively delete k',
+          // replace k by k'.
+          auto suc_index = 0;
+          auto suc_val = right_child->keys[suc_index];
+          del(suc_val);
+          right_child->size -= 1;
+          node_p->keys[i] = suc_val;
 
         } else {
           // 2c: y and z both t-1 keys, merge k and z into y.
@@ -155,7 +171,7 @@ public:
 
         }
       }
-
+      */
     }
 
 
