@@ -86,8 +86,6 @@ public:
   void insert(int val) {
     // root is always initialized in ctor
     auto iter = root;
-    std::cout << "insert: " << val<< std::endl;
-
     if (iter->size < 2 * degree - 1) {
       insert_non_full(iter, val);
       return;
@@ -249,11 +247,7 @@ private:
     auto tmp = keys[0];
     int len = keys.size();
     for (int i = 1; i < len; ++i) {
-      if (tmp > keys[i]) {
-        std::cout << "keys unordered error: " << tmp << " > " << keys[i] << std::endl;
-      }
       assert(tmp <= keys[i]);
-
       tmp = keys[i];
     }
   }
