@@ -108,29 +108,54 @@ public:
     auto search_r = search(val);
     if ((!search_r.first) || search_r.second == -1) {return false;}
 
-    // 1. if leaf just delete this key
-    auto node = search_r.first;
+
+    auto node_p = search_r.first;
     auto i = search_r.second;
-    if (node->leaf) {
-      node->keys.erase(node->keys.begin() + i);
-      node->size -= 1;
-      // FIXME: fix when node needs combination!
+    // 3. root node
+    if (node_p == root) {
+      return true;
+      // FIXME: 3a and 3b
+    }
+
+    // 1. if leaf just delete this key
+    if (node_p->leaf) {
+      node_p->keys.erase(node_p->keys.begin() + i);
+      node_p->size -= 1;
       return true;
     } else {
+      // 2. else for internal node x and key k
+      auto left_child = node_p->childs[i];
+      if (left_child->size >= degree) {
+        // 2a: if child y precedes(left to) k has >= t keys,
+        // - find predecessor k',
+        auto pre_index = left_child->size - 1;
+
+        // - recusively delete k',
+        auto pre_val = left_child->keys[pre_index];
+        del(pre_val);
+        left_child->size -= 1;
+
+        // - replace k by k'.
+        node_p->keys[i] = pre_val;
+      } else {
+        if (1) {
+          // 2b: if child z follows(right to)k has >= t keys,
+          // find successor k', recusively delete k', replace k by k'.
+
+
+        } else {
+          // 2c: y and z both t-1 keys, merge k and z into y.
+          // so that x loses k and pointer to z, and y contains 2t-1 keys.
+          // free z and recusively delete k from y. (???)
+
+        }
+      }
 
     }
 
-    // TODO:
-    // 2. else for internal node x and key k
-    // 2a: if child y precedes(left to) k has >= t keys,
-    // find predecessor k', recusively delete k', replace k by k'.
 
-    // 2b: if child z follows(right to)k has >= t keys,
-    // find successor k', recusively delete k', replace k by k'.
 
-    // 2c: y and z both t-1 keys, merge k and z into y.
-    // so that x loses k and pointer to z, and y contains 2t-1 keys.
-    // free z and recusively delete k from y. (???)
+
 
     // 3.
 
