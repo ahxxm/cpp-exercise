@@ -285,8 +285,8 @@ private:
 
     // all non-root node follow degree: d-1 <= size(key.size()) <= 2d -1
     if (node != root) {
-      assert(static_cast<uint64_t>(degree - 1) <= node->keys.size() &&
-             static_cast<uint64_t>(2 * degree - 1) >= node->keys.size());
+      assert(static_cast<uint64_t>(degree - 1) <= node->keys.size());
+      assert(static_cast<uint64_t>(2 * degree - 1) >= node->keys.size());
     }
 
     assert(node->size == static_cast<int>(node->keys.size()));
@@ -306,16 +306,14 @@ private:
 
 void test_insert(BTree &tree) {
   for (int i = 0; i < 1000; ++i) {
-    auto tmp = std::rand() % 2345;
-    tree.insert(tmp);
+    tree.insert(i);
     tree.check();
   }
 }
 
 void test_delete(BTree &tree) {
   for (int i = 0; i < 400; ++i) {
-    auto tmp = std::rand() % 2345;
-    tree.del(tmp);
+    tree.del(i * 2);
     tree.check();
   }
 }
