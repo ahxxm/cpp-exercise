@@ -1,6 +1,7 @@
-#include <iostream>
 #include <cassert>
 #include <cstdlib>
+#include <iostream>
+#include <algorithm>
 #include <utility>
 #include <vector>
 #include "gtest/gtest.h"
@@ -45,6 +46,11 @@ struct Node {
     leaf = true;
   }
 
+  explicit Node(bool l) {
+    size = 0;
+    leaf = l;
+  }
+
   ~Node() {
     for (auto p : childs) {
       delete p;
@@ -52,6 +58,17 @@ struct Node {
   }
 };
 
+struct Result {
+  node_p node;
+  node_p parent;
+  int index;
+
+  Result(node_p p, node_p n, int i) {
+    parent = p;
+    node = n;
+    index = i;
+  }
+};
 
 class BTree {
 public:
@@ -80,14 +97,12 @@ public:
   }
 
   auto search(int val) {
-    return search(root, val);
+    return search(nullptr, root, val);
   };
 
   void insert(int val) {
     // root is always initialized in ctor
     auto iter = root;
-    std::cout << "insert: " << val<< std::endl;
-
     if (iter->size < 2 * degree - 1) {
       insert_non_full(iter, val);
       return;
@@ -106,36 +121,99 @@ public:
 
   void check() {check(root);};
 
-  void del(int val) {
-    std::cout << "del: " << val << std::endl;
-
+  bool del(int val) {
     auto search_r = search(val);
-    if ((!search_r.first) || search_r.second == -1) {return;}
+    if ((!search_r.node) || search_r.index == -1) {return false;}
 
-    // 1. if leaf just delete this key
-    auto node = search_r.first;
-    auto i = search_r.second;
-    if (node->leaf) {
-      node->keys.erase(node->keys.begin() + i);
-      node->size -= 1;
-      // FIXME: fix when node needs combination!
-      return;
+    auto node_p = search_r.node;
+    auto i = search_r.index;
+    assert(*(node_p->keys.begin() + i) == val);
+
+    // LEAF
+    if (node_p->leaf) {
+      assert(node_p->childs.size() == 0);
+      // safest deletion: more than degree-1 keys on this leaf
+      if (static_cast<int>(node_p->keys.size()) > degree - 1) {
+        node_p->keys.erase(node_p->keys.begin() + i);
+        node_p->size -= 1;
+        return true;
+      }
+
+      // else borrow from sib
+      auto parent_p = search_r.parent;
+      if (node_p != root) {assert(parent_p);}
+
+      auto iter = std::find(parent_p->childs.begin(),
+                            parent_p->childs.end(),
+                            node_p);
+      auto node_i = iter - parent_p->childs.begin();
+
+      if (node_i == 0) {
+        // auto r_sib = parent_p->childs[node_i + 1];
+        // borrow_right(node_p, r_sib);
+        // del(val);
+        return true;
+      }
+
+      if (node_i == static_cast<long>(parent_p->childs.size() - 1)) {
+        // auto left_sib = parent_p->childs[node_i - 1];
+        // borrow_left(node_p, left_sib);
+        // del(val);
+        return true;
+      }
+
+      // else not edge node, check left and right
+      auto left_sib = parent_p->childs[node_i - 1];
+      auto r_sib = parent_p->childs[node_i + 1];
+      if (static_cast<int>(left_sib->keys.size()) > degree - 1) {
+        // borrow_left(node_p, left_sib);
+        // del(val);
+      } else {
+        if (static_cast<int>(r_sib->keys.size()) > degree - 1) {
+          // borrow_right(node_p, r_sib);
+          // del(val);
+        } else {
+          // now left/node/right both has t-1 keys
+          // check if parent is also t-1, if not
+          // FIXME:
+        }
+      }
+      return true;
     }
+    // LEAF END
 
-    // TODO:
-    // 2. else for internal node x and key k
-    // 2a: if child y precedes(left to) k has >= t keys,
-    // find predecessor k', recusively delete k', replace k by k'.
+    // INTERNAL
+    auto pre_child = node_p->childs[i];
+    auto suc_child = node_p->childs[i + 1];
+    if (static_cast<int>(pre_child->keys.size()) > degree - 1) {
+      // borrow from predecessor in left child
+      auto pre_size = pre_child->keys.size();
+      auto pre_key = pre_child->keys[pre_size - 1];
+      pre_child->keys[pre_size - 1] = val;
+      node_p->keys[i] = pre_key;
 
-    // 2b: if child z follows(right to)k has >= t keys,
-    // find successor k', recusively delete k', replace k by k'.
+      // recursively delete it
+      del(val);
+    } else {
+      if (static_cast<int>(suc_child->keys.size()) > degree - 1) {
+        // try borrow from successor
+        auto suc_key = suc_child->keys[0];
+        suc_child->keys[0] = val;
+        node_p->keys[i] = suc_key;
+        del(val);
+      } else {
+        // FIXME:
+        // move val Node to pre
 
-    // 2c: y and z both t-1 keys, merge k and z into y.
-    // so that x loses k and pointer to z, and y contains 2t-1 keys.
-    // free z and recusively delete k from y. (???)
+        // combine pre and suc
 
-    // 3.
+        // del val recursively
+        // del(val);
+      }
+    }
+    // INTERNAL END
 
+    return true;
   };
 
 
@@ -160,12 +238,7 @@ private:
         node->keys[i + 1] = node->keys[i];
         --i;
       }
-
-      if (node->keys.empty()) {
-        node->keys.emplace_back(val);
-      } else {
-        node->keys[i + 1] = val;
-      }
+      node->keys[i + 1] = val;
       node->size += 1;
       return;
     }
@@ -174,18 +247,19 @@ private:
     while (i >= 0 && val < node->keys[i]) {
       --i;
     }
+    ++i;
 
     // see if child full, needs split
-    if (node->childs[i + 1] && node->childs[i + 1]->size == 2 * degree - 1) {
-      split_child(node, i + 1);
+    if (node->childs[i] && node->childs[i]->size == 2 * degree - 1) {
+      split_child(node, i);
 
       // after split, check which i have mid key
-      if (node->keys[i + 1] < val) {++i;}
+      if (node->keys[i] < val) {++i;}
     }
-    insert_non_full(node->childs[i + 1], val);
+    insert_non_full(node->childs[i], val);
   }
 
-  result_t search(node_p node, int val) {
+  Result search(node_p parent, node_p node, int val) {
     // search for child(might have val)
     int index = 0;
     while (index <= node->size && index < static_cast<int>(node->keys.size()) && val > node->keys[index]) {
@@ -194,14 +268,16 @@ private:
 
     // in case key->value == val, or reach leaf but no result
     if (index <= node->size && val == node->keys[index]) {
-      return std::make_pair(node, index);
+      // return std::make_pair(node, index);
+      return Result(parent, node, index);
     } else if (node->leaf) {
-      return std::make_pair(nullptr, -1);
+      // return std::make_pair(nullptr, -1);
+      return Result(parent, nullptr, -1);
     }
 
     // else dive in next level
     disk();
-    return search(node->childs[index], val);
+    return search(node, node->childs[index], val);
   }
 
 
@@ -245,6 +321,25 @@ private:
     disk();
   }
 
+  void borrow_left(node_p node, node_p left_sib) {
+    auto left_size = left_sib->keys.size();
+    auto left_key = left_sib->keys[left_size - 1];
+    left_sib->keys.erase(left_sib->keys.begin() + left_size - 1);
+    left_sib->size -= 1;
+    node->keys.insert(node->keys.begin(), left_key);
+    node->size += 1;
+  }
+
+  void borrow_right(node_p node, node_p r_sib) {
+    auto r_key = r_sib->keys[0];
+    r_sib->keys.erase(r_sib->keys.begin());
+    r_sib->size -= 1;
+    node->keys.emplace_back(r_key);
+    node->size += 1;
+  };
+
+
+
 
   void check_keys(std::vector<int> keys) {
     if (keys.size() <= 1) {return;}
@@ -252,11 +347,7 @@ private:
     auto tmp = keys[0];
     int len = keys.size();
     for (int i = 1; i < len; ++i) {
-      if (tmp > keys[i]) {
-        std::cout << "keys unordered error: " << tmp << " > " << keys[i] << std::endl;
-      }
       assert(tmp <= keys[i]);
-
       tmp = keys[i];
     }
   }
@@ -269,8 +360,8 @@ private:
 
     // all non-root node follow degree: d-1 <= size(key.size()) <= 2d -1
     if (node != root) {
-      assert(static_cast<uint64_t>(degree - 1) <= node->keys.size() &&
-             static_cast<uint64_t>(2 * degree - 1) >= node->keys.size());
+      assert(static_cast<uint64_t>(degree - 1) <= node->keys.size());
+      assert(static_cast<uint64_t>(2 * degree - 1) >= node->keys.size());
     }
 
     assert(node->size == static_cast<int>(node->keys.size()));
@@ -289,17 +380,15 @@ private:
 
 
 void test_insert(BTree &tree) {
-  for (int i = 0; i < 40; ++i) {
-    auto tmp = std::rand() % 2345;
-    tree.insert(tmp);
+  for (int i = 0; i < 1000; ++i) {
+    tree.insert(i);
     tree.check();
   }
 }
 
 void test_delete(BTree &tree) {
   for (int i = 0; i < 400; ++i) {
-    auto tmp = std::rand() % 2345;
-    tree.del(tmp);
+    tree.del(i * 2);
     tree.check();
   }
 }
@@ -310,12 +399,12 @@ TEST(BTreeTest, SomeTest) {
   test_insert(tree);
   std::cout << tree.disk_operation() << std::endl;
 
-  // test_delete(tree);
-  // std::cout << tree.disk_operation() << std::endl;
+  test_delete(tree);
+  std::cout << tree.disk_operation() << std::endl;
 
   auto r = tree.search(-10);
-  EXPECT_FALSE(r.first);
-  EXPECT_EQ(r.second, -1);
+  EXPECT_FALSE(r.node);
+  EXPECT_EQ(r.index, -1);
 }
 
 int main(int argc, char *argv[]) {

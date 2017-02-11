@@ -101,9 +101,16 @@ public:
     return k;
   }
 
-  // TODO: circular detection
-  auto search(const int &) = delete;
-  bool is_circular();
+  auto search(const int &i) {
+    auto iter = root;
+    while (iter) {
+      if (iter->value == i) {
+        return true;
+      }
+      iter = iter->next;
+    }
+    return false;
+  }
 
   bool is_empty() {
     return size == 0;
@@ -165,6 +172,10 @@ TEST(LinkedListTest, SomeTest) {
   auto f = e.pop_first();
   EXPECT_EQ(f, 1);
   EXPECT_EQ(e.length(), 3);
+  EXPECT_EQ(e.search(1), false);
+  EXPECT_EQ(e.search(2), true);
+  EXPECT_EQ(e.search(4), true);
+  EXPECT_EQ(e.search(5), false);
 
 }
 

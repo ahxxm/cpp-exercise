@@ -9,8 +9,6 @@
 #include "gtest/gtest.h"
 
 
-// TODO: chap problems and exercises
-
 // color for tree
 #define black true
 #define red false
@@ -88,8 +86,6 @@ void print(Node *p, int start) {
 class RBTree {
 public:
   using link = node_p*;
-
-  // TODO: protected for inherit class
 
   // constructor
   // default: make root black
