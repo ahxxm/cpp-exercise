@@ -139,11 +139,44 @@ public:
         return true;
       }
 
-      // FIXME:
-      // in case it's leftest child
-      if (i != 0) {
-        auto parent_p = search_r.parent;
-        assert(parent_p);
+      // else borrow from sib
+      auto parent_p = search_r.parent;
+      if (node_p != root) {assert(parent_p);}
+
+      auto iter = std::find(parent_p->childs.begin(),
+                            parent_p->childs.end(),
+                            node_p);
+      auto node_i = iter - parent_p->childs.begin();
+
+      if (node_i == 0) {
+        // auto r_sib = parent_p->childs[node_i + 1];
+        // borrow_right(node_p, r_sib);
+        // del(val);
+        return true;
+      }
+
+      if (node_i == static_cast<long>(parent_p->childs.size() - 1)) {
+        // auto left_sib = parent_p->childs[node_i - 1];
+        // borrow_left(node_p, left_sib);
+        // del(val);
+        return true;
+      }
+
+      // else not edge node, check left and right
+      auto left_sib = parent_p->childs[node_i - 1];
+      auto r_sib = parent_p->childs[node_i + 1];
+      if (static_cast<int>(left_sib->keys.size()) > degree - 1) {
+        // borrow_left(node_p, left_sib);
+        // del(val);
+      } else {
+        if (static_cast<int>(r_sib->keys.size()) > degree - 1) {
+          // borrow_right(node_p, r_sib);
+          // del(val);
+        } else {
+          // now left/node/right both has t-1 keys
+          // check if parent is also t-1, if not
+          // FIXME:
+        }
       }
       return true;
     }
