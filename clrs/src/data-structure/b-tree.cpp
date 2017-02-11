@@ -57,6 +57,17 @@ struct Node {
   }
 };
 
+struct Result {
+  node_p node;
+  node_p parent;
+  int index;
+
+  Result(node_p p, node_p n, int i) {
+    parent = p;
+    node = n;
+    index = i;
+  }
+};
 
 class BTree {
 public:
@@ -85,7 +96,7 @@ public:
   }
 
   auto search(int val) {
-    return search(root, val);
+    return search(nullptr, root, val);
   };
 
   void insert(int val) {
@@ -111,74 +122,62 @@ public:
 
   bool del(int val) {
     auto search_r = search(val);
-    if ((!search_r.first) || search_r.second == -1) {return false;}
+    if ((!search_r.node) || search_r.index == -1) {return false;}
 
-
-    auto node_p = search_r.first;
-    auto i = search_r.second;
+    auto node_p = search_r.node;
+    auto i = search_r.index;
     assert(*(node_p->keys.begin() + i) == val);
 
-    // 3. root node
-    if (node_p == root) {
-      return true;
-      // FIXME: 3a and 3b
-    }
-
-    // 1. if leaf just delete this key
+    // LEAF
     if (node_p->leaf) {
-      // node_p->keys.erase(node_p->keys.begin() + i);
-      // node_p->size -= 1;
       assert(node_p->childs.size() == 0);
-      assert(node_p->keys.size() > 0);
-      return true;
-    } else {
-      /*
-
-      // 2. else for internal node x and key k
-      auto left_child = node_p->childs[i];
-      if (left_child->size >= degree) {
-        // 2a: if child y precedes(left to) k has >= t keys,
-        // - find predecessor k',
-        auto pre_index = left_child->size - 1;
-
-        // - recusively delete k',
-        auto pre_val = left_child->keys[pre_index];
-        del(pre_val);
-        left_child->size -= 1;
-
-        // - replace k by k'.
-        node_p->keys[i] = pre_val;
-
-      } else {
-
-        auto right_child = node_p->childs[i + 1];
-
-        // 2b: if child z follows(right to)k has >= t keys,
-        if (right_child->size >= degree) {
-          // find successor k',
-          // recusively delete k',
-          // replace k by k'.
-          auto suc_index = 0;
-          auto suc_val = right_child->keys[suc_index];
-          del(suc_val);
-          right_child->size -= 1;
-          node_p->keys[i] = suc_val;
-
-        } else {
-          // 2c: y and z both t-1 keys, merge k and z into y.
-          // so that x loses k and pointer to z, and y contains 2t-1 keys.
-          // free z and recusively delete k from y. (???)
-
-        }
+      // safest deletion: more than degree-1 keys on this leaf
+      if (static_cast<int>(node_p->keys.size()) > degree - 1) {
+        node_p->keys.erase(node_p->keys.begin() + i);
+        node_p->size -= 1;
+        return true;
       }
-      */
+
+      // FIXME:
+      // in case it's leftest child
+      if (i != 0) {
+        auto parent_p = search_r.parent;
+        assert(parent_p);
+      }
+      return true;
     }
+    // LEAF END
 
+    // INTERNAL
+    auto pre_child = node_p->childs[i];
+    auto suc_child = node_p->childs[i + 1];
+    if (static_cast<int>(pre_child->keys.size()) > degree - 1) {
+      // borrow from predecessor in left child
+      auto pre_size = pre_child->keys.size();
+      auto pre_key = pre_child->keys[pre_size - 1];
+      pre_child->keys[pre_size - 1] = val;
+      node_p->keys[i] = pre_key;
 
+      // recursively delete it
+      del(val);
+    } else {
+      if (static_cast<int>(suc_child->keys.size()) > degree - 1) {
+        // try borrow from successor
+        auto suc_key = suc_child->keys[0];
+        suc_child->keys[0] = val;
+        node_p->keys[i] = suc_key;
+        del(val);
+      } else {
+        // FIXME:
+        // move val Node to pre
 
+        // combine pre and suc
 
-
-    // 3.
+        // del val recursively
+        // del(val);
+      }
+    }
+    // INTERNAL END
 
     return true;
   };
@@ -226,7 +225,7 @@ private:
     insert_non_full(node->childs[i], val);
   }
 
-  result_t search(node_p node, int val) {
+  Result search(node_p parent, node_p node, int val) {
     // search for child(might have val)
     int index = 0;
     while (index <= node->size && index < static_cast<int>(node->keys.size()) && val > node->keys[index]) {
@@ -235,14 +234,16 @@ private:
 
     // in case key->value == val, or reach leaf but no result
     if (index <= node->size && val == node->keys[index]) {
-      return std::make_pair(node, index);
+      // return std::make_pair(node, index);
+      return Result(parent, node, index);
     } else if (node->leaf) {
-      return std::make_pair(nullptr, -1);
+      // return std::make_pair(nullptr, -1);
+      return Result(parent, nullptr, -1);
     }
 
     // else dive in next level
     disk();
-    return search(node->childs[index], val);
+    return search(node, node->childs[index], val);
   }
 
 
@@ -349,8 +350,8 @@ TEST(BTreeTest, SomeTest) {
   std::cout << tree.disk_operation() << std::endl;
 
   auto r = tree.search(-10);
-  EXPECT_FALSE(r.first);
-  EXPECT_EQ(r.second, -1);
+  EXPECT_FALSE(r.node);
+  EXPECT_EQ(r.index, -1);
 }
 
 int main(int argc, char *argv[]) {
