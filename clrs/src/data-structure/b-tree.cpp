@@ -1,6 +1,7 @@
-#include <iostream>
 #include <cassert>
 #include <cstdlib>
+#include <iostream>
+#include <algorithm>
 #include <utility>
 #include <vector>
 #include "gtest/gtest.h"
@@ -119,6 +120,23 @@ public:
 
 
   void check() {check(root);};
+
+  void borrow_left(node_p node, node_p left_sib) {
+    auto left_size = left_sib->keys.size();
+    auto left_key = left_sib->keys[left_size - 1];
+    left_sib->keys.erase(left_sib->keys.begin() + left_size - 1);
+    left_sib->size -= 1;
+    node->keys.insert(node->keys.begin(), left_key);
+    node->size += 1;
+  }
+
+  void borrow_right(node_p node, node_p r_sib) {
+    auto r_key = r_sib->keys[0];
+    r_sib->keys.erase(r_sib->keys.begin());
+    r_sib->size -= 1;
+    node->keys.emplace_back(r_key);
+    node->size += 1;
+  };
 
   bool del(int val) {
     auto search_r = search(val);
