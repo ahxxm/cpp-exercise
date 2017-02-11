@@ -155,7 +155,7 @@ public:
         return true;
       }
 
-      if (node_i == static_cast<long>(parent_p->childs.size() - 1)) {
+      if (static_cast<uint64_t>(node_i) == parent_p->childs.size() - 1) {
         // auto left_sib = parent_p->childs[node_i - 1];
         // borrow_left(node_p, left_sib);
         // del(val);

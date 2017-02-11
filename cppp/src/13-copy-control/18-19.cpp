@@ -7,9 +7,8 @@ class Employee {
 public:
   static int n;
   Employee() = delete;
-  explicit Employee(const std::string &s): currentID(n++) {
-    name = s;
-  }
+  explicit Employee(const std::string &s):
+    name(s), currentID(n++) {}
 
   // 19: copy-control members
   // new Emploee with same name, but different id
