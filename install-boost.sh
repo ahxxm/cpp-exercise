@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ex
 
 if [ ! -d "${HOME}/${CCOMPILER}-boost_${BOOST_VERSION}/include" ]; then
   wget -O boost_${BOOST_VERSION}.tar.bz2 http://sourceforge.net/projects/boost/files/boost/${BOOST_VER}/boost_${BOOST_VERSION}.tar.bz2/download
