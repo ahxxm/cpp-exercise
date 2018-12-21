@@ -13,7 +13,7 @@ before_install:
   - sudo apt-get -o Dpkg::Options::="--force-overwrite" install -y gcc-6 g++-6 gcc-7 g++-7 clang-6.0
   - sudo pip install -U pip && pip install --user cpp-coveralls cpplint
 install:
-  - export BOOST_VERSION=${BOOST_VER//./_} && export BOOST_ROOT=${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_}
+  - export BOOST_VERSION=${BOOST_VER//./_} && export BOOST_ROOT=${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_} && echo "$BOOST_ROOT"
   - travis_wait ./install-boost.sh
 script:
   - export CC=$COMPILER && export CXX=$CCOMPILER && mkdir build && cd build && cmake .. && make -j8 2>&1 > /dev/null && make test ARGS="-VV" && cd ..
