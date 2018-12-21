@@ -2,9 +2,9 @@ language: cpp
 dist: xenial
 sudo: required
 env:
-  - COMPILER=gcc-6 CCOMPILER=g++-6 BOOST_VER=1.69.0
-  - COMPILER=gcc-7 CCOMPILER=g++-7 BOOST_VER=1.69.0
-  - COMPILER=clang-6.0 CCOMPILER=clang++-6.0 BOOST_VER=1.69.0
+  - COMPILER=gcc-6 CCOMPILER=g++-6 BOOST_VER=1.68.0
+  - COMPILER=gcc-7 CCOMPILER=g++-7 BOOST_VER=1.68.0
+  - COMPILER=clang-6.0 CCOMPILER=clang++-6.0 BOOST_VER=1.68.0
 before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
