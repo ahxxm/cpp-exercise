@@ -65,12 +65,6 @@ using twin = std::pair<T, T>;
 
 
 TEST(BlobTest, SomeTest) {
-  EXPECT_EQ(1, 1);
-
-  // typedef and using
-  typedef Bar<int> intbar;
-  intbar a;
-
   twin<int> b {1, 1};
   EXPECT_EQ(b.first, 1);
 
