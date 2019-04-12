@@ -21,7 +21,7 @@ ExternalProject_Get_Property(gtest source_dir binary_dir)
 
 
 # Boost: always use multi-threaded, include as system to supress warning
-find_package(Boost 1.68 COMPONENTS system filesystem unit_test_framework REQUIRED)
+find_package(Boost 1.68 COMPONENTS filesystem unit_test_framework REQUIRED)
 if (Boost_FOUND)
   message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
   message(STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}")
@@ -29,7 +29,7 @@ if (Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
 endif (Boost_FOUND)
 set(Boost_USE_MULTI_THREADED ON)
-include_directories(SYSTEM "${Boost_INCLUDE_DIRS}")
+# include_directories(SYSTEM "${Boost_INCLUDE_DIRS}")
 
 
 # Use C++14 standard
