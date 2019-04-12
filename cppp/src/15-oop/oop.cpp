@@ -49,7 +49,7 @@ TEST(VirtualFunctionTest, SomeTest) {
   int answer;
   try {
     answer = c.answer();
-  } catch (std::exception) {
+  } catch (std::exception&) {
     answer = 0;
   };
   EXPECT_EQ(answer, 0);
