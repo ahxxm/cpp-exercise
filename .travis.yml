@@ -17,7 +17,7 @@ install:
   - export BOOST_VERSION=${BOOST_VER//./_} && export BOOST_ROOT=${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_} && echo "$BOOST_ROOT"
   - travis_wait ./install-boost.sh
 script:
-  - export CC=$COMPILER && export CXX=$CCOMPILER && mkdir build && cd build && cmake -DBOOST_ROOT=${BOOST_ROOT} .. && make -j8 2>&1 > /dev/null && make test ARGS="-VV" && cd ..
+  - export CC=$COMPILER && export CXX=$CCOMPILER && mkdir build && cd build && cmake .. && make -j8 2>&1 > /dev/null && make test ARGS="-VV" && cd ..
   - (cpplint --output=emacs --recursive --counting=detailed  ./algo ./clrs ./effective-modern-cpp ./cppp 2>&1 | grep -v "Done" | grep -v "Ignoring") || echo "0"
 cache:
   directories:
