@@ -7,7 +7,7 @@ int main(void) {
   try {
     // int a = 1;
     throw std::runtime_error("Java");
-  } catch (std::runtime_error err) {
+  } catch (std::runtime_error& err) {
     const char *error_message = err.what();
     std::cout << error_message << std::endl;
   }
