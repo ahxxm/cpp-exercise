@@ -36,7 +36,7 @@ TEST(RegexTest, SomeTest) {
   try {
     std::regex rre("[[:alm:]+\\.");
     EXPECT_EQ(1, 2); // never reached here
-  } catch(std::regex_error e) {
+  } catch(std::regex_error& e) {
     std::cout << e.what() << "\n" << std::endl;
     EXPECT_EQ(1, 1);
   };

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "gtest/gtest.h"
-#include <boost/type_index.hpp>
+/*#include <boost/type_index.hpp>
 
 // Get deduced info during: edit, compile, runtime
 
@@ -56,7 +56,7 @@ TEST(ViewDeduced, SomeTest) {
   view();
   print();
 }
-
+*/
 int main(int argc, char *argv[]) {
   ::testing::InitGoogleTest(&argc, argv);
   int ret = RUN_ALL_TESTS();

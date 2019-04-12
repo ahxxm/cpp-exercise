@@ -99,7 +99,8 @@ public:
 
   ScreenIndex addScreen(const Screen &s);
 
-  WindowMgr() = default;
+  // reference type 'Screen &' would not be initialized
+  // WindowMgr() = default;
   explicit WindowMgr(Screen &s): single_screen(s) {};
 
 private:
