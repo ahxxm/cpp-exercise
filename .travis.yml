@@ -4,8 +4,8 @@ virt: vm
 sudo: required
 
 env:
-  - COMPILER=gcc-9 CCOMPILER=g++-9 BOOST_VER=1.70.0
-  - COMPILER=clang-10 CCOMPILER=clang++-10 BOOST_VER=1.70.0
+  - COMPILER=gcc-9 CCOMPILER=g++-9 BOOST_VER=1.74.0
+  - COMPILER=clang-10 CCOMPILER=clang++-10 BOOST_VER=1.74.0
 before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
