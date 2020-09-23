@@ -6,24 +6,8 @@ enable_testing()
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-# Download and install GoogleTest
-## http://www.kaizou.org/2014/11/gtest-cmake/
-## Enable ExternalProject CMake module
-find_package(Threads REQUIRED)
-# include(ExternalProject)
-#message(STATUS "Building gtest")
-#ExternalProject_Add(
-#  gtest
-#  URL https://github.com/google/googletest/archive/release-1.10.0.zip
-#  PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
-#  # Disable install step
-#  INSTALL_COMMAND ""
-#  )
-### Create a libgtest target to be used as a dependency by test programs
-#ExternalProject_Get_Property(gtest source_dir binary_dir)
-
-
 # Boost: always use multi-threaded, include as system to supress warning
+find_package(Threads REQUIRED)
 find_package(Boost 1.68 REQUIRED)
 if (Boost_FOUND)
   message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
