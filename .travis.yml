@@ -13,13 +13,13 @@ before_install:
   - cat /etc/apt/sources.list && sudo apt-get update -q
   - sudo apt-get -o Dpkg::Options::="--force-overwrite" install -y clang-10
   - sudo apt remove --purge --auto-remove cmake
-  - sudo pip install -U pip && pip install --user cpp-coveralls cpplint cmake
-install:
-  - export BOOST_VERSION=${BOOST_VER//./_} && export BOOST_ROOT=${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_} && echo "$BOOST_ROOT"
-  - travis_wait ./install-boost.sh
+  - sudo pip install -U pip && pip install --user cpp-coveralls cpplint cmake conan
 script:
-  - export CC=$COMPILER && export CXX=$CCOMPILER && mkdir build && cd build && cmake .. && make -j8 2>&1 > /dev/null && make test ARGS="-VV" && cd ..
+  - export CC=$COMPILER && export CXX=$CCOMPILER
+  - conan profile new default --detect
+  - conan profile update settings.compiler.libcxx=libstdc++11 default
+  - mkdir build && cd build && conan install .. --build missing && cmake .. && make -j8 2>&1 > /dev/null && make test ARGS="-VV" && cd ..
   - (cpplint --output=emacs --recursive --counting=detailed  ./algo ./clrs ./effective-modern-cpp ./cppp 2>&1 | grep -v "Done" | grep -v "Ignoring") || echo "0"
 cache:
   directories:
-    - "${HOME}/${CCOMPILER}-boost_${BOOST_VER//./_}"
+    - $HOME/.conan/data
