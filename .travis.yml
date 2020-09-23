@@ -1,6 +1,8 @@
 language: cpp
-dist: xenial
+dist: focal
+virt: vm
 sudo: required
+
 env:
   - COMPILER=gcc-7 CCOMPILER=g++-7 BOOST_VER=1.70.0
   - COMPILER=gcc-8 CCOMPILER=g++-8 BOOST_VER=1.70.0
