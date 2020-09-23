@@ -4,15 +4,14 @@ virt: vm
 sudo: required
 
 env:
-  - COMPILER=gcc-7 CCOMPILER=g++-7 BOOST_VER=1.70.0
-  - COMPILER=gcc-8 CCOMPILER=g++-8 BOOST_VER=1.70.0
-  - COMPILER=clang-8 CCOMPILER=clang++-8 BOOST_VER=1.70.0
+  - COMPILER=gcc-9 CCOMPILER=g++-9 BOOST_VER=1.70.0
+  - COMPILER=clang-10 CCOMPILER=clang++-10 BOOST_VER=1.70.0
 before_install:
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
-  - echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main" | sudo tee -a /etc/apt/sources.list && echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main" | sudo tee -a /etc/apt/sources.list
+  - echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-10 main" | sudo tee -a /etc/apt/sources.list && echo "deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-10 main" | sudo tee -a /etc/apt/sources.list
   - cat /etc/apt/sources.list && sudo apt-get update -q
-  - sudo apt-get -o Dpkg::Options::="--force-overwrite" install -y gcc-7 g++-7 gcc-8 g++-8 clang-8
+  - sudo apt-get -o Dpkg::Options::="--force-overwrite" install -y clang-10
   - sudo apt remove --purge --auto-remove cmake
   - sudo pip install -U pip && pip install --user cpp-coveralls cpplint cmake
 install:
