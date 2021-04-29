@@ -9,13 +9,10 @@ build:
     - run:
         name: deps
         command: |
-          sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-          wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
-          echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-10 main" | sudo tee -a /etc/apt/sources.list && echo "deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-10 main" | sudo tee -a /etc/apt/sources.list
-          cat /etc/apt/sources.list && sudo apt-get update -q
-          sudo apt-get -o Dpkg::Options::="--force-overwrite" install -y clang-10
-          sudo apt remove --purge --auto-remove cmake
-          sudo pip install -U pip && pip install --user cpp-coveralls cpplint cmake conan
+          sudo apt-get update -q
+          # sudo apt remove --purge --auto-remove cmake
+          # sudo pip install -U pip && pip install --user cpp-coveralls cpplint cmake conan
+          sudo pip install -U pip && pip install --user cpp-coveralls cpplint conan
     - run:
         name: conan, build, test and lint
         command: |
