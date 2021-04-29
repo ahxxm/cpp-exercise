@@ -1,6 +1,6 @@
 # C++ Exercise
 
-[![Build Status](https://www.travis-ci.com/ahxxm/cpp-exercise.svg)](https://www.travis-ci.com/ahxxm/cpp-exercise)
+[![Build Status](https://circleci.com/gh/ahxxm/cpp-exercise/tree/master.svg?style=svg)](https://circleci.com/gh/ahxxm/cpp-exercise/tree/master)
 
 ## Structure
 
