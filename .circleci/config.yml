@@ -9,7 +9,7 @@ commands:
     steps:
       - checkout
       - restore_cache:
-         key: v1-{{ checksum "conanfile.txt" }}
+         key: v1-{{ checksum "conanfile.txt" }}-{{ .Environment.CIRCLE_JOB }}
       - run:
           name: deps
           command: |
@@ -23,7 +23,7 @@ commands:
            mkdir build && cd build && conan install .. --build missing && cmake .. && make -j8 2>&1 > /dev/null && make test ARGS="-VV" && cd ..
            (cpplint --output=emacs --recursive --counting=detailed  ./algo ./clrs ./effective-modern-cpp ./cppp 2>&1 | grep -v "Done" | grep -v "Ignoring") || echo "0"
       - save_cache:
-         key: v1-{{ checksum "conanfile.txt" }}
+         key: v1-{{ checksum "conanfile.txt" }}-{{ .Environment.CIRCLE_JOB }}
          paths:
            - $HOME/.conan/data
 
