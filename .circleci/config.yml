@@ -25,7 +25,7 @@ commands:
       - save_cache:
          key: v1-{{ checksum "conanfile.txt" }}-{{ .Environment.CIRCLE_JOB }}
          paths:
-           - $HOME/.conan/data
+           - ~/.conan
 
 jobs:
   gcc:
