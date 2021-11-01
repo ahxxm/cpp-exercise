@@ -18,7 +18,7 @@ commands:
       - run:
          name: conan, build, test and lint
          command: |
-           conan profile new default --detect
+           conan profile new default --detect || echo "read conan profile from cache"
            conan profile update settings.compiler.libcxx=libstdc++11 default
            mkdir build && cd build && conan install .. --build missing && cmake .. && make -j8 2>&1 > /dev/null && make test ARGS="-VV" && cd ..
            (cpplint --output=emacs --recursive --counting=detailed  ./algo ./clrs ./effective-modern-cpp ./cppp 2>&1 | grep -v "Done" | grep -v "Ignoring") || echo "0"
@@ -29,7 +29,7 @@ commands:
 
 jobs:
   gcc:
-    docker: 
+    docker:
       - image: "conanio/gcc11"
     steps:
       - build_test
