@@ -17,7 +17,7 @@ struct Quote {
   virtual Quote* clone() && {
     return new Quote(std::move(*this));
   }
-  
+
   virtual ~Quote() {};
 
 private:
