@@ -5,6 +5,10 @@
 #include "gtest/gtest.h"
 
 
+// construct() and destroy(), deprecated in 17, removed in 20
+// https://en.cppreference.com/w/cpp/memory/allocator
+
+
 class StrVec {
 public:
   StrVec(): first(nullptr), first_free(nullptr), cap(nullptr) {};
@@ -30,6 +34,7 @@ public:
   void push_back(const std::string &s) {
     check_and_alloc();
     alloc.construct(first_free++, s);
+
   };
 
   std::size_t size() const {
@@ -98,6 +103,7 @@ private:
   std::string *first_free;
   std::string *cap;
 };
+
 
 TEST(StrVecTest, SomeTest) {
   EXPECT_EQ(1, 1);
