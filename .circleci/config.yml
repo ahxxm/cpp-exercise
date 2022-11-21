@@ -20,7 +20,9 @@ commands:
          command: |
            conan profile new default --detect || echo "read conan profile from cache"
            conan profile update settings.compiler.libcxx=libstdc++11 default
-           mkdir build && cd build && conan install .. --build missing && cmake .. && make -j8 2>&1 > /dev/null && make test ARGS="-VV" && cd ..
+           mkdir build && cd build && conan install .. --build missing && cmake ..
+           find /home/conan/.conan/data/gtest/1.12.1 -type f -exec sed -i 's/__cpp_char8_t/__cpp_lib_char8_t/g' {} \;
+           make -j8 2>&1 > /dev/null && make test ARGS="-VV" && cd ..
            (/home/conan/.local/bin/cpplint --output=emacs --recursive --counting=detailed  ./algo ./clrs ./effective-modern-cpp ./cppp 2>&1 | grep -v "Done" | grep -v "Ignoring") || echo "0"
       - save_cache:
          key: v2-{{ checksum "conanfile.txt" }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum ".circleci/config.yml" }}
