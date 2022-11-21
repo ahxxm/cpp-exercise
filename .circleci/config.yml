@@ -35,9 +35,9 @@ jobs:
       - image: "conanio/gcc11"
     steps:
       - build_test
-  clang11:
+  clang14:
     docker:
-      - image: "conanio/clang11"
+      - image: "conanio/clang14-ubuntu18.04"
     steps:
       - build_test
 
@@ -46,4 +46,4 @@ workflows:
   commit:
     jobs:
       - gcc11
-      - clang11
+      - clang14
