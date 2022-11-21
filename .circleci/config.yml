@@ -9,7 +9,7 @@ commands:
     steps:
       - checkout
       - restore_cache:
-         key: v2-{{ checksum "conanfile.txt" }}-{{ .Environment.CIRCLE_JOB }}
+         key: v2-{{ checksum "conanfile.txt" }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum ".circleci/config.yml" }}
       - run:
           name: deps
           command: |
