@@ -44,17 +44,18 @@ void continuous_insert() {
   }
 }
 
-void access_container(const std::list<int> &vi) {
+auto access_container(const std::list<int> &vi) {
   // front and back are values
   // begin and end are iterator
   if (!vi.empty()) {
     int val = *vi.begin(), val2 = vi.front();
-    auto last = vi.end();  // iterator
+    auto last = vi.end();  // one pass end it
     int val3 = *(--last);  // does not support forward_list iterators
-    int val4 = vi.back();
-    val4 -= (val3 - val * val2);
+    auto val4 = vi.back();
+    val4 -= (val3 - val * val2); // val3==val4, so it's [0]*[0]
+    return val4;
   }
-
+  return 0;
 }
 
 
@@ -91,8 +92,8 @@ TEST(MoreContainerTest, SomeTest) {
   some_insert();
   continuous_insert();
 
-  // container access
-  access_container(l1);
+  // container access: 4-(4-1*1)==1
+  EXPECT_EQ(access_container(l1), 1);
 
   // 9.23: what if l1.size() is 1?
   std::list<int> ltest = {1};
