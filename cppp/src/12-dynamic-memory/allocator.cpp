@@ -3,6 +3,19 @@
 #include <vector>
 #include "gtest/gtest.h"
 
+/* from stl
+  template<typename _Up, typename... _Args>
+	void
+	construct(_Up* __p, _Args&&... __args)
+	noexcept(std::is_nothrow_constructible<_Up, _Args...>::value)
+	{ ::new((void *)__p) _Up(std::forward<_Args>(__args)...); }
+
+  template<typename _Up>
+	void
+	destroy(_Up* __p)
+	noexcept(std::is_nothrow_destructible<_Up>::value)
+	{ __p->~_Up(); }
+ */
 
 // decouple memory allocation from object construction
 void allocator() {
@@ -13,22 +26,14 @@ void allocator() {
   a1[2] = 233;
   std::cout << a1[2] << std::endl;
 
-  // will point to one past the last constructed element
-  // so type is int*
+  // since c++20, use construct_at and destroy_n
   auto q = a1;
-
-  // default construct and value construct
-  a.construct(q++);
-  a.construct(q++, 42);
-
-  // destroy memory: does not free it
-  while (q != a1) {
-    a.destroy(--q);
-  }
+  std::construct_at(q++, 0);
+  std::construct_at(q++, 42);
+  std::destroy_n(a1, 3); // previous a1[2]
 
   // return memory to system, 10 must be the same as size
-  a.deallocate(q, 10);
-
+  a.deallocate(a1, 10); // calls destructor(::operator delete?)
 }
 
 void allocator_construct_method() {
@@ -46,7 +51,6 @@ void allocator_construct_method() {
   std::uninitialized_fill_n(q, vi.size(), 42);
   alloc.deallocate(p, twice);
 }
-
 
 
 TEST(AllocatorTest, SomeTest) {

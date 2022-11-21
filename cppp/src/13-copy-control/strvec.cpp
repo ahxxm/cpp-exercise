@@ -5,10 +5,6 @@
 #include "gtest/gtest.h"
 
 
-// construct() and destroy(), deprecated in 17, removed in 20
-// https://en.cppreference.com/w/cpp/memory/allocator
-
-
 class StrVec {
 public:
   StrVec(): first(nullptr), first_free(nullptr), cap(nullptr) {};
@@ -33,8 +29,8 @@ public:
 
   void push_back(const std::string &s) {
     check_and_alloc();
-    alloc.construct(first_free++, s);
-
+    first_free = new std::string(std::move(s));
+    first_free++;
   };
 
   std::size_t size() const {
@@ -72,9 +68,7 @@ private:
   // destroy elements and deallocate memory space
   void free() {
     if (first) {
-      for (auto p = first_free; p != first; ) {
-        alloc.destroy(--p);
-      }
+      std::destroy_n(first, size());
       alloc.deallocate(first, cap - first);
     }
   };
@@ -88,7 +82,8 @@ private:
     auto dest = newdata;
     auto elem = first;
     for (size_t i = 0; i != size(); ++i) {
-      alloc.construct(dest++, std::move(*elem++));
+      dest = new std::string(std::move(*elem++));
+      dest++;
     }
 
     free();

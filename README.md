@@ -8,3 +8,7 @@
 - `cppp`: C++ Primer 5th edition
 - `effective-modern-cpp`: Effective Modern C++
 - `clrs`: Introduction to Algorithms
+
+## Base images
+
+Check [conan-docker-tools](https://github.com/conan-io/conan-docker-tools)

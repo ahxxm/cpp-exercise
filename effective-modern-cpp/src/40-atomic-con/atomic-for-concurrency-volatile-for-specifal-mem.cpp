@@ -29,8 +29,11 @@ void vol() {
   volatile int vi {1};
   vi = 10;
   std::cout << vi << std::endl;
+  /*
   ++vi;
   --vi;
+  // '++' expression of 'volatile'-qualified type is deprecated [-Werror=volatile]
+  */
 
   // volatile is used to tell compiler
   // special memory is used, usually memory-mapped I/O:
